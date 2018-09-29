@@ -1,0 +1,86 @@
+
+React
+
+    特点：声明式设计、高效、灵活、JSX、组件、单向相应的数据流
+
+CDN
+	
+	<script src="http://static.runoob.com/assets/react/react-0.14.7/build/react.min.js"></script>
+	<script src="http://static.runoob.com/assets/react/react-0.14.7/build/react-dom.min.js"></script>
+	<script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+
+react.min.js 核心库
+
+react-dom.min.js 与 DOM 相关的功能
+
+browser.min.js 将 JSX 语法转为 JS 语法
+
+使用 JSX ，则 script 的 type="text/babel"
+
+
+CommonJS 模块系统，如 browserify 或 webpack
+
+
+安装：
+	npm install babel -g
+
+	npm install webpack -g
+
+	npm install webpack-dev-server -g
+
+
+创建根目录，初始化
+
+	mkdir reactApp
+
+	cd reactApp
+
+	npm init
+
+
+添加依赖包及插件：
+	
+	npm install react --save     （--save 命令用于将包添加至 package.json 文件）
+
+	npm install react-dom --save
+
+
+	npm install babel-core
+
+	npm install babel-loader
+
+	npm install babel-preset-react
+
+	npm install babel-preset-es2015
+
+
+创建文件：
+	
+	touch index.html
+
+	touch App.jsx
+
+	touch main.js
+
+	touch webpack.config.js
+
+
+设置编译器、服务器、载入器
+	
+	webpack.config.js 的配置
+
+	替换 package.json 中的 "test": "echo \"Error: no test specified\" && exit 1" 替换为 "start": "webpack-dev-server --hot"
+
+	可使用 npm start 启动服务。--hot 命令会在文件发生变化后重新载入（修改代码后不需要刷新浏览器就可看到变化）
+
+
+index.html
+
+App.js、main.js
+
+
+运行服务：npm start，localhost:7777
+
+
+
+如果想要组件可以在任何的应用中使用，需要在创建后使用 export 将其导出，在使用组件的文件使用 import 将其导入。

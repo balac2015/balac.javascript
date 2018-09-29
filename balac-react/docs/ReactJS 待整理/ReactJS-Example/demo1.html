@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>HTML 模板，ReactDOM.render()</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+    ReactDOM.render(
+        <div>
+            <h1>ReactJS</h1>
+            <div>
+                <h3>HTML 模板</h3>
+                <p>script 元素的 type = "text/babel"，因为 React 独有的 JSX 语法，跟 javascript 不兼容，凡是使用 JSX 的地方，都要 type="text/babel"</p>
+                <p>库：react.js 是 React 的核心库、react-dom.js 提供与 DOM 相关的功能、Browser.js 作用是将 JSX 语法转为 javascript 语法（耗时，应放服务器完成）</p>
+            </div>
+            <div>
+                <h3>ReactDOM.render()</h3>
+                <p>React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点</p>
+            </div>
+        </div>,
+            document.getElementById('example')
+    );
+</script>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)http://reactjs.cn/react/docs/working-with-the-browser.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>浏览器中的工作原理 | React</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="Reactjs,ReactJS,ReactJS中文,React,React中文,Reactjs中文文档">
+  <meta name="description" content="ReactJS中文文档, 用于构建用户界面的JAVASCRIPT库">
+
+  <meta property="og:title" content="浏览器中的工作原理 | React">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://facebook.github.io/react/docs/working-with-the-browser.html">
+  <meta property="og:image" content="http://facebook.github.io/react/img/logo_og.png">
+  <meta property="og:description" content="用于构建用户界面的Javascript库">
+
+  <link rel="shortcut icon" href="http://reactjs.cn/react/favicon.ico">
+
+  <link rel="stylesheet" href="./浏览器中的工作原理 _ React_files/">
+  <link rel="stylesheet" href="./浏览器中的工作原理 _ React_files/">
+  <link rel="stylesheet" href="./浏览器中的工作原理 _ React_files/">
+
+  <!--[if lte IE 8]>
+  <script type="text/javascript" src="/react/js/html5shiv.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-shim.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-sham.min.js"></script>
+  <![endif]-->
+  <script src="./浏览器中的工作原理 _ React_files/"></script><script type="text/javascript" src="./浏览器中的工作原理 _ React_files/"></script>
+  <script type="text/javascript" src="./浏览器中的工作原理 _ React_files/"></script>
+  <script type="text/javascript" src="./浏览器中的工作原理 _ React_files/"></script>
+  <script type="text/javascript" src="./浏览器中的工作原理 _ React_files/"></script>
+  <script type="text/javascript" src="./浏览器中的工作原理 _ React_files/"></script>
+  <script type="text/javascript" src="./浏览器中的工作原理 _ React_files/"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2814bad0fb4ce6fddc5d4df4670662cc";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="http://reactjs.cn/react/index.html">
+          <img class="nav-logo" src="./浏览器中的工作原理 _ React_files/" width="36" height="36">
+          React
+        </a>
+        <ul class="nav-site">
+          <li><a href="http://reactjs.cn/react/docs/getting-started.html" class="active">文档</a></li>
+          <li><a href="http://bbs.react-china.org/" target="_blank">中文社区</a>
+          </li><li><a href="http://reactjs.cn/react/downloads.html">下载</a></li>
+          <!-- <li><a href="/react/blog/">博客</a></li> -->
+          <li><a href="https://github.com/reactjs-cn/react-docs">github</a>
+          </li><li><a href="http://reactjs.cn/react/about/">关于我们</a>
+        </li></ul>
+      </div>
+    </div>
+
+    
+
+    <section class="content wrap documentationContent">
+  <div class="nav-docs">
+  <!-- Docs Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>快速入门</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/getting-started.html">快速开始</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tutorial.html">教程</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/thinking-in-react.html">深入理解React</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>指南</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/why-react.html">为什么使用 React?</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/displaying-data.html">数据呈现</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-in-depth.html">深入理解JSX</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-spread.html">JSX的延展属性</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-gotchas.html">JSX的陷阱</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/interactivity-and-dynamic-uis.html">富交互性的动态用户界面</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/multiple-components.html">复合组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reusable-components.html">可复用组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/transferring-props.html">传递 Props</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/forms.html">表单组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/working-with-the-browser.html" class="active">浏览器中的工作原理</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/more-about-refs.html">关于Refs的更多内容</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tooling-integration.html">Tooling Integration</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/addons.html">插件</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/animation.html">动画</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/two-way-binding-helpers.html">双向绑定</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/class-name-manipulation.html">类名操作</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/test-utils.html">测试工具集</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/clone-with-props.html">克隆组件</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/update.html">Immutability Helpers</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/pure-render-mixin.html">PureRenderMixin</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/perf.html">性能分析工具</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>社区资源</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/videos.html">视频</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/complementary-tools.html">其余工具</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/examples.html">范例</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>参考</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/top-level-api.html">顶层 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-api.html">组件 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-specs.html">组件的详细说明和生命周期（Component Specs and Lifecycle）</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tags-and-attributes.html">标签和属性支持</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/events.html">事件系统</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/dom-differences.html">与 DOM 的差异</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/special-non-dom-attributes.html">特殊的非 DOM 属性</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reconciliation.html">Reconciliation</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/glossary.html">React （虚拟）DOM 术语</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>Flux</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-overview.html">Flux概述</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-todo-list.html">Flux的TodoMVC教程</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+
+  <!-- Tips Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>Tips</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/introduction.html">内容简介</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/inline-styles.html">内联样式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/if-else-in-JSX.html">JSX 中的 If-Else</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/self-closing-tag.html">自闭合标签</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/maximum-number-of-jsx-root-nodes.html">JSX 根节点的最大数量</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/style-props-value-px.html">在样式props中快速制定像素值</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-props-type.html">子props的类型</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/controlled-input-null-value.html">值为 null 的 Controlled Input</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/componentWillReceiveProps-not-triggered-after-mounting.html">Mounting 后 componentWillReceiveProps 未被触发</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/props-in-getInitialState-as-anti-pattern.html">getInitialState 里的 Props 是一个反模式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dom-event-listeners.html">组件的 DOM 事件监听</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/initial-ajax.html">通过 AJAX 加载初始数据</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/false-in-jsx.html">JSX 的 false 处理</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/communicate-between-components.html">组件间的通信</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/expose-component-functions.html">Expose Component Functions</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/references-to-components.html">组件的引用</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-undefined.html">this.props.children undefined</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/use-react-with-other-libraries.html">与其他类库并行使用React</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dangerously-set-inner-html.html">Dangerously Set innerHTML</a>
+          </li>
+        
+      </ul>
+    </div>
+  
+</div>
+
+
+  <div class="inner-content">
+    <h1>
+      浏览器中的工作原理
+      <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/08-working-with-the-browser.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <div class="subHeader"></div>
+
+    <p>React提供了强大的抽象，让你在大多数应用场景中不再直接操作DOM，但是有时你需要简单地调用底层的API，或者借助于第三方库或已有的代码。</p>
+<h2><a class="anchor" name="dom"></a>虚拟DOM <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#dom">#</a></h2>
+<p>React是很快的，因为它从不直接操作DOM。React在内存中维护一个快速响应的DOM描述。<code>render()</code>方法返回一个DOM的<em>描述</em>，React能够利用内存中的描述来快速地计算出差异，然后更新浏览器中的DOM。</p>
+
+<p>另外，React实现了一个完备的虚拟事件系统，尽管各个浏览器都有自己的怪异行为，React确保所有事件对象都符合W3C规范，并且持续冒泡，用一种高性能的方式跨浏览器（and everything bubbles consistently and in a performant way cross-browser）。你甚至可以在IE8中使用一些HTML5的事件！</p>
+
+<p>大多数时候你应该呆在React的“虚拟浏览器”世界里面，因为它性能更加好，并且容易思考。但是，有时你简单地需要调用底层的API，或许借助于第三方的类似于jQuery插件这种库。React为你提供了直接使用底层DOM API的途径。</p>
+<h2><a class="anchor" name="refsgetdomnode"></a>Refs和getDOMNode() <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#refsgetdomnode">#</a></h2>
+<p>为了和浏览器交互，你将需要对DOM节点的引用。每一个挂载的React组件有一个<code>getDOMNode()</code>方法，你可以调用这个方法来获取对该节点的引用。</p>
+
+<blockquote>
+<p>注意：</p>
+
+<p><code>getDOMNode()</code>仅在挂载的组件上有效（也就是说，组件已经被放进了DOM中）。如果你尝试在一个未被挂载的组件上调用这个函数（例如在创建组件的<code>render()</code>函数中调用<code>getDOMNode()</code>），将会抛出异常。</p>
+</blockquote>
+
+<p>为了获取一个到React组件的引用，你可以使用<code>this</code>来得到当前的React组件，或者你可以使用refs来指向一个你拥有的组件。它们像这样工作：</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+  <span class="nx">handleClick</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Explicitly focus the text input using the raw DOM API.</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">refs</span><span class="p">.</span><span class="nx">myTextInput</span><span class="p">.</span><span class="nx">getDOMNode</span><span class="p">().</span><span class="nx">focus</span><span class="p">();</span>
+  <span class="p">},</span>
+  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// The ref attribute adds a reference to the component to</span>
+    <span class="c1">// this.refs when the component is mounted.</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">ref</span><span class="o">=</span><span class="s2">"myTextInput"</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">input</span>
+          <span class="nx">type</span><span class="o">=</span><span class="s2">"button"</span>
+          <span class="nx">value</span><span class="o">=</span><span class="s2">"Focus the text input"</span>
+          <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span><span class="p">}</span>
+        <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="err">/div&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">React</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="o">/&gt;</span><span class="p">,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'example'</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div><h2><a class="anchor" name="refs"></a>更多关于Refs <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#refs">#</a></h2>
+<p>为了学习更多有关Refs的内容，包括如何有效地使用它们，参考我们的<a href="http://reactjs.cn/react/docs/more-about-refs.html">更多关于Refs</a>文档。</p>
+<h2><a class="anchor" name=""></a>组件生命周期 <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#">#</a></h2>
+<p>组件的生命周期包含三个主要部分：</p>
+
+<ul>
+<li><strong>挂载：</strong> 组件被插入到DOM中。</li>
+<li><strong>更新：</strong> 组件被重新渲染，查明DOM是否应该刷新。</li>
+<li><strong>移除：</strong> 组件从DOM中移除。</li>
+</ul>
+
+<p>React提供生命周期方法，你可以在这些方法中放入自己的代码。我们提供<strong>will</strong>方法，会在某些行为发生之前调用，和<strong>did</strong>方法，会在某些行为发生之后调用。</p>
+<h3><a class="anchor" name=""></a>挂载 <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#">#</a></h3>
+<ul>
+<li><code>getInitialState(): object</code>在组件被挂载之前调用。状态化的组件应该实现这个方法，返回初始的state数据。</li>
+<li><code>componentWillMount()</code>在挂载发生之前立即被调用。</li>
+<li><code>componentDidMount()</code>在挂载结束之后马上被调用。需要DOM节点的初始化操作应该放在这里。</li>
+</ul>
+<h3><a class="anchor" name=""></a>更新 <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#">#</a></h3>
+<ul>
+<li><code>componentWillReceiveProps(object nextProps)</code>当一个挂载的组件接收到新的props的时候被调用。该方法应该用于比较<code>this.props</code>和<code>nextProps</code>，然后使用<code>this.setState()</code>来改变state。</li>
+<li><code>shouldComponentUpdate(object nextProps, object nextState): boolean</code>当组件做出是否要更新DOM的决定的时候被调用。实现该函数，优化<code>this.props</code>和<code>nextProps</code>，以及<code>this.state</code>和<code>nextState</code>的比较，如果不需要React更新DOM，则返回false。</li>
+<li><code>componentWillUpdate(object nextProps, object nextState)</code>在更新发生之前被调用。你可以在这里调用<code>this.setState()</code>。</li>
+<li><code>componentDidUpdate(object prevProps, object prevState)</code>在更新发生之后调用。</li>
+</ul>
+<h3><a class="anchor" name=""></a>移除 <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#">#</a></h3>
+<ul>
+<li><code>componentWillUnmount()</code>在组件移除和销毁之前被调用。清理工作应该放在这里。</li>
+</ul>
+<h3><a class="anchor" name="mounted-methods"></a>挂载的方法（Mounted Methods） <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#mounted-methods">#</a></h3>
+<p><em>挂载的</em>复合组件也支持如下方法：</p>
+
+<ul>
+<li><code>getDOMNode(): DOMElement</code>可以在任何挂载的组件上面调用，用于获取一个指向它的渲染DOM节点的引用。</li>
+<li><code>forceUpdate()</code>当你知道一些很深的组件state已经改变了的时候，可以在该组件上面调用，而不是使用<code>this.setState()</code>。</li>
+</ul>
+<h2><a class="anchor" name="browser-support-and-polyfills"></a>跨浏览器支持和兼容代码（Browser Support and Polyfills） <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#browser-support-and-polyfills">#</a></h2>
+<p>在Facebook，我们支持低版本的浏览器，包括IE8。我们已经写好兼容代码很长时间了，这能让我们写有远见的JS。这意味着我们没有零散的骇客代码充斥在我们的代码库里面，并且我们依然能够预计我们的代码“正常工作起来”。例如，不使用<code>+new Date()</code>，我们能够写<code>Date.now()</code>。
+At Facebook, we support older browsers, including IE8. We've had polyfills in place for a long time to allow us to write forward-thinking JS. This means we don't have a bunch of hacks scattered throughout our codebase and we can still expect our code to "just work". For example, instead of seeing <code>+new Date()</code>, we can just write <code>Date.now()</code>. Since the open source React is the same as what we use internally, we've carried over this philosophy of using forward thinking JS.</p>
+
+<p>In addition to that philosophy, we've also taken the stance that we, as authors of a JS library, should not be shipping polyfills as a part of our library. If every library did this, there's a good chance you'd be sending down the same polyfill multiple times, which could be a sizable chunk of dead code. If your product needs to support older browsers, chances are you're already using something like <a href="https://github.com/kriskowal/es5-shim">es5-shim</a>.</p>
+<h3><a class="anchor" name=""></a>支持低版本浏览器的兼容代码 <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#">#</a></h3>
+<p><a href="https://github.com/kriskowal/es5-shim">kriskowal的es5-shim</a> <code>es5-shim.js</code> 提供了以下react需要的api：</p>
+
+<ul>
+<li><code>Array.isArray</code></li>
+<li><code>Array.prototype.every</code></li>
+<li><code>Array.prototype.forEach</code></li>
+<li><code>Array.prototype.indexOf</code></li>
+<li><code>Array.prototype.map</code></li>
+<li><code>Date.now</code></li>
+<li><code>Function.prototype.bind</code></li>
+<li><code>Object.keys</code></li>
+<li><code>String.prototype.split</code></li>
+<li><code>String.prototype.trim</code></li>
+</ul>
+
+<p><a href="https://github.com/kriskowal/es5-shim">kriskowal的es5-shim</a> <code>es5-sham.js</code> 同样提供了以下react需要的api：</p>
+
+<ul>
+<li><code>Object.create</code></li>
+<li><code>Object.freeze</code></li>
+</ul>
+
+<p>The unminified build of React needs the following from <a href="https://github.com/paulmillr/console-polyfill">paulmillr's console-polyfill</a>.</p>
+
+<ul>
+<li><code>console.*</code></li>
+</ul>
+
+<p>When using HTML5 elements in IE8 including <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;header&gt;</code>, and <code>&lt;footer&gt;</code>, it's also necessary to include <a href="https://github.com/aFarkas/html5shiv">html5shiv</a> or a similar script.</p>
+<h3><a class="anchor" name="cross-browser-issues"></a>Cross-browser Issues <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#cross-browser-issues">#</a></h3>
+<p>Although React is pretty good at abstracting browser differences, some browsers are limited or present quirky behaviors that we couldn't find a workaround for.</p>
+<h4><a class="anchor" name="onscroll-event-on-ie8"></a>onScroll event on IE8 <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#onscroll-event-on-ie8">#</a></h4>
+<p>On IE8 the <code>onScroll</code> event doesn't bubble and IE8 doesn't have an API to define handlers to the capturing phase of an event, meaning there is no way for React to listen to these events.
+Currently a handler to this event is ignored on IE8.</p>
+
+<p>See the <a href="https://github.com/facebook/react/issues/631">onScroll doesn't work in IE8</a> GitHub issue for more information.
+ve carried over this philosophy of using forward thinking JS.</p>
+
+<p>In addition to that philosophy, we've also taken the stance that we, as authors of a JS library, should not be shipping polyfills as a part of our library. If every library did this, there's a good chance you'd be sending down the same polyfill multiple times, which could be a sizable chunk of dead code. If your product needs to support older browsers, chances are you're already using something like <a href="https://github.com/kriskowal/es5-shim">es5-shim</a>.</p>
+<h3><a class="anchor" name="polyfills-needed-to-support-older-browsers"></a>Polyfills Needed to Support Older Browsers <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#polyfills-needed-to-support-older-browsers">#</a></h3>
+<p><code>es5-shim.js</code> from <a href="https://github.com/kriskowal/es5-shim">kriskowal's es5-shim</a> provides the following that React needs:</p>
+
+<ul>
+<li><code>Array.isArray</code></li>
+<li><code>Array.prototype.every</code></li>
+<li><code>Array.prototype.forEach</code></li>
+<li><code>Array.prototype.indexOf</code></li>
+<li><code>Array.prototype.map</code></li>
+<li><code>Date.now</code></li>
+<li><code>Function.prototype.bind</code></li>
+<li><code>Object.keys</code></li>
+<li><code>String.prototype.split</code></li>
+<li><code>String.prototype.trim</code></li>
+</ul>
+
+<p><code>es5-sham.js</code>, also from <a href="https://github.com/kriskowal/es5-shim">kriskowal's es5-shim</a>, provides the following that React needs:</p>
+
+<ul>
+<li><code>Object.create</code></li>
+<li><code>Object.freeze</code></li>
+</ul>
+
+<p>The unminified build of React needs the following from <a href="https://github.com/paulmillr/console-polyfill">paulmillr's console-polyfill</a>.</p>
+
+<ul>
+<li><code>console.*</code></li>
+</ul>
+
+<p>When using HTML5 elements in IE8 including <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;header&gt;</code>, and <code>&lt;footer&gt;</code>, it's also necessary to include <a href="https://github.com/aFarkas/html5shiv">html5shiv</a> or a similar script.</p>
+<h3><a class="anchor" name="cross-browser-issues"></a>Cross-browser Issues <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#cross-browser-issues">#</a></h3>
+<p>Although React is pretty good at abstracting browser differences, some browsers are limited or present quirky behaviors that we couldn't find a workaround for.</p>
+<h4><a class="anchor" name="onscroll-event-on-ie8"></a>onScroll event on IE8 <a class="hash-link" href="http://reactjs.cn/react/docs/working-with-the-browser.html#onscroll-event-on-ie8">#</a></h4>
+<p>On IE8 the <code>onScroll</code> event doesn't bubble and IE8 doesn't have an API to define handlers to the capturing phase of an event, meaning there is no way for React to listen to these events.
+Currently a handler to this event is ignored on IE8.</p>
+
+<p>See the <a href="https://github.com/facebook/react/issues/631">onScroll doesn't work in IE8</a> GitHub issue for more information.</p>
+
+
+    <div class="docs-prevnext">
+      
+        <a class="docs-prev" href="http://reactjs.cn/react/docs/forms.html">← 上一条</a>
+      
+      
+        <a class="docs-next" href="http://reactjs.cn/react/docs/more-about-refs.html">下一条 →</a>
+      
+    </div>
+  </div>
+</section>
+
+
+    <footer class="wrap">
+      <div class="left">
+        A Facebook &amp; Instagram collaboration.<br>
+        <a href="http://reactjs.cn/react/acknowledgements.html">Acknowledgements</a>
+      </div>
+      <div class="right">
+        © 2013–2015 Facebook Inc.<br>
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </div>
+    </footer>
+  </div>
+  <div id="fb-root"></div>
+
+
+
+<div id="window-resizer-tooltip" style="display: none;"><a href="http://reactjs.cn/react/docs/working-with-the-browser.html#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1366</span> x <span class="tooltipHeight" id="winHeight">728</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1366</span> x <span class="tooltipHeight" id="vpHeight">623</span></div></body></html>

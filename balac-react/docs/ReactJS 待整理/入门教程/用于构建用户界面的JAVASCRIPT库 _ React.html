@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!-- saved from url=(0018)http://reactjs.cn/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>用于构建用户界面的JAVASCRIPT库 | React</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="Reactjs,ReactJS,ReactJS中文,React,React中文,Reactjs中文文档">
+  <meta name="description" content="ReactJS中文文档, 用于构建用户界面的JAVASCRIPT库">
+
+  <meta property="og:title" content="用于构建用户界面的JAVASCRIPT库 | React">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://facebook.github.io/react/index.html">
+  <meta property="og:image" content="http://facebook.github.io/react/img/logo_og.png">
+  <meta property="og:description" content="用于构建用户界面的Javascript库">
+
+  <link rel="shortcut icon" href="http://reactjs.cn/react/favicon.ico">
+
+  <link rel="stylesheet" href="./用于构建用户界面的JAVASCRIPT库 _ React_files/">
+  <link rel="stylesheet" href="./用于构建用户界面的JAVASCRIPT库 _ React_files/">
+  <link rel="stylesheet" href="./用于构建用户界面的JAVASCRIPT库 _ React_files/">
+
+  <!--[if lte IE 8]>
+  <script type="text/javascript" src="/react/js/html5shiv.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-shim.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-sham.min.js"></script>
+  <![endif]-->
+  <script src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script><script type="text/javascript" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script>
+  <script type="text/javascript" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script>
+  <script type="text/javascript" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script>
+  <script type="text/javascript" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script>
+  <script type="text/javascript" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script>
+  <script type="text/javascript" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2814bad0fb4ce6fddc5d4df4670662cc";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="http://reactjs.cn/react/index.html">
+          <img class="nav-logo" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/" width="36" height="36">
+          React
+        </a>
+        <ul class="nav-site">
+          <li><a href="http://reactjs.cn/react/docs/getting-started.html">文档</a></li>
+          <li><a href="http://bbs.react-china.org/" target="_blank">中文社区</a>
+          </li><li><a href="http://reactjs.cn/react/downloads.html">下载</a></li>
+          <!-- <li><a href="/react/blog/">博客</a></li> -->
+          <li><a href="https://github.com/reactjs-cn/react-docs">github</a>
+          </li><li><a href="http://reactjs.cn/react/about/">关于我们</a>
+        </li></ul>
+      </div>
+    </div>
+
+    
+    <div class="hero">
+      <div class="wrap">
+        <div class="text"><strong>React</strong></div>
+        <div class="minitext">
+          用于构建用户界面的Javascript库
+        </div>
+
+        <div class="buttons-unit">
+          <a href="http://reactjs.cn/react/docs/getting-started.html" class="button">快速入门</a>
+          <a href="http://reactjs.cn/react/downloads.html" class="button">下载 React v0.13.0</a>
+        </div>
+      </div>
+    </div>
+    
+
+    <section class="content wrap">
+  <section class="light home-section">
+  <div class="marketing-row">
+    <div class="marketing-col">
+      <h3>仅仅是UI</h3>
+      <p>
+        许多人使用React作为MVC架构的V层。
+        尽管React并没有假设过你的其余技术栈，
+        但它仍可以作为一个小特征轻易地在已有项目中使用
+      </p>
+    </div>
+    <div class="marketing-col">
+      <h3>虚拟DOM</h3>
+      <p>
+        React为了更高超的性能而使用虚拟DOM作为其不同的实现。
+        它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持
+      </p>
+    </div>
+    <div class="marketing-col">
+      <h3>数据流</h3>
+      <p>
+        React实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。
+      </p>
+    </div>
+  </div>
+</section>
+
+<p></p><hr class="home-divider">
+<section class="home-section">
+  <div id="examples">
+    <div class="example">
+      <h3>一个简单的组件</h3>
+      <p>
+        React组件通过一个 <code>render()</code> 方法，接受输入的参数并返回展示的对象。 <br>
+        以下这个例子使用了JSX，它类似于XML的语法<br>
+        输入的参数通过 <code>render()</code> 传入组件后，将存储在<code>this.props</code>
+      </p>
+      <p>
+        <strong>JSX是可选的，并不强制要求使用。</strong><br>
+        点击 "Compiled JS" 可以看到JSX编译之后的JavaScript代码
+      </p>
+      <div id="helloExample"><div class="playground" data-reactid=".0"><div data-reactid=".0.0"><div class="playground-tab playground-tab-active" data-reactid=".0.0.0">Live JSX Editor</div><div class="playground-tab" data-reactid=".0.0.1">Compiled JS</div></div><div class="playgroundCode" data-reactid=".0.1"><div class="playgroundStage" data-reactid=".0.1.$jsx"><textarea data-reactid=".0.1.$jsx.0" style="display: none;">var HelloMessage = React.createClass({
+  render: function() {
+    return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;
+  }
+});
+
+React.render(&lt;HelloMessage name="John" /&gt;, mountNode);
+</textarea><div class="CodeMirror cm-s-solarized-light CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 16px; left: 14px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 1px; width: 0px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px; height: 0px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-height: 180px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1; display: none;"></div><div class="CodeMirror-code"><pre><span class="cm-keyword">var</span> <span class="cm-variable">HelloMessage</span> = <span class="cm-variable">React</span>.<span class="cm-property">createClass</span>({</pre><pre>  <span class="cm-property">render</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-keyword">return</span> &lt;<span class="cm-variable">div</span>&gt;<span class="cm-variable">Hello</span> {<span class="cm-variable-2">this</span>.<span class="cm-property">props</span>.<span class="cm-property">name</span>}&lt;<span class="cm-string-2">/div&gt;;</span></pre><pre>  }</pre><pre>});</pre><pre>&nbsp;</pre><pre><span class="cm-variable">React</span>.<span class="cm-property">render</span>(&lt;<span class="cm-variable">HelloMessage</span> <span class="cm-variable">name</span>=<span class="cm-string">"John"</span> /&gt;, <span class="cm-variable">mountNode</span>);</pre><pre>&nbsp;</pre></div><div class="CodeMirror-cursor" style="left: 14px; top: 2px; height: 15px;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="display: none;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; top: 180px;"></div><div class="CodeMirror-gutters" style="display: none; height: 180px;"></div></div></div></div></div><div class="playgroundPreview" data-reactid=".0.2"><div data-reactid=".0.2.0"><div data-reactid=".1"><span data-reactid=".1.0">Hello </span><span data-reactid=".1.1">John</span></div></div></div></div></div>
+    </div>
+    <div class="example">
+      <h3>一个有状态的组件</h3>
+      <p>
+        除了接受输入数据（通过 <code>this.props</code> ），组件还可以保持内部状态数据（通过 <code>this.state</code> ）。当一个组件的状态数据的变化，展现的标记将被重新调用 <code>render()</code> 更新。
+      </p>
+      <div id="timerExample"><div class="playground" data-reactid=".2"><div data-reactid=".2.0"><div class="playground-tab playground-tab-active" data-reactid=".2.0.0">Live JSX Editor</div><div class="playground-tab" data-reactid=".2.0.1">Compiled JS</div></div><div class="playgroundCode" data-reactid=".2.1"><div class="playgroundStage" data-reactid=".2.1.$jsx"><textarea data-reactid=".2.1.$jsx.0" style="display: none;">var Timer = React.createClass({
+  getInitialState: function() {
+    return {secondsElapsed: 0};
+  },
+  tick: function() {
+    this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+  },
+  componentDidMount: function() {
+    this.interval = setInterval(this.tick, 1000);
+  },
+  componentWillUnmount: function() {
+    clearInterval(this.interval);
+  },
+  render: function() {
+    return (
+      &lt;div&gt;Seconds Elapsed: {this.state.secondsElapsed}&lt;/div&gt;
+    );
+  }
+});
+
+React.render(&lt;Timer /&gt;, mountNode);
+</textarea><div class="CodeMirror cm-s-solarized-light CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 16px; left: 14px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 1px; width: 0px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px; height: 0px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-height: 446px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1; display: none;"></div><div class="CodeMirror-code"><pre><span class="cm-keyword">var</span> <span class="cm-variable">Timer</span> = <span class="cm-variable">React</span>.<span class="cm-property">createClass</span>({</pre><pre>  <span class="cm-property">getInitialState</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-keyword">return</span> {<span class="cm-property">secondsElapsed</span>: <span class="cm-number">0</span>};</pre><pre>  },</pre><pre>  <span class="cm-property">tick</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-variable-2">this</span>.<span class="cm-property">setState</span>({<span class="cm-property">secondsElapsed</span>: <span class="cm-variable-2">this</span>.<span class="cm-property">state</span>.<span class="cm-property">secondsElapsed</span> + <span class="cm-number">1</span>});</pre><pre>  },</pre><pre>  <span class="cm-property">componentDidMount</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-variable-2">this</span>.<span class="cm-property">interval</span> = <span class="cm-variable">setInterval</span>(<span class="cm-variable-2">this</span>.<span class="cm-property">tick</span>, <span class="cm-number">1000</span>);</pre><pre>  },</pre><pre>  <span class="cm-property">componentWillUnmount</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-variable">clearInterval</span>(<span class="cm-variable-2">this</span>.<span class="cm-property">interval</span>);</pre><pre>  },</pre><pre>  <span class="cm-property">render</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-keyword">return</span> (</pre><pre> &nbsp; &nbsp;  &lt;<span class="cm-variable">div</span>&gt;<span class="cm-variable">Seconds</span> <span class="cm-variable">Elapsed</span>: {<span class="cm-variable-2">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">secondsElapsed</span>}&lt;<span class="cm-string-2">/div&gt;</span></pre><pre> &nbsp;  );</pre><pre>  }</pre><pre>});</pre><pre>&nbsp;</pre><pre><span class="cm-variable">React</span>.<span class="cm-property">render</span>(&lt;<span class="cm-variable">Timer</span> /&gt;, <span class="cm-variable">mountNode</span>);</pre><pre>&nbsp;</pre></div><div class="CodeMirror-cursor" style="left: 14px; top: 2px; height: 15px;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="display: none;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; top: 446px;"></div><div class="CodeMirror-gutters" style="display: none; height: 446px;"></div></div></div></div></div><div class="playgroundPreview" data-reactid=".2.2"><div data-reactid=".2.2.0"><div data-reactid=".3"><span data-reactid=".3.0">Seconds Elapsed: </span><span data-reactid=".3.1">35662</span></div></div></div></div></div>
+    </div>
+    <div class="example">
+       <h3>一个应用程序</h3>
+       <p>
+          通过使用 <code>props</code> 和 <code>state</code>, 我们可以组合构建一个小型的Todo程序。<br>
+          下面例子使用 <code>state</code> 去监测当前列表的项以及用户已经输入的文本。
+          尽管事件绑定似乎是以内联的方式，但他们将被收集起来并以事件代理的方式实现。
+        </p>
+        <div id="todoExample"><div class="playground" data-reactid=".4"><div data-reactid=".4.0"><div class="playground-tab playground-tab-active" data-reactid=".4.0.0">Live JSX Editor</div><div class="playground-tab" data-reactid=".4.0.1">Compiled JS</div></div><div class="playgroundCode" data-reactid=".4.1"><div class="playgroundStage" data-reactid=".4.1.$jsx"><textarea data-reactid=".4.1.$jsx.0" style="display: none;">var TodoList = React.createClass({
+  render: function() {
+    var createItem = function(itemText) {
+      return &lt;li&gt;{itemText}&lt;/li&gt;;
+    };
+    return &lt;ul&gt;{this.props.items.map(createItem)}&lt;/ul&gt;;
+  }
+});
+var TodoApp = React.createClass({
+  getInitialState: function() {
+    return {items: [], text: ''};
+  },
+  onChange: function(e) {
+    this.setState({text: e.target.value});
+  },
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var nextItems = this.state.items.concat([this.state.text]);
+    var nextText = '';
+    this.setState({items: nextItems, text: nextText});
+  },
+  render: function() {
+    return (
+      &lt;div&gt;
+        &lt;h3&gt;TODO&lt;/h3&gt;
+        &lt;TodoList items={this.state.items} /&gt;
+        &lt;form onSubmit={this.handleSubmit}&gt;
+          &lt;input onChange={this.onChange} value={this.state.text} /&gt;
+          &lt;button&gt;{'Add #' + (this.state.items.length + 1)}&lt;/button&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+
+React.render(&lt;TodoApp /&gt;, mountNode);
+</textarea><div class="CodeMirror cm-s-solarized-light CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 16px; left: 14px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 1px; width: 0px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px; height: 0px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-height: 694px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1; display: none;"></div><div class="CodeMirror-code"><pre><span class="cm-keyword">var</span> <span class="cm-variable">TodoList</span> = <span class="cm-variable">React</span>.<span class="cm-property">createClass</span>({</pre><pre>  <span class="cm-property">render</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-keyword">var</span> <span class="cm-def">createItem</span> = <span class="cm-keyword">function</span>(<span class="cm-def">itemText</span>) {</pre><pre> &nbsp; &nbsp;  <span class="cm-keyword">return</span> &lt;<span class="cm-variable">li</span>&gt;{<span class="cm-property">itemText</span>}&lt;<span class="cm-string-2">/li&gt;;</span></pre><pre> &nbsp;  };</pre><pre> &nbsp;  <span class="cm-keyword">return</span> &lt;<span class="cm-variable">ul</span>&gt;{<span class="cm-variable-2">this</span>.<span class="cm-variable">props</span>.<span class="cm-variable">items</span>.<span class="cm-variable">map</span>(<span class="cm-variable">createItem</span>)}&lt;<span class="cm-string-2">/ul&gt;;</span></pre><pre>  }</pre><pre>});</pre><pre><span class="cm-keyword">var</span> <span class="cm-variable">TodoApp</span> = <span class="cm-variable">React</span>.<span class="cm-variable">createClass</span>({</pre><pre>  <span class="cm-variable">getInitialState</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-keyword">return</span> {<span class="cm-property">items</span>: [], <span class="cm-property">text</span>: <span class="cm-string">''</span>};</pre><pre>  },</pre><pre>  <span class="cm-property">onChange</span>: <span class="cm-keyword">function</span>(<span class="cm-def">e</span>) {</pre><pre> &nbsp;  <span class="cm-variable-2">this</span>.<span class="cm-property">setState</span>({<span class="cm-property">text</span>: <span class="cm-variable-2">e</span>.<span class="cm-property">target</span>.<span class="cm-property">value</span>});</pre><pre>  },</pre><pre>  <span class="cm-property">handleSubmit</span>: <span class="cm-keyword">function</span>(<span class="cm-def">e</span>) {</pre><pre> &nbsp;  <span class="cm-variable-2">e</span>.<span class="cm-property">preventDefault</span>();</pre><pre> &nbsp;  <span class="cm-keyword">var</span> <span class="cm-def">nextItems</span> = <span class="cm-variable-2">this</span>.<span class="cm-property">state</span>.<span class="cm-property">items</span>.<span class="cm-property">concat</span>([<span class="cm-variable-2">this</span>.<span class="cm-property">state</span>.<span class="cm-property">text</span>]);</pre><pre> &nbsp;  <span class="cm-keyword">var</span> <span class="cm-def">nextText</span> = <span class="cm-string">''</span>;</pre><pre> &nbsp;  <span class="cm-variable-2">this</span>.<span class="cm-property">setState</span>({<span class="cm-property">items</span>: <span class="cm-variable-2">nextItems</span>, <span class="cm-property">text</span>: <span class="cm-variable-2">nextText</span>});</pre><pre>  },</pre><pre>  <span class="cm-property">render</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-keyword">return</span> (</pre><pre> &nbsp; &nbsp;  &lt;<span class="cm-variable">div</span>&gt;</pre><pre> &nbsp; &nbsp; &nbsp;  &lt;<span class="cm-variable">h3</span>&gt;<span class="cm-variable">TODO</span>&lt;<span class="cm-string-2">/h3&gt;</span></pre><pre> &nbsp; &nbsp; &nbsp;  &lt;<span class="cm-variable">TodoList</span> <span class="cm-variable">items</span>={<span class="cm-variable-2">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">items</span>} <span class="cm-string-2">/&gt;</span></pre><pre> &nbsp; &nbsp; &nbsp;  &lt;<span class="cm-variable">form</span> <span class="cm-variable">onSubmit</span>={<span class="cm-variable-2">this</span>.<span class="cm-variable">handleSubmit</span>}&gt;</pre><pre> &nbsp; &nbsp; &nbsp; &nbsp;  &lt;<span class="cm-variable">input</span> <span class="cm-variable">onChange</span>={<span class="cm-variable-2">this</span>.<span class="cm-variable">onChange</span>} <span class="cm-variable">value</span>={<span class="cm-variable-2">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">text</span>} <span class="cm-string-2">/&gt;</span></pre><pre> &nbsp; &nbsp; &nbsp; &nbsp;  &lt;<span class="cm-variable">button</span>&gt;{<span class="cm-string">'Add #'</span> + (<span class="cm-variable-2">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">items</span>.<span class="cm-variable">length</span> + <span class="cm-number">1</span>)}&lt;<span class="cm-string-2">/button&gt;</span></pre><pre> &nbsp; &nbsp; &nbsp;  &lt;<span class="cm-string-2">/form&gt;</span></pre><pre> &nbsp; &nbsp;  &lt;<span class="cm-string-2">/div&gt;</span></pre><pre> &nbsp;  );</pre><pre>  }</pre><pre>});</pre><pre>&nbsp;</pre><pre><span class="cm-variable">React</span>.<span class="cm-property">render</span>(&lt;<span class="cm-variable">TodoApp</span> /&gt;, <span class="cm-variable">mountNode</span>);</pre><pre>&nbsp;</pre></div><div class="CodeMirror-cursor" style="left: 14px; top: 2px; height: 14px;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="display: none;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; top: 694px;"></div><div class="CodeMirror-gutters" style="display: none; height: 694px;"></div></div></div></div></div><div class="playgroundPreview" data-reactid=".4.2"><div data-reactid=".4.2.0"><div data-reactid=".5"><h3 data-reactid=".5.0">TODO</h3><ul data-reactid=".5.1"></ul><form data-reactid=".5.2"><input value="" data-reactid=".5.2.0"><button data-reactid=".5.2.1">Add #1</button></form></div></div></div></div></div>
+    </div>
+    <div class="example">
+      <h3>一个使用外部插件的组件</h3>
+      <p>
+        React是灵活的，并且提供方法允许你跟其他库和框架对接。<br>
+        下面例子展现了一个案例，使用外部库Markdown实时转化textarea的值。
+      </p>
+      <div id="markdownExample"><div class="playground" data-reactid=".6"><div data-reactid=".6.0"><div class="playground-tab playground-tab-active" data-reactid=".6.0.0">Live JSX Editor</div><div class="playground-tab" data-reactid=".6.0.1">Compiled JS</div></div><div class="playgroundCode" data-reactid=".6.1"><div class="playgroundStage" data-reactid=".6.1.$jsx"><textarea data-reactid=".6.1.$jsx.0" style="display: none;">var converter = new Showdown.converter();
+
+var MarkdownEditor = React.createClass({
+  getInitialState: function() {
+    return {value: 'Type some *markdown* here!'};
+  },
+  handleChange: function() {
+    this.setState({value: this.refs.textarea.getDOMNode().value});
+  },
+  render: function() {
+    return (
+      &lt;div className="MarkdownEditor"&gt;
+        &lt;h3&gt;Input&lt;/h3&gt;
+        &lt;textarea
+          onChange={this.handleChange}
+          ref="textarea"
+          defaultValue={this.state.value} /&gt;
+        &lt;h3&gt;Output&lt;/h3&gt;
+        &lt;div
+          className="content"
+          dangerouslySetInnerHTML={{
+            __html: converter.makeHtml(this.state.value)
+          }}
+        /&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+
+React.render(&lt;MarkdownEditor /&gt;, mountNode);
+</textarea><div class="CodeMirror cm-s-solarized-light CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 16px; left: 14px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 1px; width: 0px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px; height: 0px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-height: 617px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1; display: none;"></div><div class="CodeMirror-code"><pre><span class="cm-keyword">var</span> <span class="cm-variable">converter</span> = <span class="cm-keyword">new</span> <span class="cm-variable">Showdown</span>.<span class="cm-property">converter</span>();</pre><pre>&nbsp;</pre><pre><span class="cm-keyword">var</span> <span class="cm-variable">MarkdownEditor</span> = <span class="cm-variable">React</span>.<span class="cm-property">createClass</span>({</pre><pre>  <span class="cm-property">getInitialState</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-keyword">return</span> {<span class="cm-property">value</span>: <span class="cm-string">'Type some *markdown* here!'</span>};</pre><pre>  },</pre><pre>  <span class="cm-property">handleChange</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-variable-2">this</span>.<span class="cm-property">setState</span>({<span class="cm-property">value</span>: <span class="cm-variable-2">this</span>.<span class="cm-property">refs</span>.<span class="cm-property">textarea</span>.<span class="cm-property">getDOMNode</span>().<span class="cm-property">value</span>});</pre><pre>  },</pre><pre>  <span class="cm-property">render</span>: <span class="cm-keyword">function</span>() {</pre><pre> &nbsp;  <span class="cm-keyword">return</span> (</pre><pre> &nbsp; &nbsp;  &lt;<span class="cm-variable">div</span> <span class="cm-variable">className</span>=<span class="cm-string">"MarkdownEditor"</span>&gt;</pre><pre> &nbsp; &nbsp; &nbsp;  &lt;<span class="cm-variable">h3</span>&gt;<span class="cm-variable">Input</span>&lt;<span class="cm-string-2">/h3&gt;</span></pre><pre> &nbsp; &nbsp; &nbsp;  &lt;<span class="cm-variable">textarea</span></pre><pre> &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-variable">onChange</span>={<span class="cm-variable-2">this</span>.<span class="cm-variable">handleChange</span>}</pre><pre> &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-variable">ref</span>=<span class="cm-string">"textarea"</span></pre><pre> &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-variable">defaultValue</span>={<span class="cm-variable-2">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">value</span>} <span class="cm-string-2">/&gt;</span></pre><pre> &nbsp; &nbsp; &nbsp;  &lt;<span class="cm-variable">h3</span>&gt;<span class="cm-variable">Output</span>&lt;<span class="cm-string-2">/h3&gt;</span></pre><pre> &nbsp; &nbsp; &nbsp;  &lt;<span class="cm-variable">div</span></pre><pre> &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-variable">className</span>=<span class="cm-string">"content"</span></pre><pre> &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-variable">dangerouslySetInnerHTML</span>={{</pre><pre> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-variable">__html</span>: <span class="cm-variable">converter</span>.<span class="cm-variable">makeHtml</span>(<span class="cm-variable-2">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">value</span>)</pre><pre> &nbsp; &nbsp; &nbsp; &nbsp;  }}</pre><pre> &nbsp; &nbsp; &nbsp;  <span class="cm-string-2">/&gt;</span></pre><pre> &nbsp; &nbsp;  &lt;<span class="cm-string-2">/div&gt;</span></pre><pre> &nbsp;  );</pre><pre>  }</pre><pre>});</pre><pre>&nbsp;</pre><pre><span class="cm-variable">React</span>.<span class="cm-property">render</span>(&lt;<span class="cm-variable">MarkdownEditor</span> /&gt;, <span class="cm-variable">mountNode</span>);</pre><pre>&nbsp;</pre></div><div class="CodeMirror-cursor" style="left: 14px; top: 2px; height: 15px;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="display: none;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; top: 617px;"></div><div class="CodeMirror-gutters" style="display: none; height: 617px;"></div></div></div></div></div><div class="playgroundPreview" data-reactid=".6.2"><div data-reactid=".6.2.0"><div class="MarkdownEditor" data-reactid=".7"><h3 data-reactid=".7.0">Input</h3><textarea data-reactid=".7.1" style="margin: 0px 0px 10px; width: 256px; height: 175px;">Type some *markdown* here!</textarea><h3 data-reactid=".7.2">Output</h3><div class="content" data-reactid=".7.3"><p>Type some <em>markdown</em> here!</p></div></div></div></div></div></div>
+    </div>
+  </div>
+  <script type="text/javascript" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script>
+  <script type="text/javascript" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script>
+  <script type="text/javascript" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script>
+  <script type="text/javascript" src="./用于构建用户界面的JAVASCRIPT库 _ React_files/"></script>
+</section>
+<hr class="home-divider">
+<section class="home-bottom-section">
+  <div class="buttons-unit">
+    <a href="http://reactjs.cn/docs/getting-started.html" class="button">快速入门</a>
+    <a href="http://reactjs.cn/downloads.html" class="button">下载 v0.13.0</a>
+  </div>
+</section><p></p>
+
+</section>
+
+
+    <footer class="wrap">
+      <div class="left">
+        A Facebook &amp; Instagram collaboration.<br>
+        <a href="http://reactjs.cn/react/acknowledgements.html">Acknowledgements</a>
+      </div>
+      <div class="right">
+        © 2013–2015 Facebook Inc.<br>
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </div>
+    </footer>
+  </div>
+  <div id="fb-root"></div>
+
+
+
+<div id="window-resizer-tooltip" style="display: none;"><a href="http://reactjs.cn/#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1366</span> x <span class="tooltipHeight" id="winHeight">728</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1366</span> x <span class="tooltipHeight" id="vpHeight">623</span></div></body></html>

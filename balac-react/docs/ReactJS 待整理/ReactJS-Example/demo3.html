@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+
+    // React.createClass 用于生成一个组件类，组件类的第一个字母必须大写（否则会报错）
+    var HelloMessage = React.createClass({
+        // 每个组件都必须有自己的 render 方法，用户输出组件
+        render: function() {
+            // 组件类只能包含一个顶层标签
+            // this.props 对象获取组件的属性
+            return <h1>Hello {this.props.name}</h1>;
+        }
+    });
+    ReactDOM.render(
+        // HelloMessage 组件类插入时，会自动生成 HelloMessage 的一个实例
+        // 添加组件的属性时，class、for 要写成 className、htmlFor（因为是 javascript 的保留字）
+        <HelloMessage name="ReactJS" />,
+        document.getElementById('example')
+    );
+
+    // this.props.children 属性表示组件的所有子节点（当前组件没有子节点则为 undefined，有一个子节点则数据类型是 object，有多个子节点则数据类型是 array）
+    // React.Children.map 遍历子节点，而不用担心 this.props.children 的数据类型
+    var NotesList = React.createClass({
+        render: function() {
+            return (
+                <ol>
+                    {
+                        React.Children.map( this.props.children, function(child){
+                            return <li>{child}</li>;
+                        })
+                    }
+                </ol>
+            );
+        }
+    });
+    ReactDOM.render(
+        <NotesList>
+            <span>hello</span>
+            <span>world</span>
+        </NotesList>,
+        document.body
+    );
+
+</script>
+</body>
+</html>

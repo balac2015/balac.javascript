@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://reactjs.cn/react/docs/thinking-in-react.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>深入理解 React | React</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="Reactjs,ReactJS,ReactJS中文,React,React中文,Reactjs中文文档">
+  <meta name="description" content="ReactJS中文文档, 用于构建用户界面的JAVASCRIPT库">
+
+  <meta property="og:title" content="深入理解 React | React">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://facebook.github.io/react/docs/thinking-in-react.html">
+  <meta property="og:image" content="http://facebook.github.io/react/img/logo_og.png">
+  <meta property="og:description" content="用于构建用户界面的Javascript库">
+
+  <link rel="shortcut icon" href="http://reactjs.cn/react/favicon.ico">
+
+  <link rel="stylesheet" href="./深入理解 React _ React_files/">
+  <link rel="stylesheet" href="./深入理解 React _ React_files/">
+  <link rel="stylesheet" href="./深入理解 React _ React_files/">
+
+  <!--[if lte IE 8]>
+  <script type="text/javascript" src="/react/js/html5shiv.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-shim.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-sham.min.js"></script>
+  <![endif]-->
+  <script src="./深入理解 React _ React_files/"></script><script type="text/javascript" src="./深入理解 React _ React_files/"></script>
+  <script type="text/javascript" src="./深入理解 React _ React_files/"></script>
+  <script type="text/javascript" src="./深入理解 React _ React_files/"></script>
+  <script type="text/javascript" src="./深入理解 React _ React_files/"></script>
+  <script type="text/javascript" src="./深入理解 React _ React_files/"></script>
+  <script type="text/javascript" src="./深入理解 React _ React_files/"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2814bad0fb4ce6fddc5d4df4670662cc";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="http://reactjs.cn/react/index.html">
+          <img class="nav-logo" src="./深入理解 React _ React_files/" width="36" height="36">
+          React
+        </a>
+        <ul class="nav-site">
+          <li><a href="http://reactjs.cn/react/docs/getting-started.html" class="active">文档</a></li>
+          <li><a href="http://bbs.react-china.org/" target="_blank">中文社区</a>
+          </li><li><a href="http://reactjs.cn/react/downloads.html">下载</a></li>
+          <!-- <li><a href="/react/blog/">博客</a></li> -->
+          <li><a href="https://github.com/reactjs-cn/react-docs">github</a>
+          </li><li><a href="http://reactjs.cn/react/about/">关于我们</a>
+        </li></ul>
+      </div>
+    </div>
+
+    
+
+    <section class="content wrap documentationContent">
+  <div class="nav-docs">
+  <!-- Docs Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>快速入门</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/getting-started.html">快速开始</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tutorial.html">教程</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/thinking-in-react.html" class="active">深入理解React</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>指南</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/why-react.html">为什么使用 React?</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/displaying-data.html">数据呈现</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-in-depth.html">深入理解JSX</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-spread.html">JSX的延展属性</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-gotchas.html">JSX的陷阱</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/interactivity-and-dynamic-uis.html">富交互性的动态用户界面</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/multiple-components.html">复合组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reusable-components.html">可复用组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/transferring-props.html">传递 Props</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/forms.html">表单组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/working-with-the-browser.html">浏览器中的工作原理</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/more-about-refs.html">关于Refs的更多内容</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tooling-integration.html">Tooling Integration</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/addons.html">插件</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/animation.html">动画</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/two-way-binding-helpers.html">双向绑定</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/class-name-manipulation.html">类名操作</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/test-utils.html">测试工具集</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/clone-with-props.html">克隆组件</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/update.html">Immutability Helpers</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/pure-render-mixin.html">PureRenderMixin</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/perf.html">性能分析工具</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>社区资源</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/videos.html">视频</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/complementary-tools.html">其余工具</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/examples.html">范例</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>参考</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/top-level-api.html">顶层 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-api.html">组件 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-specs.html">组件的详细说明和生命周期（Component Specs and Lifecycle）</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tags-and-attributes.html">标签和属性支持</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/events.html">事件系统</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/dom-differences.html">与 DOM 的差异</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/special-non-dom-attributes.html">特殊的非 DOM 属性</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reconciliation.html">Reconciliation</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/glossary.html">React （虚拟）DOM 术语</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>Flux</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-overview.html">Flux概述</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-todo-list.html">Flux的TodoMVC教程</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+
+  <!-- Tips Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>Tips</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/introduction.html">内容简介</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/inline-styles.html">内联样式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/if-else-in-JSX.html">JSX 中的 If-Else</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/self-closing-tag.html">自闭合标签</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/maximum-number-of-jsx-root-nodes.html">JSX 根节点的最大数量</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/style-props-value-px.html">在样式props中快速制定像素值</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-props-type.html">子props的类型</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/controlled-input-null-value.html">值为 null 的 Controlled Input</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/componentWillReceiveProps-not-triggered-after-mounting.html">Mounting 后 componentWillReceiveProps 未被触发</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/props-in-getInitialState-as-anti-pattern.html">getInitialState 里的 Props 是一个反模式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dom-event-listeners.html">组件的 DOM 事件监听</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/initial-ajax.html">通过 AJAX 加载初始数据</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/false-in-jsx.html">JSX 的 false 处理</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/communicate-between-components.html">组件间的通信</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/expose-component-functions.html">Expose Component Functions</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/references-to-components.html">组件的引用</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-undefined.html">this.props.children undefined</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/use-react-with-other-libraries.html">与其他类库并行使用React</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dangerously-set-inner-html.html">Dangerously Set innerHTML</a>
+          </li>
+        
+      </ul>
+    </div>
+  
+</div>
+
+
+  <div class="inner-content">
+    <h1>
+      深入理解 React
+      <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/thinking-in-react.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <div class="subHeader"></div>
+
+    <p>这是一篇源自<a href="http://reactjs.cn/react/blog">官方博客</a> 的<a href="http://reactjs.cn/react/blog/2013/11/05/thinking-in-react.html">文章</a>。</p>
+
+<p>在我看来， React 是较早使用 JavaScript 构建大型、快速的 Web 应用程序的技术方案。它已经被我们广泛应用于 Facebook 和 Instagram 。</p>
+
+<p>React 众多优秀特征中的其中一部分就是，教会你去重新思考如何构建应用程序。</p>
+
+<p>本文中，我将跟你一起使用 React 构建一个具备搜索功能的产品列表。</p>
+
+<blockquote>
+<p><strong>注意：</strong></p>
+
+<p>如果你无法看到本页内嵌的代码片段，请确认你不是用 <code>https</code> 协议加载本页的。</p>
+</blockquote>
+<h2><a class="anchor" name="-mock-"></a>从原型（ mock ）开始 <a class="hash-link" href="http://reactjs.cn/react/docs/thinking-in-react.html#-mock-">#</a></h2>
+<p>假设我们已经拥有了一个 JSON API 和设计师设计的原型。我们的设计师显然不够好，因为原型看起来如下：</p>
+
+<p><img src="./深入理解 React _ React_files/" alt="Mockup"></p>
+
+<p>JSON接口返回数据如下：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[
+  {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
+  {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
+  {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
+  {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
+  {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
+  {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
+];
+</code></pre></div><h2><a class="anchor" name=""></a>第一步：拆分用户界面为一个组件树 <a class="hash-link" href="http://reactjs.cn/react/docs/thinking-in-react.html#">#</a></h2>
+<p>你要做的第一件事是，为所有组件（及子组件）命名并画上线框图。假如你和设计师一起工作，也许他们已经完成了这项工作，所以赶紧去跟他们沟通！他们的 Photoshop 图层名也许最终可以直接用于你的 React 组件名。</p>
+
+<p>然而你如何知道哪些才能成为组件？想象一下，当你创建一些函数或对象时，用到一些类似的技术。其中一项技术就是<a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">单一功能原则</a>，指的是，理想状态下一个组件应该只做一件事，假如它功能逐渐变大就需要被拆分成更小的子组件。</p>
+
+<p>由于你经常需要将一个JSON数据模型展示给用户，因此你需要检查这个模型结构是否正确以便你的 UI （在这里指组件结构）是否能够正确的映射到这个模型上。这是因为用户界面和数据模型在 <em>信息构造</em> 方面都要一致，这意味着将你可以省下很多将 UI 分割成组件的麻烦事。你需要做的仅仅只是将数据模型分隔成一小块一小块的组件，以便它们都能够表示成组件。</p>
+
+<p><img src="./深入理解 React _ React_files/" alt="Component diagram"></p>
+
+<p>由此可见，我们的 app 中包含五个组件。下面我已经用斜体标示出每个组件对应的数据。</p>
+
+<ol>
+<li><strong><code>FilterableProductTable</code> （橘色）：</strong> 包含整个例子的容器</li>
+<li><strong><code>SearchBar</code> （蓝色）：</strong> 接受所有 <em>用户输入（ user input ）</em></li>
+<li><strong><code>ProductTable</code> （绿色）：</strong> 根据 <em>用户输入（ user input ）</em> 过滤和展示 <em>数据集合（ data collection ）</em></li>
+<li><strong><code>ProductCategoryRow</code> （青色）：</strong> 为每个 <em>分类（ category ）</em> 展示一列表头</li>
+<li><strong><code>ProductRow</code> （红色）：</strong> 为每个 <em>产品（ product ）</em> 展示一列</li>
+</ol>
+
+<p>如果你仔细观察 <code>ProductTable</code> ，你会发现表头（包含“ Name ”和“ Price ”标签）并不是单独的组件。这只是一种个人偏好，也有一定的争论。在这个例子当中，我把表头当做 <code>ProductTable</code> 的一部分，因为它是渲染“数据集合”的一份子，这也是 <code>ProductTable</code> 的职责。但是，当这个表头变得复杂起来的时候（例如，添加排序功能），就应该单独地写一个 <code>ProductTableHeader</code> 组件。</p>
+
+<p>既然我们在原型当中定义了这个组件，让我们把这些元素组成一棵树形结构。这很简单。被包含在其它组件中的组件在属性机构中应该是子级：</p>
+
+<ul>
+<li><code>FilterableProductTable</code>
+
+<ul>
+<li><code>SearchBar</code></li>
+<li><code>ProductTable</code>
+
+<ul>
+<li><code>ProductCategoryRow</code></li>
+<li><code>ProductRow</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" name="--react-"></a>第二步： 利用 React ，创建应用的一个静态版本 <a class="hash-link" href="http://reactjs.cn/react/docs/thinking-in-react.html#--react-">#</a></h2>
+<iframe width="100%" height="300" src="./深入理解 React _ React_files/saved_resource.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>既然已经拥有了组件树，是时候开始实现应用了。最简单的方式就是创建一个应用，这个应用将数据模型渲染到 UI 上，但是没有交互功能。拆分这两个过程是最简单的，因为构建一个静态的版本仅需要大量的输入，而不需要思考；但是添加交互功能却需要大量的思考和少量的输入。我们将会知道这是为什么。</p>
+
+<p>为了创建一个渲染数据模型的应用的静态版本，你将会构造一些组件，这些组件重用其它组件，并且通过 <em>props</em> 传递数据。 <em>props</em> 是一种从父级向子级传递数据的方式。如果你对 <em>state</em> 概念熟悉，那么*<em>不要使用 state *</em>来构建这个静态版本。 state 仅用于实现交互功能，也就是说，数据随着时间变化。因为这是一个静态的应用版本，所以你并不需要 state 。</p>
+
+<p>你可以从上至下或者从下至上来构建应用。也就是说，你可以从属性结构的顶部开始构建这些组件（例如，从 <code>FilterableProductTable</code> 开始），或者从底部开始（ <code>ProductRow</code> ）。在简单的应用中，通常情况下从上至下的方式更加简单；在大型的项目中，从下至上的方式更加简单，这样也可以在构建的同时写测试代码。</p>
+
+<p>在这步结束的时候，将会有一个可重用的组件库来渲染数据模型。这些组件将会仅有 <code>render()</code> 方法，因为这是应用的一个静态版本。位于树形结构顶部的组件（ <code>FilterableProductTable</code> ）将会使用数据模型作为 prop 。如果你改变底层数据模型，然后再次调用 <code>React.render()</code> ， UI 将会更新。查看 UI 如何被更新和什么地方改变都是很容易的，因为 React 的<strong>单向数据流</strong>（也被称作“单向绑定”）保持了一切东西模块化，很容易查错，并且速度很快，没有什么复杂的。</p>
+
+<p>如果你在这步中需要帮助，请查看<a href="http://facebook.github.io/react/docs/"> React 文档</a>。</p>
+<h3><a class="anchor" name="-props--state-"></a>穿插一小段内容： props 与 state 比较 <a class="hash-link" href="http://reactjs.cn/react/docs/thinking-in-react.html#-props--state-">#</a></h3>
+<p>在 React 中有两种类型的数据“模型”： props 和 state 。理解两者的区别是很重要的；如果你不太确定两者有什么区别，请大致浏览一下<a href="http://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html">官方的 React 文档</a>。</p>
+<h2><a class="anchor" name="-ui--state"></a>第三步：识别出最小的（但是完整的）代表 UI 的 state <a class="hash-link" href="http://reactjs.cn/react/docs/thinking-in-react.html#-ui--state">#</a></h2>
+<p>为了使 UI 可交互，需要能够触发底层数据模型的变化。 React 通过 <strong>state</strong> 使这变得简单。</p>
+
+<p>为了正确构建应用，首先需要考虑应用需要的最小的可变 state 数据模型集合。此处关键点在于精简：<em>不要存储重复的数据</em>。构造出绝对最小的满足应用需要的最小 state 是有必要的，并且计算出其它强烈需要的东西。例如，如果构建一个 TODO 列表，仅保存一个 TODO 列表项的数组，而不要保存另外一个指代数组长度的 state 变量。当想要渲染 TODO 列表项总数的时候，简单地取出 TODO 列表项数组的长度就可以了。</p>
+
+<p>思考示例应用中的所有数据片段，有：</p>
+
+<ul>
+<li>最初的 products 列表</li>
+<li>用户输入的搜索文本</li>
+<li>复选框的值</li>
+<li>过滤后的 products 列表</li>
+</ul>
+
+<p>让我们分析每一项，指出哪一个是 state 。简单地对每一项数据提出三个问题：</p>
+
+<ol>
+<li>是否是从父级通过 props 传入的？如果是，可能不是 state 。</li>
+<li>是否会随着时间改变？如果不是，可能不是 state 。</li>
+<li>能根据组件中其它 state 数据或者 props 计算出来吗？如果是，就不是 state 。</li>
+</ol>
+
+<p>初始的 products 列表通过 props 传入，所以不是 state 。搜索文本和复选框看起来像是 state ，因为它们随着时间改变，也不能根据其它数据计算出来。最后，过滤的 products 列表不是 state ，因为可以通过搜索文本和复选框的值从初始的 products 列表计算出来。</p>
+
+<p>所以最终， state 是：</p>
+
+<ul>
+<li>用户输入的搜索文本</li>
+<li>复选框的值</li>
+</ul>
+<h2><a class="anchor" name="-state-"></a>第四步：确认 state 的生命周期 <a class="hash-link" href="http://reactjs.cn/react/docs/thinking-in-react.html#-state-">#</a></h2>
+<iframe width="100%" height="300" src="./深入理解 React _ React_files/saved_resource(1).html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>OK，我们辨别出了应用的 state 数据模型的最小集合。接下来，需要指出哪个组件会改变或者说<em>拥有</em>这个 state 数据模型。</p>
+
+<p>记住： React 中数据是沿着组件树从上到下单向流动的。可能不会立刻明白哪个组件应该拥有哪些 state 数据模型。<strong>这对新手通常是最难理解和最具挑战的，</strong>因此跟随以下步骤来弄清楚这点：</p>
+
+<p>对于应用中的每一个 state 数据：</p>
+
+<ul>
+<li>找出每一个基于那个 state 渲染界面的组件。</li>
+<li>找出共同的祖先组件（某个单个的组件，在组件树中位于需要这个 state 的所有组件的上面）。</li>
+<li>要么是共同的祖先组件，要么是另外一个在组件树中位于更高层级的组件应该拥有这个 state 。</li>
+<li>如果找不出拥有这个 state 数据模型的合适的组件，创建一个新的组件来维护这个 state ，然后添加到组件树中，层级位于所有共同拥有者组件的上面。</li>
+</ul>
+
+<p>让我们在应用中应用这个策略：</p>
+
+<ul>
+<li><code>ProductTable</code> 需要基于 state 过滤产品列表，<code>SearchBar</code> 需要显示搜索文本和复选框状态。</li>
+<li>共同拥有者组件是 <code>FilterableProductTable</code> 。</li>
+<li>理论上，过滤文本和复选框值位于 <code>FilterableProductTable</code> 中是合适的。</li>
+</ul>
+
+<p>太酷了，我们决定了 state 数据模型位于 <code>FilterableProductTable</code> 之中。首先，给 <code>FilterableProductTable</code> 添加 <code>getInitialState()</code> 方法，该方法返回 <code>{filterText: '', inStockOnly: false}</code> 来反映应用的初始化状态。然后传递 <code>filterText</code> 和 <code>inStockOnly</code> 给 <code>ProductTable</code> 和 <code>SearchBar</code> 作为 prop 。最后，使用这些 props 来过滤 <code>ProductTable</code> 中的行，设置在 <code>SearchBar</code> 中表单字段的值。</p>
+
+<p>你可以开始观察应用将会如何运行：设置 <code>filterText</code> 为 <code>"ball"</code> ，然后刷新应用。将会看到数据表格被正确更新了。</p>
+<h2><a class="anchor" name=""></a>第五步：添加反向数据流 <a class="hash-link" href="http://reactjs.cn/react/docs/thinking-in-react.html#">#</a></h2>
+<iframe width="100%" height="300" src="./深入理解 React _ React_files/saved_resource(2).html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>到目前为止，已经构建了渲染正确的基于 props 和 state 的沿着组件树从上至下单向数据流动的应用。现在，是时候支持另外一种数据流动方式了：组件树中层级很深的表单组件需要更新 <code>FilterableProductTable</code> 中的 state 。</p>
+
+<p>React 让这种数据流动非常明确，从而很容易理解应用是如何工作的，但是相对于传统的双向数据绑定，确实需要输入更多的东西。 React 提供了一个叫做 <code>ReactLink</code> 的插件来使其和双向数据绑定一样方便，但是考虑到这篇文章的目的，我们将会保持所有东西都直截了当。</p>
+
+<p>如果你尝试在示例的当前版本中输入或者选中复选框，将会发现 React 会忽略你的输入。这是有意的，因为已经设置了 <code>input</code> 的 <code>value</code> 属性，使其总是与从 <code>FilterableProductTable</code> 传递过来的 <code>state</code> 一致。</p>
+
+<p>让我们思考下我们希望发生什么。我们想确保无论何时用户改变了表单，都要更新 state 来反映用户的输入。由于组件只能更新自己的 state ， <code>FilterableProductTable</code> 将会传递一个回调函数给 <code>SearchBar</code> ，此函数将会在 state 应该被改变的时候触发。我们可以使用 input 的 <code>onChange</code> 事件来监听用户输入，从而确定何时触发回调函数。 <code>FilterableProductTable</code> 传递的回调函数将会调用 <code>setState()</code> ，然后应用将会被更新。</p>
+
+<p>虽然这听起来有很多内容，但是实际上仅仅需要几行代码。并且关于数据在应用中如何流动真的非常清晰明确。</p>
+<h2><a class="anchor" name=""></a>就这么简单 <a class="hash-link" href="http://reactjs.cn/react/docs/thinking-in-react.html#">#</a></h2>
+<p>希望以上内容让你明白了如何思考用 React 去构造组件和应用。虽然可能比你之前要输入更多的代码，记住，读代码的时间远比写代码的时间多，并且阅读这种模块化的清晰的代码是相当容易的。当你开始构建大型的组件库的时候，你将会非常感激这种清晰性和模块化，并且随着代码的复用，整个项目代码量就开始变少了 :)。</p>
+
+
+    <div class="docs-prevnext">
+      
+        <a class="docs-prev" href="http://reactjs.cn/react/docs/tutorial.html">← 上一条</a>
+      
+      
+        <a class="docs-next" href="http://reactjs.cn/react/docs/videos.html">下一条 →</a>
+      
+    </div>
+  </div>
+</section>
+
+
+    <footer class="wrap">
+      <div class="left">
+        A Facebook &amp; Instagram collaboration.<br>
+        <a href="http://reactjs.cn/react/acknowledgements.html">Acknowledgements</a>
+      </div>
+      <div class="right">
+        © 2013–2015 Facebook Inc.<br>
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </div>
+    </footer>
+  </div>
+  <div id="fb-root"></div>
+
+
+
+<div id="window-resizer-tooltip" style="display: none;"><a href="http://reactjs.cn/react/docs/thinking-in-react.html#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1366</span> x <span class="tooltipHeight" id="winHeight">728</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1366</span> x <span class="tooltipHeight" id="vpHeight">623</span></div></body></html>

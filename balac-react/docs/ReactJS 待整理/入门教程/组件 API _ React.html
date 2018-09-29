@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://reactjs.cn/react/docs/component-api.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>组件 API | React</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="Reactjs,ReactJS,ReactJS中文,React,React中文,Reactjs中文文档">
+  <meta name="description" content="ReactJS中文文档, 用于构建用户界面的JAVASCRIPT库">
+
+  <meta property="og:title" content="组件 API | React">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://facebook.github.io/react/docs/component-api.html">
+  <meta property="og:image" content="http://facebook.github.io/react/img/logo_og.png">
+  <meta property="og:description" content="用于构建用户界面的Javascript库">
+
+  <link rel="shortcut icon" href="http://reactjs.cn/react/favicon.ico">
+
+  <link rel="stylesheet" href="./组件 API _ React_files/">
+  <link rel="stylesheet" href="./组件 API _ React_files/">
+  <link rel="stylesheet" href="./组件 API _ React_files/">
+
+  <!--[if lte IE 8]>
+  <script type="text/javascript" src="/react/js/html5shiv.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-shim.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-sham.min.js"></script>
+  <![endif]-->
+  <script src="./组件 API _ React_files/"></script><script type="text/javascript" src="./组件 API _ React_files/"></script>
+  <script type="text/javascript" src="./组件 API _ React_files/"></script>
+  <script type="text/javascript" src="./组件 API _ React_files/"></script>
+  <script type="text/javascript" src="./组件 API _ React_files/"></script>
+  <script type="text/javascript" src="./组件 API _ React_files/"></script>
+  <script type="text/javascript" src="./组件 API _ React_files/"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2814bad0fb4ce6fddc5d4df4670662cc";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="http://reactjs.cn/react/index.html">
+          <img class="nav-logo" src="./组件 API _ React_files/" width="36" height="36">
+          React
+        </a>
+        <ul class="nav-site">
+          <li><a href="http://reactjs.cn/react/docs/getting-started.html" class="active">文档</a></li>
+          <li><a href="http://bbs.react-china.org/" target="_blank">中文社区</a>
+          </li><li><a href="http://reactjs.cn/react/downloads.html">下载</a></li>
+          <!-- <li><a href="/react/blog/">博客</a></li> -->
+          <li><a href="https://github.com/reactjs-cn/react-docs">github</a>
+          </li><li><a href="http://reactjs.cn/react/about/">关于我们</a>
+        </li></ul>
+      </div>
+    </div>
+
+    
+
+    <section class="content wrap documentationContent">
+  <div class="nav-docs">
+  <!-- Docs Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>快速入门</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/getting-started.html">快速开始</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tutorial.html">教程</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/thinking-in-react.html">深入理解React</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>指南</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/why-react.html">为什么使用 React?</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/displaying-data.html">数据呈现</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-in-depth.html">深入理解JSX</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-spread.html">JSX的延展属性</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-gotchas.html">JSX的陷阱</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/interactivity-and-dynamic-uis.html">富交互性的动态用户界面</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/multiple-components.html">复合组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reusable-components.html">可复用组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/transferring-props.html">传递 Props</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/forms.html">表单组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/working-with-the-browser.html">浏览器中的工作原理</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/more-about-refs.html">关于Refs的更多内容</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tooling-integration.html">Tooling Integration</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/addons.html">插件</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/animation.html">动画</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/two-way-binding-helpers.html">双向绑定</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/class-name-manipulation.html">类名操作</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/test-utils.html">测试工具集</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/clone-with-props.html">克隆组件</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/update.html">Immutability Helpers</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/pure-render-mixin.html">PureRenderMixin</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/perf.html">性能分析工具</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>社区资源</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/videos.html">视频</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/complementary-tools.html">其余工具</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/examples.html">范例</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>参考</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/top-level-api.html">顶层 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-api.html" class="active">组件 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-specs.html">组件的详细说明和生命周期（Component Specs and Lifecycle）</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tags-and-attributes.html">标签和属性支持</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/events.html">事件系统</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/dom-differences.html">与 DOM 的差异</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/special-non-dom-attributes.html">特殊的非 DOM 属性</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reconciliation.html">Reconciliation</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/glossary.html">React （虚拟）DOM 术语</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>Flux</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-overview.html">Flux概述</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-todo-list.html">Flux的TodoMVC教程</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+
+  <!-- Tips Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>Tips</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/introduction.html">内容简介</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/inline-styles.html">内联样式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/if-else-in-JSX.html">JSX 中的 If-Else</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/self-closing-tag.html">自闭合标签</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/maximum-number-of-jsx-root-nodes.html">JSX 根节点的最大数量</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/style-props-value-px.html">在样式props中快速制定像素值</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-props-type.html">子props的类型</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/controlled-input-null-value.html">值为 null 的 Controlled Input</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/componentWillReceiveProps-not-triggered-after-mounting.html">Mounting 后 componentWillReceiveProps 未被触发</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/props-in-getInitialState-as-anti-pattern.html">getInitialState 里的 Props 是一个反模式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dom-event-listeners.html">组件的 DOM 事件监听</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/initial-ajax.html">通过 AJAX 加载初始数据</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/false-in-jsx.html">JSX 的 false 处理</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/communicate-between-components.html">组件间的通信</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/expose-component-functions.html">Expose Component Functions</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/references-to-components.html">组件的引用</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-undefined.html">this.props.children undefined</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/use-react-with-other-libraries.html">与其他类库并行使用React</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dangerously-set-inner-html.html">Dangerously Set innerHTML</a>
+          </li>
+        
+      </ul>
+    </div>
+  
+</div>
+
+
+  <div class="inner-content">
+    <h1>
+      组件 API
+      <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/ref-02-component-api.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <div class="subHeader"></div>
+
+    <h2><a class="anchor" name="reactcomponent"></a>ReactComponent <a class="hash-link" href="http://reactjs.cn/react/docs/component-api.html#reactcomponent">#</a></h2>
+<p>React 组件实例在渲染的时候创建。这些实例在接下来的渲染中被重复使用，可以在组件方法中通过 <code>this</code> 访问。唯一一种在 React 之外获取 React 组件实例句柄的方式就是保存 <code>React.render</code> 的返回值。在其它组件内，可以使用 <a href="http://reactjs.cn/react/docs/more-about-refs.html">refs</a> 得到相同的结果。</p>
+<h3><a class="anchor" name="setstate"></a>setState <a class="hash-link" href="http://reactjs.cn/react/docs/component-api.html#setstate">#</a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">setState</span><span class="p">(</span><span class="nx">object</span> <span class="nx">nextState</span><span class="p">[,</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">])</span>
+</code></pre></div>
+<p>合并 nextState 和当前 state。这是在事件处理函数中和请求回调函数中触发 UI 更新的主要方法。另外，也支持可选的回调函数，该函数在 <code>setState</code> 执行完毕并且组件重新渲染完成之后调用。</p>
+
+<blockquote>
+<p>注意：</p>
+
+<p><em>绝对不要</em>直接改变 <code>this.state</code>，因为在之后调用 <code>setState()</code> 可能会替换掉你做的更改。把 <code>this.state</code> 当做不可变的。</p>
+
+<p><code>setState()</code> 不会立刻改变 <code>this.state</code>，而是创建一个即将处理的 state 转变。在调用该方法之后获取 <code>this.state</code> 的值可能会得到现有的值，而不是最新设置的值。</p>
+
+<p>不保证 <code>setState()</code> 调用的同步性，为了提升性能，可能会批量执行 state 转变和 DOM 渲染。</p>
+
+<p><code>setState()</code> 将总是触发一次重绘，除非在 <code>shouldComponentUpdate()</code> 中实现了条件渲染逻辑。如果使用可变的对象，但是又不能在 <code>shouldComponentUpdate()</code> 中实现这种逻辑，仅在新 state 和之前的 state 存在差异的时候调用 <code>setState()</code> 可以避免不必要的重新渲染。</p>
+</blockquote>
+<h3><a class="anchor" name="replacestate"></a>replaceState <a class="hash-link" href="http://reactjs.cn/react/docs/component-api.html#replacestate">#</a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">replaceState</span><span class="p">(</span><span class="nx">object</span> <span class="nx">nextState</span><span class="p">[,</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">])</span>
+</code></pre></div>
+<p>类似于 <code>setState()</code>，但是删除之前所有已存在的 state 键，这些键都不在 nextState 中。</p>
+<h3><a class="anchor" name="forceupdate"></a>forceUpdate() <a class="hash-link" href="http://reactjs.cn/react/docs/component-api.html#forceupdate">#</a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">forceUpdate</span><span class="p">([</span><span class="kd">function</span> <span class="nx">callback</span><span class="p">])</span>
+</code></pre></div>
+<p>如果 <code>render()</code> 方法从 <code>this.props</code> 或者 <code>this.state</code> 之外的地方读取数据，你需要通过调用 <code>forceUpdate()</code> 告诉 React 什么时候需要再次运行 <code>render()</code>。如果直接改变了 <code>this.state</code>，也需要调用 <code>forceUpdate()</code>。</p>
+
+<p>调用 <code>forceUpdate()</code> 将会导致 <code>render()</code> 方法在相应的组件上被调用，并且子级组件也会调用自己的 <code>render()</code>，但是如果标记改变了，那么 React 仅会更新 DOM。</p>
+
+<p>通常情况下，应该尽量避免所有使用 <code>forceUpdate()</code> 的情况，在 <code>render()</code> 中仅从 <code>this.props</code> 和 <code>this.state</code> 中读取数据。这会使应用大大简化，并且更加高效。</p>
+<h3><a class="anchor" name="getdomnode"></a>getDOMNode <a class="hash-link" href="http://reactjs.cn/react/docs/component-api.html#getdomnode">#</a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">DOMElement</span> <span class="nx">getDOMNode</span><span class="p">()</span>
+</code></pre></div>
+<p>如果组件已经挂载到了 DOM 上，该方法返回相应的本地浏览器 DOM 元素。从 DOM 中读取值的时候，该方法很有用，比如获取表单字段的值和做一些 DOM 操作。当 <code>render</code> 返回 <code>null</code> 或者 <code>false</code> 的时候，<code>this.getDOMNode()</code> 返回 <code>null</code>。</p>
+<h3><a class="anchor" name="ismounted"></a>isMounted() <a class="hash-link" href="http://reactjs.cn/react/docs/component-api.html#ismounted">#</a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">bool</span> <span class="nx">isMounted</span><span class="p">()</span>
+</code></pre></div>
+<p>如果组件渲染到了 DOM 中，<code>isMounted()</code> 返回 true。可以使用该方法保证 <code>setState()</code> 和 <code>forceUpdate()</code> 在异步场景下的调用不会出错。</p>
+<h3><a class="anchor" name="setprops"></a>setProps <a class="hash-link" href="http://reactjs.cn/react/docs/component-api.html#setprops">#</a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">setProps</span><span class="p">(</span><span class="nx">object</span> <span class="nx">nextProps</span><span class="p">[,</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">])</span>
+</code></pre></div>
+<p>当和一个外部的 JavaScript 应用集成的时候，你可能想给一个用 <code>React.render()</code> 渲染的组件打上改变的标记。</p>
+
+<p>尽管在同一个节点上再次调用 <code>React.render()</code> 来更新根组件是首选的方式，也可以调用 <code>setProps()</code> 来改变组件的属性，触发一次重新渲染。另外，可以传递一个可选的回调函数，该函数将会在 <code>setProps</code> 完成并且组件重新渲染完成之后调用。</p>
+
+<blockquote>
+<p>注意：</p>
+
+<p>When possible, the declarative approach of calling <code>React.render()</code> again is preferred; it tends to make updates easier to reason about. (There's no significant performance difference between the two approaches.)</p>
+
+<p>刚方法仅在根组件上面调用。也就是说，仅在直接传给 <code>React.render()</code> 的组件上可用，在它的子级组件上不可用。如果你倾向于在子组件上使用 <code>setProps()</code>，不要利用响应式更新，而是当子组件在 <code>render()</code> 中创建的时候传入新的 prop 到子组件中。</p>
+</blockquote>
+<h3><a class="anchor" name="replaceprops"></a>replaceProps <a class="hash-link" href="http://reactjs.cn/react/docs/component-api.html#replaceprops">#</a></h3><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">replaceProps</span><span class="p">(</span><span class="nx">object</span> <span class="nx">nextProps</span><span class="p">[,</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">])</span>
+</code></pre></div>
+<p>类似于 <code>setProps()</code>，但是删除所有已存在的 props，而不是合并新旧两个 props 对象。</p>
+
+
+    <div class="docs-prevnext">
+      
+        <a class="docs-prev" href="http://reactjs.cn/react/docs/top-level-api.html">← 上一条</a>
+      
+      
+        <a class="docs-next" href="http://reactjs.cn/react/docs/component-specs.html">下一条 →</a>
+      
+    </div>
+  </div>
+</section>
+
+
+    <footer class="wrap">
+      <div class="left">
+        A Facebook &amp; Instagram collaboration.<br>
+        <a href="http://reactjs.cn/react/acknowledgements.html">Acknowledgements</a>
+      </div>
+      <div class="right">
+        © 2013–2015 Facebook Inc.<br>
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </div>
+    </footer>
+  </div>
+  <div id="fb-root"></div>
+
+
+
+<div id="window-resizer-tooltip" style="display: none;"><a href="http://reactjs.cn/react/docs/component-api.html#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1366</span> x <span class="tooltipHeight" id="winHeight">728</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1366</span> x <span class="tooltipHeight" id="vpHeight">623</span></div></body></html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://reactjs.cn/react/docs/perf.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>性能分析工具 | React</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="Reactjs,ReactJS,ReactJS中文,React,React中文,Reactjs中文文档">
+  <meta name="description" content="ReactJS中文文档, 用于构建用户界面的JAVASCRIPT库">
+
+  <meta property="og:title" content="性能分析工具 | React">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://facebook.github.io/react/docs/perf.html">
+  <meta property="og:image" content="http://facebook.github.io/react/img/logo_og.png">
+  <meta property="og:description" content="用于构建用户界面的Javascript库">
+
+  <link rel="shortcut icon" href="http://reactjs.cn/react/favicon.ico">
+
+  <link rel="stylesheet" href="./性能分析工具 _ React_files/">
+  <link rel="stylesheet" href="./性能分析工具 _ React_files/">
+  <link rel="stylesheet" href="./性能分析工具 _ React_files/">
+
+  <!--[if lte IE 8]>
+  <script type="text/javascript" src="/react/js/html5shiv.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-shim.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-sham.min.js"></script>
+  <![endif]-->
+  <script src="./性能分析工具 _ React_files/"></script><script type="text/javascript" src="./性能分析工具 _ React_files/"></script>
+  <script type="text/javascript" src="./性能分析工具 _ React_files/"></script>
+  <script type="text/javascript" src="./性能分析工具 _ React_files/"></script>
+  <script type="text/javascript" src="./性能分析工具 _ React_files/"></script>
+  <script type="text/javascript" src="./性能分析工具 _ React_files/"></script>
+  <script type="text/javascript" src="./性能分析工具 _ React_files/"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2814bad0fb4ce6fddc5d4df4670662cc";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="http://reactjs.cn/react/index.html">
+          <img class="nav-logo" src="./性能分析工具 _ React_files/" width="36" height="36">
+          React
+        </a>
+        <ul class="nav-site">
+          <li><a href="http://reactjs.cn/react/docs/getting-started.html" class="active">文档</a></li>
+          <li><a href="http://bbs.react-china.org/" target="_blank">中文社区</a>
+          </li><li><a href="http://reactjs.cn/react/downloads.html">下载</a></li>
+          <!-- <li><a href="/react/blog/">博客</a></li> -->
+          <li><a href="https://github.com/reactjs-cn/react-docs">github</a>
+          </li><li><a href="http://reactjs.cn/react/about/">关于我们</a>
+        </li></ul>
+      </div>
+    </div>
+
+    
+
+    <section class="content wrap documentationContent">
+  <div class="nav-docs">
+  <!-- Docs Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>快速入门</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/getting-started.html">快速开始</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tutorial.html">教程</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/thinking-in-react.html">深入理解React</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>指南</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/why-react.html">为什么使用 React?</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/displaying-data.html">数据呈现</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-in-depth.html">深入理解JSX</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-spread.html">JSX的延展属性</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-gotchas.html">JSX的陷阱</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/interactivity-and-dynamic-uis.html">富交互性的动态用户界面</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/multiple-components.html">复合组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reusable-components.html">可复用组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/transferring-props.html">传递 Props</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/forms.html">表单组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/working-with-the-browser.html">浏览器中的工作原理</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/more-about-refs.html">关于Refs的更多内容</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tooling-integration.html">Tooling Integration</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/addons.html">插件</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/animation.html">动画</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/two-way-binding-helpers.html">双向绑定</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/class-name-manipulation.html">类名操作</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/test-utils.html">测试工具集</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/clone-with-props.html">克隆组件</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/update.html">Immutability Helpers</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/pure-render-mixin.html">PureRenderMixin</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/perf.html" class="active">性能分析工具</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>社区资源</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/videos.html">视频</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/complementary-tools.html">其余工具</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/examples.html">范例</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>参考</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/top-level-api.html">顶层 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-api.html">组件 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-specs.html">组件的详细说明和生命周期（Component Specs and Lifecycle）</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tags-and-attributes.html">标签和属性支持</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/events.html">事件系统</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/dom-differences.html">与 DOM 的差异</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/special-non-dom-attributes.html">特殊的非 DOM 属性</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reconciliation.html">Reconciliation</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/glossary.html">React （虚拟）DOM 术语</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>Flux</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-overview.html">Flux概述</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-todo-list.html">Flux的TodoMVC教程</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+
+  <!-- Tips Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>Tips</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/introduction.html">内容简介</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/inline-styles.html">内联样式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/if-else-in-JSX.html">JSX 中的 If-Else</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/self-closing-tag.html">自闭合标签</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/maximum-number-of-jsx-root-nodes.html">JSX 根节点的最大数量</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/style-props-value-px.html">在样式props中快速制定像素值</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-props-type.html">子props的类型</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/controlled-input-null-value.html">值为 null 的 Controlled Input</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/componentWillReceiveProps-not-triggered-after-mounting.html">Mounting 后 componentWillReceiveProps 未被触发</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/props-in-getInitialState-as-anti-pattern.html">getInitialState 里的 Props 是一个反模式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dom-event-listeners.html">组件的 DOM 事件监听</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/initial-ajax.html">通过 AJAX 加载初始数据</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/false-in-jsx.html">JSX 的 false 处理</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/communicate-between-components.html">组件间的通信</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/expose-component-functions.html">Expose Component Functions</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/references-to-components.html">组件的引用</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-undefined.html">this.props.children undefined</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/use-react-with-other-libraries.html">与其他类库并行使用React</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dangerously-set-inner-html.html">Dangerously Set innerHTML</a>
+          </li>
+        
+      </ul>
+    </div>
+  
+</div>
+
+
+  <div class="inner-content">
+    <h1>
+      性能分析工具
+      <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/10.8-perf.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <div class="subHeader"></div>
+
+    <p>通常情况下，React在沙箱中是非常快的。但是，在你应用的一些情景中，你需要仔细推敲每一个性能点。React提供了一个函数<a href="http://reactjs.cn/react/docs/component-specs.html#updating-shouldcomponentupdate">shouldComponentUpdate</a>，通过这个函数，你能够给React的差异检查添加优化代码。</p>
+
+<p>为了给你一个你的应用总体的性能概览，ReactPerf是一个分析工具，告诉你需要把这些钩子函数放在哪里。</p>
+
+<blockquote>
+<p>注意：</p>
+
+<p>开发的构建过程比生产的构建过程要慢，是因为所有额外逻辑的提供，例如，友好的控制台警告（生产构建时会去掉）。因此，分析工具仅用于指出你应用中相对影响性能的部分。</p>
+</blockquote>
+<h2><a class="anchor" name="api"></a>通用API <a class="hash-link" href="http://reactjs.cn/react/docs/perf.html#api">#</a></h2>
+<p>当使用<code>react-with-addons.js</code>在开发模式下构建的时候，这里描述的<code>Perf</code>对象是以<code>React.addons.Perf</code>的形式暴露出来的。</p>
+<h3><a class="anchor" name="perf.startperf.stop"></a><code>Perf.start()</code>和<code>Perf.stop()</code> <a class="hash-link" href="http://reactjs.cn/react/docs/perf.html#perf.startperf.stop">#</a></h3>
+<p>开始/停止检测。React的中间操作被记录下来，用于下面的分析。花费一段微不足道的时间的操作会被忽略。</p>
+<h3><a class="anchor" name="perf.printinclusivemeasurements"></a><code>Perf.printInclusive(measurements)</code> <a class="hash-link" href="http://reactjs.cn/react/docs/perf.html#perf.printinclusivemeasurements">#</a></h3>
+<p>打印花费的总时间。如果不传递任何参数，默认打印最后的所有检测记录。它会在控制台中打印一个漂亮的格式化的表格，像这样：</p>
+
+<p><img src="./性能分析工具 _ React_files/" alt=""></p>
+<h3><a class="anchor" name="perf.printexclusivemeasurements"></a><code>Perf.printExclusive(measurements)</code> <a class="hash-link" href="http://reactjs.cn/react/docs/perf.html#perf.printexclusivemeasurements">#</a></h3>
+<p>“独占（Exclusive）”时间不包含挂载组件的时间：处理props，<code>getInitialState</code>，调用<code>componentWillMount</code>和<code>componentDidMount</code>，等等。</p>
+
+<p><img src="./性能分析工具 _ React_files/" alt=""></p>
+<h3><a class="anchor" name="perf.printwastedmeasurements"></a><code>Perf.printWasted(measurements)</code> <a class="hash-link" href="http://reactjs.cn/react/docs/perf.html#perf.printwastedmeasurements">#</a></h3>
+<p><strong>分析器最有用的部分</strong>。</p>
+
+<p>“浪费”的时间被花在根本没有渲染任何东西的组件上，例如界面渲染后保持不变，没有操作DOM元素。</p>
+
+<p><img src="./性能分析工具 _ React_files/" alt=""></p>
+<h3><a class="anchor" name="perf.printdommeasurements"></a><code>Perf.printDOM(measurements)</code> <a class="hash-link" href="http://reactjs.cn/react/docs/perf.html#perf.printdommeasurements">#</a></h3>
+<p>打印底层DOM操作，例如，“设置innerHTML”和“移除节点”。</p>
+
+<p><img src="./性能分析工具 _ React_files/" alt=""></p>
+<h2><a class="anchor" name="api"></a>高级API <a class="hash-link" href="http://reactjs.cn/react/docs/perf.html#api">#</a></h2>
+<p>上面的打印方法使用<code>Perf.getLastMeasurements()</code>打印好看的结果。</p>
+<h3><a class="anchor" name="perf.getlastmeasurements"></a><code>Perf.getLastMeasurements()</code> <a class="hash-link" href="http://reactjs.cn/react/docs/perf.html#perf.getlastmeasurements">#</a></h3>
+<p>从最后的开始-停止会话中得到检测结果数组。该数组包含对象，每个对象看起来像这样：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+  <span class="c1">// The term "inclusive" and "exclusive" are explained below</span>
+  <span class="s2">"exclusive"</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="c1">// '.0.0' is the React ID of the node</span>
+  <span class="s2">"inclusive"</span><span class="o">:</span> <span class="p">{</span><span class="s2">".0.0"</span><span class="o">:</span> <span class="mf">0.0670000008540228</span><span class="p">,</span> <span class="s2">".0"</span><span class="o">:</span> <span class="mf">0.3259999939473346</span><span class="p">},</span>
+  <span class="s2">"render"</span><span class="o">:</span> <span class="p">{</span><span class="s2">".0"</span><span class="o">:</span> <span class="mf">0.036999990697950125</span><span class="p">,</span> <span class="s2">".0.0"</span><span class="o">:</span> <span class="mf">0.010000003385357559</span><span class="p">},</span>
+  <span class="c1">// Number of instances</span>
+  <span class="s2">"counts"</span><span class="o">:</span> <span class="p">{</span><span class="s2">".0"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">".0.0"</span><span class="o">:</span> <span class="mi">1</span><span class="p">},</span>
+  <span class="c1">// DOM touches</span>
+  <span class="s2">"writes"</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="c1">// Extra debugging info</span>
+  <span class="s2">"displayNames"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">".0"</span><span class="o">:</span> <span class="p">{</span><span class="s2">"current"</span><span class="o">:</span> <span class="s2">"App"</span><span class="p">,</span> <span class="s2">"owner"</span><span class="o">:</span> <span class="s2">"&lt;root&gt;"</span><span class="p">},</span>
+    <span class="s2">".0.0"</span><span class="o">:</span> <span class="p">{</span><span class="s2">"current"</span><span class="o">:</span> <span class="s2">"Box"</span><span class="p">,</span> <span class="s2">"owner"</span><span class="o">:</span> <span class="s2">"App"</span><span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">"totalTime"</span><span class="o">:</span> <span class="mf">0.48499999684281647</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    <div class="docs-prevnext">
+      
+        <a class="docs-prev" href="http://reactjs.cn/react/docs/pure-render-mixin.html">← 上一条</a>
+      
+      
+    </div>
+  </div>
+</section>
+
+
+    <footer class="wrap">
+      <div class="left">
+        A Facebook &amp; Instagram collaboration.<br>
+        <a href="http://reactjs.cn/react/acknowledgements.html">Acknowledgements</a>
+      </div>
+      <div class="right">
+        © 2013–2015 Facebook Inc.<br>
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </div>
+    </footer>
+  </div>
+  <div id="fb-root"></div>
+
+
+
+<div id="window-resizer-tooltip" style="display: none;"><a href="http://reactjs.cn/react/docs/perf.html#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1366</span> x <span class="tooltipHeight" id="winHeight">728</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1366</span> x <span class="tooltipHeight" id="vpHeight">623</span></div></body></html>

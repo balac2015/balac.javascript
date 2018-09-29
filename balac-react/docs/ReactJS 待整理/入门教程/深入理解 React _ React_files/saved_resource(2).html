@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://jsfiddle.net/reactjs/n47gckhr/embedded/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    
+    <meta http-equiv="edit-Type" edit="text/html; charset=utf-8">
+
+    
+      <meta name="robots" content="index, follow">
+      <meta name="googlebot" content="index, follow">
+
+      <script async="" src=""></script><script type="text/javascript" src=""></script>
+
+      <script type="text/javascript" src=""></script>
+
+
+      
+        <link rel="stylesheet" type="text/css" href="">
+
+      
+
+      <script type="text/javascript">
+        var height;
+        var force_height = null;
+        var slug = "n47gckhr";
+        var show_src = "//fiddle.jshell.net/reactjs/n47gckhr/show/light/";
+        var resize_element_counter = 0;
+        var shell_edit_url = '/reactjs/n47gckhr/light/';
+
+        
+      </script>
+    
+
+    <link href="" rel="stylesheet" type="text/css">
+    <link href="" rel="stylesheet" type="text/css">
+
+    <style type="text/css" media="screen">
+      
+      
+      
+      
+    </style>
+
+  </head>
+  <body>
+    <div id="wrapper">
+      
+        <header>
+          <h1><a href="http://jsfiddle.net/reactjs/n47gckhr/?utm_source=website&amp;utm_medium=embed&amp;utm_campaign=n47gckhr" target="_blank">Edit in JSFiddle</a></h1>
+          <!-- <h1><a href="/reactjs/n47gckhr/light/" target="_blank">Edit in JSFiddle</a></h1> -->
+          <div id="actions">
+            <ul class="normalRes">
+              
+                <li class="active">
+                  <a data-trigger-type="js" href="http://jsfiddle.net/reactjs/n47gckhr/embedded/#JavaScript 1.7">JavaScript 1.7</a>
+                </li>
+              
+                <li>
+                  <a data-trigger-type="html" href="http://jsfiddle.net/reactjs/n47gckhr/embedded/#HTML">HTML</a>
+                </li>
+              
+                <li>
+                  <a data-trigger-type="css" href="http://jsfiddle.net/reactjs/n47gckhr/embedded/#CSS">CSS</a>
+                </li>
+              
+                <li>
+                  <a data-trigger-type="resources" href="http://jsfiddle.net/reactjs/n47gckhr/embedded/#Resources">Resources</a>
+                </li>
+              
+                <li>
+                  <a data-trigger-type="result" href="http://jsfiddle.net/reactjs/n47gckhr/embedded/#Result">Result</a>
+                </li>
+              
+            </ul>
+            <div class="hl" style="left: 0px; width: 110px;"></div>
+          </div>
+        </header>
+
+        <div id="tabs">
+          
+            
+              
+                <pre class="tCont  active hljs javascript"><span class="hljs-keyword">var</span> ProductCategoryRow = React.createClass({
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">colSpan</span>=<span class="hljs-string">"2"</span>&gt;</span>{this.props.category}<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>)</span>;
+  }
+});
+
+<span class="hljs-keyword">var</span> ProductRow = React.createClass({
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> name = <span class="hljs-keyword">this</span>.props.product.stocked ?
+      <span class="hljs-keyword">this</span>.props.product.name :
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{color:</span> '<span class="hljs-attr">red</span>'}}&gt;</span>
+        {this.props.product.name}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>;</span>
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{name}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{this.props.product.price}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    )</span>;
+  }
+});
+
+<span class="hljs-keyword">var</span> ProductTable = React.createClass({
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> rows = [];
+    <span class="hljs-keyword">var</span> lastCategory = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.props.products.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">product</span>) </span>{
+      <span class="hljs-keyword">if</span> (product.name.indexOf(<span class="hljs-keyword">this</span>.props.filterText) === <span class="hljs-number">-1</span> || (!product.stocked &amp;&amp; <span class="hljs-keyword">this</span>.props.inStockOnly)) {
+        <span class="hljs-keyword">return</span>;
+      }
+      <span class="hljs-keyword">if</span> (product.category !== lastCategory) {
+        rows.push(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ProductCategoryRow</span> <span class="hljs-attr">category</span>=<span class="hljs-string">{product.category}</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{product.category}</span> /&gt;</span>)</span>;
+      }
+      rows.push(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ProductRow</span> <span class="hljs-attr">product</span>=<span class="hljs-string">{product}</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{product.name}</span> /&gt;</span>)</span>;
+      lastCategory = product.category;
+    }.bind(<span class="hljs-keyword">this</span>));
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Price<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>{rows}<span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+    )</span>;
+  }
+});
+
+<span class="hljs-keyword">var</span> SearchBar = React.createClass({
+  handleChange: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.props.onUserInput(
+      <span class="hljs-keyword">this</span>.refs.filterTextInput.value,
+      <span class="hljs-keyword">this</span>.refs.inStockOnlyInput.checked
+    );
+  },
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+          <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+          <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Search..."</span>
+          <span class="hljs-attr">value</span>=<span class="hljs-string">{this.props.filterText}</span>
+          <span class="hljs-attr">ref</span>=<span class="hljs-string">"filterTextInput"</span>
+          <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleChange}</span>
+        /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+            <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span>
+            <span class="hljs-attr">checked</span>=<span class="hljs-string">{this.props.inStockOnly}</span>
+            <span class="hljs-attr">ref</span>=<span class="hljs-string">"inStockOnlyInput"</span>
+            <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleChange}</span>
+          /&gt;</span>
+          {' '}
+          Only show products in stock
+        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    )</span>;
+  }
+});
+
+<span class="hljs-keyword">var</span> FilterableProductTable = React.createClass({
+  getInitialState: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> {
+      filterText: <span class="hljs-string">''</span>,
+      inStockOnly: <span class="hljs-literal">false</span>
+    };
+  },
+
+  handleUserInput: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">filterText, inStockOnly</span>) </span>{
+    <span class="hljs-keyword">this</span>.setState({
+      filterText: filterText,
+      inStockOnly: inStockOnly
+    });
+  },
+
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">SearchBar</span>
+          <span class="hljs-attr">filterText</span>=<span class="hljs-string">{this.state.filterText}</span>
+          <span class="hljs-attr">inStockOnly</span>=<span class="hljs-string">{this.state.inStockOnly}</span>
+          <span class="hljs-attr">onUserInput</span>=<span class="hljs-string">{this.handleUserInput}</span>
+        /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ProductTable</span>
+          <span class="hljs-attr">products</span>=<span class="hljs-string">{this.props.products}</span>
+          <span class="hljs-attr">filterText</span>=<span class="hljs-string">{this.state.filterText}</span>
+          <span class="hljs-attr">inStockOnly</span>=<span class="hljs-string">{this.state.inStockOnly}</span>
+        /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    )</span>;
+  }
+});
+
+
+<span class="hljs-keyword">var</span> PRODUCTS = [
+  {category: <span class="hljs-string">'Sporting Goods'</span>, price: <span class="hljs-string">'$49.99'</span>, stocked: <span class="hljs-literal">true</span>, name: <span class="hljs-string">'Football'</span>},
+  {category: <span class="hljs-string">'Sporting Goods'</span>, price: <span class="hljs-string">'$9.99'</span>, stocked: <span class="hljs-literal">true</span>, name: <span class="hljs-string">'Baseball'</span>},
+  {category: <span class="hljs-string">'Sporting Goods'</span>, price: <span class="hljs-string">'$29.99'</span>, stocked: <span class="hljs-literal">false</span>, name: <span class="hljs-string">'Basketball'</span>},
+  {category: <span class="hljs-string">'Electronics'</span>, price: <span class="hljs-string">'$99.99'</span>, stocked: <span class="hljs-literal">true</span>, name: <span class="hljs-string">'iPod Touch'</span>},
+  {category: <span class="hljs-string">'Electronics'</span>, price: <span class="hljs-string">'$399.99'</span>, stocked: <span class="hljs-literal">false</span>, name: <span class="hljs-string">'iPhone 5'</span>},
+  {category: <span class="hljs-string">'Electronics'</span>, price: <span class="hljs-string">'$199.99'</span>, stocked: <span class="hljs-literal">true</span>, name: <span class="hljs-string">'Nexus 7'</span>}
+];
+
+ReactDOM.render(
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">FilterableProductTable</span> <span class="hljs-attr">products</span>=<span class="hljs-string">{PRODUCTS}</span> /&gt;</span>,
+  document.getElementById('container')
+);
+</span></pre>
+              
+            
+          
+            
+              
+                <pre class="tCont hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://facebook.github.io/react/js/jsfiddle-integration-babel.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"container"</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- This element's contents will be replaced with your component. --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</pre>
+              
+            
+          
+            
+              
+                <pre class="tCont hljs css"><span class="hljs-selector-tag">body</span> {
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>
+}</pre>
+              
+            
+          
+            
+              <div class="resources tCont" id="resources">
+                <h3>External resources loaded into this fiddle:</h3>
+                <ul>
+                  
+                    <li><a href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" target="_blank">bootstrap.min.css</a></li>
+                  
+                    <li><a href="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js" target="_blank">browser.js</a></li>
+                  
+                    <li><a href="https://fb.me/react-with-addons-0.14.6.js" target="_blank">react-with-addons-0.14.6.js</a></li>
+                  
+                    <li><a href="https://fb.me/react-dom-0.14.6.js" target="_blank">react-dom-0.14.6.js</a></li>
+                  
+                </ul>
+              </div>
+              
+            
+          
+            <div class="tCont result" id="result"></div>
+              
+            
+          
+        </div>
+      
+    </div>
+
+    
+      <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-366077-19', 'auto');
+  ga('send', 'pageview', '/[user]/[fiddle]/embedded/'); // where `url_structure` is for example `/[user]/[fiddle]/[revision]/embedded/js,css/`
+</script>
+
+      
+    
+
+  
+
+</body></html>

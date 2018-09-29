@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://reactjs.cn/react/docs/update.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>不可变数据的辅助工具（Immutability Helpers） | React</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="Reactjs,ReactJS,ReactJS中文,React,React中文,Reactjs中文文档">
+  <meta name="description" content="ReactJS中文文档, 用于构建用户界面的JAVASCRIPT库">
+
+  <meta property="og:title" content="不可变数据的辅助工具（Immutability Helpers） | React">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://facebook.github.io/react/docs/update.html">
+  <meta property="og:image" content="http://facebook.github.io/react/img/logo_og.png">
+  <meta property="og:description" content="用于构建用户界面的Javascript库">
+
+  <link rel="shortcut icon" href="http://reactjs.cn/react/favicon.ico">
+
+  <link rel="stylesheet" href="./不可变数据的辅助工具（Immutability Helpers） _ React_files/">
+  <link rel="stylesheet" href="./不可变数据的辅助工具（Immutability Helpers） _ React_files/">
+  <link rel="stylesheet" href="./不可变数据的辅助工具（Immutability Helpers） _ React_files/">
+
+  <!--[if lte IE 8]>
+  <script type="text/javascript" src="/react/js/html5shiv.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-shim.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-sham.min.js"></script>
+  <![endif]-->
+  <script src="./不可变数据的辅助工具（Immutability Helpers） _ React_files/"></script><script type="text/javascript" src="./不可变数据的辅助工具（Immutability Helpers） _ React_files/"></script>
+  <script type="text/javascript" src="./不可变数据的辅助工具（Immutability Helpers） _ React_files/"></script>
+  <script type="text/javascript" src="./不可变数据的辅助工具（Immutability Helpers） _ React_files/"></script>
+  <script type="text/javascript" src="./不可变数据的辅助工具（Immutability Helpers） _ React_files/"></script>
+  <script type="text/javascript" src="./不可变数据的辅助工具（Immutability Helpers） _ React_files/"></script>
+  <script type="text/javascript" src="./不可变数据的辅助工具（Immutability Helpers） _ React_files/"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2814bad0fb4ce6fddc5d4df4670662cc";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="http://reactjs.cn/react/index.html">
+          <img class="nav-logo" src="./不可变数据的辅助工具（Immutability Helpers） _ React_files/" width="36" height="36">
+          React
+        </a>
+        <ul class="nav-site">
+          <li><a href="http://reactjs.cn/react/docs/getting-started.html" class="active">文档</a></li>
+          <li><a href="http://bbs.react-china.org/" target="_blank">中文社区</a>
+          </li><li><a href="http://reactjs.cn/react/downloads.html">下载</a></li>
+          <!-- <li><a href="/react/blog/">博客</a></li> -->
+          <li><a href="https://github.com/reactjs-cn/react-docs">github</a>
+          </li><li><a href="http://reactjs.cn/react/about/">关于我们</a>
+        </li></ul>
+      </div>
+    </div>
+
+    
+
+    <section class="content wrap documentationContent">
+  <div class="nav-docs">
+  <!-- Docs Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>快速入门</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/getting-started.html">快速开始</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tutorial.html">教程</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/thinking-in-react.html">深入理解React</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>指南</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/why-react.html">为什么使用 React?</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/displaying-data.html">数据呈现</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-in-depth.html">深入理解JSX</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-spread.html">JSX的延展属性</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-gotchas.html">JSX的陷阱</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/interactivity-and-dynamic-uis.html">富交互性的动态用户界面</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/multiple-components.html">复合组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reusable-components.html">可复用组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/transferring-props.html">传递 Props</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/forms.html">表单组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/working-with-the-browser.html">浏览器中的工作原理</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/more-about-refs.html">关于Refs的更多内容</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tooling-integration.html">Tooling Integration</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/addons.html">插件</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/animation.html">动画</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/two-way-binding-helpers.html">双向绑定</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/class-name-manipulation.html">类名操作</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/test-utils.html">测试工具集</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/clone-with-props.html">克隆组件</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/update.html" class="active">Immutability Helpers</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/pure-render-mixin.html">PureRenderMixin</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/perf.html">性能分析工具</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>社区资源</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/videos.html">视频</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/complementary-tools.html">其余工具</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/examples.html">范例</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>参考</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/top-level-api.html">顶层 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-api.html">组件 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-specs.html">组件的详细说明和生命周期（Component Specs and Lifecycle）</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tags-and-attributes.html">标签和属性支持</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/events.html">事件系统</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/dom-differences.html">与 DOM 的差异</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/special-non-dom-attributes.html">特殊的非 DOM 属性</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reconciliation.html">Reconciliation</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/glossary.html">React （虚拟）DOM 术语</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>Flux</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-overview.html">Flux概述</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-todo-list.html">Flux的TodoMVC教程</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+
+  <!-- Tips Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>Tips</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/introduction.html">内容简介</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/inline-styles.html">内联样式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/if-else-in-JSX.html">JSX 中的 If-Else</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/self-closing-tag.html">自闭合标签</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/maximum-number-of-jsx-root-nodes.html">JSX 根节点的最大数量</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/style-props-value-px.html">在样式props中快速制定像素值</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-props-type.html">子props的类型</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/controlled-input-null-value.html">值为 null 的 Controlled Input</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/componentWillReceiveProps-not-triggered-after-mounting.html">Mounting 后 componentWillReceiveProps 未被触发</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/props-in-getInitialState-as-anti-pattern.html">getInitialState 里的 Props 是一个反模式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dom-event-listeners.html">组件的 DOM 事件监听</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/initial-ajax.html">通过 AJAX 加载初始数据</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/false-in-jsx.html">JSX 的 false 处理</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/communicate-between-components.html">组件间的通信</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/expose-component-functions.html">Expose Component Functions</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/references-to-components.html">组件的引用</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-undefined.html">this.props.children undefined</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/use-react-with-other-libraries.html">与其他类库并行使用React</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dangerously-set-inner-html.html">Dangerously Set innerHTML</a>
+          </li>
+        
+      </ul>
+    </div>
+  
+</div>
+
+
+  <div class="inner-content">
+    <h1>
+      不可变数据的辅助工具（Immutability Helpers）
+      <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/10.6-update.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <div class="subHeader"></div>
+
+    <p>React让你可以使用任何你想要的数据管理风格，包括数据可变风格。然而，如果你能够在你应用中讲究性能的部分使用不可变数据，就可以很方便地实现一个快速的<code>shouldComponentUpdate()</code>方法来显著提升你应用的速度。</p>
+
+<p>在JavaScript中处理不可变数据比在语言层面上就设计好要难，像<a href="http://clojure.org/">Clojure</a>。但是，我们提供了一个简单的不可变辅助工具，<code>update()</code>，这就让处理这种类型的数据更加简单了，根本<em>不会</em>改变你数据的表示的形式。（Dealing with immutable data in JavaScript is more difficult than in languages designed for it, like <a href="http://clojure.org/">Clojure</a>. However, we've provided a simple immutability helper, <code>update()</code>, that makes dealing with this type of data much easier, <em>without</em> fundamentally changing how your data is represented.）</p>
+<h2><a class="anchor" name="the-main-idea"></a>主要思想（The main idea） <a class="hash-link" href="http://reactjs.cn/react/docs/update.html#the-main-idea">#</a></h2>
+<p>如果你像这样改变数据：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">myData</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">y</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="c1">// or...</span>
+<span class="nx">myData</span><span class="p">.</span><span class="nx">a</span><span class="p">.</span><span class="nx">b</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+</code></pre></div>
+<p>你无法确定哪个数据改变了，因为之前的副本被覆盖了。相反，你需要创建一个新的<code>myDate</code>副本，仅仅改变需要改变的部分。然后你就能够在<code>shouldComponentUpdate()</code>中使用第三方的相等判断来比较<code>myData</code>的旧副本和新对象：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">newData</span> <span class="o">=</span> <span class="nx">deepCopy</span><span class="p">(</span><span class="nx">myData</span><span class="p">);</span>
+<span class="nx">newData</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">y</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="nx">newData</span><span class="p">.</span><span class="nx">a</span><span class="p">.</span><span class="nx">b</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+</code></pre></div>
+<p>不幸的是，深拷贝是很昂贵的，而且某些时候还不可能完成。你可以通过仅拷贝需要改变的对象，重用未改变的对象来缓解这个问题。不幸的是，在当今的JavaScript里面，这会变得很笨拙：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">newData</span> <span class="o">=</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">myData</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">x</span><span class="o">:</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">myData</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">y</span><span class="o">:</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">myData</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="p">{</span><span class="nx">z</span><span class="o">:</span> <span class="mi">7</span><span class="p">}),</span>
+  <span class="p">}),</span>
+  <span class="nx">a</span><span class="o">:</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">myData</span><span class="p">.</span><span class="nx">a</span><span class="p">,</span> <span class="p">{</span><span class="nx">b</span><span class="o">:</span> <span class="nx">myData</span><span class="p">.</span><span class="nx">a</span><span class="p">.</span><span class="nx">b</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="mi">9</span><span class="p">)})</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>虽然这能够非常好地提升性能（因为仅仅浅复制<code>log n</code>个对象，重用余下的），但是写起来很痛苦。看看所有的重复书写！这不仅仅是恼人，也提供了一个巨大的出bug的区域。</p>
+
+<p><code>update()</code>在这种情形下提供了简单的语法糖，使得写这种代码变得更加简单。代码变为：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">newData</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">addons</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">myData</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">x</span><span class="o">:</span> <span class="p">{</span><span class="nx">y</span><span class="o">:</span> <span class="p">{</span><span class="nx">z</span><span class="o">:</span> <span class="p">{</span><span class="nx">$set</span><span class="o">:</span> <span class="mi">7</span><span class="p">}}},</span>
+  <span class="nx">a</span><span class="o">:</span> <span class="p">{</span><span class="nx">b</span><span class="o">:</span> <span class="p">{</span><span class="nx">$push</span><span class="o">:</span> <span class="p">[</span><span class="mi">9</span><span class="p">]}}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>虽然这种语法糖需要花点精力适应（尽管这是受<a href="http://docs.mongodb.org/manual/core/crud-introduction/#query">MongoDB's query language</a>的启发），但是它没有冗余，是静态可分析的，并且比可变的版本少打了很多字。（While the syntax takes a little getting used to (though it's inspired by <a href="http://docs.mongodb.org/manual/core/crud-introduction/#query">MongoDB's query language</a>) there's no redundancy, it's statically analyzable and it's not much more typing than the mutative version.）</p>
+
+<p>以<code>$</code>为前缀的键被称作<em>命令</em>。他们“改变”的数据结构被称为<em>目标</em>。（
+The <code>$</code>-prefixed keys are called <em>commands</em>. The data structure they are "mutating" is called the <em>target</em>.）</p>
+<h2><a class="anchor" name="available-commands"></a>可用的命令（Available commands） <a class="hash-link" href="http://reactjs.cn/react/docs/update.html#available-commands">#</a></h2>
+<ul>
+<li><code>{$push: array}</code> 利用<code>push()</code>把目标上所有的元素放进<code>数组</code>（<code>push()</code> all the items in <code>array</code> on the target.）。</li>
+<li><code>{$unshift: array}</code> 利用<code>unshift()</code>把目标上所有的元素放进<code>数组</code>（<code>unshift()</code> all the items in <code>array</code> on the target.）。</li>
+<li><code>{$splice: array of arrays}</code> 依次使用 arrays 中的元素（ array ）作为参数，在目标对象（ target ）上调用 splice() 方法（ Array.prototype.splice.apply(target, array) ）。</li>
+<li><code>{$set: any}</code> 整体替换目标（replace the target entirely.）。</li>
+<li><code>{$merge: object}</code> 合并目标和<code>object</code>的键。</li>
+<li><code>{$apply: function}</code> 传入当前的值到函数，然后用新返回的值更新它（passes in the current value to the function and updates it with the new returned value.）。</li>
+</ul>
+<h2><a class="anchor" name=""></a>示例 <a class="hash-link" href="http://reactjs.cn/react/docs/update.html#">#</a></h2><h3><a class="anchor" name=""></a>简单的入栈 <a class="hash-link" href="http://reactjs.cn/react/docs/update.html#">#</a></h3><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">initialArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">newArray</span> <span class="o">=</span> <span class="nx">update</span><span class="p">(</span><span class="nx">initialArray</span><span class="p">,</span> <span class="p">{</span><span class="nx">$push</span><span class="o">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">]});</span> <span class="c1">// =&gt; [1, 2, 3, 4]</span>
+</code></pre></div>
+<p><code>initialArray</code>仍然是<code>[1, 2, 3]</code>。</p>
+<h3><a class="anchor" name=""></a>嵌入的集合 <a class="hash-link" href="http://reactjs.cn/react/docs/update.html#">#</a></h3><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">collection</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">15</span><span class="p">]}];</span>
+<span class="kd">var</span> <span class="nx">newCollection</span> <span class="o">=</span> <span class="nx">update</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span> <span class="p">{</span><span class="mi">2</span><span class="o">:</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="p">{</span><span class="nx">$splice</span><span class="o">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">]]}}});</span>
+<span class="c1">// =&gt; [1, 2, {a: [12, 13, 14, 15]}]</span>
+</code></pre></div>
+<p>获取<code>collection</code>中索引是<code>2</code>的对象，然后取得该对象键为<code>a</code>的值，删掉索引从<code>1</code>开始的一个元素（即移除<code>17</code>），插入<code>13</code>和<code>14</code>。（This accesses <code>collection</code>'s index <code>2</code>, key <code>a</code>, and does a splice of one item starting from index <code>1</code> (to remove <code>17</code>) while inserting <code>13</code> and <code>14</code>.）</p>
+<h3><a class="anchor" name=""></a>根据现有的值更新 <a class="hash-link" href="http://reactjs.cn/react/docs/update.html#">#</a></h3><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">3</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">newObj</span> <span class="o">=</span> <span class="nx">update</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="p">{</span><span class="nx">b</span><span class="o">:</span> <span class="p">{</span><span class="nx">$apply</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;}}});</span>
+<span class="c1">// =&gt; {a: 5, b: 6}</span>
+<span class="c1">// This is equivalent, but gets verbose for deeply nested collections:</span>
+<span class="kd">var</span> <span class="nx">newObj2</span> <span class="o">=</span> <span class="nx">update</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="p">{</span><span class="nx">b</span><span class="o">:</span> <span class="p">{</span><span class="nx">$set</span><span class="o">:</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">b</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}});</span>
+</code></pre></div><h3><a class="anchor" name=""></a>（浅）合并 <a class="hash-link" href="http://reactjs.cn/react/docs/update.html#">#</a></h3><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">3</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">newObj</span> <span class="o">=</span> <span class="nx">update</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="p">{</span><span class="nx">$merge</span><span class="o">:</span> <span class="p">{</span><span class="nx">b</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span> <span class="nx">c</span><span class="o">:</span> <span class="mi">7</span><span class="p">}});</span> <span class="c1">// =&gt; {a: 5, b: 6, c: 7}</span>
+</code></pre></div>
+
+    <div class="docs-prevnext">
+      
+        <a class="docs-prev" href="http://reactjs.cn/react/docs/clone-with-props.html">← 上一条</a>
+      
+      
+        <a class="docs-next" href="http://reactjs.cn/react/docs/pure-render-mixin.html">下一条 →</a>
+      
+    </div>
+  </div>
+</section>
+
+
+    <footer class="wrap">
+      <div class="left">
+        A Facebook &amp; Instagram collaboration.<br>
+        <a href="http://reactjs.cn/react/acknowledgements.html">Acknowledgements</a>
+      </div>
+      <div class="right">
+        © 2013–2015 Facebook Inc.<br>
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </div>
+    </footer>
+  </div>
+  <div id="fb-root"></div>
+
+
+
+<div id="window-resizer-tooltip" style="display: none;"><a href="http://reactjs.cn/react/docs/update.html#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1366</span> x <span class="tooltipHeight" id="winHeight">728</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1366</span> x <span class="tooltipHeight" id="vpHeight">623</span></div></body></html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://reactjs.cn/react/docs/more-about-refs.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>关于Refs的更多内容 | React</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="Reactjs,ReactJS,ReactJS中文,React,React中文,Reactjs中文文档">
+  <meta name="description" content="ReactJS中文文档, 用于构建用户界面的JAVASCRIPT库">
+
+  <meta property="og:title" content="关于Refs的更多内容 | React">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://facebook.github.io/react/docs/more-about-refs.html">
+  <meta property="og:image" content="http://facebook.github.io/react/img/logo_og.png">
+  <meta property="og:description" content="用于构建用户界面的Javascript库">
+
+  <link rel="shortcut icon" href="http://reactjs.cn/react/favicon.ico">
+
+  <link rel="stylesheet" href="./关于Refs的更多内容 _ React_files/">
+  <link rel="stylesheet" href="./关于Refs的更多内容 _ React_files/">
+  <link rel="stylesheet" href="./关于Refs的更多内容 _ React_files/">
+
+  <!--[if lte IE 8]>
+  <script type="text/javascript" src="/react/js/html5shiv.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-shim.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-sham.min.js"></script>
+  <![endif]-->
+  <script src="./关于Refs的更多内容 _ React_files/"></script><script type="text/javascript" src="./关于Refs的更多内容 _ React_files/"></script>
+  <script type="text/javascript" src="./关于Refs的更多内容 _ React_files/"></script>
+  <script type="text/javascript" src="./关于Refs的更多内容 _ React_files/"></script>
+  <script type="text/javascript" src="./关于Refs的更多内容 _ React_files/"></script>
+  <script type="text/javascript" src="./关于Refs的更多内容 _ React_files/"></script>
+  <script type="text/javascript" src="./关于Refs的更多内容 _ React_files/"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2814bad0fb4ce6fddc5d4df4670662cc";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="http://reactjs.cn/react/index.html">
+          <img class="nav-logo" src="./关于Refs的更多内容 _ React_files/" width="36" height="36">
+          React
+        </a>
+        <ul class="nav-site">
+          <li><a href="http://reactjs.cn/react/docs/getting-started.html" class="active">文档</a></li>
+          <li><a href="http://bbs.react-china.org/" target="_blank">中文社区</a>
+          </li><li><a href="http://reactjs.cn/react/downloads.html">下载</a></li>
+          <!-- <li><a href="/react/blog/">博客</a></li> -->
+          <li><a href="https://github.com/reactjs-cn/react-docs">github</a>
+          </li><li><a href="http://reactjs.cn/react/about/">关于我们</a>
+        </li></ul>
+      </div>
+    </div>
+
+    
+
+    <section class="content wrap documentationContent">
+  <div class="nav-docs">
+  <!-- Docs Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>快速入门</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/getting-started.html">快速开始</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tutorial.html">教程</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/thinking-in-react.html">深入理解React</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>指南</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/why-react.html">为什么使用 React?</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/displaying-data.html">数据呈现</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-in-depth.html">深入理解JSX</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-spread.html">JSX的延展属性</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-gotchas.html">JSX的陷阱</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/interactivity-and-dynamic-uis.html">富交互性的动态用户界面</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/multiple-components.html">复合组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reusable-components.html">可复用组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/transferring-props.html">传递 Props</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/forms.html">表单组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/working-with-the-browser.html">浏览器中的工作原理</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/more-about-refs.html" class="active">关于Refs的更多内容</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tooling-integration.html">Tooling Integration</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/addons.html">插件</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/animation.html">动画</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/two-way-binding-helpers.html">双向绑定</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/class-name-manipulation.html">类名操作</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/test-utils.html">测试工具集</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/clone-with-props.html">克隆组件</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/update.html">Immutability Helpers</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/pure-render-mixin.html">PureRenderMixin</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/perf.html">性能分析工具</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>社区资源</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/videos.html">视频</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/complementary-tools.html">其余工具</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/examples.html">范例</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>参考</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/top-level-api.html">顶层 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-api.html">组件 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-specs.html">组件的详细说明和生命周期（Component Specs and Lifecycle）</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tags-and-attributes.html">标签和属性支持</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/events.html">事件系统</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/dom-differences.html">与 DOM 的差异</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/special-non-dom-attributes.html">特殊的非 DOM 属性</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reconciliation.html">Reconciliation</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/glossary.html">React （虚拟）DOM 术语</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>Flux</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-overview.html">Flux概述</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-todo-list.html">Flux的TodoMVC教程</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+
+  <!-- Tips Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>Tips</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/introduction.html">内容简介</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/inline-styles.html">内联样式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/if-else-in-JSX.html">JSX 中的 If-Else</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/self-closing-tag.html">自闭合标签</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/maximum-number-of-jsx-root-nodes.html">JSX 根节点的最大数量</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/style-props-value-px.html">在样式props中快速制定像素值</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-props-type.html">子props的类型</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/controlled-input-null-value.html">值为 null 的 Controlled Input</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/componentWillReceiveProps-not-triggered-after-mounting.html">Mounting 后 componentWillReceiveProps 未被触发</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/props-in-getInitialState-as-anti-pattern.html">getInitialState 里的 Props 是一个反模式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dom-event-listeners.html">组件的 DOM 事件监听</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/initial-ajax.html">通过 AJAX 加载初始数据</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/false-in-jsx.html">JSX 的 false 处理</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/communicate-between-components.html">组件间的通信</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/expose-component-functions.html">Expose Component Functions</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/references-to-components.html">组件的引用</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-undefined.html">this.props.children undefined</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/use-react-with-other-libraries.html">与其他类库并行使用React</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dangerously-set-inner-html.html">Dangerously Set innerHTML</a>
+          </li>
+        
+      </ul>
+    </div>
+  
+</div>
+
+
+  <div class="inner-content">
+    <h1>
+      关于Refs的更多内容
+      <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/08.1-more-about-refs.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <div class="subHeader"></div>
+
+    <p>在从 render 方法中返回 UI 结构之后，你可能想冲出 React 虚拟 DOM 的限制，在 render 返回的组件实例上调用某些方法。通常来说，这样做对于应用中的数据流动是不必要的，因为活跃的数据（ Reactive data ）流总是确保最新的 <code>props</code> 被传递到每一个从 <code>render()</code> 输出的子级中去。然而，仍然有几个场景使用这种方式是必须的，或者说是有益的。</p>
+
+<p>考虑这样的场景：让 <code>&lt;input /&gt;</code> 元素（存在于实例的子层级中）在值被设为空字符串 <code>''</code> 之后获得焦点。</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript">  <span class="kd">var</span> <span class="nx">App</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+    <span class="nx">getInitialState</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">userInput</span><span class="o">:</span> <span class="s1">''</span><span class="p">};</span>
+    <span class="p">},</span>
+    <span class="nx">handleChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">userInput</span><span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">});</span>
+    <span class="p">},</span>
+    <span class="nx">clearAndFocusInput</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">userInput</span><span class="o">:</span> <span class="s1">''</span><span class="p">});</span> <span class="c1">// Clear the input</span>
+      <span class="c1">// We wish to focus the &lt;input /&gt; now!</span>
+    <span class="p">},</span>
+    <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">clearAndFocusInput</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="nx">Click</span> <span class="nx">to</span> <span class="nx">Focus</span> <span class="nx">and</span> <span class="nx">Reset</span>
+          <span class="o">&lt;</span><span class="err">/div&gt;</span>
+          <span class="o">&lt;</span><span class="nx">input</span>
+            <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">userInput</span><span class="p">}</span>
+            <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">}</span>
+          <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+      <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+</code></pre></div>
+<p>注意，在示例中，我们想“告诉” input 元素一些东西 - 这些东西过会儿之后已无法从它的 props 中推算出来。在这个场景中，我们想“通知” input 元素，现在应该处于获取焦点状态。然而，此处有一些障碍。从 <code>render()</code> 中返回的内容并不是你实际创建的<code>子</code>组件的组合，仅仅是一个某一刻某个组件实例的 <em>描述</em> - 一个快照。</p>
+
+<blockquote>
+<p>注意：</p>
+
+<p>记住，从 <code>render()</code> 中返回的内容并不是<em>实际</em>渲染出来的子组件实例。从 <code>render()</code> 返回的仅仅是子组件层级树实例在特定时间的一个<em>描述</em>。</p>
+</blockquote>
+
+<p>这意味着千万不要紧紧抓住 <code>render()</code> 返回的东西不放，然后还一厢情愿地希望生成自己想象中的东西。</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript">  <span class="c1">// counterexample: DO NOT DO THIS!</span>
+  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">myInput</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="o">/&gt;</span><span class="p">;</span>          <span class="c1">// I'm going to try to call methods on this</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">rememberThisInput</span> <span class="o">=</span> <span class="nx">myInput</span><span class="p">;</span> <span class="c1">// input at some point in the future! YAY!</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+        <span class="p">{</span><span class="nx">myInput</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="err">/div&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div>
+<p>在这个反例中，<code>&lt;input /&gt;</code> 仅仅是一个 <code>&lt;input /&gt;</code> 组件的<em>描述</em>。该描述用于创建一个<em>真正的</em>
+ <code>&lt;input /&gt;</code> 的<strong>支撑实例（ backing instance ）</strong>。</p>
+
+<p>所以，我们如何与<em>真正的</em> input 支撑实例（ backing instance ） 交流？</p>
+<h2><a class="anchor" name="ref-"></a>ref 属性 <a class="hash-link" href="http://reactjs.cn/react/docs/more-about-refs.html#ref-">#</a></h2>
+<p>React 支持一种非常特殊的属性，你可以用来绑定到 <code>render()</code> 输出的任何组件上去。这个特殊的属性允许你引用 <code>render()</code> 返回的相应的<strong>支撑实例（ backing instance ）</strong>。这样就可以确保在任何时间总是拿到正确的实例。</p>
+
+<p>做法很简单：</p>
+
+<p>1、绑定一个 <code>ref</code> 属性到 <code>render</code> 返回的东西上面去，例如：</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">  <span class="nt">&lt;input</span> <span class="na">ref=</span><span class="s">"myInput"</span> <span class="nt">/&gt;</span>
+</code></pre></div>
+<p>2、在其它代码中（典型地事件处理代码），通过 <code>this.refs</code> 获取<strong>支撑实例（ backing instance ）</strong>，就像这样：</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript">  <span class="k">this</span><span class="p">.</span><span class="nx">refs</span><span class="p">.</span><span class="nx">myInput</span>
+</code></pre></div>
+<p>你可以通过调用 <code>this.refs.myInput.getDOMNode()</code> 直接获取到组件的 DOM 节点。</p>
+<h2><a class="anchor" name=""></a>完成示例 <a class="hash-link" href="http://reactjs.cn/react/docs/more-about-refs.html#">#</a></h2><div class="highlight"><pre><code class="language-javascript" data-lang="javascript">  <span class="kd">var</span> <span class="nx">App</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+    <span class="nx">getInitialState</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">userInput</span><span class="o">:</span> <span class="s1">''</span><span class="p">};</span>
+    <span class="p">},</span>
+    <span class="nx">handleChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">userInput</span><span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">});</span>
+    <span class="p">},</span>
+    <span class="nx">clearAndFocusInput</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// Clear the input</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">userInput</span><span class="o">:</span> <span class="s1">''</span><span class="p">},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// This code executes after the component is re-rendered</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">refs</span><span class="p">.</span><span class="nx">theInput</span><span class="p">.</span><span class="nx">getDOMNode</span><span class="p">().</span><span class="nx">focus</span><span class="p">();</span>   <span class="c1">// Boom! Focused!</span>
+      <span class="p">});</span>
+    <span class="p">},</span>
+    <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">clearAndFocusInput</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="nx">Click</span> <span class="nx">to</span> <span class="nx">Focus</span> <span class="nx">and</span> <span class="nx">Reset</span>
+          <span class="o">&lt;</span><span class="err">/div&gt;</span>
+          <span class="o">&lt;</span><span class="nx">input</span>
+            <span class="nx">ref</span><span class="o">=</span><span class="s2">"theInput"</span>
+            <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">userInput</span><span class="p">}</span>
+            <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">}</span>
+          <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+      <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+</code></pre></div>
+<p>在这个例子中， render 函数返回一个 <code>&lt;input /&gt;</code> 实例的描述。但是真正的实例通过 <code>this.refs.theInput</code> 获取。只要 render 返回的某个子组件带有 <code>ref="theInput"</code> ，<code>this.refs.theInput</code> 就会获取到正确的实例。这甚至对于更高层的（ 非 DOM ）组件生效，例如 <code>&lt;Typeahead ref="myTypeahead" /&gt;</code>。</p>
+<h2><a class="anchor" name=""></a>总结 <a class="hash-link" href="http://reactjs.cn/react/docs/more-about-refs.html#">#</a></h2>
+<p>Refs 是一种给指定的子组件实例发送消息的很好的方式，从某种程度上来看，通过 <code>props</code> 和 <code>state</code> 来做这件事倒显得不太方便。
+Refs are a great way to send a message to a particular child instance in a way that would be inconvenient to do via streaming Reactive <code>props</code> and <code>state</code>. They should, however, not be your go-to abstraction for flowing data through your application. By default, use the Reactive data flow and save <code>ref</code>s for use cases that are inherently non-reactive.</p>
+<h3><a class="anchor" name=""></a>优点： <a class="hash-link" href="http://reactjs.cn/react/docs/more-about-refs.html#">#</a></h3>
+<ul>
+<li>可以在组件类里面定义任何公共的方法（比如在输入之前的重置方法），然后通过 refs 来调用这些公共的方法（比如 <code>this.refs.myTypeahead.reset()</code> ）。</li>
+<li>管理 DOM 几乎总是需要冲出“本地”组件的限制，比如通过 <code>this.refs.myInput.getDOMNode()</code> 获取 <code>&lt;input /&gt;</code> 元素的底层 DOM 节点。 Refs 是做这件事唯一可靠的方式。</li>
+<li>Refs 是被自动管理的！如果某个子级实例被销毁了，它的 ref 也会自动销毁。不用考虑内存问题（除非你自己做一些疯狂的操作，保存了什么引用）。</li>
+</ul>
+<h3><a class="anchor" name=""></a>当心: <a class="hash-link" href="http://reactjs.cn/react/docs/more-about-refs.html#">#</a></h3>
+<ul>
+<li><em>绝不要</em>在任何组件的 render 方法中访问 refs - 或者在某个组件的 render 方法正在调用堆栈中运行的时候。</li>
+<li>If you want to preserve Google Closure Compiler Crushing resilience, make sure to never access as a property what was specified as a string. This means you must access using <code>this.refs['myRefString']</code> if your ref was defined as <code>ref="myRefString"</code>.</li>
+<li>If you have not programmed several apps with React, your first inclination is usually going to be to try to use refs to "make things happen" in your app. If this is the case, take a moment and think more critically about where <code>state</code> should be owned in the component hierarchy. Often, it becomes clear that the proper place to "own" that state is at a higher level in the hierarchy. Placing the state there often eliminates any desire to use <code>ref</code>s to "make things happen" – instead, the data flow will usually accomplish your goal.</li>
+</ul>
+
+
+    <div class="docs-prevnext">
+      
+        <a class="docs-prev" href="http://reactjs.cn/react/docs/working-with-the-browser.html">← 上一条</a>
+      
+      
+        <a class="docs-next" href="http://reactjs.cn/react/docs/tooling-integration.html">下一条 →</a>
+      
+    </div>
+  </div>
+</section>
+
+
+    <footer class="wrap">
+      <div class="left">
+        A Facebook &amp; Instagram collaboration.<br>
+        <a href="http://reactjs.cn/react/acknowledgements.html">Acknowledgements</a>
+      </div>
+      <div class="right">
+        © 2013–2015 Facebook Inc.<br>
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </div>
+    </footer>
+  </div>
+  <div id="fb-root"></div>
+
+
+
+<div id="window-resizer-tooltip" style="display: none;"><a href="http://reactjs.cn/react/docs/more-about-refs.html#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1366</span> x <span class="tooltipHeight" id="winHeight">728</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1366</span> x <span class="tooltipHeight" id="vpHeight">623</span></div></body></html>

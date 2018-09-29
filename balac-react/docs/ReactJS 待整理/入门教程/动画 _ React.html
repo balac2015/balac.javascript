@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://reactjs.cn/react/docs/animation.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>动画 | React</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="Reactjs,ReactJS,ReactJS中文,React,React中文,Reactjs中文文档">
+  <meta name="description" content="ReactJS中文文档, 用于构建用户界面的JAVASCRIPT库">
+
+  <meta property="og:title" content="动画 | React">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://facebook.github.io/react/docs/animation.html">
+  <meta property="og:image" content="http://facebook.github.io/react/img/logo_og.png">
+  <meta property="og:description" content="用于构建用户界面的Javascript库">
+
+  <link rel="shortcut icon" href="http://reactjs.cn/react/favicon.ico">
+
+  <link rel="stylesheet" href="./动画 _ React_files/">
+  <link rel="stylesheet" href="./动画 _ React_files/">
+  <link rel="stylesheet" href="./动画 _ React_files/">
+
+  <!--[if lte IE 8]>
+  <script type="text/javascript" src="/react/js/html5shiv.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-shim.min.js"></script>
+  <script type="text/javascript" src="/react/js/es5-sham.min.js"></script>
+  <![endif]-->
+  <script src="./动画 _ React_files/"></script><script type="text/javascript" src="./动画 _ React_files/"></script>
+  <script type="text/javascript" src="./动画 _ React_files/"></script>
+  <script type="text/javascript" src="./动画 _ React_files/"></script>
+  <script type="text/javascript" src="./动画 _ React_files/"></script>
+  <script type="text/javascript" src="./动画 _ React_files/"></script>
+  <script type="text/javascript" src="./动画 _ React_files/"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2814bad0fb4ce6fddc5d4df4670662cc";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="http://reactjs.cn/react/index.html">
+          <img class="nav-logo" src="./动画 _ React_files/" width="36" height="36">
+          React
+        </a>
+        <ul class="nav-site">
+          <li><a href="http://reactjs.cn/react/docs/getting-started.html" class="active">文档</a></li>
+          <li><a href="http://bbs.react-china.org/" target="_blank">中文社区</a>
+          </li><li><a href="http://reactjs.cn/react/downloads.html">下载</a></li>
+          <!-- <li><a href="/react/blog/">博客</a></li> -->
+          <li><a href="https://github.com/reactjs-cn/react-docs">github</a>
+          </li><li><a href="http://reactjs.cn/react/about/">关于我们</a>
+        </li></ul>
+      </div>
+    </div>
+
+    
+
+    <section class="content wrap documentationContent">
+  <div class="nav-docs">
+  <!-- Docs Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>快速入门</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/getting-started.html">快速开始</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tutorial.html">教程</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/thinking-in-react.html">深入理解React</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>指南</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/why-react.html">为什么使用 React?</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/displaying-data.html">数据呈现</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-in-depth.html">深入理解JSX</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-spread.html">JSX的延展属性</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/jsx-gotchas.html">JSX的陷阱</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/interactivity-and-dynamic-uis.html">富交互性的动态用户界面</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/multiple-components.html">复合组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reusable-components.html">可复用组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/transferring-props.html">传递 Props</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/forms.html">表单组件</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/working-with-the-browser.html">浏览器中的工作原理</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/more-about-refs.html">关于Refs的更多内容</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tooling-integration.html">Tooling Integration</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/addons.html">插件</a>
+            
+              <ul>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/animation.html" class="active">动画</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/two-way-binding-helpers.html">双向绑定</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/class-name-manipulation.html">类名操作</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/test-utils.html">测试工具集</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/clone-with-props.html">克隆组件</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/update.html">Immutability Helpers</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/pure-render-mixin.html">PureRenderMixin</a>
+                  </li>
+                
+                  <li>
+                    <a href="http://reactjs.cn/react/docs/perf.html">性能分析工具</a>
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>社区资源</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/videos.html">视频</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/complementary-tools.html">其余工具</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/examples.html">范例</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>参考</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/top-level-api.html">顶层 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-api.html">组件 API</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/component-specs.html">组件的详细说明和生命周期（Component Specs and Lifecycle）</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/tags-and-attributes.html">标签和属性支持</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/events.html">事件系统</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/dom-differences.html">与 DOM 的差异</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/special-non-dom-attributes.html">特殊的非 DOM 属性</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/reconciliation.html">Reconciliation</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/glossary.html">React （虚拟）DOM 术语</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+    <div class="nav-docs-section">
+      <h3>Flux</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-overview.html">Flux概述</a>
+            
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/docs/flux-todo-list.html">Flux的TodoMVC教程</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  
+
+  <!-- Tips Nav -->
+  
+    <div class="nav-docs-section">
+      <h3>Tips</h3>
+      <ul>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/introduction.html">内容简介</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/inline-styles.html">内联样式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/if-else-in-JSX.html">JSX 中的 If-Else</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/self-closing-tag.html">自闭合标签</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/maximum-number-of-jsx-root-nodes.html">JSX 根节点的最大数量</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/style-props-value-px.html">在样式props中快速制定像素值</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-props-type.html">子props的类型</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/controlled-input-null-value.html">值为 null 的 Controlled Input</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/componentWillReceiveProps-not-triggered-after-mounting.html">Mounting 后 componentWillReceiveProps 未被触发</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/props-in-getInitialState-as-anti-pattern.html">getInitialState 里的 Props 是一个反模式</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dom-event-listeners.html">组件的 DOM 事件监听</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/initial-ajax.html">通过 AJAX 加载初始数据</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/false-in-jsx.html">JSX 的 false 处理</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/communicate-between-components.html">组件间的通信</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/expose-component-functions.html">Expose Component Functions</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/references-to-components.html">组件的引用</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/children-undefined.html">this.props.children undefined</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/use-react-with-other-libraries.html">与其他类库并行使用React</a>
+          </li>
+        
+          <li>
+            <a href="http://reactjs.cn/react/tips/dangerously-set-inner-html.html">Dangerously Set innerHTML</a>
+          </li>
+        
+      </ul>
+    </div>
+  
+</div>
+
+
+  <div class="inner-content">
+    <h1>
+      动画
+      <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/10.1-animation.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <div class="subHeader"></div>
+
+    <p>React为动画提供一个<code>ReactTransitonGroup</code>插件组件作为一个底层的API，一个<code>ReactCSSTransitionGroup</code>来简单地实现基本的CSS动画和过渡。</p>
+<h2><a class="anchor" name="apireactcsstransitiongroup"></a>高级API：<code>ReactCSSTransitionGroup</code> <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#apireactcsstransitiongroup">#</a></h2>
+<p><code>ReactCSSTransitionGroup</code>是基于<code>ReactTransitionGroup</code>的，在React组件进入或者离开DOM的时候，它是一种简单地执行CSS过渡和动画的方式。这个的灵感来自于优秀的<a href="http://www.nganimate.org/">ng-animate</a>库。</p>
+<h3><a class="anchor" name=""></a>快速开始 <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#">#</a></h3>
+<p><code>ReactCSSTransitionGroup</code>是<code>ReactTransitions</code>的接口。这是一个简单的元素，包含了所有你对其动画感兴趣的组件。这里是一个例子，例子中我们让列表项淡入淡出。</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">ReactCSSTransitionGroup</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">addons</span><span class="p">.</span><span class="nx">CSSTransitionGroup</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">TodoList</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+  <span class="nx">getInitialState</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span><span class="nx">items</span><span class="o">:</span> <span class="p">[</span><span class="s1">'hello'</span><span class="p">,</span> <span class="s1">'world'</span><span class="p">,</span> <span class="s1">'click'</span><span class="p">,</span> <span class="s1">'me'</span><span class="p">]};</span>
+  <span class="p">},</span>
+  <span class="nx">handleAdd</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">newItems</span> <span class="o">=</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="nx">prompt</span><span class="p">(</span><span class="s1">'Enter some text'</span><span class="p">)]);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">items</span><span class="o">:</span> <span class="nx">newItems</span><span class="p">});</span>
+  <span class="p">},</span>
+  <span class="nx">handleRemove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">newItems</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">items</span><span class="p">;</span>
+    <span class="nx">newItems</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">items</span><span class="o">:</span> <span class="nx">newItems</span><span class="p">});</span>
+  <span class="p">},</span>
+  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleRemove</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">i</span><span class="p">)}</span><span class="o">&gt;</span>
+          <span class="p">{</span><span class="nx">item</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+      <span class="p">);</span>
+    <span class="p">}.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleAdd</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Add</span> <span class="nx">Item</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+<span class="hll">        <span class="o">&lt;</span><span class="nx">ReactCSSTransitionGroup</span> <span class="nx">transitionName</span><span class="o">=</span><span class="s2">"example"</span><span class="o">&gt;</span>
+</span><span class="hll">          <span class="p">{</span><span class="nx">items</span><span class="p">}</span>
+</span><span class="hll">        <span class="o">&lt;</span><span class="err">/ReactCSSTransitionGroup&gt;</span>
+</span>      <span class="o">&lt;</span><span class="err">/div&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>注意：</p>
+
+<p>你必须为<code>ReactCSSTransitionGroup</code>的所有子级提供<a href="http://reactjs.cn/react/docs/multiple-components.html#dynamic-children"><code>键</code>属性</a>，即使只渲染一项。这就是React确定哪一个子级插入了，移除了，或者停留在那里。</p>
+</blockquote>
+
+<p>在这个组件当中，当一个新的项被添加到<code>ReactCSSTransitionGroup</code>，它将会被添加<code>example-enter</code>类，然后在下一时刻被添加<code>example-enter-active</code> CSS类。这是一个基于<code>transitionName</code> prop的约定。</p>
+
+<p>你可以使用这些类来触发一个CSS动画或者过渡。例如，尝试添加这段CSS代码，然后插入一个新的列表项：</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.example-enter</span> <span class="p">{</span>
+  <span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="o">.</span><span class="m">01</span><span class="p">;</span>
+  <span class="n">transition</span><span class="o">:</span> <span class="k">opacity</span> <span class="m">.5s</span> <span class="n">ease</span><span class="o">-</span><span class="n">in</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.example-enter.example-enter-active</span> <span class="p">{</span>
+  <span class="k">opacity</span><span class="o">:</span> <span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>你将注意到，当你尝试移除一项的时候，<code>ReactCSSTransitionGroup</code>保持该项在DOM里。如果你正使用一个带有插件的未压缩的React构建版本，你将会看到一条警告：React期待一次动画或者过渡发生。那是因为<code>ReactCSSTransitionGroup</code>保持你的DOM元素一直在页面上，直到动画完成。尝试添加这段CSS代码：</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.example-leave</span> <span class="p">{</span>
+  <span class="k">opacity</span><span class="o">:</span> <span class="m">1</span><span class="p">;</span>
+  <span class="n">transition</span><span class="o">:</span> <span class="k">opacity</span> <span class="m">.5s</span> <span class="n">ease</span><span class="o">-</span><span class="n">in</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.example-leave.example-leave-active</span> <span class="p">{</span>
+  <span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="o">.</span><span class="m">01</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3><a class="anchor" name=""></a>一组动画必须要挂载了才能生效 <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#">#</a></h3>
+<p>为了能够给它的子级应用过渡效果，<code>ReactCSSTransitionGroup</code>必须已经挂载到了DOM。下面的例子不会生效，因为<code>ReactCSSTransitionGroup</code>被挂载到新项，而不是新项被挂载到<code>ReactCSSTransitionGroup</code>里。将这个与上面的<a href="http://reactjs.cn/react/docs/animation.html#getting-started">快速开始</a>部分比较一下，看看有什么差异。</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript">  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleRemove</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">i</span><span class="p">)}</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">ReactCSSTransitionGroup</span> <span class="nx">transitionName</span><span class="o">=</span><span class="s2">"example"</span><span class="o">&gt;</span>
+            <span class="p">{</span><span class="nx">item</span><span class="p">}</span>
+          <span class="o">&lt;</span><span class="err">/ReactCSSTransitionGroup&gt;</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+      <span class="p">);</span>
+    <span class="p">},</span> <span class="k">this</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">(</span>
+<span class="hll">      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+</span><span class="hll">        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleAdd</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Add</span> <span class="nx">Item</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span><span class="hll">        <span class="p">{</span><span class="nx">items</span><span class="p">}</span>
+</span><span class="hll">      <span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span>    <span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div><h3><a class="anchor" name="animating-one-or-zero-items"></a>让一项或者零项动起来（Animating One or Zero Items） <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#animating-one-or-zero-items">#</a></h3>
+<p>虽然在上面的例子中，我们渲染了一个项目列表到<code>ReactCSSTransitionGroup</code>里，<code>ReactCSSTransitionGroup</code>的子级可以是一个或零个项目。这使它能够让一个元素实现进入和离开的动画。同样，你可以通过移动一个新的元素来替换当前元素。随着新元素的移入，当前元素移出。例如，我们可以由此实现一个简单的图片轮播器：</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">ReactCSSTransitionGroup</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">addons</span><span class="p">.</span><span class="nx">CSSTransitionGroup</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">ImageCarousel</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+  <span class="nx">propTypes</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">imageSrc</span><span class="o">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span><span class="p">.</span><span class="nx">isRequired</span>
+  <span class="p">},</span>
+  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+<span class="hll">        <span class="o">&lt;</span><span class="nx">ReactCSSTransitionGroup</span> <span class="nx">transitionName</span><span class="o">=</span><span class="s2">"carousel"</span><span class="o">&gt;</span>
+</span><span class="hll">          <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">imageSrc</span><span class="p">}</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">imageSrc</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span><span class="hll">        <span class="o">&lt;</span><span class="err">/ReactCSSTransitionGroup&gt;</span>
+</span>      <span class="o">&lt;</span><span class="err">/div&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div><h3><a class="anchor" name=""></a>禁用动画 <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#">#</a></h3>
+<p>如果你想，你可以禁用<code>入场</code>或者<code>出场</code>动画。例如，有些时候，你可能想要一个<code>入场</code>动画，不要<code>出场</code>动画，但是<code>ReactCSSTransitionGroup</code>会在移除DOM节点之前等待一个动画完成。你可以给<code>ReactCSSTransitionGroup</code>添加<code>transitionEnter={false}</code>或者<code>transitionLeave={false}</code> props来禁用这些动画。</p>
+
+<blockquote>
+<p>注意：</p>
+
+<p>当使用<code>ReactCSSTransitionGroup</code>的时候，没有办法通知你在过渡效果结束或者在执行动画的时候做一些复杂的运算。如果你想要更多细粒度的控制，你可以使用底层的<code>ReactTransitionGroup</code> API，该API提供了你自定义过渡效果所需要的函数。</p>
+</blockquote>
+<h2><a class="anchor" name="apireacttransitiongroup"></a>底层的API：<code>ReactTransitionGroup</code> <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#apireacttransitiongroup">#</a></h2>
+<p><code>ReactTransitionGroup</code>是动画的基础。它可以通过<code>React.addons.TransitionGroup</code>得到。当子级被添加或者从其中移除（就像上面的例子）的时候，特殊的生命周期函数就会在它们上面被调用。</p>
+<h3><a class="anchor" name="componentwillentercallback"></a><code>componentWillEnter(callback)</code> <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#componentwillentercallback">#</a></h3>
+<p>在组件被添加到已有的<code>TransitionGroup</code>中的时候，该函数和<code>componentDidMount()</code>被同时调用。这将会阻塞其它动画触发，直到<code>callback</code>被调用。该函数不会在<code>TransitionGroup</code>初始化渲染的时候调用。</p>
+<h3><a class="anchor" name="componentdidenter"></a><code>componentDidEnter()</code> <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#componentdidenter">#</a></h3>
+<p>该函数在传给<code>componentWillEnter</code>的<code>callback</code>函数被调用之后调用。</p>
+<h3><a class="anchor" name="componentwillleavecallback"></a><code>componentWillLeave(callback)</code> <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#componentwillleavecallback">#</a></h3>
+<p>该函数在子级从<code>ReactTransitionGroup</code>中移除的时候调用。虽然子级被移除了，<code>ReactTransitionGroup</code>将会使它继续在DOM中，直到<code>callback</code>被调用。</p>
+<h3><a class="anchor" name="componentdidleave"></a><code>componentDidLeave()</code> <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#componentdidleave">#</a></h3>
+<p>该函数在<code>willLeave</code> <code>callback</code>被调用的时候调用（与<code>componentWillUnmount</code>是同一时间）。</p>
+<h3><a class="anchor" name=""></a>渲染一个不同的组件 <a class="hash-link" href="http://reactjs.cn/react/docs/animation.html#">#</a></h3>
+<p>默认情况下<code>ReactTransitionGroup</code>渲染一个<code>span</code>。你可以通过提供一个<code>component</code> prop来改变这种行为。例如，以下是你将如何渲染一个<code>&lt;ul&gt;</code>：</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="hll"><span class="o">&lt;</span><span class="nx">ReactTransitionGroup</span> <span class="nx">component</span><span class="o">=</span><span class="s2">"ul"</span><span class="o">&gt;</span>
+</span>  <span class="p">...</span>
+<span class="o">&lt;</span><span class="err">/ReactTransitionGroup&gt;</span>
+</code></pre></div>
+<p>每一个React能渲染的DOM组件都是可用的。但是，<code>组件</code>并不需要是一个DOM组件。它可以是任何你想要的React组件；甚至是你自己已经写好的！</p>
+
+<blockquote>
+<p>注意：</p>
+
+<p>v0.12之前，当使用DOM组件的时候，<code>组件</code> prop需要是一个指向<code>React.DOM.*</code>的引用。既然组件简单地传递到了<code>React.createElement</code>，它必须是一个字符串。组装的组件必须传递构造函数。</p>
+</blockquote>
+
+<p>任何额外的、用户定义的属性将会成为已渲染的组件的属性。例如，以下是你将如何渲染一个带有css类的<code>&lt;ul&gt;</code>：</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="hll"><span class="o">&lt;</span><span class="nx">ReactTransitionGroup</span> <span class="nx">component</span><span class="o">=</span><span class="s2">"ul"</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"animated-list"</span><span class="o">&gt;</span>
+</span>  <span class="p">...</span>
+<span class="o">&lt;</span><span class="err">/ReactTransitionGroup&gt;</span>
+</code></pre></div>
+
+    <div class="docs-prevnext">
+      
+        <a class="docs-prev" href="http://reactjs.cn/react/docs/addons.html">← 上一条</a>
+      
+      
+        <a class="docs-next" href="http://reactjs.cn/react/docs/two-way-binding-helpers.html">下一条 →</a>
+      
+    </div>
+  </div>
+</section>
+
+
+    <footer class="wrap">
+      <div class="left">
+        A Facebook &amp; Instagram collaboration.<br>
+        <a href="http://reactjs.cn/react/acknowledgements.html">Acknowledgements</a>
+      </div>
+      <div class="right">
+        © 2013–2015 Facebook Inc.<br>
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </div>
+    </footer>
+  </div>
+  <div id="fb-root"></div>
+
+
+
+<div id="window-resizer-tooltip" style="display: none;"><a href="http://reactjs.cn/react/docs/animation.html#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1366</span> x <span class="tooltipHeight" id="winHeight">728</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1366</span> x <span class="tooltipHeight" id="vpHeight">623</span></div></body></html>

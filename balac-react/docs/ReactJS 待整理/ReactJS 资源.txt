@@ -1,0 +1,36 @@
+
+ReactJS（官网：http://facebook.github.io/react/）
+
+资料：
+	
+	http://reactjs.cn/docs/getting-started.html
+
+	http://www.ruanyifeng.com/blog/2015/03/react.html
+
+	http://www.cnblogs.com/Leo_wl/p/4489197.html
+
+	http://www.infoq.com/cn/articles/subversion-front-end-ui-development-framework-react
+
+
+
+
+	
+	服务器、用户输入的交互数据 ----动态反应到界面---->
+
+	web components
+
+	组件和的开发思想
+
+
+	复杂场景下的高性能
+
+	重用组件库、组件组合
+
+
+	Sass, Compass
+
+	前端自动化方案：Yeoman, Grunt, Webpack
+
+	CommonJS, NodeJS
+
+	Git, GitHub
