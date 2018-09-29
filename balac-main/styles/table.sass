@@ -1,0 +1,36 @@
+/**
+ * 参考 Semantic-UI table.less
+ * time: 2018-8-25
+ */
+
+/*******************************
+            Theme
+*******************************/
+
+$type    : 'collection';
+$element : 'table';
+
+@import (multiple) '../../theme.config';
+
+/*******************************
+             Table
+*******************************/
+.ui.table {
+    width: 100%;
+    background: $background;
+    margin: $margin;
+    border: $border;
+    box-shadow: $boxShadow;
+    border-radius: $borderRadius;
+    text-align: $textAlign;
+    color: $color;
+    border-collapse: $borderCollapse;
+    border-spacing: $borderSpacing;
+
+    &:first-child {
+        margin-top: 0em;
+    }
+    &:last-child {
+        margin-bottom: 0em;
+    }
+}

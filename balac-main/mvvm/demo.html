@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MVVM</title>
+
+    <script src="mvvm-balac.js"></script>
+    <script>
+        // 当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完成加载
+        document.addEventListener("DOMContentLoaded", function(event) {
+            foio.scan(window.document.body);
+        });
+
+        var vm1 = foio.controller({
+            $id: 'test',
+            nickname: "frot",
+            age: 22
+        });
+
+        var vm2 = foio.controller({
+            $id: 'subtest',
+            profile: '前端'
+        });
+        
+        window.setInterval(function() {
+            var randAge = 20 + Math.ceil(Math.random() * 10);
+            console.log(randAge);
+            vm1.age =  randAge;
+        }, 1000);
+
+    </script>
+</head>
+
+<body foio-controller='test'>
+    <label>名字:</label>
+    <input type="text" foio-model="nickname">
+
+    <div foio-controller="subtest">
+        <label>自我介绍:</label>
+        <input type="text" foio-model="profile">
+        <p>你的名字:{{nickname}}</p>
+        <p>你的年龄:{{age}}</p>
+        <p>你的自我介绍:{{profile}}</p>
+    </div>
+</body>
+
+</html>
