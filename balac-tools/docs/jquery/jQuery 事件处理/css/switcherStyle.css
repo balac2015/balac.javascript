@@ -1,0 +1,31 @@
+
+body { font: 62.5% "微软雅黑",Verdana, Geneva, sans-serif; background-color: #fff; color: #000;}
+
+
+
+/*样式转换器样式*/
+.switcher { float: right; border: 1px solid #ccc; margin: 1em; padding: 1em 1em 1em 1.2em; font-size: .9em; background-color: #f7f7f7; cursor: pointer; -ms-user-select: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; }
+.switcher .switcher-title { margin: .5em 0; font-size: 1.6em; font-weight: normal; }
+.switcher input[type="button"] { padding: .2em 1em; margin-right: .2em; font-size: 1em; border: 1px solid #ddd; background-color: #ccc; }
+.switcher input.switcher-xs { margin-left: .2em; }
+.switcher input.switcher-selected { font-weight: bold; background-color: #ccc; border-color: #000; }
+.switcher.switcher-hover { background-color: #abc; }
+.switcher .switcher-hidden { display: none; }
+/*超小屏幕*/
+.media-xs { background-color: #333; }
+.media-sm { background-color: #8cbafd; }
+.media-md { background-color: #fafafa; }
+.media-lg { background-color: #f0a0cc; }
+
+
+
+
+
+
+.chapter {font-size: 1.2em; line-height: 2;}
+	/*	
+
+	
+	body.narrow .chapter {width: 215px;}
+	body.large .chapter {font-size: 1.5em;}
+	*/

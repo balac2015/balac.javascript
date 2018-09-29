@@ -1,0 +1,79 @@
+
+jQuery 插件开发
+
+1、插件中使用 $ 别名
+
+(function ($) {
+	// 立即调用的函数表达式（IIFE，Immediately Invoked Function Expression）
+})(jQuery);
+
+
+2、jQuery 命名空间内添加新的全局函数
+	
+	如：$.ajax()、$.each()、$.map()、$.grep() 
+
+	(function ($) {
+		$.sum = function (array) {
+			// 实用方法，即常用功能的快捷方式
+			// 将新函数指定为 jQuery 对象的一个属性
+		};
+		$.average = function (array) {
+			// 添加的多个函数
+			// $.sum(array) 可调用上面的函数
+		};
+	})(jQuery);
+
+	(function ($) {
+		$.extend({
+			sum: function (array) {
+				// 利用 $.extend() 函数，给全局 jQuery 对象添加属性（如果原来有相同的属性，就会替换原来的属性）
+			},
+			average: function (array) {
+				// $.sum(array) 调用上面函数
+			}
+		});
+	})(jQuery);
+
+	(function ($) {
+		$.mathUtils = {
+			sum: function (array) {
+				// 命名空间隔离函数，防止污染其它插件的同名函数
+				// 个人使用的函数，可以不保存在 jQuery 命名空间中，选择自己的全局对象：1jQ.mathUtils.sum()
+			},
+			average: function (array) {
+				// $.mathUtils.sum(array) 调用
+			}
+		};
+	})(jQuery);
+
+
+3、添加 jQuery 对象的方法
+
+	jQuery.fn.myMethod = function () {
+		return this.each(function () {
+			// 对象实例方法，当函数需要操作 DOM 元素时，就是将函数创建为 jQuery 实例方法的好机会
+			// jQuery.fn 对象是 jQuery.prototype
+			// this 在对象方法体内，引用的是 jQuery 对象
+			// this 在 each() 中，引用的是 DOM 元素		
+			// 隐式迭代
+			// 方法连缀
+		});
+	};
+	$('div').myMethod();			// 调用
+
+
+4、提供灵活的方法参数
+	
+	(function ($) {
+
+		$.fn.shadow = function (opts) {
+			var options = $.extend({}, $.fn.shadow.defaults, opts);
+			// 调用时可以修改默认值，修改后后续的调用共享
+		};
+
+		$.fn.shadow.defaults = {};
+
+	})(jQuery);
+
+
+5、使用 jQuery UI 部件工厂创建插件

@@ -1,0 +1,78 @@
+
+less
+	
+	一种 动态 样式 语言
+
+	LESS 将 CSS 赋予了动态语言的特性，如 变量， 继承， 运算， 函数. LESS 既可以在 客户端 上运行 (支持IE 6+, Webkit, Firefox)，也可以借助 Node.js 或者 Rhino 在服务端运行。
+
+
+变量：
+	变量允许单独定义一系列通用的样式，然后在需要的时候去调用。所以在做全局样式调整的时候我们可能只需要修改几行代码就可以了。
+
+	@color: #4D926F;
+
+	#header { color: @color; }
+
+
+混合：
+	混合可以将一个定义好的 class A 轻松的引入到另一个 class B 中，从而简单实现 class B 继承 class A 中的所有属性。我们还可以带参数地调用，就像使用函数一样。
+
+	.rounded-corners (@radius: 5px) {
+		border-radius: @radius;
+		-webkit-border-radius: @radius;
+		-moz-border-radius: @radius;
+	}
+
+	#header { .rounded-corners; }
+
+
+嵌套规则：
+	可以在一个选择器中嵌套另一个选择器来实现继承，这样很大程度减少了代码量，并且代码看起来更加的清晰。
+
+	#header {
+		h1 { font-size: 26px; font-weight: bold; }		---> #header h1 { }
+		p { font-size: 12px;							---> #header p { }
+			a { text-decoration: none;					---> #header p a { }
+			  &:hover { border-width: 1px; }			---> #header p a:hover { }
+			}
+		}
+	}
+
+
+函数 & 运算
+	可以在一个选择器中嵌套另一个选择器来实现继承，这样很大程度减少了代码量，并且代码看起来更加的清晰。
+
+	@the-border: 1px;
+	@base-color: #111;
+	@red:  		 #842210;
+
+	#header {
+		color: @base-color * 3;				---> #333
+		border-left: @the-border;			---> 1px
+		border-right: @the-border * 2;		---> 2px
+	}
+
+	#footer {
+		color: @base-color + #003300;			---> #114411
+		border-color: desaturate(@red, 100%);   ---> #7d2717
+	}
+
+
+在客户端使用：
+	
+	<link rel="stylesheet/less" type="text/css" href="styles.less"> --- rel 属性
+	<script src="less.js" type="text/javascript"></script> 		--- 在 less 之后引入
+
+
+监视模式
+
+	监视模式是客户端的一个功能，这个功能允许你当你改变样式的时候，客户端将自动刷新。
+
+	要使用它，只要在URL后面加上'#!watch'，然后刷新页面就可以了。另外，你也可以通过在终端运行less.watch()来启动监视模式。
+
+---------------------------------------------------------------
+http://less.bootcss.com/functions/
+
+杂项函数：
+
+color(string) --- 如：color("#aaa");  

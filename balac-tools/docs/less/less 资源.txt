@@ -1,0 +1,11 @@
+
+官网：http://lesscss.org/
+
+
+http://www.bootcss.com/p/lesscss/
+
+http://www.cnblogs.com/fsjohnhuang/p/4187675.html
+
+LESS 函数解析：http://www.cnblogs.com/zfc2201/p/3493335.html
+
+LESS color() 创建配色方案：http://www.zcool.com.cn/article/ZMTUyNDc2.html

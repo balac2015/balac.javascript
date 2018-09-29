@@ -1,0 +1,26 @@
+
+jQuery 插件
+
+jQuery 官方插件库：http://plugins.jquery.com/
+
+
+Cycle 插件 http://www.malsup.com/jquery/cycle/
+	
+	由 Mike Alsup开发，通过它可以把静态的页面元素变成交互式的幻灯片。
+
+	jQuery 的常规插件，把所有默认值放在一个对象中，如 Cycle 的 $.fn.cycle.defaults
+
+	$.fn.cycle.default.timeout = 10000;			// 修改默认值
+
+Cookie 插件（https://github.com/carhartl/jquery-cookie）
+	
+	提供了读写页面中cookie值的接口。通过 $.cookie() 函数提供的功能实现，这个函数可以取得或设置个别的cookie值。
+
+
+jQuery UI 插件库 http://jqueryui.com
+
+jQuery Mobile 插件库.http://jquerymobile.com./
+
+	jQuery Moblie提供Ajax驱动的导航系统、面向移动设备优化的交互式元素，以及高级的触摸事件处理程序
+
+	

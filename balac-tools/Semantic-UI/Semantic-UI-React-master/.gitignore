@@ -1,0 +1,15 @@
+*.log*
+*.iml
+
+.DS_Store
+.idea/
+.yarn-cache/
+
+coverage/
+dist/
+docs/src/componentInfo
+docs/src/componentMenu.json
+docs/src/exampleMenus
+docs/dist/
+dll/
+node_modules/

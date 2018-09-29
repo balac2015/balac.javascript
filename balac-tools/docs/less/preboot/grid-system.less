@@ -1,0 +1,27 @@
+//
+// Grid system
+// --------------------------------------------------
+
+
+.make-row () {
+	margin-left: -@grid-column-padding;
+	margin-right: -@grid-column-padding;
+	.clearfix();		// Then clear the floated columns
+}
+
+.make-column (@columns) {
+	@media (min-width: @grid-float-breakpoint) {
+		float: left;
+		width: percentage(@columns / @grid-columns);
+	}
+	min-height: 1px;
+	padding-left: @grid-column-padding;
+	padding-right: @grid-column-padding;
+	.box-sizing(border-box);
+}
+
+.make-column-offset (@columns) {
+	@media (min-width: @grid-float-breakpoint) {
+		margin-left: percentage(@columns / @grid-columns);
+	}
+}

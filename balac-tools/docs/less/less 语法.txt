@@ -1,0 +1,66 @@
+
+变量：
+	@nice-blue: #5b83ad;
+	@light-blue: @nice-blue + #111;
+
+	#header { color: @light-blue; }		---> #6c94be;
+
+	用变量名定义变量：只能定义一次
+
+	@fnord: "i an fnord.";
+	@var: 'fnord';
+	content: @@var;		---> content: "i an fnord."
+
+
+混合：
+	定义一些通用的属性集为一个class，然后在另一个class中去调用这些属性. 
+
+	定义：
+
+		.bordered { }						不带参数
+
+		.border-radius (@radius) { }		带参数
+
+		.border-radius2 (@radius: 5px) { }	参数带默认值
+
+	调用：
+
+		#header { 
+			.bordered;
+			.border-radius(4px);
+			.border-radius2;		或 .border-radius2(4px);
+		}
+
+	定义不带参数的属性集合（可隐藏这个属性集合不让暴露到 CSS 中去，但可用在其他属性集合中）
+
+		.wrap () {
+			text-wrap: wrap; white-space: pre-wrap; white-space: -moz-pre-wrap; word-wrap: break-word;
+		}
+
+		pre { .wrap } 				---> pre { ... }
+
+	@arguments 变量：包含了所有传递进来的参数
+
+		.box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) { 
+			box-shadow: @arguments; -moz-...; -webkit-...;
+		}
+
+		.box-shadow(2px, 5px); 		---> box-shadow: 2px 5px 1px #000; -moz-...; -webkit-...
+
+
+模式匹配和导引表达式
+	有些情况下，根据传入的参数来改变混合的默认呈现
+
+	.mixin (@s, @color) { ... }
+	.class { 
+		.mixin(@switch, #888);
+	}
+
+	.mixin (dark, @color) { color: darken(@color, 10%); }		只接受 dark 为首参
+	.mixin (light, @color) { color: lighten(@color, 10%); }		只接受 light 为首参
+	.mixin (@_, @color) { display: block; }						接收任意值
+
+	@switch: light;
+	.class {
+		.mixin(@switch, #888);		---> color: #a2a2a2; display: block;
+	}

@@ -1,0 +1,82 @@
+
+开发手机 APP，目前的三种方式：
+	
+	原生 Native：使用原生 SDK 开发 App。缺点是对不同的 平台要分别开发，成本高、周期长。
+
+	原生脚本 NativeScript：将原生API封装成JavaScript接口，优点是开发语言统一使用JavaScript，缺点是 要针对不同的平台分别开发
+
+	混合 Hybrid：使用 web 技术开发 App，使用 Cordova/PhoneGap 之类进行打包封装。优点是采用标准的web技术开发， 避免了不同平台原生开发体系的学习，上手快、效率高；缺点是性能上有一定损失。
+
+
+ionic主要包括三个部分：
+
+    CSS框架 - 提供原生_App质感的CSS样式模拟_。ionic这部分的实现使用了ionicons图标样式库。
+
+    JavaScript框架 - 提供移动Web应用开发框架。ionic基于AngularJS基础框架开发，因此 自然地遵循AngularJS的框架约束；此外，ionic使用AngularJS UI Router实现前端路由。
+    
+    命令行/CLI - 命令行工具集用来简化应用的开发、构造和仿真运行。ionic命令行工具使用了 Cordova，依赖于平台SDK（Android & iOS）实现将移动web项目打包成原生app。
+
+ionic 支持：iOS7+、Android4.1+
+
+
+
+	ionic --- HTML5 应用程序开发框架(HTML5 Hybrid Mobile App Framework )
+
+ionic 官方网站：http://ionicframework.com/
+
+ionic 官方文档：http://ionicframework.com/docs/
+
+Github 地址：https://github.com/driftyco/ionic
+
+
+ionic v1.0.1 下载：http://www.runoob.com/try/download/ionic-v1.0.1.zip
+
+最新版本下载：http://ionicframework.com/docs/overview/#download
+
+
+资料：
+	http://www.haomou.net/2014/10/06/2014_ionic_learn/
+
+
+ionic 主要关注外观、体验、UI 交互、基于 Hybird 模式的 HTML5 移动应用程序开发（介于web-app、native-app这两者之间的app）
+
+
+基于 Angular 语法
+
+
+Node.js、NPM、cordova、ionic、Android 和 iOS 官方文档
+
+
+ionic.bundle.js 包含了 Ionic 核心JS、AngularJS、Ionic 的 AngularJS 扩展
+
+cordova.js 是在使用 Cordova/PhoneGap 创建应用时生成的，不需要手动引入，你可以在 Cordova/PhoneGap 项目中找到该文件，所以在开发过程中显示 404 是正常的。
+
+
+---------------------------------------------------
+ionic 安装
+	
+	cordova、android 环境
+
+---------------------------------------------------
+	ionic CSS 框架
+	
+ionic 预定义 CSS 类主要分四个方面：
+	
+	基本布局类：将手机也没的布局模式基本抽象为 头、内容、尾
+
+	颜色和图标类：配色方案 CSS 类，使用 ionicons 提供的字体图标类
+
+	界面组件类：
+
+	栅格系统类：基于 CSS3 的 FlexBox 模型
+
+---------------------------------------------------
+	布局模式
+
+.bar.bar-header --- 声明元素为标题区
+
+.bar.bar-footer --- 声明元素为页脚区
+
+.content 		--- 声明元素为内容区
+
+

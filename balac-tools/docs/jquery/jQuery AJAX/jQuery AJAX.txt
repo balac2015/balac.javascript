@@ -1,0 +1,120 @@
+
+通过 Ajax 发送数据
+	
+	Asynchronous JavaScript and XML，异步 JavaScript 和 XML，由 Jesse JamesGarrett 在 2005 年发明的。
+
+	（不刷新页面而从服务器加载数据、通过 JS 从浏览器向服务器发送数据、在客户端使用 HTML、XML、JSON 等数据、AJAX 请求状态反馈）
+
+从根本上来说，一个 Ajax 解决方案中涉及如下技术：
+
+	JavaScript：处理与用户及其他浏览器相关事件的交互，解释来自服务器的数据，并将其呈现在页面上。
+
+  XMLHttpRequest：这个对象可以在不中断其他浏览器任务的情况下向服务器发送请求。
+
+  文本文件：服务器提供的 XML、HTML 或 JSON 格式的文本数据。
+
+Ajax 能将静态的网页转换成具有交互性的 Web 应用。浏览器对 XMLHttpRequest 对象的实现也不完全一致，
+
+
+1、基于请求加载数据
+	
+		Ajax 是无需刷新页面即可从服务器（或客户端）上加载数据的手段。数据的格式可以是很多种，当数据到达时也有很多处理它们的方法可供选择。
+
+	追加 HTML：
+
+		AHAH（Asynchronous HTTP and HTML，异步 HTTP 和 HTML）的技术：Ajax 针对 HTML 代码块的请求
+
+		HTML 片段，目的就是供插入到其他HTML文档中使用，
+
+		$('#dectionary').load('a.html')
+
+		异步加载意味着在发出取得HTML片段的HTTP请求后，会立即恢复脚本执行，无需等待。
+
+	操作 JavaScript 对象
+
+		取得 JSON
+
+			JavaScript对象是由一些“键—值”对组成的，而且还可以方便地使用花括号（{}）来定义
+
+			JavaScript的数组则可以使用方括号（[]）和隐式声明的逐渐递增的键进行动态定义。
+
+			JSON（avaScript Object Notation，JavaScript对象表示法），由 Douglas Crockford 起名，
+
+			JSON 对值的限定：必须包含在双引号中、函数不是有效的 JSON 值，最好用服务器端语音生成 JSON
+
+		使用全局的 jQuery 函数
+
+			$.getJSON('b.json', function(data){ 当加载完成时调用的函数，参数 data  保留着返回的数据})	
+
+			JSON 格式不容许任何的错误，。所有方括号、花括号、引号和逗号都必须合理且正确地使用，否则文件不会加载。
+
+		执行脚本
+
+
+2、选择数据格式
+	
+	HTML 片段的实现，工作量小、加载简单、无需遍历数据、不一定能够在其他应用程序中得到重用
+
+	JSON 文件，方便被重用、简洁易读、遍历提取、原生 JSON.parse() 可解析读取、构建应仔细（出错浏览器会静默中止）
+
+	JavaScript 文件，不是正真的数据存储机制、不能将相同的信息提供给不同的系统、可将少用行为提取到外部文件中减少代码量
+
+	XML 文件，文件体积相对较大、很多流行的Web服务（比如Yahoo! Weather：http://developer.yahoo.com/weather）都以XML格式输出它们的数据
+
+
+3、向服务器传递数据
+
+
+
+
+
+
+
+
+
+
+
+
+				
+AJAX - 	    
+	  load(URL, data, callback) - 从服务器加载数据，并把返回的数据放入被选元素中。
+
+	  		参数：URL - 必须，希望加载的 URL
+
+	  		      data - 可选，规定与请求一同发送的查询字符串键/值对集合。
+
+				  callback - 可选， load() 方法完成后所执行的函数名称，callback 参数：function(responseTxt, statusTXT, xhr)
+   						 responseTxt - 包含调用成功时的结果内容，statusTXT - 包含调用的状态， xhr - 包含 XMLHttpRequest 对象
+
+	  HTTP 请求：GET - 基本上用于从服务器获得（取回）数据。注释：GET 方法可能返回缓存数据。
+
+	  			 POST - 也可用于从服务器获取数据。不过，POST 方法不会缓存数据，并且常用于连同请求一起发送数据。
+
+	  $.get(URL, callback), $.post(URL, data, callback)
+
+	  		参数：URL - 必须，希望请求的 URL， callback - 可选，求成功后所执行的函数名。
+
+	  			  data - 可选，规定连同请求发送的数据。
+
+
+
+
+
+jQuery - AJAX load() 方法
+	
+	$(selector).load(URL, data, callback) --- load() 从服务器加载数据，并把返回的数据放入被选元素中。
+
+		参数：url 必须（规定希望加载的 URL），
+
+			data 可选（规定与请求一同发送的查询字符串键/值对集合），
+
+			callback 可选（load() 完成后所执行的函数名称），参数 callback 调函数可设置的参数：responseTxt（包含调用成功是的结果内容），statusTXT(包含调用的状态)，xhr（包含 XMLHttpRequest 对象）
+        
+        $("#div1").load("demo_test.txt");   把文件内容加载到指定的 #div 元素
+        
+        $("#div1").load("demo_test.txt #p1");  指定文件中 id=p1 的元素内容到 #div1.
+        
+        $("#div1").load("demo_test.txt", function(responseTxt, statusTxt, xhr){
+          if(statusTxt == "success")	alert("外部内容加载成功");
+          if（statusTxt == "error")	alert("Error: " + xhr.status + xhr.statusText);
+        }					  

@@ -1,0 +1,91 @@
+
+第 10 章、高级事件处理：
+
+应用程序中的交互，时刻关注用户的一举一动并对他们的操作给出响应
+
+介绍：事件委托、与某些事件相伴产生的性能缺陷、自定义事件、jQuery 内部使用的特殊事件系统
+
+1、再谈事件
+
+2.事件委托
+
+	event 对象的 target 属性，事件目标，指的是接收到事件的那个最里面、最深层的元素	
+
+	.closest() 沿 DOM 树向上一层一层移动，直至找到与给定的选择符表达式匹配的那个元素。未找到则返回空 jQuery 对象。
+
+	mouseenter、mouseleave 两个事件只有在鼠标最先进入和最后离开时才会触发，
+
+	mouseover、mouseout 在鼠标进入这个包含元素内部的任何照片时都触发处理程序。
+
+			mouseover、mouseout 应处理 event 对象的 relatedTarget 属性
+
+
+	jQuery 的委托方法：.on()，		
+
+			$('#gallery').on('mouseenter mouseleave', 'div.photo', function(..))  第二个参数会把this关键字映射为'#gallery'中与该选择符匹配的元素。
+
+			.delegate()、.undelegate()	委托，语法不同，作用一样
+
+		$('#gallery') 为委托的作用域：实际上，div.photo元素的任何祖先元素都可以作为这个委托的作用域。如 $('#gallery')、document（任何页面元素的祖先）元素
+
+		绑定事件委托到 document 元素，会有性能的牺牲。选择更具体的委托作用域可以有效减少这种开销
+
+		早委托：document 元素是随着页面加载几乎立即就可以调用的，把处理程序绑定到 document 就不必扫描复杂的DOM结构而能够实现早绑定了
+
+
+3、自定义事件
+
+	自定义事件必须在代码中通过手工方式来触发。（类似与定义的函数）
+
+	事件处理程序与触发它们的代码是分离的。
+
+	.on()方法对应着一个函数的定义，
+
+	.trigger()方法对应着一次函数调用。
+
+$(document).ready(function () {		
+	$('#more-photo').click(function (e) {		// .click() 处理程序
+		e.preventDefault();
+		$(this).trigger('nextPage');		// 调用函数，一次触发可以导致多个绑定的处理程序运行
+	});
+});
+(function ($) {
+	$(document).on('nextPage', function () { 处理1 });
+	$(document).on('nextPage', function () { 处理2 });
+})(jQuery);
+
+	无穷滚动：监听 scroll
+
+
+4、节流事件：
+
+	浏览器中有几个原生事件都会频繁触发。最常见的事件有scroll、resize和mousemove。为了解决这个问题，就需要节流事件。
+
+	$(document).ready(function(){		// 使用 setTimeout 延迟节流
+		var timer = 0;
+		$(window).scroll(function(){
+			if (!timer) {
+				timer = setTimeout(function(){
+					checkScrollPosition();
+					timer = 0;
+				}, 250);
+			}
+		}).trigger('scroll');
+	});
+
+	其他节流方案：
+
+  
+5、扩展事件
+
+	为了实现一个事件的特殊行为，需要为 $.event.special 对象添加属性。这个属性的键是我们的事件名称，而它的值本身是一个对象。这个特殊的事件对象包含可以在不同时刻调用的回调函数：：
+
+		(1) add会在每次为当前事件绑定处理程序时调用；
+
+		(2) remove会在每次为当前事件删除处理程序时调用；
+
+		(3) setup会在为当前事件绑定处理程序，且没有为元素的这个事件绑定其他处理程序时调用；
+
+		(4) teardown是setup的反操作，会在某个元素删除这个事件的最后一个处理程序时调用；
+
+		(5) _default是当前事件的默认行为，在没有被事件处理程序阻止的情况下会执行。

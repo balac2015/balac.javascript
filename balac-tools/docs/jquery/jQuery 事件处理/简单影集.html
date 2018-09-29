@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Photo Library</title>
+<style>
+    /***************************************
+       Default Styles
+    ***************************************/
+
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font: 80% Verdana, Helvetica, Arial, sans-serif;
+        color: #000;
+        background: #fff;
+    }
+    #container {
+        margin: 10px 2em;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        /*  margin-bottom: 0;*/
+    }
+
+    h2 {
+        font-size: 1.3em;
+        margin-bottom: .5em;
+    }
+    h3 {
+        font-size: 1.1em;
+        margin-bottom: 0;
+    }
+
+    code {
+        font-size: 1.2em;
+    }
+
+    a {
+        color: #06581f;
+    }
+
+
+    /***************************************
+       Chapter Styles
+    ***************************************/
+
+    #gallery {
+        width: 600px;
+    }
+
+    #more-photos {
+        clear: left;
+        display: block;
+        margin: 1em 0;
+    }
+
+    .photo {
+        float: left;
+        position: relative;
+        overflow: hidden;
+        width: 180px;
+        height: 140px;
+        margin: 10px;
+        -webkit-box-shadow: #777 2px 2px 8px;
+        -moz-box-shadow: #777 2px 2px 8px;
+        -o-box-shadow: #777 2px 2px 8px;
+        box-shadow: #777 2px 2px 8px;
+        -webkit-border-radius: 1em;
+        -moz-border-radius: 1em;
+        -o-border-radius: 1em;
+        border-radius: 1em;
+
+    }
+    .photo img {
+        display: block;
+        padding: 10px;
+
+    }
+
+    .photo .details {
+        display: none;
+        position: absolute;
+        overflow: hidden;
+        left: 10px;
+        top: 10px;
+        width: 160px;
+        height: 120px;
+        z-index: 1;
+        background-color: #333;
+        color: #fff;
+    }
+    .photo .details .description {
+        padding: 10px;
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .photo .details .date {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        font-size: 9px;
+    }
+    .photo .details .photographer {
+        position: absolute;
+        right: 5px;
+        bottom: 15px;
+        font-size: 9px;
+    }
+
+    .selected .details {
+        background-color: #060;
+    }
+
+    .photo .entered {display: block; opacity: 0.7;}
+
+
+</style>
+<!--[if lte IE 8]>
+      <link rel="stylesheet" href="10-ie.css" type="text/css" />
+    <![endif]-->
+<script src="../jquery/jquery-2.1.3.min.js"></script>
+<script>
+/*
+    * 简单影集
+    * 功能：影集中会显示一组照 片，单击链接则会显示更多照片。当用户把光标移动到每一张照片上面时，会显示该照片的文本 简介，这个功能是使用jQuery的事件系统实现的
+ */
+$(document).ready(function () {
+
+    var pageNum = 1;
+    // 追加数据页面：让浏览器响应对某个页面元素的单击，在单击链接后，执行一次Ajax请求，加载下一组照片并将它们追加到 #gallery
+    $('#more-photos').click(function (event) {
+        event.preventDefault();
+        var $link = $(this);
+        var url = $link.attr('href');
+
+        if (url) {
+            //$.get(url, function () {
+                //$('#gallery').append(data);
+            //});
+            var data = $link.load(url);
+           $('#gallery').append(data);
+        }
+
+        pageNum++;
+        if (pageNum < 20) {
+            $link.attr('href', 'pages/' + pageNum + '.html');
+        } else {
+            $link.remove();
+        }
+    });
+
+     // 悬停时显示数据：在用户鼠标移动到照片上的时候显示照片的详细信息
+//    $('div.photo').hover(function () {
+//        $(this).find('.details').fadeTo('fast', 0.7);
+//    }, function () {
+//        $(this).find('.details').fadeOut('fast');
+//    });
+        
+        // 事件委托 1
+//    $('div.photo').on('mouseenter mouseleave', function (e) {
+//        var $details =  $(this).find('.details');
+//        if (e.type == 'mouseenter') {
+//            $details.fadeTo('fast', 0.7);
+//        } else {
+//            $details.fadeOut('fast');
+//        }
+//
+//        // 切换类：可以进行添加类和删除类的操作
+//        $(this).find('.details')
+//                .toggleClass('entered', e.type == 'mouseenter');
+//    });
+    
+        // 事件委托 2
+//    $('#gallery').on('mouseover mouseout', function (e) {
+//        var $target = $(e.target).closest('div.photo');
+//        var $details = $target.find('.details');
+//        var $related = $(e.relatedTarget).closest('div.photo');
+//        
+//        if (e.type == 'mouseover' && $target.length) {
+//            $details.fadeTo('fast', 0.7);    
+//        } else if (e.type == 'mouseout' && !$related.length) {
+//            $details.fadeOut('fast');    
+//        }
+//    });
+    
+    // 事件委托 3
+    // $('#gallery') 为委托的作用域，实际上，div.photo 元素的任何祖先元素都可以作为这个委托的作用域，如 document（页面中所有元素的祖先）
+    $('#gallery').on('mouseenter mouseleave', 'div.photo', function (e) {
+        var $details = $(this).find('.details');
+        if (e.type == 'mouseenter') {
+            $details.fadeTo('fast', 0.7);    
+        } else {
+            $details.fadeOut('fast');    
+        }
+    }); 
+});
+
+$(document).ready(function () {
+    /*
+        * 添加自定义事件
+        * 在用户请求更多照片时，触发 nextPage 事件，同时为这个事件绑定相应的处理程序，而在.click()处理程序中完成之前所做的工作
+    */  
+    $('#more-photos').click(function (event) {
+        event.preventDefault();
+        $(this).trigger('nextPage');    // 调用自定义函数，一次触发，可以导致多个绑定的处理程序运行
+    });    
+});
+(function ($) {         // 自定义事件
+    $(document).on('nextPage', function () {
+        var url = $('#more-photos').attr('href');
+        if (url) {
+            $.get(url, function (data) {
+                $('#gallery').append(data);    
+            });    
+        }    
+    });  
+    var pageNum = 1;
+    $(document).on('nextPage', function () {
+        pageNum++; 
+        if (pageNum < 20) {
+            $('#more-photos').attr('href', 'pages/' + pageNum + '.html');    
+        } else {
+            $('#more-photos').remove();    
+        }        
+    });  
+})(jQuery);
+/********************************************************************************/
+/*
+    * 无穷滚动
+    * 让用户控制滚动条来加载内容的流行技术，即当到达目前加载的内容底部时，就会自动取得新内容
+*/
+(function ($) {
+    function checkScrollPosition () {
+        var distance = $(window).scrollTop() + $(window).height();
+        if ($('#container').height() <= distance) {
+            $(document).trigger('nextPage');    
+        }    
+    }  
+    $(document).ready(function(e) {
+        $(window).scroll(checkScrollPosition).trigger('scroll');
+    });  
+})(jQuery);
+// 带参数的自定义事件，任何事件处理程序的第一个参数是由jQuery增强和扩展之后的DOM事件对象。在这个参数之后，我们可以根据需要传递任意数量的参数。
+(function ($) {
+    $(document).on('nextPage', function (event, scrollToVisible) {
+        var url = $('#more-photos').attr('href');
+        if (url) {
+            $.get(url, function (data) {
+                var $data = $(data).appendTo('#gallery');
+                if (scrollToVisible) {
+                    var newTop = $data.offset().top;
+                    $(window).scrollTop(newTop);    
+                }    
+                checkScrollPosition();
+            });   
+        }    
+    });   
+})(jQuery);
+$(document).ready(function(e) {
+    $('#more-photos').click(function () {
+        $(this).trigger('nextPage', [true]);
+        return false;    
+    });
+    $(window).scroll(checkScrollPosition).trigger('scroll');
+});
+</script>
+</head>
+<body>
+<div id="container">
+    <h1>Photo Gallery</h1>
+    <div id="gallery">
+
+        <div class="photo">
+            <img src="photos/skyemonroe.jpg">
+            <div class="details">
+                <div class="description">The Cuillin Mountains, Isle of Skye, Scotland.</div>
+                <div class="date">12/24/2000</div>
+                <div class="photographer">Alasdair Dougall</div>
+            </div>
+        </div>
+
+        <div class="photo">
+            <img src="photos/dscn1328.jpg">
+            <div class="details">
+                <div class="description">Mt. Ruapehu in summer</div>
+                <div class="date">01/13/2005</div>
+                <div class="photographer">Andrew McMillan</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="photos/024.JPG">
+            <div class="details">
+                <div class="description">midday sun</div>
+                <div class="date">04/26/2011</div>
+                <div class="photographer">Jaycee Barratt</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="photos/dsc20040321_191051_23.jpg">
+            <div class="details">
+                <div class="description">Dark sunset sky tones</div>
+                <div class="date">03/21/2004</div>
+                <div class="photographer">Leon Brooks</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="photos/portland_178.jpg">
+            <div class="details">
+                <div class="description">Mt. Shasta, Weed, CA</div>
+                <div class="date">06/16/2004</div>
+                <div class="photographer">Brian Lopez</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="photos/michelle_229.jpg">
+            <div class="details">
+                <div class="description">Mountain with tree cover on foothills</div>
+                <div class="date">09/28/2004</div>
+                <div class="photographer">Brian Lopez</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="photos/100_0207.JPG">
+            <div class="details">
+                <div class="description">Poas Volcano, Caldera and Poor Man's Umbrella</div>
+                <div class="date">01/02/2004</div>
+                <div class="photographer">Nat Edwards</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="photos/DSC01281.JPG">
+            <div class="details">
+                <div class="description">Mt Compas, South Australia</div>
+                <div class="date">01/01/2007</div>
+                <div class="photographer">Rod Conlon</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="photos/m4.jpg">
+            <div class="details">
+                <div class="description">Waterfall on the outskirts of Highlands N.C.</div>
+                <div class="date">11/21/2008</div>
+                <div class="photographer">Neal Floyd</div>
+            </div>
+        </div>
+    </div>
+    <a id="more-photos" href="pages/1.html"> More Photos
+    </a>
+</div>
+</body>
+</html>

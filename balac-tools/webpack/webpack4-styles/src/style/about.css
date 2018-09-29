@@ -1,0 +1,7 @@
+.component-box {
+    position: relative;
+    padding: 1rem;
+    margin: 50px 20px;
+    border: 1px solid #ddd;
+    background-color: hotpink;
+}

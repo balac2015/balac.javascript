@@ -1,0 +1,219 @@
+
+jQuery DOM 操作
+
+DOM（Document Object Model，文档对象模型），
+	
+	利用 DOM 接口修改文档、创建元素和文本、移动或删除元素、添加、删除、修改属性实现文档内容的变换
+
+	以对象网格形式表现 HTML 源代码，关系：祖先、后代、子、父、同辈元素
+
+1、操作属性：.attr()、.prop()、.val()
+		
+	.addClass()、removeClass()、toggleClass() --- 在某个类已经存在的情况下，操作 DOM 中的 className 属性
+
+	非类属性（id、rel、title 属性等）.attr()、removeAttr()、css() --- 用法相似，可以一次修改多个属性
+
+		值回调：$('a').attr( { id: function(index, oldValue){ ... } });
+
+				参数：index，整数，迭代次数
+
+					  oldValue，修改之前属性的值
+
+				值回调函数中，this 指向每次调用回调时正在操作的那个 DOM 元素
+
+	DOM 元素属性：
+
+		HTML 属性是指页面标记中放在引号中的值，DOM 属性则是指通过JavaScript能够存取的值。多数情况下对应是一样的
+
+		差异，如 nodeName、nodeType、selectedIndex和childNodes，在HTML中没有对应的属性，attr() 无法操作
+
+		      HTML 的 checked 属性是字符串，DOM 中 checked 是布尔值，（布尔值属性应测试 DOM 属性以确保浏览器一致性）
+
+		      在jQuery中，可以通过.prop()方法取得和设置DOM布尔值属性：.prop() 类似与 .attr()
+
+		      var currentlyChecked = $('.my-checkbox').prop('checked');    //取得"checked"属性的当前值
+		      
+		      $('.my-checkbox').prop('checked', fales);    // //设置"checked"属性的值
+
+	表单控件的值：
+
+		文本框 value 属性的 DOM 属性为 defaultValue，DOM 中没有 value 属性。
+
+		选项列表（select）选项的值在 DOM 中为 selectedIndex 属性，或选项元素的 selected 属性获取
+
+		var inputValue = $('#my-input').val();	//取得文本输入框的当前值
+
+		var selectValue = $('#my-select').val();	//取得选项列表的当前值
+
+		$('#my-single-select').val('value3');		//设置单选列表的值
+
+		$('#my-multi-select').val(['value1', 'value2']);	//设置多选列表的值
+		
+
+
+2、DOM 树操作
+	
+	$()、.insertBefore()、.insertAfter()、.appendTo()、.prependTo()、.wrap()、.wrapAll()
+
+	创建新的元素
+
+		如返回页面顶部链接，链接没有语义上的价值，作为页面浏览的增强子功能，可用 JS 生成
+
+		$('<a href="#top">back to top</a>');	// 中创建了back to top链接
+
+		$('<a id="top"></a>');		// 为这个链接创建了一个作为目标的锚。
+
+	插入新元素
+
+		.insertBefore()在现有元素外部、之前添加内容；
+
+		.insertAfter()在现有元素外部、之后添加内容。
+
+ 		.prependTo()在现有元素内部、之前添加内容；
+
+	  .appendTo()在现有元素内部、之后添加内容；
+
+		$('<a href="#top">back to top</a>').insertAfter('div.chapter p');
+		$('<a id="top"></a>').prependTo('body');	  
+
+	移动元素
+
+		$('span.footnote').insertBefore('#footer');	// 取得页面中某个位置上的元素，将它们插入到另一个位置上
+
+	包装元素
+		要在一个元素中包装另一个元素，必须知道是把每个元素分别包装在各自的容器中，还是把所有元素包装在一个容器中。
+
+		$('span.footnote')
+			.insertBefore('#footer')
+			.wrapAll('<ol id="notes"></ol>')
+			.wrap('<li></li>');
+
+		显示迭代：.each()
+			var $notes = $('<ol id="notes"></ol>').insertBefore('#footer');
+			$('span.footnote').each(function(index) {	// index 表示迭代的次数
+				$('<sup>' + (index + 1) + '</sup>').insertBefore(this);
+				$(this).appendTo($notes).wrap('<li></li>');
+			});
+
+	使用反向插入方法
+
+		$('<p>hello</p>').appendTo('#container') 等同于 $('#container').append('<p>hello</p>');
+
+		var $notes = $('<ol id="notes"></ol>').insertBefore('#footer');
+		$('span.footnote').each(function(index){
+			$(this)
+				.before('<sup>' + (index + 1) + '</sup>')
+				append($notes)
+				.wrap('<li></li>');
+		})
+
+		拼接字符串：var str = 'a' + 'b' + 'c';
+
+					var str = ['a', 'b', 'c'].join('');
+
+		$(this).before(['<sup', index + 1, '</sup>'].join(''))
+
+
+3、复制元素
+	
+	.clone() 够创建任何匹配的元素集合的副本以便将来使用。
+
+		$('div.chapter p:eq(0)').clone();	// 创建了<div class="chapter">中第一段落的副本：
+
+		$('div.chapter p:eq(0)').clone().insertBefore('div.chapter');  // 将复制的内容显示在网页中
+
+		.clone(true) 连同事件一起复制
+
+	通过复制创建突出引用
+
+		所谓突出引用，就是从正文中提取一部分文本，然后为这段文本应用特殊的图形样式。
+
+
+4、内容 setter 和 getter 方法
+	
+	获取和设置内容：.html()、.text()、val() 
+
+
+5、DOM 操作方法的简单归纳
+
+	(1) 要在HTML中创建新元素，使用$()函数。
+
+	(2) 要在每个匹配的元素中插入新元素，使用：.append()、.appendTo()、.prepend()、.prependTo()
+
+	(3) 要在每个匹配的元素相邻的位置上插入新元素，使用：.after()、.insertAfter()、.before()、insertBefore()
+
+	(4) 要在每个匹配的元素外部插入新元素，使用：.wrap()、.wrapAll()、.wrapInner()
+
+	(5) 要用新元素或文本替换每个匹配的元素，使用：.html()、.text()、replaceAll()、replaceWith()
+
+	(6) 要移除每个匹配的元素中的元素，使用：.empty()
+
+	(7) 要从文档中移除每个匹配的元素及其后代元素，但不实际删除它们，使用：.remove()、.detach()
+
+
+6、小结
+
+
+
+------------------------------------------------------------------------------------
+获取内容和设置：- 操作 DOM
+			
+	  获取/设置内容 - text(), html(), val()
+
+	  获取/设置属性 - attr()
+
+	  		设置时的回调函数：attr("herf", function(i, origValue){//参数：被选元素列表中当前元素的下标、原始（旧）值})
+
+	  添加元素 - append(), prepend(), after(), before()
+
+	  删除元素 - remove(), empty()
+
+	  获取并设置 CSS 类 - addClass(), removeClass(), toggleClass(), css() 
+
+	  尺寸 - width(), height(), innerWidth(), innerHeight(), outerWidth(), outerHeight()
+
+
+遍历 - 提示：祖先是父、祖父、曾祖父等等。后代是子、孙、曾孙等等。同胞拥有相同的父。	
+	  
+	  向上遍历 DOM - parent(), parents(), parentsUntil()
+
+	  向下遍历 DOM - children(), find()
+
+	  水平遍历 DOM - siblings(), next(), nextAll(), nextUntil(), prev(), prevAll(), prevUntil()
+
+	  过滤 - first(), last(), eq(), filter(), not()  filter() 与 not() 相反
+
+
+第二章：数组和字符串 - 处理数组、映射、字符串
+
+		var members = [ "john", "steve", "ben", "damon", "ian" ];
+		
+		$('p').text(members.join(", "));	// p 中添加数组中包含的名字
+		
+		$('p').html(members.join("<br />"));		// 换行显示
+		
+		$.each(membrers, function( index, value) { ... });  // value 数组值，index 索引
+		
+		var names = $("li").get();		// 获取 li 中的文本组成数组 names
+		$('p').text(names.length);		//
+				
+操作数组：序号、元素转换……				
+				
+		members = $.map(members, function(n, i){ n.toUpperCase(); });  // 转换大写
+		
+				map() - 迭代数组的每个元素，并为每个数组元素分别调用一次回调函数， map(array, callback)
+
+
+
+
+遍历
+    遍历：查询数据的所有节点。jQuery 遍历函数包括了用于筛选/查找/串联元素的方法，针对了基本的层级关系/扩展了大量的筛选接口。
+
+    w3c 解释：遍历，意为“移动”，用于根据其相对于其他元素的关系来“查找”（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达您期望的元素为止。
+
+    eq(), filter(), not(), children(), closest(), find()
+
+    遍历接口可分为：祖先、同胞兄弟、后代、过滤</strong>,遍历接口都相似或是一类的处理功能。
+
+
+				

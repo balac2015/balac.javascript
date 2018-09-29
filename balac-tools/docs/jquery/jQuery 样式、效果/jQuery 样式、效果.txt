@@ -1,0 +1,128 @@
+
+	jQuery 样式、效果
+
+	动态修改元素样式、内置效果隐藏/显示、动画、一个接一个的排队效果实现
+
+	当页面发生变化时，通过效果吸引用户的注意力，则会显著增强页面的可用性（在Ajax应用程序中尤其常见
+
+
+修改内联 CSS
+	
+	.css() 可获取、设置单个或多个属性，接受 font-size、fontSize 形式，获取的值含单位 px 等
+
+
+显示和隐藏：.hide()、.show() 处理 display: none 的设置	
+
+	时长参数：'duration' ---- .hide('duration') 同时减少 height、width、opacity 至都到 0，此时 display: none; .show() 相反
+
+	参数：'slow' --- 600ms, 'fast' --- 200ms, 默认为 400 ms（传入其它字符串则以默认值完成）, 数字 --- 以 ms 为单位
+
+
+淡入淡出：.fadeIn()、.fadeOut() 处理 opacity 的设置
+	
+	（比较适合用在处于文档流之外的元素，如覆盖在页面之上的“亮盒”）
+
+
+滑上滑下：.slideDown()、.lideUp() 处理 height 的设置
+	
+	（比较适合用在本来就处在文档流中的元素）
+
+
+切换：
+	
+	if ($var.is(':hidden')) { ... }、.toggle()、.slideToggle()
+
+
+自定义动画：.animation() 
+	
+	形式一（4 个参数）： （通常用于为一组特定的元素创建并发效果）
+
+		.animation( 
+			{property1: 'value1', property2: 'value2' }, 
+			duration, 		// 可选的时长参数：既可以是预置的字符串，也可以是毫秒数值。
+			easing, 		// 可选的缓动（easing）类型
+			function(){}	// 可选的回调函数
+		)
+
+	形式二（2 个参数）：（并发与排队效果）
+
+		 .naimation( {
+			property1: 'value1',
+			property2: 'value2'
+		}, {
+			duration: 'value',
+			specialEasing: { property1: 'easing1', property2: 'easing2' },
+			complete: function() {},
+			queue: true,
+			step: callback
+		} )
+
+	针对 CSS 属性提供了简写值：'show', 'hide', 'toggle'，如 .animate({height: 'toggle'}, 'slow')
+
+	可以一次给多个属性添加动画效果
+
+	可以使用其他CSS属性，如：left、top、fontSize、margin、padding 和 borderWidth。
+
+	所有块级元素默认的 CSS 定位属性都是 static
+
+	并发与排队效果：一个接一个的发生效果
+
+		处理一组元素，应用多重效果可以连缀实现排队
+
+		排队不能自动应用到其他的非效果方法，如.css()
+
+	处理多组元素：
+
+		当为不同组的元素应用效果时，这些效果几乎会同时发生。
+
+
+	动画简单概括：
+
+		一组元素上的效果：
+
+			当在一个.animate()方法中以多个属性的方式应用时，是同时发生的；
+
+			当以方法连缀的形式应用时，是按顺序发生的（排队效果）——除非queue选项值为false。
+
+		多组元素上的效果：
+
+			默认情况下是同时发生的；
+
+			当在另一个效果方法或者在.queue()方法的回调函数中应用时，是按顺序发生的（排队效果）。
+
+	动画总结：
+
+	(1) 一组元素上的效果：
+ 		
+		当在一个 .animate() 方法中以多个属性的方式应用时，是同时发生的；
+
+ 		当以方法连缀的形式应用时，是按顺序发生的（排队效果）（除非queue选项值为false）
+
+	(2) 多组元素上的效果：
+
+		默认情况下是同时发生的；
+		
+		当在另一个效果方法或者在.queue()方法的回调函数中应用时，是按顺序发生的（排队效果）。
+
+------------------------------------------------------------------------------
+效果：
+	
+基本：
+	
+	show()、hide()、toggle() --- 参数都为 ([speed, [easing], [fn]])	
+
+滑动：
+	
+	slideDown()、slideUp()、slideToggle() --- 参数都为 ([speed, [easing], [fn]])
+
+淡入淡出：
+	
+	fadeIn()、fadeOut()、fadeTo()、fadeToggle() --- 参数都为 ([speed, [easing], [fn]])
+
+自定义：
+	
+	.animate(param, [spe], [e], [fn])、stop([cle], [jum])、delay(duration, [queueName])  
+
+设置：
+	
+	jQuery.fx.off、jQuery.fx.interval		  

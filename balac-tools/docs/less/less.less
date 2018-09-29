@@ -1,0 +1,111 @@
+/**
+* LESS: www.bootcss.com/p/lesscss/
+*/
+// 变量
+@nice-blue: #4d926f;
+@light-blue: @nice-blue + #111;
+@fnord: "i am fnord.";    // 定义变量为内容
+@var: 'fnord';
+content: @@var;          // 解析：content: "i am fnord."
+
+// 混合 - 继承机制
+.rounded-corners (@radius: 5px) {   // 带了默认值（也可不带），调用 .rounded-corners; 或 .rounded-corners(8px);
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// 混合的 arguments 变量，含了所有传递进来的参数.
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {  // 调用：.box-shadow(2px, 5px); 其它值为默认
+  -webkit-box-shadow: @arguments;
+     -moz-box-shadow: @arguments;
+          box-shadow: @arguments;
+}
+
+// 嵌套
+#header {
+  a {
+    text-decoration: none;
+    &:hover {
+      border-width: 1px;
+    }
+  }
+}
+
+// 函数 & 运算 --- 加、减、乘、除，属性值和颜色的运算
+@the-border: 1px;
+@base-color: #111;
+@red:        #842210;
+#header {
+  color: @base-color * 3;
+  border-left: @the-border;
+}
+
+// 模式匹配和导引表达式--- 根据传入的参数来改变混合的默认呈现
+.mixin (@s, @color) { ... }
+.class {
+  .mixin(@switch, #888);  // 根据不同的 @switch 值表现各异
+}
+.mixin (dark, @color) {
+  color: darken(@color, 10%);
+}
+.mixin (light, @color) {
+  color: lighten(@color, 10%);
+}
+.mixin (@_, @color) {      // 接收任意值
+  display: block;
+}
+@switch: light;     // 运行
+.class {
+  .mixin(@switch, #888);  // 调用 .mixin
+}
+
+
+// 导引
+.mixin (@a) when (lightness(@a) >= 50%) {
+  background-color: black;
+}
+.mixin (@a) when (lightness(@a) < 50%) {
+  background-color: white;
+}
+.mixin (@a) {
+  color: @a;
+}
+
+// 导引调用
+.class1 { .mixin(#ddd) }    // 解析：background-color: black; color: #ddd;
+.class2 { .mixin(#555) }    // 解析：background-color: white; color: #555;
+
+// 导引中可用的全部比较运算：>、>=、=、=<、<
+// 关键字 true 表示布尔值真，其它值都视为布尔假
+.truth (@a) when (@a) { ... }     // 和下面等价
+.truth (@a) when (@a = true) { ... }
+
+// , 号，当且仅当所有条件都符合时，才会被视为匹配成功
+.mixin (@a) when (@a > 10), (@a < -10) { ... }
+
+
+// color 函数，颜色运算函数，颜色被转化成 HSL 色彩空间
+lighten(@color, 10%);
+darken(@color, 10%);
+
+saturate(@color, 10%);
+desaturate(@color, 10%);
+
+fadein(@color, 10%);
+fadeout(@color, 10%);
+fade(@color, 50%);
+
+spin(@color, 10);
+spin(@color,  -10);
+
+mix(@color1, @color2);
+
+
+// 命名空间
+#bundle {
+  .button () {}
+}
+#header a {
+  #bundle > .button
+}

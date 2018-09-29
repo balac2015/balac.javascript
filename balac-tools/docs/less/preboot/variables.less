@@ -1,0 +1,60 @@
+//
+// Variables 变量
+// --------------------------------------------------
+
+
+// Grayscale， 灰度命名：提供快速使用黑色
+@black-10:                 darken(#fff, 10%);
+@black-20:                 darken(#fff, 20%);
+@black-30:                 darken(#fff, 30%);
+@black-40:                 darken(#fff, 40%);
+@black-50:                 darken(#fff, 50%);
+@black-60:                 darken(#fff, 60%);
+@black-70:                 darken(#fff, 70%);
+@black-80:                 darken(#fff, 80%);
+@black-90:                 darken(#fff, 90%);
+
+
+// Brand colors， 语义命名：包含一些有意义的颜色值
+@brand-primary:           #428bca;
+@brand-success:           #5cb85c;
+@brand-warning:           #f0ad4e;
+@brand-danger:            #d9534f;
+@brand-info:              #5bc0de;
+
+
+// Scaffolding 脚手架：一组用于快速自定义页面轮廓中关键元素的变量。
+@body-background:		  #fff;
+@text-color: 			  @black-50;
+
+
+// Links 链接：仅仅使用一个值就可以很容易的重新给链接设置你所希望的颜色。
+@link-color:			  @brand-primary;
+@link-color-hover: 		  darken(@link-color, 15%);
+
+
+// Typography 排版：这组变量能帮你很容易的设置字体（type face）、字号（text size）、行距(leading)等。Preboot还在用于排版的mixin中使用到了这些变量。
+@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+@font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
+@font-family-base:        @font-family-sans-serif;
+
+@font-size-base:          14px;
+@font-size-large:         @font-size-base * 1.25; // ~18px
+@font-size-small:         @font-size-base * 0.85; // ~12px
+@font-size-mini:          @font-size-base * 0.75; // ~11px
+
+@line-height-base:        1.4;
+
+@headings-font-family:    inherit; // empty to use BS default, @font-family-base
+@headings-font-weight:    500;
+
+
+// Forms
+@input-color-placeholder: lighten(@text-color, 25%);
+
+
+// Grid
+@grid-columns:			  12;
+@grid-column-padding: 	  15;	// Left and right inner padding
+@grid-float-breakpoint:	  768px;

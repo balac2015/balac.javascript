@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax 与服务器交互</title>
+</head>
+<body>
+	
+<input type="text" name="username" id="username">
+<input type="button" value="检验">
+<div></div>
+
+<script>
+
+// load(url, sendatat, callback)
+	$('input[type=button]').click(function(){
+
+		// $('show').load('test.txt');		// 加载 ajax
+
+		$('show').load('test.txt?data=' + Math.random());		// 防止了缓存
+
+		$('show').load('test.html #id1');	// 对内容的筛选
+
+		$('show').load('test.html?data=' + Math.radom() + ' #id1');
+	});
+
+	// load() 不适合作验证
+	$('input[type=button]').click(function(){
+		// 发送的参数格式必须是 json 格式
+		var send = {'username': $('#username').val() };
+		$('div').load('process.php', send, function(data, textStatus, XMLHttpRquest){				
+			// 只要调用成功，$('div').html() 内容会被 php 的 echo 输出自动填冲
+		});
+	});
+
+
+//$.get(url, senddata, callback, datatype)
+	$('input[type=button]').click(function(){
+		$.get('test.txt', function(data, textStatus, jqXHR){
+		// $.get('test.txt?data=' + Math.random(), .....) 处理远程加载文本文件的缓存问题
+			$('.load').html(data);
+		});
+	});
+
+
+	// $.get()
+	$('input[type=button]').click(function(){
+		var url = 'process.php';
+		var sendData = { 'username': $('#username').val() };
+		$.get('process.php', sendData, function(data){
+			$('div').html(data);
+			if (data == 'true') {
+				$('div').html('用户名可以使用')
+			} else {
+				$('div').html('用户名不可以是admin')
+			}
+		});
+	});
+
+
+// $.post() 与 $.get() 类似
+
+// $.ajax() 做多用
+	$('input[type=button]').click(function(){
+		var url = 'process.php';
+		var sendData = { 'username': $('#username').val() };
+
+		$.ajax({
+			url: url,
+			type: 'get',		// 或 'post'
+			data: sendData,
+			success: function (data) {
+				if (data) {
+					$('div').html('用户名可以使用')
+				} else {
+					$('div').html('用户名不可以是admin')
+				}
+			}
+		});
+	});
+</script>
+</body>
+</html>
+<!--
+// test.txt
+我是远程加载数据 787878 jquery
+
+// process.php
+<?php
+header('Content-type: text/html;charset=utf-8');
+
+// load()
+$username = $_POST['username'];
+
+// $.get()
+$username = $_GET['username']
+
+if($username == 'admin') {
+	echo false;
+} else {
+	echo true;
+}
+-->

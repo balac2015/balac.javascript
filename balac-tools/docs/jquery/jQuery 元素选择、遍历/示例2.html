@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery News</title>
+<style>
+/***************************************
+   Default Styles
+***************************************/
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font: 80% Verdana, Helvetica, Arial, sans-serif;
+	color: #000;
+	background: #fff;
+}
+#container {
+	margin: 10px 2em;
+}
+h1 {
+	font-size: 2.5em;
+	margin-bottom: 0;
+}
+h2 {
+	font-size: 1.3em;
+	margin-bottom: .5em;
+}
+h3 {
+	font-size: 1.1em;
+	margin-bottom: 0;
+}
+code {
+	font-size: 1.2em;
+}
+a {
+	color: #06581f;
+}
+/***************************************
+   Chapter Styles
+***************************************/
+
+#topics {
+	font-size: 0.9em;
+	margin: 6px 0;
+}
+#topics a {
+	text-decoration: none;
+	color: #000;
+	padding: 0 6px;
+}
+#topics a.selected {
+	background-color: #6f93ce;
+	color: #fff;
+}
+#topics a:hover {
+	background-color: #6f93ce;
+	color: #fff;
+}
+#news {
+	width: 100%;
+	border-collapse: collapse;
+}
+#news th, #news td {
+	padding: 3px 6px;
+	vertical-align: top;
+}
+#news td:first-child {
+	width: 48px;
+}
+#news th {
+	text-align: left;
+	color: #fff;
+}
+#news thead th {
+	background-color: #15b;
+}
+#news tbody th {
+	background-color: #6f93ce;
+}
+#news .alt td {
+	background-color: #ccc;
+}
+#news .alt-2 td {
+	background-color: #ddd;
+}
+#news td.selected {
+	background-color: #eee;
+}
+.highlight {
+	font-weight: bold;
+	font-style: italic;
+	color: #080;
+}
+#news td.active {
+	background-color: #dfd;
+}
+
+a[href^="mailto:"] {background: url(imgs/email.png) no-repeat; padding-left: 18px;}
+a[href^="http://"] {background: url(imgs/external.png) no-repeat; padding-left: 18px; margin: 0 18px;}
+a[href$=".pdf"] {background: url(imgs/pdf.png) no-repeat; padding-left: 18px;}
+</style>
+<script src="../jquery/jquery-2.1.3.min.js"></script>
+<script>
+/*
+    * 深入选择与遍历
+    * 1、改变标题与表格之间链接的行为，实现对表格中内容的就地筛选，从而避免点击链接跳转到其他页面    
+*/
+$(document).ready(function(){
+    
+    // 动态筛选表格内容,通过主题链接来筛选表格内容，需要先阻止每个链接的默认行为。同时，还应该向用户反馈当前选择了哪个链接	
+    $('#topics a').click(function(e){
+		e.preventDefault();		// 阻止默认行为
+		
+		var topic = $(this).text();     // 保存链接文本
+		
+		// 反馈当前选择了哪个链接
+		$('#topics a.selected').removeClass('selected');
+		$(this).addClass('selected');
+
+		$('#news tr').show();
+		if (topic != 'All') {			
+			
+			// 只针对主题文本中包含筛选文本的处理
+			//$('#news tr:has(td):not(:contains("' + topic + '"))').hide();
+							
+			// 针对新闻标题文本和主题文本的筛选处理
+			$('#news').find('tr:has(td)').not(function(){
+				return $(this).children(':nth-child(4)').text() == topic;	
+			}).hide();
+		}
+        stripe(); // 每次筛选之后重新应用纹理效果
+	});
+    stripe();
+
+	// 为表格行添加条纹效果，组合筛选与条纹（每次筛选后必须重新应用条纹效果）
+	function stripe () {
+        // tbody 下子元素的隔行纹理
+       // $('#news').find('tr:nth-child(even)').addClass('alt');
+        
+        // 两行一组的纹理
+        //$('#news tr').filter(function(index) {  
+//            return (index % 4) < 2;	
+//        }).addClass('alt');
+        
+        // 每一组 tbody 下的 td 两行一组的纹理
+        $('#news tbody').each(function(){
+             // 伪类:visible（及其对应的伪类:hidden）非常重要，它会排除由于各种原因隐藏的元素，包括display值为none以及width和height属性被设置为0。
+            $(this).children(':visible').has('td')
+            // index参数目前保存的是每个元素从 0 开始计数的位置，创建的 :group 伪类的应用 ，.filter(':group(3)').addClass('alt');
+            .filter(function(index){    
+                return (index % 4) < 2;	
+            }).addClass('alt');	
+        });
+	}
+});
+
+/*
+    * 创建伪类选择符插件
+    * group是一个有效的字符串，可以放在一个冒号的后面构成选择符表达式。而在遇到这个选择符表达式的时候，应该调用给定的函数，用以决定相应的元素是否应该包含在结果集中。
+    * (1) element：当前考虑的DOM元素。这个参数对于大多数选择符都是必须的，但我们这个选择符则不需要。
+    * (2) index：DOM元素在结果集中的索引。
+    * (3) matches：数组，包含用于解析这个选择符的正则表达式的解析结果。一般来说，matches[3]是这个数组中唯一有用的值；假设有一个选择符的形式为:group(b)，则matches[3]中包含的值就是b，也就是括号中的文本。
+    * (4) set：匹配到当前元素的整个DOM元素集合。这个参数很少用。
+*/
+(function ($) {
+	$.extend($.expr[':'], {
+		group: function (element, index, matches, set) {
+			var num = parseInt(matches[3], 10);
+			if (isNaN(num)) {
+				return false;	
+			}	
+			return index % (num * 2) < num;
+		}	
+	});	
+})(jQuery);
+
+/*
+    * 编写DOM遍历方法插件
+    * 用来找到与给定单元格在同一列中的所有单元格
+    * 新定义的.column()方法可以在指向0个、1个或更多DOM元素的jQuery对象上调用
+*/
+(function ($) {
+    
+    $.fn.column = function () {
+        
+        var $cells = $();    // $cells 变量保存着一个空的jQuery对象
+        
+        this.each(function () {
+            var $td = $(this).closest('td, th');
+            
+            if ($td.length) {
+                var colNum = $td[0].cellIndex + 1;  // DOM 的 .cellIndex 属性找到序列号，从 0 开始
+                var $columnCells = $td
+                    .closest('table')
+                    .find('td, th')
+                    .filter(':nth-child(' + colNum + ')');
+                
+                $cells = $cells.add($columnCells);    // 把单元格的所有列添加到变量 $cells 中
+            }    
+        });    
+        return this.pushStack($cells);
+    };
+            
+})(jQuery);
+$(document).ready(function(e) {
+    $('#news td').click(function () {
+        $('#news td.active').removeClass('active');
+        $(this).column().addClass('active');    
+    });
+});
+</script>
+
+
+</head>
+<body>
+<div id="container">
+  <h1>jQuery News</h1>
+  <div>
+    <a href="mailto:tianping888@163.com">邮件</a>  
+    <a href="http://blog.163.com">外链</a>
+    <a href="../jquery/jquery-2.1.3.min.js.pdf">pdf文件</a>
+  </div>
+  <div id="topics"> Topics: <a href="topics/all.html" class="selected">All</a> <a href="topics/community.html">Community</a> <a href="topics/Conferences.html">Conferences</a> <a href="topics/Documentation.html">Documentation</a> <a href="topics/Plugins.html">Plugins</a> <a href="topics/Releases.html">Releases</a> <a href="topics/Miscellaneous.html">Miscellaneous</a>  
+  </div>
+  <table id="news">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Headline</th>
+        <th>Author</th>
+        <th>主题 Topic</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th colspan="4">2011</th>
+      </tr>
+      <tr>
+        <td>Apr 15</td>
+        <td>jQuery 1.6 Beta 1 Released</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Feb 24</td>
+        <td>jQuery Conference 2011: San Francisco Bay Area</td>
+        <td>Ralph Whitbeck</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Feb 7</td>
+        <td>New Releases, Videos &amp; a Sneak Peek at the jQuery UI Grid</td>
+        <td>Addy Osmani</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Jan 31</td>
+        <td id="release">jQuery 1.5 Released</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Jan 30</td>
+        <td>API Documentation Changes</td>
+        <td>Karl Swedberg</td>
+        <td>Documentation</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr>
+        <th colspan="4">2010</th>
+      </tr>
+      <tr>
+        <td>Nov 23</td>
+        <td>Team Spotlight: The jQuery Bug Triage Team</td>
+        <td>Paul Irish</td>
+        <td>Community</td>
+      </tr>
+      <tr>
+        <td>Oct 4</td>
+        <td>New Official jQuery Plugins Provide Templating, Data Linking and Globalization</td>
+        <td>John Resig</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Sep 4</td>
+        <td>The Official jQuery Podcast Has a New Home</td>
+        <td>Ralph Whitbeck</td>
+        <td>Documentation</td>
+      </tr>
+      <tr>
+        <td>Aug 24</td>
+        <td>jQuery Conference 2010: Boston</td>
+        <td>Ralph Whitbeck</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Aug 13</td>
+        <td>The jQuery Project is Proud to Announce the jQuery Mobile Project</td>
+        <td>Ralph Whitbeck</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Jun 14</td>
+        <td>Seattle jQuery Open Space and Hack Attack with John Resig</td>
+        <td>Rey Bango</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Mar 16</td>
+        <td>Microsoft to Expand its Collaboration with the jQuery Community</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Mar 15</td>
+        <td>jQuery Conference 2010: San Francisco Bay Area</td>
+        <td>Mike Hostetler</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Jan 14</td>
+        <td>jQuery 1.4 Released</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Jan 8</td>
+        <td>14 Days of jQuery and the New API Browser</td>
+        <td>John Resig</td>
+        <td>Documentation</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr>
+        <th colspan="4">2009</th>
+      </tr>
+      <tr>
+        <td>Dec 3</td>
+        <td>jQuery Wins .NET Magazine Award</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Dec 3</td>
+        <td>jQuery Joins the Software Freedom Conservancy</td>
+        <td>Ralph Whitbeck</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Oct 22</td>
+        <td>jQuery Summit</td>
+        <td>John Resig</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Aug 20</td>
+        <td>code.jquery.com Redirected to Google Ajax APIs</td>
+        <td>Mike Hostetler</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Jul 2</td>
+        <td>jQuery Conference 2009</td>
+        <td>John Resig</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Mar 6</td>
+        <td>jQuery UI 1.7 Released</td>
+        <td>Rey Bango</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Jan 28</td>
+        <td>jQuery Meetup in San Francisco</td>
+        <td>John Resig</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Jan 14</td>
+        <td>jQuery 1.3 and the jQuery Foundation</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr>
+        <th colspan="4">2008</th>
+      </tr>
+      <tr>
+        <td>Nov 19</td>
+        <td>Cloudfront CDN for jQuery</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Sep 28</td>
+        <td>jQuery, Microsoft, and Nokia</td>
+        <td>John Resig</td>
+        <td>Community</td>
+      </tr>
+      <tr>
+        <td>Aug 29</td>
+        <td>jQuery.com Site Redesign</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Aug 15</td>
+        <td>jQuery Conference 2008</td>
+        <td>Karl Swedberg</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Jul 14</td>
+        <td>jQuery UI 1.5.2</td>
+        <td>Paul Bakaus</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Jun 26</td>
+        <td>jQuery UI 1.5.1</td>
+        <td>Paul Bakaus</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Jun 26</td>
+        <td>jQuery Camp 2008</td>
+        <td>Rey Bango</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Jun 9</td>
+        <td>jQuery UI v1.5 Released, Focus on Consistent API and Effects</td>
+        <td>Paul Bakaus</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Jun 4</td>
+        <td>jQuery 1.2.6: Events 100% faster</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Mar 7</td>
+        <td>jQuery UI Worldwide Sprint: Mar 14-15</td>
+        <td>Richard Worth</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Feb 8</td>
+        <td>jQuery 1.2.3: AIR, Namespacing, and UI Alpha</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Jan 23</td>
+        <td>jQuery UI and beyond: The jQuery-Liferay partnership</td>
+        <td>Paul Bakaus</td>
+        <td>Community</td>
+      </tr>
+      <tr>
+        <td>Jan 15</td>
+        <td>jQuery 1.2.2: 2nd Birthday Present</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr>
+        <th colspan="4">2007</th>
+      </tr>
+      <tr>
+        <td>Dec 8</td>
+        <td>jQuery Plugins site updated</td>
+        <td>Mike Hostetler</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Dec 6</td>
+        <td>Flot, a new plotting plugin for jQuery</td>
+        <td>Bradley Sepos</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Nov 2</td>
+        <td>Google Using jQuery</td>
+        <td>Rey Bango</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Sep 17</td>
+        <td>jQuery UI: Interactions and Widgets</td>
+        <td>John Resig</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Sep 10</td>
+        <td>jQuery 1.2: jQuery.extend(”Awesome”)</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Sep 6</td>
+        <td>jQueryCamp ‘07 (Boston)</td>
+        <td>John Resig</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Aug 24</td>
+        <td>jQuery 1.1.4: Faster, More Tests, Ready for 1.2</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Jul 17</td>
+        <td>SF jQuery Meetup and Ajax Experience</td>
+        <td>John Resig</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Mar 11</td>
+        <td>SXSWi jQuery Meetup</td>
+        <td>John Resig</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Feb 28</td>
+        <td>jQuery 1.1.2</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Feb 21</td>
+        <td>jQuery is OpenAjax Compliant</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Feb 20</td>
+        <td>jQuery and Jack Slocum’s Ext</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Feb 18</td>
+        <td>The jQuery IRC Channel</td>
+        <td>Yehuda Katz</td>
+        <td>Community</td>
+      </tr>
+      <tr>
+        <td>Feb 14</td>
+        <td>jQuery Nightly Builds</td>
+        <td>Paul McLanahan</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Feb 2</td>
+        <td>New jQuery Project Team Members</td>
+        <td>Rey Bango</td>
+        <td>Community</td>
+      </tr>
+      <tr>
+        <td>Jan 29</td>
+        <td>New jQuery API Browser</td>
+        <td>Rey Bango</td>
+        <td>Documentation</td>
+      </tr>
+      <tr>
+        <td>Jan 27</td>
+        <td>Introduction to Firebug and jQuery, Screencast</td>
+        <td>John Resig</td>
+        <td>Documentation</td>
+      </tr>
+      <tr>
+        <td>Jan 22</td>
+        <td>jQuery 1.1.1</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Jan 15</td>
+        <td>Interface 1.1 Released</td>
+        <td>John Resig</td>
+        <td>Plugins</td>
+      </tr>
+      <tr>
+        <td>Jan 14</td>
+        <td>jQuery Birthday: 1.1, New Site, New Docs</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Jan 13</td>
+        <td>jQuery wallpapers</td>
+        <td>Nate Cavanaugh</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Jan 11</td>
+        <td>Selector Speeds</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr>
+        <th colspan="4">2006</th>
+      </tr>
+      <tr>
+        <td>Dec 27</td>
+        <td>The Path to 1.1</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Dec 18</td>
+        <td>Meet The People Behind jQuery</td>
+        <td>John Resig</td>
+        <td>Community</td>
+      </tr>
+      <tr>
+        <td>Dec 13</td>
+        <td>Helping you understand jQuery</td>
+        <td>John Resig</td>
+        <td>Documentation</td>
+      </tr>
+      <tr>
+        <td>Dec 12</td>
+        <td>jQuery 1.0.4</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Dec 12</td>
+        <td>jQuery v1.0.3 API docs on gotAPI.com</td>
+        <td>Rey Bango</td>
+        <td>Documentation</td>
+      </tr>
+      <tr>
+        <td>Dec 12</td>
+        <td>jQuery Presentation in Phoenix</td>
+        <td>Rey Bango</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Nov 28</td>
+        <td>jQuery at AZPhp</td>
+        <td>Rey Bango</td>
+        <td>Conferences</td>
+      </tr>
+      <tr>
+        <td>Nov 14</td>
+        <td>Expandable Sidebar Menu Screencast</td>
+        <td>John Resig</td>
+        <td>Documentation</td>
+      </tr>
+      <tr>
+        <td>Oct 27</td>
+        <td>jQuery 1.0.3</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+      <tr>
+        <td>Oct 26</td>
+        <td>jQuery Button Contest</td>
+        <td>Rey Bango</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Oct 25</td>
+        <td>Friends of Firefox: Mozilla Utilizes jQuery</td>
+        <td>Will Jessup</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Oct 18</td>
+        <td>Zebra Table Showdown</td>
+        <td>John Resig</td>
+        <td>Documentation</td>
+      </tr>
+      <tr>
+        <td>Oct 13</td>
+        <td>Minor API Change in 1.0.2</td>
+        <td>John Resig</td>
+        <td>Releases</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr>
+        <th colspan="4">2005</th>
+      </tr>
+      <tr>
+        <td>Dec 17</td>
+        <td>JSON and RSS</td>
+        <td>John Resig</td>
+        <td>Documentation</td>
+      </tr>
+      <tr>
+        <td>Dec 14</td>
+        <td>Google Homepage API</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Dec 13</td>
+        <td>XPath and CSS Selectors</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+      <tr>
+        <td>Dec 12</td>
+        <td>Sparklines with JavaScript and Canvas</td>
+        <td>John Resig</td>
+        <td>Miscellaneous</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

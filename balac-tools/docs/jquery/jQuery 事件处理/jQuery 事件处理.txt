@@ -1,0 +1,111 @@
+
+	jQuery 事件
+
+	（页面就绪时执行 JavaScript 代码、用户事件（单击、按下等）、文档事件流及操纵、模拟用户发起事件）
+
+	事件方法以 DOM 元素为核心，一点一点地给它们添加新功能
+
+
+页面加载：
+	
+	window.onload ----- DOM 加载，当文档完全下载到浏览器中时触发
+
+	$(document).ready(function(){ ... }); 或 $(function(){ ... }); --- 当 HTML下载完成并解析为 DOM 树之后触发，支持的关联文件可能还没有加载完成（如图像的高、宽）
+
+	document.addEventListener() 方法触发 DOMContentLoaded 事件，IE9+ 支持
+
+	window.onload = fnName; 将函数指定为处理程序，省略了圆括号，函数名就只是函数的标识符或函数引用，可用于将来调用函数
+
+
+命名冲突：（如引入 prototype.js、jquery.js）
+
+	jQuery.noConflict();  // jQuery 把对 $ 标识符的控制权让还给其他库。此时调用 jQuery 方法用 jQuery 不是 $
+		
+	jQuery(document).ready(function($) { ... }); 或 jQuery(function($){ ... });   // 使用 $ 的技巧
+
+
+事件处理：
+	
+	onclick、表单修改 onchange、onresize、blur、keydown、scroll
+	
+	.on() 可以指定任何 DOM 事件，并为该事件添加一种行为，可多次调用。隐式迭代、队列机制
+
+
+事件传播：
+	
+	事件捕获：最外层的元素 ---> 更具体的元素的事件传递
+
+	事件冒泡：最具体的元素 ---> 向上冒泡到更一般的元素的事件传递
+
+	DOM 事件：一般元素 --> 具体元素 --> DOM 树的顶层
+
+	mouseover、mouseout 事件有事件冒泡副作用，mouseenter、mouseleave、.hover() 事件可避免事件冒泡
+
+
+事件对象：包含着与事件有关的信息（如事件发生时的鼠标指针位置），提供了可影响事件在DOM中传递进程的一些方法。
+
+	（http://api.jquery.com/category/events/event-object/）
+	
+	event.target 事件目标，if (event.target == this) { ... }
+
+	event.stopPropagation() 阻止事件冒泡
+
+	event.preventDefault() 阻止默认操作
+
+	return false;		// 阻止事件冒泡和默认操作的简写形式
+
+
+事件委托：（利用事件冒泡）
+	
+	.on()、.delegate()、undeletgate()、off()
+
+	事件委托的应用：通过 DOM 操作方法添加新元素、执行AJAX请求时
+
+	事件命名空间：.on() 绑定，在绑定事件时引入附加信息，以便将来识别特定的处理程序。
+
+	模拟用户操作：.trigger('click') 不带参数为触发操作，带参数为绑定行为
+
+	.is()、.hasClass() --- 测试元素是否包含某个类，.is() 方法则更灵活，可以测试任何选择符表达式。
+
+	.one() 使操作只发生一次，之后就再也不会发生。
+
+	.off() 移除事件处理程序 
+
+
+键盘事件：（两类：直接对键盘按键给出响应的事件（keyup和keydown）和对文本输入给出响应的事件（keypress））
+	
+	如果想知道用户按了哪个键，应该侦听 keyup 或 keydown 事件；
+
+	如果想知道用户输入的是什么字符，应该侦听 keypress 事件。
+
+	event.which 包含着被按下的那个键的标识符。对字母键而言，这个标识符就是相应大写字母的ASCII值。
+
+	事实上，键盘事件的目标是当前拥有键盘焦点的元素。元素的焦点可能会在几种情况下转移，包括单击鼠标和按下 Tab 键。并非所有元素都可以获得焦点，只有那些默认情况下具有键盘驱动行为的元素，如表单字段、链接，以及指定了 tabIndex 属性的元素才可以获得焦点。
+
+	事件冒泡，可以假设所有键盘事件最终都会冒泡到document元素，所以可以把keyup事件直接绑定到该元素
+
+
+---------------------------------------------------------
+示例：切换视图 #switcher
+	
+	通过单击按钮切换视图，包括正常视图 -default、将文本限制在窄列种的视图 -narrow、适合打印的打字内容区视图 -large
+
+	1、渐进增强：，让禁用JavaScript的用户看不到与功能无关的控件。	
+
+	2、.on() 可指定任何方法，多次调用	
+----------------------------------------------------------------------------------------
+事件：
+页面载入：
+	ready(fn)
+
+事件处理：
+	on(eve, [sel], [data], fn)、off(eve, [sel], [fn])、bind(type, [data], fn)、one(type, [data], fn)、trigger(type, [data])、triggerHandler(type, [data])、unbind(type, [data|fn])
+
+事件委托：
+	live(type, [data], fn)、die(type, [fn])、delegate(sel, [type], [data], fn)、undelegate([sel, [type], fn])
+
+事件切换：
+	hover([over, ]out)、toggle(fn, fn2, [fn3, fn4, ...])
+
+事件： ------ 参数都为 [[data], fn]
+	blur()、change()、click()、dblclick()、error()、focus()、focusin()、focusout()、keydown()、keypress()、keyup()、mousedown()、mouseenter()、mouseleave()、mousemove()、mouseout()、mouseover()、mouseup()、resize()、scroll()、select()、submit()、unload()

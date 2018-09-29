@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="../ionic-v1.2.1/css/ionic.min.css">
+	<script src="../ionic-v1.2.1/js/angular/angular.min.js"></script>
+	<script src="../ionic-v1.2.1/js/ionic.bundle.min.js"></script>
+	
+
+	<style>
+		body {
+		    /* cursor: url('http://www.runoob.com/static/img/finger.png'), auto; */
+		}
+	</style>
+</head>
+<body ng-app="starter" ng-controller="actionsheetCtrl">
+
+	<ion-pane>
+		<ion-content>
+			<h2 ng-click="action()">$ionicBackdrop</h2>
+		</ion-content>
+	</ion-pane>
+
+	<h3>ionic 背景层</h3>
+	<p>我们经常需要在 UI 上，例如在弹出框、加载框、其他弹出层中显示或隐藏背景层。</p>
+	<p>在组件中可以使用$ionicBackdrop.retain()来显示背景层，使用$ionicBackdrop.release()隐藏背景层。</p>
+	<p>每次调用retain后，背景会一直显示，直到调用release消除背景层。</p>
+
+<script>
+	
+angular.module("starter", ["ionic"])
+
+	.run(function($ionicPlatform){
+		$ionicPlatform.ready(function(){
+			if (window.cordova && window.cordova.plugins.Keyboard) {
+				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+			}
+			if (window.StatusBar) {
+				StatusBar.styleDefault();
+			}
+		});
+	})
+
+	.controller("actionsheetCtrl",
+			["$scope", "$timeout", "$ionicBackdrop"],
+			function($scope, $timeout, $ionicBackdrop){
+		$scope.action = function () {
+			$ionicBackdrop.retain();
+
+			$timeout(function() {
+				$ionicBackdrop.release();
+			}, 1000);
+		};
+	})
+
+</script>	
+</body>
+</html>

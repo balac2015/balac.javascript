@@ -1,0 +1,60 @@
+	jQuery 
+
+	兼容CSS3，兼容各种浏览器（IE 6.0+, FF 1.5+, Safari 2.0+, Opera 9.0+）
+
+	【jQuery 从 2.0 版开始不再支持 IE6、IE7 和 IE8。（jQuery 1.x 版本还会继续维护）】	
+
+
+jQuery 是 2006 年 1 月由美国人 John Resig 在纽约的 barcamp 发布，由 Dave Methvin 率领团队进行开发
+
+
+如果项目中有针对 jQuery 1.9 之前的版本编写的代码，可以使用 jQuery 迁移插件（http://jquery.com/upgrade-guide/1.9/#jquery-migrate-plugin）实现与 jQuery 1.10 兼容。
+
+以 DOM 元素为核心，一点一点地给它们添加新功能
+
+
+核心理念是 write less, do more(写得更少,做得更多)
+
+jQuery 是免费、开源的，使用 MIT 许可协议。
+
+
+JS 框架解决：（跨浏览器）DOM 操作、事件处理、样式更换、外部通信（Ajax）、jQuery --- 集合对象、隐含迭代、方法连缀、自定义选择符、事件方法
+
+
+渐进增强（progressive enhancement）、平稳退化（graceful degradation）的理念
+
+		在JavaScript禁用时，页面仍然能够与启用JavaScript时一样准确地呈现，
+
+
+CDN（Content Delivery Networks，内容分发网络）：
+
+	jQuery 官网：http://code.jquery.com/
+
+	百度：http://libs.baidu.com/jquery/2.1.1/jquery.min.js
+
+	微软：http://www.asp.net/ajaxlibrary/cdn.ashx	
+
+	谷歌：https://developers.google.com/speed/libraries/devguide、http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
+
+	右拍云：http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js
+
+	新浪：http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js
+
+	360：http://libs.useso.com/js/jquery/1.9.1/jquery.min.js
+	
+
+如果加载 jQuery CDN 失败，则引入本地 jQuery
+
+	<script type="text/javascript">
+
+		!window.jQuery && document.write('<script src="local/js/jquery.min.js"></script>');
+
+	</script>
+
+
+下载：jQuery.com/download
+
+	    Production version - jquery.min.js 用于实际的网站中，已被精简和压缩。
+
+	    Development version - jquery.js 用于测试和开发（未压缩，是可读的代码）
+

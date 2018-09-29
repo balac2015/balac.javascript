@@ -1,0 +1,75 @@
+
+------------------------------------------------------------------------------------------------------------------
+jQuery 操作 DOM 元素：
+
+		attr()、html()、text()、addClass()、css()、removeAttr(name)、removeClass(class)、append('追加内容')、appendTo('向此被选元素中插入内容')、before('前插入')、after('后插入')、clone()、wrap()、wrapInner()、each()、remove()、empty()
+
+			$(selector).clone()生成一个被选元素的副本包含它的节点、文本和属性。
+
+			replaceWith()、replaceAll() 替换，$('替换元素').replaceWith('替换内容')、$('替换内容').replaceAll(替换元素)
+
+			wrap()、wrapInner 包裹，$(selector).wrap('包裹元素本身的格式')、$(selector).wrapInner('包裹元素中的内容格式')
+
+			remove() 删除元素本身和子元素
+
+			empty() 只删除所选元素的子元素
+
+------------------------------------------------------------------------------------------------------------------
+jQuery 事件与应用：
+		ready()、bing()、hover()、toggle()、unbing()、one()、trigger()、focus()、blur()、change()、live()
+
+			trigger() 直接手动触发元素指定的事件
+
+			live() 绑定元素的可执行事件（同 bind()），也可绑定动态元素
+
+			bind() 多个事件绑定用空格分割，$(selector).bind('click mouseover', function(){})
+
+------------------------------------------------------------------------------------------------------------------
+jQuery 动画特效：
+		show()、hide()、toggle()、slideUp()、slideDown()、slideToggle()、fadeIn()、fadeOut()、fadeTo()、animate()、stop()、delay()
+
+------------------------------------------------------------------------------------------------------------------
+jQuery 实现 ajax 应用：
+		load()、getJSON()、getScript()、get()、post()、serialize()、ajax()、ajaxSetup()、ajaxStart()、ajaxStop()
+
+			load(url, [data], [callback]) 通过 Ajax 请求加载服务器，并把返回的数据放置到指定的元素中，url 为加载服务器地址
+
+			jQuery.getJSON(url, [data], [callback]) 或 $.getJSON() 通过 ajax 异步请求，获取服务器中的数组，并分析数据显示
+
+			jQuery.getScript(url, [callback]) 或 $.getScript() 异步请求服务器中的 JavaScript 格式的文件
+
+			jQuery.ajax([settings]) 或 $.ajax() 请求服务器数据
+------------------------------------------------------------------------------------------------------------------
+jQuery 常用插件：
+		validate、form、lightBox、jqzoom、cookie、autocomplete、contextmenu、lifocuscolor、twoaddresult
+
+			validate 表单验证插件，$(form).validate({options})
+
+			form 表单插件，$(form).ajaxForm({options})，ajax 方式提交表单，通过 options 对象获取服务器返回数据
+
+			lightBox 图片灯箱插件，$(linkimage).lightBox({optoins})
+
+			jqzoom 图片放大镜插件，$(linkimage).jqzoom({options})
+
+			cookie cookie 插件，保存：$.cookie(key, value) 读取：$.cookie(key)  删除：$.cookie(key, null)
+
+			autocomplete 搜索插件，$(textbox).autocomplete(urlData, [options])
+
+			contextmenu 右键菜单插件，$(selector).contextMenu(menuId, {options})
+
+			lifocuscolor 自定义对象级插件，$(Id).focusColor(color)
+
+			twoaddreslt 自定义级别插件，$.addNum(p1, p2) 和 $.subNum(p1, p2)
+
+
+
+------------------------------------------------------------------------------------------------------------------
+jQuery UI 型插件：
+		draggable、droppable、sortable、accordion、tabs、dialog、menu、spinner、tooltip
+
+------------------------------------------------------------------------------------------------------------------
+jQuery 工具类函数：
+		浏览器、对象、字符串、URL、$.extend()、Object 对象
+
+------------------------------------------------------------------------------------------------------------------
+jQuery 在线聊天室						

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="ionicApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title>ionic</title>
+	<link rel="stylesheet" href="../ionic-v1.2.1/css/ionic.min.css">
+	<script src="../ionic-v1.2.1/js/ionic.bundle.min.js"></script>
+
+	<script>
+		angular.module('ionicApp', ['ionic'])
+			.controller('myCtrl', function($scope){});
+	</script>
+
+	 <!-- 在使用 Cordova/PhoneGap 创建的 APP 中包含的文件，由 Cordova/PhoneGap 提供，(开发过程中显示 404) -->
+    <script src="cordova.js"></script>
+
+	<style>
+		body {
+		    cursor: url('http://www.runoob.com/static/img/finger.png'), auto;
+		}
+	</style>
+</head>
+<body ng-controller="myCtrl">
+	
+	<ion-header-bar class="bar-positive">
+		<h1 class="title">Hello World!</h1>
+	</ion-header-bar>
+
+	<ion-side-menus>
+		<ion-side-menu-content>内容</ion-side-menu-content>
+		<ion-slide-menu side="left">变了</ion-slide-menu>
+	</ion-side-menus>
+
+	<ion-content>
+		<p>我的第一个 ionic 应用。</p>
+	</ion-content>
+
+</body>
+</html>

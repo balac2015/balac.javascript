@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>样式转换器</title>
+
+<link rel="stylesheet" href="css/switcherStyle.css" />
+
+<script src="js/lib/jquery-2.1.3.min.js"></script>
+<script src="js/switcherStyle.js"></script>
+
+</head>
+
+<body class="body">
+<!-- 选中文本：IE6-9 用 onselectstart, Opera 用 unselectstart -->
+<div id="switcher" class="switcher" onselectstart="return false;" unselectstart="no"> 
+	<h3 class="switcher-title">样式转换器</h3>
+	<input class="media-xs" type="button" value="超小屏幕" title="（手机，小于 768px）" />
+	<input class="media-sm" type="button" value="小屏幕" title="（平板，大于等于 768px）" />
+	<input class="media-md" type="button" value="中等屏" title="（桌面显示器，大于等于 992px）" />
+	<input class="media-lg" type="button" value="大屏" title="（大桌面显示器，大于等于 1200px）" />
+
+</div>
+
+<div class="chapter">
+	<h3>什么是加载完成</h3>
+	<p>一般来说，使用$(document).ready()要优于使用onload事件处理程序，但必须要明确的一点是，因为支持文件可能还没有加载完成，所以类似图像的高度和宽度这样的属性此时则不一定会有效。如果需要访问这些属性，可能就得选择实现一个onload事件处理程序（或者是使用jQuery为load事件设置处理程序）。这两种机制能够和平共存</p>
+
+	<h3>引用函数与调用函数</h3>
+	<p>这里在将函数指定为处理程序时，省略了后面的圆括号，只使用了函数名。如果带着圆括号，函数会被立即调用；没有圆括号，函数名就只是函数的标识符或函数引用，可以用于在将来再调用函数。</p>
+
+	<p>
+	公平地讲，jQuery并不是解决这个问题的唯一方法。我们可以编写一个JavaScript函数，用它构造一个调用现有的onload事件处理程序的新函数，然后再调用一个传入的事件处理程序。这种方法可以避免$(document).ready()这类对抗性处理程序之间的冲突，但是却不具有我们刚才所讨论的那些优点。在现代浏览器中（包括IE 9），可以通过W3C标准的document.addEventListener()方法触发DOMContentLoaded事件。但是，jQuery则可以让我们不必考虑浏览器不一致性而完成这一任务。
+	</p>
+	
+	<h3>渐进增强</h3>
+	<p>在创建样式转换器时，优秀的Web开发人员应该遵守渐进增强的原则。第5章还会学习怎么在jQuery代码中向样式转换器内注入内容，让禁用JavaScript的用户看不到与功能无关的控件。</p>
+</div>
+
+</body>
+</html>
