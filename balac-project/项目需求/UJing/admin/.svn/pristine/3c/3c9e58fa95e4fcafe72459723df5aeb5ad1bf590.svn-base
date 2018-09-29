@@ -1,0 +1,63 @@
+//
+   Created by yu869 on 2015/11/10.
+
+extends ../layouts/vendor
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+block main
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title 我的洗衣店
+      .pull-right
+        a#addStore.btn.btn-sm()
+          i.fa.fa-plus &nbsp;&nbsp;添加新店
+    .box-body
+      ul.products-list.product-list-in-box
+        each store in stores
+          li.item
+            .input-group
+              a(href="/vendor/deviceInStore/#{store._id}")
+                .product-img
+                  img(alt="洗衣店图片" src="/dist/img/default-50x50.gif")
+                .product-info
+                  .product-title
+                    h5 #{store.name}
+                    h5.small [编号:#{store.no}]
+                      each label in store.label.split(',')
+                        span.label.label-success.pull-left.margin-r-5 #{label}
+                   if store.ratio
+                     h5 分成比例:#{store.ratio}%
+                   else
+                     h5 分成比例:未分成
+
+                   if store.storeStatus == '0'
+                     h5 审核中
+
+                  #stores.product-description.h6
+                    span.fa.fa-map-marker
+                      | #{store.address}
+              .input-group-btn
+                a#location.btn.btn-link(href="/vendor/editStore/#{store._id}")
+                  i.fa.fa-pencil &nbsp;修改
+
+//应用添加的脚本在scripts block中定义
+block scripts
+
+  script.
+    $(document).ready(function () {
+      $("#addStore").on('click', function () {
+        $.getJSON("/vendor/checkStatus", function (data) {
+          if (data.approvedStatus != '02') {
+            bootbox.alert("您的加盟商资格没有审核通过!");
+          } else {
+            if (!data.isEnabled) {
+              bootbox.alert("您的加盟商资格被停用!");
+              return;
+            }
+            window.location = "/vendor/storeAdd/#{schoolId}";
+          }
+        })
+      });
+    });

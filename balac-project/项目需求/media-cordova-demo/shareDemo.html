@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"/>
+    <link rel="stylesheet" type="text/css" href="lib/jquery.mobile/jquery.mobile-1.4.1.min.css"/>
+    <title>Cordova Sample</title>
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div data-role="page" id="pageone">
+        <div data-role="header">
+            <h1>美信分享测试</h1>
+        </div>
+
+        <div data-role="content" style="padding: 18px">
+            <input type="text" name="title" id="title" placeholder="分享标题"
+                    value="美信分享">
+            <input type="text" name="subTitle" id="subTitle" placeholder="分享子标题"
+                    value="测试专用">
+            <label for="action">action</label>
+            <input type="text" name="action" id="action" placeholder="action openH5 或 openUrl"
+                   value="openUrl">
+            <label for="widgetId">H5模块id</label>
+            <input type="text" name="widgetId" id="widgetId" placeholder="在 action = openH5 时,需要提供">
+            <label for="widgetId">扩展参数</label>
+            <input type="text" name="widgetExtra" id="widgetExtra" placeholder="扩展参数" >
+            <label for="imageUrl">url地址：</label>
+            <input type="text" name="url" id="url" placeholder="url地址"
+                   value="https://www.baidu.com">
+            <label for="imageUrl">图片地址：</label>
+            <input type="text" name="imageUrl" id="imageUrl" placeholder="图片地址"
+                    value="http://img.hb.aicdn.com/d257a0f037b7e92cd4202b378df73a0ccbff0c1537a9b-Ej9yE1_fw658">
+            <label for="actionType">请选择喜爱的颜色：</label>
+            <select id="actionType" name="actionType">
+                <option value="1" selected>分享</option>
+                <option value="2">红包</option>
+                <option value="3">网盘</option>
+            </select>
+            <br>
+            <button id="share" data-role="button" data-theme="b">分享</button>
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/jquery/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.mobile/jquery.mobile-1.4.1.min.js"></script>
+
+    <script type="text/javascript">
+
+        document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+            $("#share").on("click", share);
+        }
+
+        function share(){
+            var title = $('#title').val();
+            var subTitle = $('#subTitle').val();
+            var action = $('#action').val();
+            var widgetId = $('#widgetId').val();
+            var widgetExtra = $('#widgetExtra').val();
+            var url = $('#url').val();
+            var imageUrl = $('#imageUrl').val();
+            var actionType = $('#actionType').val();
+            var shareObj = {
+                title:title,
+                subTitle:subTitle,
+                action:action,
+                url:url,
+                widgetId:widgetId,
+                widgetExtra:widgetExtra,
+                imageUrl:imageUrl,
+                actionType:actionType
+            };
+            mcShare(shareObj);
+        }
+
+        function mcShare(shareObj){
+            var shareArray = [shareObj];
+            cordova.exec(function (data) {
+                alert("分享成功!")
+            }, function (error) {
+                alert("error:\n"+error);
+                console.log("Error: " + error);
+            }, "MideaCommon", "mcShare", shareArray);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+/* module-key = 'com.atlassian.auiplugin:ajs-gadgets-base', location = '${pdl.dir}css/atlassian/dropdown-ie.css' */
+.dropdown-shim {
+    border: none;
+    display: none;
+    position: absolute;
+    z-index: 2000;
+}
+
+.aui-dd-parent .aui-dropdown {
+    *margin: 0;
+}
+
+.aui-dd-parent .aui-dropdown {
+    _width: 1%;
+}
+
+.aui-dd-parent .aui-dropdown li.dropdown-item a.item-link {
+    _zoom: 1;
+}
+
+.aui-dd-parent .aui-dropdown li.dropdown-item a.item-link:hover, .aui-dd-parent .aui-dropdown li.dropdown-item a.item-link:active, .aui-dd-parent .aui-dropdown li.dropdown-item a.item-link focus {
+    _background: #fff;
+    _text-decoration: none;
+}
+
+/* module-key = 'com.atlassian.auiplugin:ajs-gadgets-base', location = '${pdl.dir}css/atlassian/forms-ie.css' */
+form.aui .select {
+    padding: 4px 5px;
+}
+
+form.aui .upfile {
+    border: 1px solid #ccc;
+}
+
+form.aui .text, form.aui .password, form.aui .textarea, form.aui .select, form.aui .multi-select {
+    max-width: 238px;
+}
+
+form.aui .short-field {
+    max-width: 63px;
+}
+
+form.aui .medium-field {
+    max-width: 153px;
+}
+
+form.aui .long-field {
+    max-width: 488px;
+}
+
+form.aui .full-width-field {
+    max-width: none;
+}
+
+/* module-key = 'com.atlassian.auiplugin:aui-toolbar2', location = 'css/atlassian/aui-toolbar2-ie.css' */
+.aui-toolbar2 .aui-toolbar2-secondary > .aui-buttons {
+    margin: 0 0 0 20px;
+}
+
+.aui-toolbar2 .aui-toolbar2-secondary > .aui-buttons:first-child {
+    margin-left: 0;
+}
+
+/* module-key = 'com.atlassian.auiplugin:ajs', location = '${pdl.dir}css/atlassian/dialog-ie.css' */
+.aui-blanket {
+    background: transparent url(/s/zh_CN-1988229788/4733/f235dd088df5682b0560ab6fc66ed22c9124c0be.5/5.1.3/_/download/resources/com.atlassian.auiplugin:ajs/bg-000-trans50.png) repeat;
+    position: fixed;
+}
+
+.aui-blanket-shim {
+    filter: alpha(opacity=0);
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2499;
+}
+
+.aui-dialog .dialog-blanket {
+    background: transparent url(/s/zh_CN-1988229788/4733/f235dd088df5682b0560ab6fc66ed22c9124c0be.5/5.1.3/_/download/resources/com.atlassian.auiplugin:ajs/bg-000-trans20.png) repeat;
+}
+
+.aui-blanket {
+    *height: 100px;
+    *position: absolute;
+}
+
+/* module-key = 'com.atlassian.auiplugin:ajs', location = '${pdl.dir}css/atlassian/tabs-ie.css' */
+
+/* module-key = 'com.atlassian.auiplugin:ajs', location = '${pdl.dir}css/atlassian/toolbar-ie.css' */
+.aui-toolbar .toolbar-group .first .toolbar-trigger, .aui-toolbar .toolbar-group .first .toolbar-trigger[aria-disabled="true"]:hover {
+    border-left-width: 1px;
+}
+
+.aui-toolbar .toolbar-group .active .toolbar-trigger, .aui-toolbar .toolbar-group .toolbar-trigger.active, .aui-toolbar .toolbar-group .first .toolbar-trigger:hover {
+    border-left-width: 1px;
+}
+
+.aui-toolbar .toolbar-group .toolbar-item-link {
+    border-left-width: 0;
+}
+
+.aui-toolbar .toolbar-group {
+    *padding-bottom: 10px;
+}
+
+.aui-toolbar .toolbar-item, .aui-toolbar .toolbar-trigger, .aui-toolbar .toolbar-trigger span {
+    *white-space: nowrap !important;
+}
+
+.aui-toolbar .toolbar-group button.toolbar-trigger, .aui-toolbar .toolbar-group input.toolbar-trigger {
+    *width: 1%;
+}
+
+.aui-toolbar .toolbar-group button.toolbar-trigger, .aui-toolbar .toolbar-group input.toolbar-trigger {
+    *width: 1%;
+}
+
+.aui-toolbar button {
+    *border: 0 !important;
+    *margin: 0;
+    *padding: 0;
+}
+
+.aui-toolbar .toolbar-item.contains-button {
+    *border: 1px solid #ccc !important;
+    *height: 24px;
+    *padding: 0;
+}
+
+.aui-toolbar .toolbar-item.toolbar-item-link {
+    *border: 0 !important;
+}
+
+.toolbar-split-left.force-split {
+    float: none;
+}
+
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"], .aui-toolbar .toolbar-group.disabled .toolbar-trigger, .aui-toolbar .toolbar-item.disabled .toolbar-trigger, .aui-toolbar .disabled .toolbar-trigger, .aui-toolbar .toolbar-trigger.disabled {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+}
+
+.aui-toolbar .disabled .first .toolbar-trigger, .aui-toolbar .disabled .toolbar-item.first .toolbar-trigger, .aui-toolbar .toolbar-group .disabled.first .toolbar-trigger, .aui-toolbar .toolbar-group .first .disabled.toolbar-trigger {
+    border-left-width: 1px;
+}
+
+.aui-toolbar .toolbar-splitbutton .icon-dropdown {
+    *display: block;
+    *height: 20px;
+    *float: none;
+    *width: 7px;
+}

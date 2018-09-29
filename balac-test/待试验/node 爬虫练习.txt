@@ -1,0 +1,176 @@
+r-crawler
+最新学习node 写了个爬虫,来爬取微博用户的相册的图片 刚学习node 写点不好,以后改进
+
+github（https://github.com/Reborn233/r-crawler）
+
+这个例子中爬取的是 在下萝莉控ii（https://weibo.com/p/1005055643044717/photos?type=photo#place）
+
+我是看了微博获取图片的api, 然后通过api返回的dom结构,获取图片url 下载到本地文件夹 由于API请求是需要登录的 所以 需要在
+中把cookie填写上去
+
+首先引入所需要的模块和配置
+config.js
+
+const CONF = {
+    //cookie 可能会会过期需要填写
+    cookie: '',
+    // 请求接口地址  微博相册的接口好像都是这个
+    url:'https://weibo.com/p/aj/album/loading', 
+    //存放图片文件夹
+    file:'pic',
+
+}
+module.exports = CONF
+app.js
+
+const https = require('https'),
+    superagent = require('superagent'),
+    cheerio = require('cheerio'),
+    path = require('path'),
+    fs = require('fs'),
+    log = console.log.bind(console),
+    config = require('./config'),
+    readline = require('readline')
+    
+//创建readline接口实例
+const  rl = readline.createInterface({
+    input:process.stdin,
+    output:process.stdout
+})
+rl.on("close", function(){
+    process.exit(0)
+})
+    
+let page = 1,
+    since_id = '',
+    cookie = config.cookie,
+    defaultUrl = config.url
+主程序
+
+let app = {
+    init(url) {
+        this.filePath = this.generateFilePath(config.file);
+        this.num = 0
+        this.getAllHtml(url)
+            .then(res => {
+                if (res.code&&res.code == 100000) {
+                    this.filterImg(res.data)
+                } else {
+                    log('没有图片了')
+                    rl.close()
+                }
+            })
+            .catch(err => {
+                rl.question("请求出错,是否继续(yes/no)",(arg)=>{
+                	if(arg == 'yes'){
+				this.init(defaultUrl)
+                	}else{
+                		log('over')
+                	}
+		})
+            })
+    },
+    getAllHtml(url) {
+        return new Promise((resolve, reject) => {
+            log('page', page)
+            superagent.get(url)
+                .set('Cookie', cookie)
+                .query({
+                    // ajwvr: 6,
+                    type: 'photo',
+                    // owner_uid: 5643044717,
+                    // viewer_uid: 3128623563,
+                    since_id: since_id,
+                    page_id: 1005055643044717,  //这个id在所访问的用户的地址栏中有
+                    page: page,
+                    ajax_call: 1,
+                })
+                .end((err, res) => {
+                    if (err || !res.ok) {
+                        reject(JSON.parse(err.text))
+                    } else {
+                        resolve(JSON.parse(res.text))
+                    }
+                })
+        })
+    },
+    filterImg(sHtml) {
+    	//用cheerio来解析接口返回的dom结构
+	let $ = cheerio.load(sHtml)
+	//获取图片的url
+        let imgs = $('.photo_pict')
+	//获取接口中分页参数
+        let sinceId = $('[node-type = "loading"]').attr('action-data')
+	//解析获取since_id
+        let arr = sinceId.split('&')
+        let json = {}
+        arr.forEach((item) => {
+            let index = item.indexOf('=')
+            if (index > 0) {
+                let key = item.substring(0, index)
+                let val = item.substr(index + 1)
+                json[key] = val
+            }
+        })
+        since_id = json.since_id
+        let imgArr = []
+        log('循环获取图片url并下载')
+        imgs.each((i, e) => {
+            let imgUrl = $(e).attr('src')
+            // log('图片' + i, imgUrl)
+            if(imgUrl){
+            	imgArr.push(imgUrl)
+            }
+        })
+       	let l = imgArr.length
+        imgArr.forEach((item)=>{
+            this.downloadImg(item, l, (res) => {
+                log('第' + page + '页图片下载完成')
+                page++
+		//每页请求完成后继续请求下一页
+                this.init(defaultUrl)
+            })
+        })
+    },
+    parseFileName(fileName) {
+        return path.basename(fileName)
+    },
+    generateFilePath(path) {
+        if (fs.existsSync(path)) {
+            // log(path + '目录已经存在')
+        } else {
+            fs.mkdirSync(path);
+            // log(path + '目录创建成功')
+        }
+        return path
+    },
+    downloadImg(imgUrl, l, cb) {
+        let fileName = this.parseFileName(imgUrl.split('?')[0])
+        let path = `./${this.filePath}/${fileName}`
+        let url = imgUrl.indexOf('https:') ? 'https:' + imgUrl : imgUrl
+        superagent
+            .get(url)
+            .pipe(
+                fs.createWriteStream(path)
+            ).on('close', () => {
+            	this.num++
+                if (this.num == l) {
+                    cb && cb()
+                }
+            })
+    },
+}
+最后执行init
+app.init(defaultUrl)
+根据测试
+不填也可以 其他必填
+是分页的依据 会自动获取
+
+1.安装nodejs环境 node官网
+
+运行以下命令
+
+cd 项目目录
+npm install
+node app
+然后就开始下载图片到本地文件夹

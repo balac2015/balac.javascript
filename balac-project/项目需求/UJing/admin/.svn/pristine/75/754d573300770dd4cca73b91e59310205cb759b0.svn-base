@@ -1,0 +1,68 @@
+doctype html
+html.app(lang='en')
+
+  include ../includes/header
+  block header
+
+  body.hold-transition.skin-blue.sidebar-mini
+
+    .wrapper
+      include ../includes/nav
+      include ../includes/sidebar
+      // Content Wrapper. Contains page content
+      .content-wrapper
+        // Content Header (Page header)
+        section.content-header
+          // page header
+          block pageTitle
+          //page breadcrumd
+          block breadcrumb
+          //ol.breadcrumb
+          //  li
+          //    a(href='#')
+          //      i.fa.fa-dashboard
+          //      |  Level
+          //  li.active Here
+        // Main content
+        section.content
+          include ../includes/flash
+          block main
+      include ../includes/footer
+      //include ../includes/sidebar_right
+      // ./wrapper
+    // REQUIRED JS SCRIPTS jQuery 2.1.4
+    script(src='/plugins/jQuery/jQuery-2.1.4.min.js')
+    // Bootstrap 3.3.5
+    script(src='/bootstrap/js/bootstrap.min.js')
+    // SlimScroll 
+    script(src='/plugins/slimScroll/jquery.slimscroll.min.js')
+    // FastClick for mobile device
+    script(src='/plugins/fastclick/fastclick.js')
+    //PACE
+    script(src='/plugins/pace/pace.min.js')
+    script(src='/plugins/iCheck/icheck.min.js')
+    // bootbox
+    script(src='/plugins/bootbox/bootbox.min.js')
+    script(src='/plugins/moment/moment.min.js')
+    // jqueryValidation
+    script(src='/plugins/jquery-validation/dist/jquery.validate.min.js')
+    script(src='/plugins/jquery-validation/dist/jquery.validate.messages_zh.js')
+    script(src='/plugins/setup_validation.js')
+    // AdminLTE App
+    script(src='/dist/js/app.min.js')
+    script.
+      $(document).ajaxStart(function() { Pace.restart(); });
+    // highlight error input
+    if messages.error
+      script
+        $(document).ready(function () {
+        for err in messages.error
+          if(err.name === 'ValidationError')
+            for e in err.errors
+              $("input[name='#{e.path}']").parents(".form-group").addClass("has-error");
+        });
+    // App scripts go here
+    block scripts
+
+
+

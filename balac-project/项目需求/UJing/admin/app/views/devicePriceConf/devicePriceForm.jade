@@ -1,0 +1,99 @@
+//
+   Created by yu869 on 2015/11/9.
+
+//
+   Created by yu869 on 2015/11/9.
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+  link( rel="stylesheet" href="/plugins/select2/select2.min.css")
+//应用的page title
+block pageTitle
+  h1 设备
+    small 设备更新
+block main
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title 更新设备信息
+      .box-tools.pull-right
+        a.btn.btn-xs.btn-default(href='/store/priceSet' title='返回')
+          i.fa.fa-reply
+          span 返回
+        | &nbsp;&nbsp;
+        button#save.btn.btn-xs.btn-default(title='保存')
+          i.fa.fa-save
+          span 保存
+        | &nbsp;
+    .panel-body
+      div#deviceEdit.row
+        div.col-md-12
+          form#deviceForm.form-horizontal(name='deviceForm', action='/store/saveDevicePrice', method='post')
+            input#id(type='hidden', name='id', value="#{devicePrice == null ? '' : devicePrice._id}")
+            input#id(type='hidden', name='parentId', value="#{parentId}")
+            input#_csrf(type='hidden', name='_csrf', value=_csrf)
+            div.row.form-group
+              label.control-label.col-sm-2 程序名称:
+              div.col-sm-9
+                input#type.form-control(type='text',name='type',placeholder='程序名称 ', value="#{devicePrice == null ? '' : devicePrice.type}")
+
+            div.row.form-group
+              label.control-label.col-sm-2 价格:
+              div.col-sm-9
+                input#price.form-control(type='text',name='price',placeholder='价格', value="#{devicePrice == null ? '' : devicePrice.price}")
+
+            div.row.form-group
+              label.control-label.col-sm-2 命令:
+              div.col-sm-9
+                input#command.form-control(type='text',name='command',placeholder='命令', value="#{devicePrice == null ? '' : devicePrice.command}")
+
+            div.row.form-group
+              label.control-label.col-sm-2 预计执行时间:
+              div.col-sm-9
+                input#execMinute.form-control(type='text',name='execMinute',placeholder='预计执行时间', value="#{devicePrice == null ? '' : devicePrice.execMinute}")
+
+            div.row.form-group
+              label.control-label.col-sm-2 图标css类:
+              div.col-sm-9
+                input#iconClass.form-control(type='text',name='iconClass',placeholder='程序图标Class', value="#{devicePrice == null ? '' : devicePrice.iconClass}")
+
+            div.row.form-group
+              label.control-label.col-sm-2 备注:
+              div.col-sm-9
+                input#note.form-control(type='text',name='note',placeholder='备注', value="#{devicePrice == null ? '' : devicePrice.note}")
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datatables/jquery.dataTables.min.js')
+  script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+  script.
+    $(document).ready(function () {
+      var form = $('#deviceForm');
+      $("#save").on('click', function () {
+        form.submit();
+      });
+      form.validate({
+        rules: {
+          type: {
+            required: true
+          },
+          price: {
+            required: true
+            ,number: true
+            ,min: 0
+          },
+          command:{
+            required: true
+          }
+        },
+        messages: {
+          type: "设备名称必填！",
+          price: {
+            required:"分成比例必填！"
+            ,number: "只可填入数字！"
+            ,min: "最小值为0！"
+          },
+          command: "命令必填！"
+
+        }
+      });
+    });

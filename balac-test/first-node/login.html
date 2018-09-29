@@ -1,0 +1,36 @@
+<body>
+	<div>
+		<label for="user">
+			用户名：<input type="text" id="user" name="user">
+		</label>
+	</div>
+	<div>
+		<label for="password">
+			密码：<input type="text" id="password" name="password">
+		</label>
+	</div>
+	<div>
+		<button id="login">登陆</button>
+
+		<button><a href="./register.html">注册</a></button>
+	</div>
+</body>
+
+<script src="./jquery-2.0.0.min.js"></script>
+<script>
+	$(function () {
+		$('#login').click(function () {
+			$.ajax({
+				url: 'http://localhost:3000/login',
+				type: 'post',
+				data: {
+					username: $('#user').val(),
+					password: $('#password').val()
+				},
+				success: function (res) {
+					console.log( res );
+				}
+			});
+		});
+	});
+</script>

@@ -1,0 +1,23 @@
+/* module-key = 'confluence.macros.dashboard:dashboard-macros-resources', location = 'com/atlassian/confluence/plugins/macros/dashboard/css/dashboard-macro-ie.css' */
+.spaceList .icon-set {
+    width: 70px; /* lte IE8 needs it to be bigger. CONF-21637 */
+}
+
+.icon-set > *,
+.entity-favourites > * {
+    width: 21px;
+    float: left;
+}
+
+td.space-icon-col {
+    padding-right: 10px;
+}
+
+.space-detail-col {
+    width: 100%;
+}
+
+.operations {
+    padding-left: 10px;
+}
+

@@ -1,0 +1,843 @@
+* {
+    box-sizing: border-box;
+    /*font-family: '微软雅黑';*/
+    font-family: simsun;
+}
+html, body {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+.fullPage-wp {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+.fullPage-wp:after {
+    display: block;
+    content: ' ';
+    height: 0;
+    clear: both;
+}
+.fullPage-wp.anim {
+    -webkit-transition: all 500ms ease-in-out 0s;
+    transition: all 500ms ease-in-out 0s;
+}
+.fullPage-page {
+    display: block;
+    overflow: hidden;
+}
+
+.fullPage-dir-h {
+    float: left;
+}
+.wp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 5;
+}
+.page {
+    position: relative;
+    height:100%;
+    font-size: 72px;
+    line-height: 320px;
+    text-align: center;
+    overflow: hidden;
+    background-color: #0081db;
+}
+.anto-background {
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/background.png");
+    background-size: 100%;
+    -webkit-animation-name: wave;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count:infinite;
+}
+.anto-title {
+    position: fixed;
+    top: 20px;
+    left: 5%;
+    width: 90%;
+    z-index: 2;
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 1.5s;
+}
+.anto-logo {
+    position: fixed;
+    top: 150px;
+    left: 50%;
+    margin-left: -40px;
+    width: 80px;
+    z-index: 2;
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 1.5s;
+}
+.anto-download {
+    position: absolute;
+    right: 38px;
+    top: 108px;
+    width: 50px;
+    z-index: 3;
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 1.5s;
+}
+.anto-hover {
+    position: fixed;
+    width: 100%;
+    height: 255px;
+    background-color: #0081db;
+    z-index: 2;
+}
+.anto-detail {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 255px;
+    background-color: #0081db;
+    -webkit-overflow-scrolling: touch;
+}
+.anto-road {
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    width: 22px;
+    margin-left: -11px;
+}
+.anto-road-all {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 22px;
+    margin-left: -11px;
+}
+.anto-text1 {
+    position: absolute;
+    top: 235px;
+    left: 50%;
+    width: 100px;
+    margin-left: -92px;
+    font-size: 25px;
+    line-height: 50px;
+    color: #fff;
+    z-index: 2;
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 1.5s;
+}
+.anto-text1.toTop {
+    top: 175px;
+    margin-left: -130px;
+    -webkit-animation-name: text1Top;
+    -webkit-animation-duration: 1s;
+}
+.anto-text1.toBottom {
+    top: 235px;
+    margin-left: -92px;
+    -webkit-animation-name: text1Bottom;
+    -webkit-animation-duration: 1s;
+}
+.anto-text1.hide,
+.anto-text2.hide,
+.anto-title.hide,
+.anto-download.hide,
+.download-button.hide,
+.anto-logo.hide {
+    display: none;
+    -webkit-animation-name: fadeOut;
+    -webkit-animation-duration: 1.5s;
+}
+.anto-text2 {
+    position: absolute;
+    top: 236px;
+    right: 50%;
+    width: 120px;
+    margin-right: -110px;
+    font-size: 25px;
+    line-height: 50px;
+    color: #fff;
+    z-index: 2;
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 1.5s;
+}
+.anto-text2.toTop {
+    top: 175px;
+    margin-right: -155px;
+    -webkit-animation-name: text2Top;
+    -webkit-animation-duration: 1s;
+}
+.anto-text2.toBottom {
+    top: 236px;
+    margin-right: -110px;
+    -webkit-animation-name: text2Bottom;
+    -webkit-animation-duration: 1s;
+}
+.anto-building {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.anto-first-tip {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    width: 200px;
+    margin-left: -120px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 30px;
+}
+.anto-play {
+    position: absolute;
+    bottom: 30px;
+    right: 24%;
+    width: 30px;
+    -webkit-animation-name: replyButton;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count:infinite
+}
+.anto-play1 {
+    position: absolute;
+    bottom: 30px;
+    right: 30%;
+    width: 30px;
+    -webkit-animation-name: replyButton;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count:infinite
+}
+.anto-left {
+    position: absolute;
+    left: 50%;
+    width: 40px;
+    margin-left: -55px;
+    z-index: 2;
+    display: none;
+}
+.anto-right {
+    position: absolute;
+    right: 50%;
+    width: 40px;
+    margin-right: -55px;
+    z-index: 2;
+    display: none;
+ }
+.anto-left-icon {
+    position: absolute;
+    left: 50%;
+    width: 80px;
+    margin-left: -145px;
+    z-index: 2;
+    display: none;
+}
+.anto-right-icon {
+    position: absolute;
+    right: 50%;
+    width: 80px;
+    margin-right: -145px;
+    z-index: 2;
+    display: none;
+}
+.anto-left-text {
+    position: absolute;
+    top: 330px;
+    left: 2%;
+    width: 47%;
+    display: none;
+    z-index: 2;
+}
+.anto-right-text {
+    position: absolute;
+    bottom: 135px;
+    right: 2%;
+    width: 47%;
+    display: none;
+    z-index: 2;
+}
+.anto-2015-text {
+    position: absolute;
+    top: 276px;
+    left: 2%;
+    width: 47%;
+    display: none;
+    z-index: 2;
+}
+.anto-2000 {
+    top: 340px;
+}
+.anto-2000-icon {
+    top: 305px;
+}
+.anto-2002 {
+    bottom: 147px;
+}
+.anto-2002-icon {
+    bottom: 115px;
+}
+.anto-2005 {
+    top: 345px;
+}
+.anto-2005-icon {
+    top: 310px;
+}
+.anto-2006 {
+    bottom: 147px;
+}
+.anto-2006-icon {
+    bottom: 115px;
+}
+.anto-2009 {
+    top: 345px;
+}
+.anto-2009-icon {
+    top: 310px;
+}
+.anto-2013 {
+    bottom: 147px;
+}
+.anto-2013-icon {
+    bottom: 115px;
+}
+.anto-2015 {
+    top: 290px;
+}
+.anto-2015-icon {
+    top: 255px;
+}
+.cur .anto-2000,
+.cur .anto-2005,
+.cur .anto-2009,
+.cur .anto-2015 {
+    display: block;
+    -webkit-animation-name: fadeInRight;
+    -webkit-animation-duration: .5s;
+}
+.cur .anto-2002,
+.cur .anto-2006,
+.cur .anto-2013 {
+    display: block;
+    -webkit-animation-name: fadeInLeft;
+    -webkit-animation-duration: 1.5s;
+}
+.cur .anto-2000-icon,
+.cur .anto-2005-icon,
+.cur .anto-2009-icon,
+.cur .anto-2015-icon {
+    display: block;
+    -webkit-animation-name: fadeInRight;
+    -webkit-animation-duration: .5s;
+}
+.cur .anto-2002-icon,
+.cur .anto-2006-icon,
+.cur .anto-2013-icon {
+    display: block;
+    -webkit-animation-name: fadeInLeft;
+    -webkit-animation-duration: 1.5s;
+}
+.cur .anto-left-text,
+.cur .anto-2015-text {
+    display: block;
+    -webkit-animation-name: textLeftLate;
+    -webkit-animation-duration: 1s;
+}
+.cur .anto-right-text {
+    display: block;
+    -webkit-animation-name: textRightLate;
+    -webkit-animation-duration: 2s;
+}
+.anto-text3 {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    font-size: 35px;
+    color: #fff;
+    line-height: 35px;
+    text-align: center;
+}
+.anto-text4 {
+    position: absolute;
+    top: 126px;
+    left: 0;
+    width: 100%;
+    font-size: 20px;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+}
+.anto-android {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    margin-left: -140px;
+    width: 135px;
+}
+.anto-iphone {
+    position: absolute;
+    bottom: 140px;
+    right: 50%;
+    margin-right: -140px;
+    width: 135px;
+}
+.anto-ewa {
+    position: absolute;
+    top: 170px;
+    left: 50%;
+    width: 180px;
+    margin-left: -90px;
+}
+@-webkit-keyframes fire {
+    0%, 100% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    50% {
+        -webkit-transform: scale3d(.9, .9, .9);
+    }
+}
+@-webkit-keyframes swing {
+    20% {
+        -webkit-transform: rotate3d(0, 0, 1, 15deg);
+        transform: rotate3d(0, 0, 1, 15deg);
+    }
+
+    40% {
+        -webkit-transform: rotate3d(0, 0, 1, -10deg);
+        transform: rotate3d(0, 0, 1, -10deg);
+    }
+
+    60% {
+        -webkit-transform: rotate3d(0, 0, 1, 5deg);
+        transform: rotate3d(0, 0, 1, 5deg);
+    }
+
+    80% {
+        -webkit-transform: rotate3d(0, 0, 1, -5deg);
+        transform: rotate3d(0, 0, 1, -5deg);
+    }
+
+    100% {
+        -webkit-transform: rotate3d(0, 0, 1, 0deg);
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+}
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+@-webkit-keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+    66% {
+        opacity: 0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@-webkit-keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@-webkit-keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9);
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+@-webkit-keyframes loadRoad {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 210px, 0);
+        transform: translate3d(0, 210px, 0);
+    }
+}
+@-webkit-keyframes text1Top {
+    0% {
+        -webkit-transform: translate3d(38px, 60px, 0);
+        transform: translate3d(38px, 60px, 0);
+    }
+    100% {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@-webkit-keyframes text2Top {
+    0% {
+        -webkit-transform: translate3d(-45px, 60px, 0);
+        transform: translate3d(-45px, 60px, 0);
+    }
+    100% {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@-webkit-keyframes text1Bottom {
+    0% {
+        -webkit-transform: translate3d(-38px, -60px, 0);
+        transform: translate3d(-38px, -60px, 0);
+    }
+    100% {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@-webkit-keyframes text2Bottom {
+    0% {
+        -webkit-transform: translate3d(45px, -60px, 0);
+        transform: translate3d(45px, -60px, 0);
+    }
+    100% {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@-webkit-keyframes replyButton {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(7deg);
+    }
+    50% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes textLeftLate {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@-webkit-keyframes textRightLate {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+    75% {
+        opacity: 0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+
+/***************** 呼吸配置 ******************/
+.download-button {
+    position: fixed;
+    z-index: 2;
+    right: 38px;
+    top: 108px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle at center, #3a76a9, #46a2e0);
+    background-image: -webkit-radial-gradient(circle at center, #3a76a9, #46a2e0);
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 1.5s;
+}
+.download-button.wave1 {
+    z-index: 2;
+    -webkit-animation-name: wave;
+    animation-name: wave;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+.download-button.wave2 {
+    z-index: 2;
+    -webkit-animation-name: wave;
+    animation-name: wave;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+.download-button.wave3 {
+    z-index: 2;
+    -webkit-animation-name: wave;
+    animation-name: wave;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+.download-button.wave1.active,
+.download-button.wave2.active,
+.download-button.wave3.active {
+    display: none;
+    -webkit-animation-duration: 0s;
+    animation-duration: 0s;
+}
+@-webkit-keyframes wave {
+    0% {
+        opacity: .7;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    80% {
+        opacity: .4;
+        -webkit-transform: scale3d(1.4, 1.4, 1.4);
+        transform: scale3d(1.4, 1.4, 1.4);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: scale3d(1.6, 1.6, 1.6);
+        transform: scale3d(1.6, 1.6, 1.6);
+    }
+}
+
+
+
+/* 适应小屏幕手机 */
+@media (max-width: 370px) {
+    .anto-play {
+        right: 19%;
+    }
+    .anto-play1 {
+        right: 26%;
+    }
+}
+@media (max-height: 500px) {
+    .anto-logo {
+        top: 120px;
+    }
+    .anto-download {
+        top: 88px;
+    }
+    .anto-road {
+        top: 167px;
+    }
+    .download-button {
+        top: 88px;
+    }
+    .anto-text1 {
+        top: 205px;
+    }
+    .anto-text1.toTop {
+        top: 145px;
+    }
+    .anto-text1.toBottom {
+        top: 205px;
+    }
+    .anto-text2 {
+        top: 206px;
+    }
+    .anto-text2.toTop {
+        top: 145px;
+    }
+    .anto-text2.toBottom {
+        top: 206px;
+    }
+    .anto-left-text {
+        top: 260px;
+    }
+    .anto-right-text {
+        bottom: 80px;
+    }
+    .anto-2015-text {
+        top: 200px;
+    }
+    .anto-2000 {
+        top: 270px;
+    }
+    .anto-2000-icon {
+        top: 235px;
+    }
+    .anto-2002 {
+        bottom: 87px;
+    }
+    .anto-2002-icon {
+        bottom: 55px;
+    }
+    .anto-2005 {
+        top: 270px;
+    }
+    .anto-2005-icon {
+        top: 235px;
+    }
+    .anto-2006 {
+        bottom: 87px;
+    }
+    .anto-2006-icon {
+        bottom: 55px;
+    }
+    .anto-2009 {
+        top: 270px;
+    }
+    .anto-2009-icon {
+        top: 235px;
+    }
+    .anto-2013 {
+        bottom: 89px;
+    }
+    .anto-2013-icon {
+        bottom: 63px;
+    }
+    .anto-2015 {
+        top: 210px;
+    }
+    .anto-2015-icon {
+        top: 175px;
+    }
+}
+@media (min-height: 500px) and (max-height: 600px) {
+    .anto-left-text {
+        top: 280px;
+    }
+    .anto-right-text {
+        bottom: 80px;
+    }
+    .anto-2015-text {
+        top: 240px;
+    }
+    .anto-2000 {
+        top: 290px;
+    }
+    .anto-2000-icon {
+        top: 255px;
+    }
+    .anto-2002 {
+        bottom: 87px;
+    }
+    .anto-2002-icon {
+        bottom: 55px;
+    }
+    .anto-2005 {
+        top: 290px;
+    }
+    .anto-2005-icon {
+        top: 255px;
+    }
+    .anto-2006 {
+        bottom: 87px;
+    }
+    .anto-2006-icon {
+        bottom: 55px;
+    }
+    .anto-2009 {
+        top: 290px;
+    }
+    .anto-2009-icon {
+        top: 255px;
+    }
+    .anto-2013 {
+        bottom: 89px;
+    }
+    .anto-2013-icon {
+        bottom: 63px;
+    }
+    .anto-2015 {
+        top: 250px;
+    }
+    .anto-2015-icon {
+        top: 215px;
+    }
+}
+

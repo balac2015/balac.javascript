@@ -1,0 +1,104 @@
+extends ../layouts/default
+block form
+  html
+  head(lang='en')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0', charset='utf-8')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/jBootsrapPage.css')
+    title 文章分类
+    script(src='http://libs.baidu.com/jquery/2.0.0/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    script(src='js/libs/moment.min.js')
+    script(src='/js/libs/jBootstrapPage.js')
+    script(src='/js/libs/jqPaginator.js')
+    script(src='/js/libs/jquery.treeTable.js')
+  body
+  .container
+    .row.clearfix
+      .col-md-2.column
+        ul.nav.nav-stacked.nav-pills
+          li.active
+            a(href='javascript:void(0);') 文章管理
+          li
+            a(href='javascript:void(0);') 文章分类
+          li
+            a(href='/showArticleList') 文章列表
+      .col-md-10.column
+        button.btn.btn-primary(data-toggle='modal', data-target='#myModal')
+          span.glyphicon.glyphicon-plus(aria-hidden='true') 添加分类
+
+        table#treeTable.table.table-hover.table-striped
+          thead
+            tr
+              th#ObjId(style='display:none;')
+                | ObjId
+              th
+                | 编号
+              th
+                | 文章分类名称
+              th
+                | 排序
+              th
+                | 添加时间
+              th
+                | 操作
+          tbody
+            each v,i in list
+              tr(hasChild="true",id="#{i+1}")
+                td #{v.number}
+                td #{v.articleClass}
+                td #{v.orderBy}
+                td #{v.pId}
+                td
+                  button.btn.btn-primary(data-toggle='modal',data-target='#myModal', aria-label='Left Align',onclick='editFrom()')
+                    span.glyphicon.glyphicon-pencil(aria-hidden='true') 编辑
+                  | &nbsp;&nbsp;
+                  button.btn.btn-danger(type='button', aria-label='Left Align',onclick = 'deleteFrom()')
+                    span.glyphicon.glyphicon-remove(aria-hidden='true') 删除
+
+
+        script(type='text/javascript').
+          $(function () {
+            alert('111');
+            var option = {
+              theme: 'vsStyle',
+              expandLevel: 1,
+              beforeExpand : function($treeTable, id) {
+                alert('222');
+                if ($('.' + id, $treeTable).length) { return; }
+                alert('333');
+                $.ajax({
+                  type: "get",
+                  url: "/showArticleType/tree",
+                  data: {},
+                  success: function (data) {
+                    if(data != null){
+                      $.each(data,function(i,result){
+                         var number = result['number'];
+                         var articleClass = result['articleClass'];
+                         var pId = result['pId'];
+                         var orderBy = result['orderBy'];
+                         if(pId != 0){
+                           var html = "<tr id ='" + number + "' pId= '" +pId+ "'>" + "<td>"+number+"</td>"+"<td>"+articleClass+"</td>"+"<td>"+orderBy+"</td>";
+                           $treeTable.addChilds(html);
+                         }
+                      })
+                    }
+                  }
+                });
+              },
+              onSelect: function ($treeTable, id) {
+                window.console && console.log('onSelect:' + id);
+              }
+            };
+            alert('444');
+            $('#treeTable').treeTable(option);
+          });
+
+
+
+
+
+
+
+

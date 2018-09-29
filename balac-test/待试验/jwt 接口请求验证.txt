@@ -1,0 +1,171 @@
+（http://cnodejs.org/topic/53c652bfc9507b404446ee40） 
+jwt 接口请求验证
+November 8, 2017
+之前记录了链接数据库,获取数据通过接口返回给前端, 涉及到安全问题,接口请求是需要验证的. 之前阅读了几篇关于jwt的文章
+
+原文
+
+使用Token的方法
+不是在每一次请求时提供用户名和密码的凭证。我们可以让用户通过token交换凭证（we can allow the client to exchange valid credentials for a token), 这个token提供用户访问服务器的权限。Token通常比密码更加长而且复杂。 比如说，JWTs通常会应对长达150个字符。一旦获得了token，在每次调用API的时候都要附加上它。 然后，这仍然比直接发送账户和密码更加安全，哪怕是HTTPS。
+
+把token想象成一个安全的护照。你在一个安全的前台验证你的身份（通过你的用户名和密码），如果你成功验证了自己， 你就可以取得这个。当你走进大楼的时候（试图从调用API获取资源），你会被要求验证你的护照，而不是在前台重新验证。
+
+关于JWTs
+JWTs是一份草案，尽管在本质上它是一个老生常谈的一种更加具体的认证个授权的机制。一个JWT被周期（period）分寸了三个部分。 JWT是URL-safe的，意味着可以用来查询字符参数。（译者注：也就是可以脱离URL，不用考虑URL的信息）。
+
+我在这使用了koa-jwt,bcrypt-nodejs,jsonwebtoken
+
+npm install koa-jwt --save
+npm install bcrypt-nodejs --save
+npm install jsonwebtoken --save
+新建controllers/login.js 一个登陆接口
+/**
+ * Created by Administrator on 2017/9/27 0027.
+ */
+const knex = require('../tools/db')
+const bcrypt = require('bcrypt-nodejs')
+const m = require('../tools/Message')
+const moment = require('moment')
+const jwt = require('jsonwebtoken')
+const config = require('../config')
+
+let verify = (p1, p2) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(p1, p2, (err, result) => {
+      if (err) {
+        console.log(err)
+      }
+      if (result) {
+        console.log(m.LOGIN_SUCCESS)
+        resolve(m.LOGIN_SUCCESS)
+      } else {
+        console.log(m.PASSWORD_ERROR)
+        reject(m.PASSWORD_ERROR)
+      }
+    })
+  })
+}
+
+module.exports = async (ctx, next) => {
+  let param = ctx.request.body
+  //查询是否存在用户
+  let user = await knex.select('*').from('user_table').where({username: param.username})
+  //不存在用户
+  if (user.length === 0) {
+    console.log(m.USERNOTEXISTS)
+    ctx.state.data = m.USERNOTEXISTS
+  } else {
+    //用户存在
+    // console.log(user)
+    //校验密码
+    try {
+      let userToken = {
+        user_id:user[0].user_id,
+        username:user[0].username
+      }
+      //jwt,sign 把用户信息加密成token 并设置过期时间
+      const token = jwt.sign(userToken, config.secret, {expiresIn: config.expires})
+      //校验密码与数据库中密码是否相同
+      let isLogin = await verify(param.password, user[0].password)
+      isLogin.token=token
+      isLogin.userinfo = userToken
+      //登陆成功后返回token
+      ctx.state.data = isLogin
+    } catch (err) {
+      ctx.state.data = err
+    }
+  }
+}
+
+新建 middlewares/jwtauth.js
+/**
+ * Created by reborn on 2017/10/13 0013.
+ */
+const jwt = require('jsonwebtoken')
+const config = require('../config')
+
+//登录验证 secret 为生成token时的密钥
+const verifyToken = (token,secret) => {
+    return new Promise((resolve,reject)=>{
+        jwt.verify(token,secret, (err, decoded) => {
+            if (err) {
+                console.log('验证失败')
+                reject({
+                    loginState: 0
+                })
+            } else {
+                console.log('验证成功')
+                decoded.loginState = 1
+                resolve(decoded)
+            }
+        })
+    })
+}
+
+module.exports = async (ctx, next) => {
+    //前端页面请求时将token加入请求头中
+    let token = (ctx.body && ctx.body.access_token) || (ctx.query && ctx.query.access_token) || ctx.headers['x-access-token']
+    if (token) {
+        try {
+            console.log('token 验证', token)
+            //验证成功后把token中的用户信息存到ctx.state.$userinfo中
+            ctx.state.$userinfo = await verifyToken(token,config.secret)
+            return next()
+        } catch (err) {
+            console.log(err)
+            return next()
+        }
+    } else {
+        console.log('没有token')
+        next()
+    }
+}
+
+修改controllers/test.js
+/**
+ * Created by reborn on 2017/10/9 0009.
+ */
+const knex = require('../tools/db')
+const m = require('../tools/Message')
+const config = require('../config')
+const moment = require('moment')
+
+
+module.exports = async (ctx, next) => {
+    let param = ctx.request.body
+    if (ctx.state.$userinfo && ctx.state.$userinfo.loginState === 1) {
+        ctx.state.data = '请求成功'
+    } else {
+        ctx.state.data = '验证失败'
+    }
+}
+
+修改 routes/route.js
+/**
+ * Created by Administrator on 2017/10/12 0012.
+ */
+/**
+ * ajax 服务路由集合
+ */
+const router = require('koa-router')({
+    prefix: '/api'
+})
+// const upload = require('../middlewares/upload')
+const jwtauth = require('../middlewares/jwtauth')
+const controllers = require('../controllers')
+
+// 测试接口
+router.get('/index',jwtauth, controllers.test)  //在路由中添加登录验证中间件
+// 登录接口
+router.post('/login', controllers.login)
+
+module.exports = router
+
+启动服务
+npm start
+再次访问127.0.0.1:3000/api/test
+
+没有登录状态下 返回
+登录成功并请求时添加正确的token 请求返回
+
+至此 就是使用token 来实现接口验证

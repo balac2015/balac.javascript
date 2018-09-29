@@ -1,0 +1,169 @@
+最近喜欢研究用JS来写小游戏了，用canvas来画内容JS控制
+很简单的一个射击小游戏
+
+先定义游戏中元素
+
+//玩家
+px = 100
+py = 400
+pd = 30
+ps =5
+//目标
+el = []
+ed = 25
+es = 3
+//子弹
+sl = []
+sd = 4
+ss = 7
+cool = 0
+//分数
+score = 0
+//按键绑定
+u = {
+    actions: {},
+    keydowns: {},
+    registerAction: function(key, callback) {
+        this.actions[key] = callback
+    }
+}
+//简单物体碰撞检测
+function isCollide(x1, y1, s1, x2, y2, s2) {
+    if (x1 + s1 < x2 || y1 + s1 < y2 || x2 + s2 < x1 || y2 + s2 < y1) {
+        return false
+    }
+    return true
+}
+//重置
+function reset() {
+    px = 100
+    py = 300
+    sl = []
+    el = []
+    score = 0
+}
+游戏主体
+
+window.onload = function() {
+
+    canvas = document.createElement('canvas')
+    canvas.with = 320
+    canvas.height = 480
+    ctx = canvas.getContext('2d')
+
+    document.body.appendChild(canvas)
+
+    window.addEventListener('keydown', function(e) {
+        u.keydowns[e.key] = true
+    })
+    window.addEventListener('keyup', function(e) {
+        u.keydowns[e.key] = false
+    })
+    setInterval(update, 1000 / 60)
+    setInterval(spawn, 2000)
+    setInterval(keyPush, 1000 / 60)
+}
+随机生成目标的坐标
+
+function spawn() {
+    el.push({
+        x: Math.random() * canvas.width,
+        y: -ed
+    })
+}
+页面上生成所有元素
+
+function update() {
+		//背景
+    ctx.fillStyle = 'black'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+		//玩家
+    ctx.fillStyle = 'white'
+    ctx.fillRect(px, py, pd, pd)
+		//文字
+    ctx.fillStyle = 'white'
+    var txt = '击中目标: ' + score
+    ctx.fillText(txt, 20, 30)
+		//子弹
+    ctx.fillStyle = 'red'
+    if(cool > 0){
+    	cool --
+    }
+    for (var s = 0; s < sl.length; s++) {
+        sl[s].y -= ss
+        ctx.fillRect(sl[s].x, sl[s].y, sd, sd)
+        for (var e = el.length - 1; e >= 0; e--) {
+            if (isCollide(el[e].x, el[e].y, ed, sl[s].x, sl[s].y, sd)) {
+                el.splice(e, 1)
+                sl.splice(s, 1)
+                score++
+            }
+        }
+        if (sl[s].y < -sd) {
+            sl.splice(s, 1)
+        }
+    }
+		//目标
+    ctx.fillStyle = 'yellow'
+    for (var e = 0; e < el.length; e++) {
+        el[e].y += es
+        ctx.fillRect(el[e].x, el[e].y, ed, ed)
+        if (isCollide(el[e].x, el[e].y, ed, px, py, pd)) {
+            reset()
+            break
+        }
+        if (el[e].y >= canvas.height) {
+            el.splice(e, 1)
+        }
+    }
+}
+按键绑定
+
+function keyPush() {
+    var actions = Object.keys(u.actions)
+    for (var i = 0; i < actions.length; i++) {
+        var key = actions[i]
+        if (u.keydowns[key]) {
+            u.actions[key]()
+        }
+    }
+
+    u.registerAction('j', function() {
+        if(cool == 0){
+        	cool = 9
+	        sl.push({
+	            x: px + pd / 2 - sd / 2,
+	            y: py
+	        })
+        }
+    })
+    u.registerAction('w', function() {
+        if (py <= 0) {
+            py = 0
+        } else {
+            py -= ps
+        }
+    })
+    u.registerAction('s', function() {
+        if (py >= canvas.height - pd) {
+            py = canvas.height - pd
+        } else {
+            py += ps
+        }
+    })
+    u.registerAction('a', function() {
+        if (px <= 0) {
+            px = 0
+        } else {
+            px -= ps
+        }
+    })
+    u.registerAction('d', function() {
+        if (px >= canvas.width - pd) {
+            px = canvas.width - pd
+        } else {
+            px += ps
+        }
+    })
+}
+至此 一个简单的射击小游戏就完成了 w a s d 控制移动方向 j 射击 很简单 以后还要更细化 写些更好的小游戏

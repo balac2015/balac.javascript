@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>移动系统部知识分享平台</title>
+
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/batch.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/global.css">
+
+    <!--[if lte IE 8]>
+    <link type="text/css" rel="stylesheet" href="css/batch-lte8.css" media="all">
+    <![endif]-->
+
+    <!--[if lte IE 9]>
+    <link type="text/css" rel="stylesheet" href="css/batch-lte9.css" media="all">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <link type="text/css" rel="stylesheet" href="css/batch-lt9.css" media="all">
+    <![endif]-->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/old/batch.js"></script>
+
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="js/old/batch-lte8.js" ></script>
+    <![endif]-->
+</head>
+<body class="bg-f0f0f0">
+<!-- header -->
+<div class="aui-header">
+    <header id="header" role="banner">
+        <nav class="aui-header aui-dropdown2-trigger-group" role="navigation" data-aui-responsive="true">
+            <div class="aui-header-inner">
+                <div class="aui-header-primary">
+                    <h1 id="logo" class="aui-header-logo aui-header-logo-custom">
+                        <a href="/wiki.html">
+                            <img src="s/zh_CN-1988229788/4733/f235dd088df5682b0560ab6fc66ed22c9124c0be.5/_/images/logo/confluence-logo.png" alt="知识库" data-aui-responsive-header-index="0">
+                            <span class="aui-header-logo-text">首页</span>
+                        </a>
+                    </h1>
+                    <ul class="aui-nav" style="width: auto;">
+                        <li style="display: inline-block;">
+                            <a href="flow.html" title="流程">
+                                流程
+                            </a>
+                        </li>
+                        <li style="display: inline-block;">
+                            <a href="pages/viewpage.action?pageId=3113171" title="规范">
+                                规范
+                            </a>
+                        </li>
+                        <li style="display: inline-block;">
+                            <a href="base.html" title="知识库">
+                                知识库
+                            </a>
+                        </li>
+                        <li>
+                            <a id="space-menu-link" class="aui-nav-link aui-dropdown2-trigger" href="#" aria-haspopup="true" aria-owns="space-menu-link-content" title="空间" aria-controls="space-menu-link-content">
+                                <span class="browse">空间</span>
+                                <span class="aui-icon-dropdown"></span>
+                            </a>
+                            <div id="space-menu-link-content" class="aui-dropdown2 aui-style-default aui-dropdown2-in-header" aria-hidden="true" data-dropdown2-alignment="left" style="display: none; left: 276px; top: 40px;">
+                                <div class="aui-dropdown2-section">
+                                    <ul id="view-all-spaces-link-content" class="aui-list-truncate section-user-content">
+                                        <li><a id="view-all-spaces-link" href="/spacedirectory/view.action" title="空间目录" class="">空间目录</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="aui-header-secondary">
+                    <ul class="aui-nav">
+                        <li>
+                            <form id="quick-search" class="aui-quicksearch dont-default-focus header-quicksearch" action="dosearchsite.action" method="get">
+                                <fieldset>
+                                    <label for="quick-search-query" class="assistive">快速搜索</label>
+                                    <input id="quick-search-query" class="text app-search search quick-search-query" type="text" accesskey="q" autocomplete="off" name="queryString" title="快速搜索" placeholder="搜索">
+                                    <input id="quick-search-submit" class="quick-search-submit" type="submit" value="搜索">
+                                    <div class="aui-dd-parent quick-nav-drop-down"></div>
+                                </fieldset>
+                                <div class="hidden parameters">
+                                    <meta name="ajs-quick-nav-enabled" content="true">
+                                </div>
+                            </form>
+                        </li>
+
+                        <li></li>
+                        <li>
+                            <a id="user-menu-link" class="aui-dropdown2-trigger " aria-haspopup="true" aria-owns="user-menu-link-content"  href="#">
+                                <div class="aui-avatar aui-avatar-small">
+                                    <div class="aui-avatar-inner">
+                                        <img src="s/en_GB-1988229788/4733/f235dd088df5682b0560ab6fc66ed22c9124c0be.1/_/images/icons/profilepics/default.png">
+                                    </div>
+                                </div>
+                                <span class="aui-icon-dropdown"></span>
+                            </a>
+                            <nav id="user-menu-link-content" class="aui-dropdown2 aui-style-default">
+                                <div class="aui-dropdown2-section">
+                                    <ul id="user-menu-link-user-preferences" class="aui-list-truncate section-user-preferences first">
+                                        <li>
+                                            <a id="create-personal-space-link" href="spaces/createpersonalspace.action" class="user-item personal-space create-personal-space-link" title="">
+                                                添加个人空间…
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="view-user-history-link" href="users/viewuserhistory.action" class="user-item user-history popup-link" title="">
+                                                最近浏览
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="aui-dropdown2-section">
+                                    <ul id="user-menu-link-user-content" class="aui-list-truncate section-user-content">
+                                        <li>
+                                            <a id="view-user-profile-link" href="users/viewmyprofile.action" class="user-item user-profile" title="">
+                                                用户信息
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-settings-link" href="users/viewmysettings.action" class="user-item" title="">
+                                                设置
+                                            </a>
+                                        </li>
+                                        <li><!-- ?username=zhaolun.he -->
+                                            <a href="users/viewfollow.action" class="follow-link" title="">
+                                                网络
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-favourites-link" href="users/viewmyfavourites.action" class="user-item" title="">
+                                                收藏
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-watches-link" href="users/viewnotifications.action" class="user-item" title="">
+                                                关注
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-drafts-link" href="users/viewmydrafts.action" class="user-item" title="">
+                                                草稿
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="upm-requests-link" href="plugins/servlet/upm/requests?source=header_user" class=" " title="">
+                                                Atlassian 应用程序商店
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="aui-dropdown2-section">
+                                    <ul id="user-menu-link-user-operations" class="aui-list-truncate section-user-operations">
+                                        <li>
+                                            <a id="logout-link" href="logout.action" class="user-item logout-link" title="">
+                                                注销
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- .aui-header-inner-->
+        </nav><!-- .aui-header -->
+        <br class="clear">
+    </header>
+</div>
+
+
+<!-- main-->
+<div class="base-head-bg">
+</div>
+<div class="pos-absolute base-content">
+    <div class="content-head">
+        <img src="images/base-head.png" alt="" />
+    </div>
+    <div class="base-box-wrap">
+        <div class="float-left left-box">
+            <div class="float-left left-wrap">
+                <img src="images/base-lefe-box_02.gif" alt="">
+            </div>
+            <div class="float-left right-wrap">
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113734"><img src="images/base-lefe-box_03.gif" alt=""></a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113726"><img src="images/base-lefe-box_05.gif" alt=""></a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113770"><img src="images/base-lefe-box_06.gif" alt=""></a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113772"><img src="images/base-lefe-box_07.gif" alt=""></a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113431"><img src="images/base-lefe-box_08.gif" alt=""></a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113410"><img src="images/base-lefe-box_09.gif" alt=""></a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113375"><img src="images/base-lefe-box_10.gif" alt=""></a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113312"><img src="images/base-lefe-box_11.gif" alt=""></a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113960"><img src="images/base-lefe-box_12.gif" alt=""></a>
+                <img src="images/base-lefe-box_13.png" alt="">
+            </div>
+            <div class="clear-both"></div>
+        </div>
+        <div class="float-left right-box">
+            <div class="input-box mt-40">
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113805" class="dis-in-b input-btn pos-relative">
+                    需求 & 要做什么
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113807" class="dis-in-b input-btn pos-relative">
+                    用户是谁 & 用户访谈
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113809" class="dis-in-b input-btn pos-relative">
+                    用户价值&商业价值
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113811" class="dis-in-b input-btn pos-relative">
+                    社会评估&可行性分析
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113813" class="dis-in-b input-btn pos-relative">
+                    行业趋势分析
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113815" class="dis-in-b input-btn pos-relative pl-80">
+                   是否有价值？ 继续 or 放弃
+                    <span class="dis-in-b pos-absolute type-btn text-center">沟通会</span>
+                </a>
+            </div>
+            <div class="input-box mt-40">
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113817" class="dis-in-b input-btn pos-relative">
+                    用户需求分析
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113819" class="dis-in-b input-btn pos-relative">
+                    用户数据分析
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113821" class="dis-in-b input-btn pos-relative">
+                    竞品分析
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113823" class="dis-in-b input-btn pos-relative">
+                    设定目标 KPI
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113825" class="dis-in-b input-btn pos-relative">
+                    业务流程 & 用户路径
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113827" class="dis-in-b input-btn pos-relative">
+                    用户访谈&焦点小组&问卷
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113829" class="dis-in-b input-btn pos-relative">
+                    用户画像
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113831" class="dis-in-b input-btn pos-relative">
+                    场景
+                </a>
+            </div>
+            <div class="input-box mt-40">
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113774" class="dis-in-b input-btn pos-relative">
+                    分析风暴
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113776" class="dis-in-b input-btn pos-relative">
+                    故事版
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113778" class="dis-in-b input-btn pos-relative">
+                    角色扮演
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113780" class="dis-in-b input-btn pos-relative">
+                    卡片分类
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113782" class="dis-in-b input-btn pos-relative">
+                    信息架构分析
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113784" class="dis-in-b input-btn pos-relative">
+                    交互设计提案
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113786" class="dis-in-b input-btn pos-relative">
+                    提案用户测试
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113788" class="dis-in-b input-btn pos-relative pl-80">
+                    原型改进
+                    <span class="dis-in-b pos-absolute type-btn text-center">评审会</span>
+                </a>
+            </div>
+            <div class="input-box mt-130">
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113790" class="dis-in-b input-btn pos-relative">
+                    情绪版
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113793" class="dis-in-b input-btn pos-relative">
+                    竞品分析 & 灵感采集
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113795" class="dis-in-b input-btn pos-relative pl-80">
+                    主视觉 & 视觉风格确定
+                    <span class="dis-in-b pos-absolute type-btn text-center">沟通会</span>
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113797" class="dis-in-b input-btn pos-relative pl-80">
+                    高保真设计
+                    <span class="dis-in-b pos-absolute type-btn text-center">评审会</span>
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113799" class="dis-in-b input-btn pos-relative">
+                    界面标注
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113801" class="dis-in-b input-btn pos-relative">
+                    设计规范
+                </a>
+            </div>
+            <div class="input-box mt-130">
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113431" class="dis-in-b input-btn pos-relative">
+                    约定接口规范
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113431" class="dis-in-b input-btn pos-relative">
+                    界面分析
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113431" class="dis-in-b input-btn pos-relative">
+                    切图 & 动画效果
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113431" class="dis-in-b input-btn pos-relative">
+                    模拟数据
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113431" class="dis-in-b input-btn pos-relative">
+                    调试接口
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113431" class="dis-in-b input-btn pos-relative ">
+                    前端开发规范及框架
+                </a>
+            </div>
+            <div class="input-box mt-144">
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113410" class="dis-in-b input-btn pos-relative">
+                    约定接口规范
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113410" class="dis-in-b input-btn pos-relative">
+                    架构设计 & 概要设计
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113410" class="dis-in-b input-btn pos-relative">
+                    详细设计 & 数据库设计
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113410" class="dis-in-b input-btn pos-relative">
+                    数据库设计
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113410" class="dis-in-b input-btn pos-relative">
+                    后台开发规范及框架
+                </a>
+            </div>
+            <div class="input-box mt-234">
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113996" class="dis-in-b input-btn pos-relative">
+                    功能测试
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113759" class="dis-in-b input-btn pos-relative">
+                    性能测试
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113762" class="dis-in-b input-btn pos-relative">
+                    安全测试
+                </a>
+            </div>
+            <div class="input-box mt-260">
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113312" class="dis-in-b input-btn pos-relative">
+                    数据观察 & 验证目标
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113312" class="dis-in-b input-btn pos-relative pl-80">
+                    上线总结报告
+                    <span class="dis-in-b pos-absolute type-btn text-center">分享会</span>
+                </a>
+            </div>
+            <div class="input-box mt-237">
+                <a target="_blank" href="/pages/viewpage.action?pageId=3113998" class="dis-in-b input-btn pos-relative">
+                    问题&事件响应处理
+                </a>
+                <a  target="_blank" href="/pages/viewpage.action?pageId=3113997" class="dis-in-b input-btn pos-relative">
+                    问题收集分析
+                </a>
+            </div>
+        </div>
+        <div class="clear-both"></div>
+    </div>
+    <div class="clear-both"></div>
+    <div>
+        <img src="images/base-footer.png" alt="" />
+    </div>
+</div>
+
+</body>
+</html>

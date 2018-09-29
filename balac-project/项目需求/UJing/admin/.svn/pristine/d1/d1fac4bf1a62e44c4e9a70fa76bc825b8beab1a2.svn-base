@@ -1,0 +1,77 @@
+//
+   Created by pc on 2015/10/27.
+
+extends ../layouts/default
+block header
+    link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+    h1 加盟商信息
+        small 资格审核、是否启用和密码重置
+block main
+    .box.box-primary
+        .box-header.with-border
+            h3.box-title 加盟商未审核列表
+            | &nbsp;
+            a.btn.btn-xs.btn-default(href='/franchisee/list' title='查看已审核的加盟商')
+                span 已审核
+        .box-body
+            table#franchiseeWaitList.table.table-bordered.table-hover.table-striped(style="width:100%")
+                thead
+                    th 申请人
+                    th 联系电话
+                    th 身份证号
+                    th 邮箱
+                    th 申请时间
+                    th 审核状态
+                    th 操作
+                    // 注意each等jade指令也需要缩进
+                    //each u,i in users
+                    //  tr
+                    //    td=i + 1
+                    //    td=u.username
+                    //    td=u.email
+            #delFranchiseWait.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+                .modal-dialog
+                    .modal-content
+                        .container
+                            .modal-body
+                                .row.clearfix
+                                    .col-md-6.column
+                                        form.form-horizontal(action='/franchisee/isEnabledFran',id='',method='post')
+                                            input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                                            input#delId(type='hidden',name='delId')
+                                            label 是否启用加盟商信息？
+                                            div.row.clearfix.col-md-12.column
+                                                label.control-label.col-md-4 是否启用
+                                                input#isEnabled.checkbox.form-control-static(type="checkbox",name="isEnabled",value="1")
+                                            br
+                                            .center-block.pull-right
+                                                | &nbsp;&nbsp;&nbsp;
+                                                button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                                                | &nbsp;&nbsp;&nbsp;
+                                                button.btn.btn-success(type='submit') 确定
+        #resetPasswordWait.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+            .modal-dialog
+                .modal-content
+                    .container
+                        .modal-body
+                            .row.clearfix
+                                .col-md-6.column
+                                    h3 重置密码
+                                    form#resetPasswordForm.form-horizontal(action='/franchisee/resetPassword',method='post')
+                                        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                                        input#userId(type='hidden',name='userId',value='')
+                                        span.control-label 您确定要重置密码？
+                                        br
+                                        .center-block.pull-right
+                                            | &nbsp;&nbsp;&nbsp;
+                                            button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                                            | &nbsp;&nbsp;&nbsp;
+                                            button.btn.btn-success(type='submit') 确定
+//应用添加的脚本在scripts block中定义
+block scripts
+    script(src='/plugins/datatables/jquery.dataTables.min.js')
+    script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+    script(src='/js/franchisee/franchiseeWait.js')
+

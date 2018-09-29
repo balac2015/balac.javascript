@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>移动系统部知识分享平台</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/css.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/module/login.js"></script>
+</head>
+<body>
+    <div style="position:absolute; width:100%; height:100%; z-index:-1">
+        <img src="images/login.jpg" height="100%" width="100%" />
+    </div>
+
+    <form class="loginDiv" onsubmit="return mySubmit();" method="POST" action="/dologin.action">
+        <div class="fs-20 c-white">
+            <!--移动系统部资源管理平台-->
+            <img  style="max-width: 300px;width: 300px;" src="images/loginText.png">
+        </div>
+        <div  class="relative mt-5">
+            <div class="absolute loginImg z-top">
+                <img class="h-30 w-30 mt-5 ml-5" src="images/icon_user.png">
+            </div>
+            <div class="bg-zilan h-40 ml-40">
+                <input class="h-40 lh-40 transparent pl-10 pr-22 border-0 w-90p c-white fs-14 ml-n1" id="os_username" name="os_username" placeholder="输入用户名">
+            </div>
+            <p class="c-red mt-5 js-name" style="display: none;">请输入您的用户名</p>
+        </div>
+        <div class="relative mt-20">
+            <div class="absolute loginImg z-top">
+                <img class="h-30 w-30 mt-5 ml-5" src="images/icon_password.png">
+            </div>
+            <div class="bg-zilan h-40 ml-40">
+                <input class="h-40 lh-40 transparent pl-10 pr-22 border-0 w-90p c-white fs-14 ml-n1" id="os_password" name="os_password" type="password" placeholder="输入密码">
+            </div>
+            <p class="c-red mt-5 js-pwd" style="display: none;">请输入您的密码</p>
+        </div>
+
+        <div class="mt-20">
+            <label class="c-white fs-12 myCheck" style="cursor: hand;">
+                <img  style="width: 15px;height: 15px;vertical-align: bottom;display: none;" src="images/check.png">
+                <img  style="width: 15px;height: 15px;vertical-align: bottom;display: none;" src="images/check_bg.png">
+                <span>记住我的用户名</span>
+            </label>
+            <a class="fs-12 right" style="text-decoration: underline; color: #8fe9ff" href="forgotuserpassword.action">忘记密码？</a>
+        </div>
+
+        <input type="hidden" name="os_destination" value=""/>
+        <button class="mt-15 w-100p bg-blue border-blue c-white fs-16 bold" type="submit" style="height: 47px;">登录</button>
+    </form>
+
+</body>
+</html>

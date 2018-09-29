@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <title>Hello World</title>
+</head>
+<body>
+<div id="header"style="background-color:#333">
+    <a style="width: 45px;height: 45px;display: inline;">Back</a>
+</div>
+<h4>版本号：v1.1.10</h4>
+<a href="main.html">
+    <div>系统demo</div>
+</a>
+<a href="shareDemo.html">
+	<div>美信分享测试</div>
+</a>
+
+<hr>
+<button class="btn" id="courseDownLoad">课程下载</button>
+<button class="btn" id="coursePlayerOnline">在线播放</button>
+<button class="btn" id="onEvent">统计事件</button>
+<button class="btn" id="showSetView">跳转到设置页面</button>
+<button class="btn" id="showMyView">跳转到我的页面</button>
+<button class="btn" id="showAppView_about">跳转到底座某一个页面</button>
+<button class="btn" id="showAppView_msg">跳转到消息页面(不支持美信)</button>
+<button class="btn" id="showAppView_msg_list">跳转到消息List二级页面(美信、美的通)</button>
+<button class="btn" id="saveH5Info">保存H5信息</button>
+<button class="btn" id="getH5Info">获取H5信息</button>
+<button class="btn" id="showInput">打开键盘</button>
+<button class="btn" id="hideInput">隐藏键盘</button>
+<button class="btn" id="toggleInput">切换键盘</button>
+<button class="btn" id="h5LoginCallBack">美的金融登录成功回调</button>
+<button class="btn" id="getMessageUnread">获取模块未读消息(美信、美的通)</button>
+<hr>
+<button class="btn" id="apk_button">检查是否安装指定apk</button>
+<button class="btn" id="startApp_button">跳转指定apk的页面</button>
+<hr>
+<button class="btn" id="isLogin_button">是否登陆</button>
+<button class="btn" id="toLogin_button">跳转登录页</button>
+<button class="btn" id="refresh_button">刷新制定界面数据</button>
+<hr>
+<button class="btn" id="contact_button">手机通讯录</button>
+<button class="btn" id="btn_vcard">个人信息跳转</button>
+<button class="btn" id="chat">美信聊天 参数mip帐号</button>
+<button class="btn" id="languageID">获取多语言</button>
+<button class="btn" id="showFloatId">显示浮动按钮</button>
+<button class="btn" id="hideFloatId">隐藏浮动按钮</button>
+<button class="btn" id="changeStatusColor">改变状态栏背景色</button>
+<button class="btn" id="mcShare">美信分享</button>
+<button class="btn" id="orientation1">竖屏</button>
+<button class="btn" id="orientation2">横屏</button>
+<button class="btn" id="orientation3">开启自动旋屏</button>
+<button class="btn" id="orientation4">关闭自动旋屏</button>
+<button class="btn" id="walletbalance">钱包余额</button>
+<button class="btn" id="ecardbalance">一卡通余额</button>
+<button class="btn" id="ecardrecharge">一卡通充值</button>
+<button class="btn" id="walletCommonTradePay">美信钱包-通用插件-支付</button>
+<button class="btn" id="walletCommonTradeCheck">美信钱包-通用插件-验证</button>
+
+<hr>
+<button class="btn" id="playLocalId">播放本地声音</button>
+<button class="btn" id="startShake">摇一摇start</button>
+<button class="btn" id="endShake">摇一摇stop</button>
+<button class="btn" id="startOrder">开始定位</button>
+<button class="btn" id="stopOrder">停止定位</button>
+<button class="btn" id="remoteRequest"><a href="http://119.29.52.77:88/cordova/index.html">远程服务器请求和返回</a></button>
+
+<hr>
+<button class="btn" id="departmentMulChoose">部门选择(多)</button>
+<button class="btn" id="departmentChoose">部门选择(单)</button>
+<button class="btn" id="orgChooseId">组织架构单选</button>
+<button class="btn" id="orgMuChooseId">组织架构多选</button>
+<button class="btn" id="orgMuChooseIdNotDel">组织架构多选</button>
+<hr>
+<button class="btn" id="navgation_show">显示导航控件</button>
+<button class="btn" id="navgation_hide">隐藏导航控件</button>
+<button class="btn" id="bottomNav_show">显示底部控件</button>
+<hr>
+<button class="btn" id="showPicker_year">显示日期控件(年)</button>
+<button class="btn" id="showPicker_month">显示日期控件(月)</button>
+<button class="btn" id="showPicker_day">显示日期控件(日)</button>
+<button class="btn" id="showPicker_datetime">显示日期控件(日期+时间)</button>
+<button class="btn" id="showPicker_time">显示日期控件</button>
+<hr>
+<button class="btn" id="getWebViewSize">获取屏幕分辨率</button>
+<button class="btn" id="getExtraDemo">获取com.midea.demo扩展字段</button>
+<button class="btn" id="getExtraMipTodo">获取待办扩展字段</button>
+<button class="btn" id="getWebViewCookie">获取webViewCookie</button>
+<hr>
+<button class="btn" id="startMap">启动旧版美的通(美信对外版)</button>
+<hr>
+<button class="btn" id="exitApp">退出应用</button>
+<button class="btn" id="logoutId">注销用户</button>
+<button class="btn" id="showWidget">跳转应用(showWidgetKey可选)</button>
+<button class="btn" id="selectWidget">选择应用(selectWidget)</button>
+<hr>
+<button class="btn" id="scan_button">扫描</button>
+<button class="btn" id="location_button">定位</button>
+<button class="btn" id="navTo_button" style="height:80px;">路线导航to(113.2045723720553,23.033276740700192)</button>
+<button class="btn" id="navToWithFrom_button" style="height:100px;">
+    路线导航toWithFrom(to:113.2045723720553,23.033276740700192 from:112.84994614670291,23.193689802924411)
+</button>
+<button class="btn" id="copy_button">复制123abc</button>
+<button class="btn" id="paste_button">粘贴结果</button>
+<button class="btn" id="ios_openfile">ios邮件附件打开</button>
+<button class="btn" id="android_openfile">android附件打开</button>
+<button class="btn" id="mail_href">邮件超链接</button>
+<button class="btn" id="authPassword">输入密码</button>
+<button class="btn" id="exit_href">服务器url退出</button>
+<a href="http://www.baidu.com?ni_key=abc&mc_widget_identifier=com.midea.demo&arg_key1=src1&arg_key2=src2&arg_key3=arc3">
+    邮件超链接a</a>
+<hr>
+<button class="btn" id="user_button">用户信息</button>
+<button class="btn" id="driver_button">司机信息</button>
+<button class="btn" id="user_button2">用户信息中转</button>
+<button class="btn" id="annto_updateIdentifyStatus">司机审核状态修改</button>
+<button class="btn" id="open_sys_browser_btn">打开系统浏览器</button>
+<button class="btn" id="wifi_button">wifi选择</button>
+<button class="btn" id="sn_button">sn扫码</button>
+<button class="btn" id="user_password">用户密码</button>
+
+<p>
+<h4>美信对外版（超级导购）插件:</h4>
+<button class="btn" id="out_withdraw_page">提现</button>
+<button class="btn" id="out_feedback_page">意见反馈页</button>
+<button class="btn" id="out_bank_card_page">我的银行卡页面</button>
+<p>
+
+<p>
+<h4>安得物流插件:</h4>
+<button class="btn" id="annto_alipay">安得支付宝</button>
+<button class="btn" id="annto_anth">打开认证页面</button>
+<button class="btn" id="annto_update_pwd">更新底座密码(原生)</button>
+<button class="btn" id="annto_pwd_encypt">密码加密</button>
+<button class="btn" id="annto_share">友盟分享</button>
+<button class="btn" id="annto_get_sign">安得参数加密(getSign)</button>
+<button class="btn" id="annto_allinpay">通联支付Demo</button>
+<p>
+<h4>用户信息展示:</h4>
+<hr>
+<p>
+
+<p>
+<h4>健康app插件:</h4>
+<p>
+<button class="btn" id="snsShare">健康第三方分享</button>
+<button class="btn" id="snsLoginqq">qq第三方登录</button>
+<button class="btn" id="snsLoginwx">微信第三方登录</button>
+
+
+<ul id="userInfoList"></ul>
+</p>
+</p>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<!--  <script type="text/javascript" src="umeng.js"></script> -->
+<script type="text/javascript" src="js/index.js?v=1.1.0"></script>
+<script type="text/javascript">
+function mideaMessageNotifi(num)
+{
+alert('mideaMessageNotifi num = ' + num);
+}
+    app.initialize();
+    $("#getWebViewCookie").click(function () {
+        alert(document.cookie);
+    });
+    $("#ios_openfile").click(function () {
+        window.location.href = "mc_open_file-http://www.baidu.com";
+    });
+    $("#android_openfile").click(function () {
+        window.location.href = "mc_open_file-http://gdown.baidu.com/data/wisegame/6fe7456c3e3c7afb/shoujibaidu_16787209.apk";
+    });
+    $("#mail_href").click(function () {
+        window.location.href = "http://www.baidu.com?ni_key=abc&mc_widget_identifier=com.midea.demo&arg_key1=src1&arg_key2=src2&arg_key3=arc3";
+    });
+    $("#exit_href").click(function () {
+        window.location.href = "http://mc_exit//";
+    });
+</script>
+</body>
+</html>

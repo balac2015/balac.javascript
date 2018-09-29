@@ -1,0 +1,322 @@
+body {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    font-family: "simHei";
+    font-size: 1em;
+    background-color: #fff;
+    color: #fff;
+    -webkit-overflow-scroll: touch;
+    overflow-x: hidden;
+}
+* {
+    font-family: "simHei" !important;
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+.part-img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.part-area { position: relative; }
+.play-audio {
+    width: 0;
+    height: 0;
+}
+.light-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-animation-name: wave;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    z-index: 1;
+}
+.music-img {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+}
+.dollar-img {
+    position: absolute;
+    top: 58%;
+    left: 36%;
+    width: 15px;
+    height: 15px;
+    -webkit-animation-name: dollarDown;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: cubic-bezier(.80, 0, .09, .80);
+}
+.small-person-img {
+    position: absolute;
+    top: 103px;
+    left: 24%;
+    width: 111px;
+    height: 127px;
+}
+.glass-img {
+    position: absolute;
+    top: 31%;
+    left: 28%;
+    width: 40px;
+    height: 19px;
+    -webkit-animation-name: glassSlide;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count:infinite;
+}
+.red-glass-img {
+    position: absolute;
+    top: 30%;
+    left: 23%;
+    width: 59px;
+    height: 22px;
+    z-index: 1;
+}
+.rocket-img {
+    position: absolute;
+    top: 44%;
+    left: 33%;
+    width: 60px;
+    height: 40px;
+    -webkit-animation-name: rocketFlight;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: cubic-bezier(.80, 0, .09, .80);
+}
+.to-top {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 50%;
+    height: 7%;
+    margin-left: -25%;
+}
+
+
+
+
+
+/* animate  */
+@-webkit-keyframes dollarDown {
+    0% {
+        -webkit-transform: translate3d(-70px, -75px, 0);
+        transform: translate3d(-70px, -75px, 0);
+    }
+    50% {
+        -webkit-transform: translate3d(-70px, 0, 0);
+        transform: translate3d(-70px, 0, 0);
+    }
+    55% {
+        -webkit-transform: translate3d(-60px, -7px, 0);
+        transform: translate3d(-60px, -7px, 0);
+    }
+    60% {
+        -webkit-transform: translate3d(-50px, -10px, 0);
+        transform: translate3d(-50px, -10px, 0);
+    }
+    65% {
+        -webkit-transform: translate3d(-45px, -7px, 0);
+        transform: translate3d(-45px, -7px, 0);
+    }
+    70% {
+        -webkit-transform: translate3d(-35px, 0, 0);
+        transform: translate3d(-35px, 0, 0);
+    }
+    80% {
+        -webkit-transform: translate3d(-25px, -5px, 0);
+        transform: translate3d(-25px, -5px, 0);
+    }
+    90% {
+        -webkit-transform: translate3d(-15px, 0, 0);
+        transform: translate3d(-15px, 0, 0);
+    }
+    95% {
+        -webkit-transform: translate3d(-5px, -2px, 0);
+        transform: translate3d(-5px, -2px, 0);
+    }
+    100% {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@-webkit-keyframes glassSlide {
+    0% {
+        -webkit-transform: translate3d(-15px, 0, 0);
+        transform: translate3d(-15px, 0, 0);
+    }
+    100% {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@-webkit-keyframes rocketFlight {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-98px, 38px, 0);
+        transform: translate3d(-98px, 38px, 0);
+    }
+    50% {
+        opacity: 1;
+        /*-webkit-transform: rotate(-30deg);*/
+        /*transform: rotate(-30deg);*/
+        /*-webkit-transform: translate3d(-98px, 38px, 0);*/
+        /*transform: translate3d(-98px, 38px, 0);*/
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@-webkit-keyframes wave {
+    0% {
+        opacity: .7;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    80% {
+        opacity: .4;
+        -webkit-transform: scale3d(1.4, 1.4, 1.4);
+        transform: scale3d(1.4, 1.4, 1.4);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: scale3d(1.6, 1.6, 1.6);
+        transform: scale3d(1.6, 1.6, 1.6);
+    }
+}
+
+/* 适应不同大小手机 */
+@media (min-width: 380px) {
+    .glass-img {
+        width: 53px;
+        height: 25px;
+    }
+    .red-glass-img {
+        width: 77px;
+        height: 29px;
+    }
+    .dollar-img {
+        width: 20px;
+        height: 20px;
+    }
+    .rocket-img {
+        width: 75px;
+        height: 51px;
+    }
+    @-webkit-keyframes dollarDown {
+        0% {
+            -webkit-transform: translate3d(-95px, -100px, 0);
+            transform: translate3d(-95px, -100px, 0);
+        }
+        50% {
+            -webkit-transform: translate3d(-95px, 0, 0);
+            transform: translate3d(-95px, 0, 0);
+        }
+        55% {
+            -webkit-transform: translate3d(-60px, -7px, 0);
+            transform: translate3d(-60px, -7px, 0);
+        }
+        60% {
+            -webkit-transform: translate3d(-50px, -10px, 0);
+            transform: translate3d(-50px, -10px, 0);
+        }
+        65% {
+            -webkit-transform: translate3d(-45px, -7px, 0);
+            transform: translate3d(-45px, -7px, 0);
+        }
+        70% {
+            -webkit-transform: translate3d(-35px, 0, 0);
+            transform: translate3d(-35px, 0, 0);
+        }
+        80% {
+            -webkit-transform: translate3d(-25px, -5px, 0);
+            transform: translate3d(-25px, -5px, 0);
+        }
+        90% {
+            -webkit-transform: translate3d(-15px, 0, 0);
+            transform: translate3d(-15px, 0, 0);
+        }
+        95% {
+            -webkit-transform: translate3d(-5px, -2px, 0);
+            transform: translate3d(-5px, -2px, 0);
+        }
+        100% {
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
+}
+@media (min-width: 325px) and (max-width: 380px) {
+    .glass-img {
+        width: 48px;
+        height: 23px;
+    }
+    .red-glass-img {
+        width: 70px;
+        height: 27px;
+    }
+    .dollar-img {
+        width: 18px;
+        height: 18px;
+    }
+    .rocket-img {
+        width: 70px;
+        height: 48px;
+    }
+    @-webkit-keyframes dollarDown {
+        0% {
+            -webkit-transform: translate3d(-82px, -85px, 0);
+            transform: translate3d(-82px, -85px, 0);
+        }
+        50% {
+            -webkit-transform: translate3d(-82px, 0, 0);
+            transform: translate3d(-82px, 0, 0);
+        }
+        55% {
+            -webkit-transform: translate3d(-60px, -7px, 0);
+            transform: translate3d(-60px, -7px, 0);
+        }
+        60% {
+            -webkit-transform: translate3d(-50px, -10px, 0);
+            transform: translate3d(-50px, -10px, 0);
+        }
+        65% {
+            -webkit-transform: translate3d(-45px, -7px, 0);
+            transform: translate3d(-45px, -7px, 0);
+        }
+        70% {
+            -webkit-transform: translate3d(-35px, 0, 0);
+            transform: translate3d(-35px, 0, 0);
+        }
+        80% {
+            -webkit-transform: translate3d(-25px, -5px, 0);
+            transform: translate3d(-25px, -5px, 0);
+        }
+        90% {
+            -webkit-transform: translate3d(-15px, 0, 0);
+            transform: translate3d(-15px, 0, 0);
+        }
+        95% {
+            -webkit-transform: translate3d(-5px, -2px, 0);
+            transform: translate3d(-5px, -2px, 0);
+        }
+        100% {
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
+}
+

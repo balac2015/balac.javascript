@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>632-BPM 业务流程管理平台上线啦</title>
+    <link rel="stylesheet" href="css/style.css?v=1.0.2">
+</head>
+<body>
+    <img src='images/slogo.png' style="position:fixed; width: 0; height: 0"/>
+    <header>632-BPM 业务流程管理平台 由Midea提供</header>
+    <div class="wp">
+        <div class="wp-inner">
+            <div class="page page1">
+                <img class="main-img" src="images/b1.png" />
+                <img class="main-img main-img-t" src="images/b1-p4.png" />
+                <img class="main-img main-img-b" src="images/b1-p5.png" />
+                <div class="part1">
+                    <img class="main-img" src="images/b1-p1.png" />
+                    <img class="main-img fire" src="images/b1-p2.png" />
+                </div>
+                <img class="main-img line" src="images/b1-p3.png" />
+            </div>
+            <div class="page page2">
+                <img class="main-img" src="images/b2.png" />
+                <img class="main-img main-img-m" src="images/b2-p1.png" />
+            </div>
+            <div class="page page3">
+                <img class="main-img" src="images/b3.png" />
+                <img class="main-img main-img-t2" src="images/b3-p1.png" />
+                <img class="main-img main-img-b2" src="images/b3-p2.png" />
+            </div>
+            <div class="page page4">
+                <img class="main-img" src="images/b4.png" />
+                <img class="main-img main-img-t3" src="images/b4-p1.png" />
+                <img class="main-img main-img-b3" src="images/b4-p2.png" />
+                <img class="main-img main-img-m3" src="images/b4-p3.png" />
+            </div>
+            <div class="page page5">
+                <img class="main-img" src="images/b5.png" />
+                <img class="main-img main-img-t4" src="images/b5-p1.png" />
+                <img class="main-img main-img-b4" src="images/b5-p2.png" />
+            </div>
+            <div class="page page6">
+                <img class="main-img" src="images/b6.png" />
+                <img class="main-img main-img-m5 m51" src="images/b6-p1.png" />
+                <img class="main-img main-img-m5 m52" src="images/b6-p2.png" />
+            </div>
+            <div class="page page7">
+                <img class="main-img" src="images/b7.png" />
+                <img class="main-img main-img-t6" src="images/b7-p1.png" />
+                <img class="main-img main-img-b6" src="images/b7-p2.png" />
+            </div>
+        </div>
+    </div>
+    <footer>已全部加载完毕</footer>
+    <span class="start"><b></b></span>
+    <span class="btn-refresh">↑ 重新浏览</span>
+    <script src="js/zepto.min.js?v=1.0.2"></script>
+    <script src="js/zepto.fullpage.js?v=1.0.2"></script>
+    <script type="text/javascript">
+        $('.wp-inner').fullpage({drag:true,afterChange:function(data){
+            if(data.cur == 6){
+                $('.start').hide();
+                $('.btn-refresh').show();
+            }else{
+                $('.start').show();
+                $('.btn-refresh').hide();
+            }
+        }});
+        $('.btn-refresh').click(function(){
+            $.fn.fullpage.moveTo(0, true);
+        })
+    </script>
+</body>
+</html>

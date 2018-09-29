@@ -1,0 +1,92 @@
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/treeTable/jquery.treetable.css")
+  link( rel="stylesheet" href="/plugins/treeTable/jquery.treetable.theme.default.css")
+//应用的page title
+block pageTitle
+  h1 洗衣价格设定
+    small 设备类型及洗衣价格维护、设备类型及洗衣价格的添加、更新、删除等管理
+block main
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title 设备类型及洗衣价格列表
+      .pull-right
+        a.btn.btn-box-tool.btn-default(href='/store/addDevice' title='添加设备')
+          i.fa.fa-plus
+          | &nbsp;
+          span 添加设备
+        | &nbsp;
+    .box-body
+
+      form#deviceDelForm(method='post', style='display:none', action='/store/delDevice')
+        input#ids(type='hidden',name='ids')
+        input#deep(type='hidden',name='deep')
+        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+      table#devicePriceList.table.table-bordered.table-hover.table-striped.table-checkable(style="width:100%")
+        thead
+          th(width="20%") 设备型号
+          th(width="10%") 简称
+          th(width="10%") 价格
+          th(width="10%") 预计执行时间
+          th(width="10%") 备注
+          th(width="10%") 操作
+        tbody
+        include ./devicePriceChildren
+    //应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/treeTable/jquery.treetable.js')
+  script.
+    $(document).ready(function () {
+      var table = $("#devicePriceList");
+      table.treetable({
+        expandable : true,
+        clickableNodeNames: true,
+        onNodeCollapse : function() {
+          var node = this;
+          table.treetable("unloadBranch", node);
+        },
+        onNodeExpand : function() {
+          var node = this;
+          $.ajax({
+            async : false, // Must be false, otherwise loadBranch happens after showChildren?
+            data : {
+              parentId : node.id
+              ,date: new Date()
+            },
+            url : "/store/devicePriceChildren"
+          }).done(function(html) {
+            var rows = $(html).filter("tr");
+            table.treetable("loadBranch", node, rows);
+          });
+        }
+      });
+    });
+
+    function del(id, deep) {
+      var msg = "将删除所选数据及其下属数据,是否继续?"
+      if (deep == '2') {
+        msg = "确定要删除数据吗?"
+      }
+      $("#deviceDelForm #ids").val(id);
+      $("#deviceDelForm #deep").val(deep);
+      if (id) {
+        bootbox.confirm(msg, function (result) {
+          if (result) {
+            $("#deviceDelForm").submit();
+          }
+        });
+      }
+    }
+
+    function editDevice(id) {
+      window.location = "/store/editDevice/" + id;
+    }
+
+    function editDeviceType(id) {
+      window.location = "/store/editDeviceType/" + id;
+    }
+
+    function editDevicePrice(id) {
+      window.location = "/store/editDevicePrice/" + id;
+    }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>选择下载</title>
+		<meta name="format-detection" content="telephone=no" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	</head>
+	<style>
+	    body {
+        	width: 100%;
+            height: auto;
+            padding: 0;
+            padding-bottom: 45px;
+            margin: 0;
+            font-family: "simHei";
+            font-size: 1em;
+            background-color: #f2f2f2;
+            color: #fff;
+            -webkit-overflow-scroll: touch;
+            /*overflow: hidden;*/
+        }
+        * {
+            font-family: "simHei" !important;
+            margin: 0;
+            padding: 0;
+        }
+		nav {
+			position: relative;
+			width: 100%;
+			height: 44px;
+			line-height: 44px;
+			font-size: 18px;
+			text-align: center;
+			color: #fff;
+			background: #0389de;
+		}
+		.goback {
+			position: absolute;
+			top: 0;
+			left: 17px;
+			width: 47px;
+			height: 44px;
+			line-height: 44px;
+			font-size: 15px;
+			text-align: right;
+			background: url(img/goback.png) no-repeat center left;
+			background-size: 14px;
+		}
+		.down-list {
+			padding-left: 17px;
+			width: 100%;
+			height: auto;
+			background: #fff;
+			border-bottom: 1px solid #d8d8d8;
+		}
+		.down-list a {
+			display: block;
+			padding-left: 60px;
+			width: 100%;
+			height: 55px;
+			line-height: 55px;
+			color: #999;
+			font-size: 15px;
+			text-decoration: none;
+		}
+		.phone-helper,
+		.tx {
+			border-bottom: 1px solid #d8d8d8;
+		}
+		.tx {
+			background: url(img/tx.png) no-repeat 5px center;
+			background-size: 30px;
+		}
+		.phone-helper {
+			background: url(img/360.png) no-repeat 5px center;
+			background-size: 30px;
+		}
+		.baidu {
+			background: url(img/baidu.png) no-repeat 5px center;
+			background-size: 30px;
+		}
+	</style>
+	<body>
+		<nav>
+			<div class="goback" id="goback">返回</div>
+			选择下载
+		</nav>
+		<div class="down-list">
+			<a href="http://map.midea.com/map/mam/apps/download/com.midea.annto.ztbh/android?appKey=36bd1bb3c97de29abd2b7dd3e806c5fe" class="tx">应用宝</a>
+			<a href="http://map.midea.com/map/mam/apps/download/com.midea.annto.ztbh/android?appKey=36bd1bb3c97de29abd2b7dd3e806c5fe" class="phone-helper">360手机助手</a>
+			<a href="http://map.midea.com/map/mam/apps/download/com.midea.annto.ztbh/android?appKey=36bd1bb3c97de29abd2b7dd3e806c5fe" class="baidu">百度手机助手</a>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var back = document.getElementById('goback');
+			back.onclick = function() {
+				history.back();
+			}
+	</script>
+</html>

@@ -1,0 +1,305 @@
+extends ../layouts/default
+block form
+  html
+  head(lang='en')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0', charset='utf-8')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/jBootsrapPage.css')
+    title 文章列表
+    script(src='http://libs.baidu.com/jquery/2.0.0/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    script(src='js/libs/moment.min.js')
+    script(src='/js/libs/jBootstrapPage.js')
+    script(src='/js/libs/upload.js')
+  body
+  .container
+    .row.clearfix
+      .col-md-2.column
+        ul.nav.nav-stacked.nav-pills
+          li.active
+            a(href='javascript:void(0);') 文章管理
+          li
+            a(href='/showArticleType') 文章分类
+          li
+            a(href='javascript:void(0);') 文章列表
+      .col-md-10.column
+        button.btn.btn-primary(data-toggle='modal', data-target='#myModal')
+          span.glyphicon.glyphicon-plus(aria-hidden='true') 添加分类
+
+        table.table.table-hover.table-striped
+          thead
+            tr
+              th#ObjId(style='display:none;')
+                | ObjId
+              th
+                | 编号
+              th
+                | 文章标题
+              th
+                | 文章分类
+              th
+                | 文章重要性
+              th
+                | 是否显示
+              th
+                | 添加时间
+              th
+                | 操作
+          tbody
+            each v,i in list
+              tr
+                td(style='display:none;') #{v._id}
+                td #{i + 1}
+                td #{v.articleTitle}
+                td #{v.articleClass}
+                td #{v.articleImp}
+                td #{v.isDisplay}
+                td(name='time') #{v.addTime}
+                td
+                  button.btn.btn-primary(data-toggle='modal',data-target='#myModal', aria-label='Left Align',onclick='editFrom()')
+                    span.glyphicon.glyphicon-pencil(aria-hidden='true') 编辑
+                  | &nbsp;&nbsp;
+                  button.btn.btn-danger(type='button', aria-label='Left Align',onclick = 'deleteFrom()')
+                    span.glyphicon.glyphicon-remove(aria-hidden='true') 删除
+
+
+
+        ul#pagination.pagination(pageCount='#{page.pageCount}', pageNum='#{page.num}', pagesize='#{page.size}', pageLimit='#{page.limit}', numberOfPages='#{page.numberOf}',count='#{page.count}')
+
+
+        #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+          .modal-dialog
+            .modal-content
+              .container
+                .modal-body
+                  .row.clearfix
+                    .col-md-12.column
+                      form.form-horizontal(action='/addArticle',role='form',name='inputForm',id='inputForm',method='get')
+                        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                        input#objId(type='hidden',name='objId')
+                        input#docs(type='hidden',name='docs')
+                        #articleTitleDiv.form-group.has-success
+                          | &nbsp;&nbsp;&nbsp;
+                          label(for='articleTitle') 文章标题:
+                          input#articleTitle.form-control(type='text',name='articleTitle',placeholder='免责条款',style="width:30%",onchange="validateTitle()")
+
+                        #articleClassDiv.form-group.has-success
+                          | &nbsp;&nbsp;&nbsp;
+                          label(for='articleClass') 文章分类:
+                          select#articleClass.form-control(name='articleClass',style="width:30%")
+                        .form-group.has-success
+                          | &nbsp;&nbsp;&nbsp;
+                          label(for='articleImp') 文章重要性:
+                          .radio
+                            label
+                              input#articleImp1(type='radio', name='articleImp', value='普通',checked='')
+                              |  普通
+                          .radio
+                            label
+                              input#articleImp2(type='radio', name='articleImp', value='置顶')
+                              |  置顶
+                        .form-group.has-success
+                          | &nbsp;&nbsp;&nbsp;
+                          label(for='isDisplay') 是否显示:
+                          .radio
+                            label
+                              input#isDisplay3(type='radio', name='isDisplay', value='1', checked='')
+                              |  显示
+                          .radio
+                            label
+                              input#isDisplay4(type='radio', name='isDisplay', value='0', checked='')
+                              |  不显示
+                        .form-group.has-success
+                          | &nbsp;&nbsp;&nbsp;
+                          label(for='author') 文章作者:
+                          input#author.form-control(type='text',name='author',style="width:30%")
+                        .form-group.has-success
+                          | &nbsp;&nbsp;&nbsp;
+                          label(for='keyWord') 关键字:
+                          | &nbsp;&nbsp;&nbsp;
+                          input#keyWord.form-control(type='text',name='keyWord',style="width:30%")
+                        .form-group.has-success
+                          | &nbsp;&nbsp;&nbsp;
+                          label(for='abstract') 文章摘要:
+                          | &nbsp;&nbsp;&nbsp;
+                          textarea#abstract.form-control(style='width:500px;',rows='6',name='abstract')
+                        .form-group.has-success
+                          | &nbsp;&nbsp;&nbsp;
+                          label(for='httplink') 跳转链接:
+                          | &nbsp;&nbsp;&nbsp;
+                          input#httplink.form-control(type='text', placeholder='http://',name='httplink',style="width:30%")
+
+                        #articleTextDiv.form-group.has-success
+                          | &nbsp;&nbsp;&nbsp;
+                          label(for='articleText') 文章正文:
+                          textarea#articleText.form-control(style='width:500px;',rows='6',name='articleText',onchange="validateText()")
+
+
+
+                      form#uploadForm(method='post',action='/api/upload',enctype="multipart/form-data")
+                        label(for='userFile') 相关文件:
+                        input#userFileInput(type='file',name='userFile',style="width:30%")
+                        span#status
+
+                        | &nbsp;&nbsp;&nbsp;
+
+                        .center-block
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-success(type='submit',onclick='submitFrom()') 保存
+
+
+        script(type='text/javascript').
+          $('[name=time]').each(function (index, obj) {
+            $(obj).html(moment($(obj).text()).format('YYYY-MM-DD HH:mm:ss'));
+          });
+
+          $(document).ready(function () {
+            showClass();
+            // $('#page1 li').eq(1).removeClass('page active');
+            // $('#page1 li').eq(2).addClass('page active');
+          });
+
+          function validateTitle() {
+            $('#articleTitleDiv').removeClass('has-error');
+            $('#articleTitleDiv').addClass('has-success');
+            var articleTitle = $('#articleTitle').val();
+            if (articleTitle == "") {
+              $('#articleTitleDiv').removeClass('has-success');
+              $('#articleTitleDiv').addClass('has-error');
+            }
+          }
+
+          function validateText() {
+            $('#articleTextDiv').removeClass('has-error');
+            $('#articleTextDiv').addClass('has-success');
+            var articleText = $('#articleText').val();
+            if (articleText == "") {
+              $('#articleTextDiv').removeClass('has-success');
+              $('#articleTextDiv').addClass('has-error');
+            }
+          }
+
+          //保存
+          function submitFrom() {
+            var articleText = $('#articleText').val();
+            var articleTitle = $('#articleTitle').val();
+            if (articleText !== '' && articleTitle !== '') {
+              document.getElementById("inputForm").submit();
+            } else {
+              alert('文章标题或者文章正文不能为空');
+            }
+          }
+
+          //删除
+          function deleteFrom() {
+            $('table tr').click(function () {
+              var objId = $(this).find('td').eq(0).text();
+              $.ajax({
+                type: "get",
+                url: "/delArticle",
+                data: {id: objId},
+                success: function (data) {
+                  location.reload();
+                }
+              });
+            });
+          }
+
+
+
+          //编辑
+          function editFrom() {
+            $('table tr').click(function () {
+              var objId = $(this).find('td').eq(0).text();
+              $('#objId').val(objId);
+              $.ajax({
+                type: "get",
+                url: "/editArticle",
+                data: {id: objId},
+                success: function (data) {
+                  var articleTitle = data['articleTitle']
+                    , articleClass = data['articleClass']
+                    , articleImp = data['articleImp']
+                    , author = data['author']
+                    , keyWord = data['keyWord']
+                    , abstract = data['abstract']
+                    , httplink = data['httplink']
+                    , docs = data['docs']
+                    , articleText = data['articleText'];
+
+                  $('#articleTitle').val(articleTitle);
+                  $('#articleClass').val(articleClass);
+                  $('#articleImp').val(articleImp);
+                  $('#author').val(author);
+                  $('#keyWord').val(keyWord);
+                  $('#abstract').val(abstract);
+                  $('#httplink').val(httplink);
+                  $('#docs').val(docs);
+                  $('#articleText').val(articleText);
+                }
+              })
+            });
+          }
+
+          function showClass() {
+            $.ajax({
+              type: "get",
+              url: "/articleSelect",
+              data: {},
+              success: function (data) {
+                var head = "请选择";
+                var ui = "<option value='" + '' + "'>" + head + "</option>"
+                $("#articleClass").append(ui);
+                $.each(data, function (i, item) {
+                  var ui = "<option value='" + item.articleClass + "'>" + item.articleClass + "</option>"
+                  $("#articleClass").append(ui);
+                })
+              }
+            });
+          }
+
+          //每页显示多少条数据(pageSize),显示多少个分页按钮(buttons),传入数据总行数(total)即可
+          //如果需要在选中某一页，然后去请求服务器端，可以在onPageClicked回调函数中完成。
+          $(function () {
+            var page = $('#pagination');
+            var pageSize = page.attr('size');
+            var pageCount = page.attr('pageCount');
+            var count = page.attr('count');
+            var buttons = page.attr('numberOfPages');
+            createPage(5, buttons, count);
+            function createPage(pageSize, buttons, total) {
+              $(".pagination").jBootstrapPage({
+                pageSize: 5,
+                total: count,
+                maxPageButton: 10,
+                onPageClicked: function (obj, pageIndex) {
+                  window.location = '/showArticleList?&p=' + (pageIndex + 1);
+                }
+              });
+            }
+          });
+
+
+
+//          function showPagination(){
+//            var page = $('#pagination');
+//            var options = {
+//              currentPage:page.attr('pageNum') - 0,
+//              totalPages: page.attr('pageCount') - 0,
+//              visiblePages: page.attr('numberOfPages') -0,
+//              onPageChange: function (num, type) {
+//                //window.location = '/showArticle?&p=' + num;
+//               // $('#pagination').jqPaginator('destroy');
+//              }
+//            }
+//            $.jqPaginator('#pagination',options);
+//          }
+
+
+
+
+
+
+

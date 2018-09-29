@@ -1,0 +1,325 @@
+extends ../layouts/default
+block form
+  html
+  head(lang='en')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0', charset='utf-8')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    link(rel='stylesheet', href='//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css')
+    title 微信用户分组设置
+    script(src='http://libs.baidu.com/jquery/2.0.0/jquery.min.js')
+    script(src='//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    script(src='/js/libs/jBootstrapPage.js')
+
+  body
+  .container
+    .row.clearfix
+      .col-md-2.column
+        ul.nav.nav-stacked.nav-pills
+          li.active
+            a(href='javascript:void(0);') 用户管理
+          li
+            a(href='/getWebChatRbac') 权限管理
+      .col-md-8.column
+        if message != ''
+          .alert.alert-success.animated.fadeIn
+            button.close(type='button', data-dismiss='alert') ×
+            div= message
+        form#fromId.form-horizontal(action='/searchByNike',method='post')
+          input#_csrf(type='hidden', name='_csrf', value=_csrf)
+          div.input-group(style="width:30%")
+            input#searchUser.form-control(type="text",name="searchUser",placeholder="用户昵称")
+            span.input-group-addon.glyphicon.glyphicon-search(onclick="searchFrom()")
+
+        table#tablist.table.table-hover.table-striped
+          thead
+            tr
+              th
+                div
+                  input#checkAll(type="checkbox",onclick="editAllGroup()")
+                  | &nbsp;全选
+                  | &nbsp;&nbsp;&nbsp;
+                  button#allcheck.btn.btn-primary.disabled(data-toggle='modal',data-target='#allGroup', aria-label='Left Align') 修改分组
+            tbody
+              each v,i in list
+                tr
+                  td
+                    input(type="checkbox",name="checkOne",value="#{v._id}")
+                  td(style="display: none") #{v._id}
+                  td #{v.nickname}
+                  td #{v.roleName}
+                  td(style="text-align:center;")
+                    a(onclick='addRole()',data-toggle='modal',data-target='#addRole', aria-label='Left Align')添加角色&nbsp;|&nbsp;
+                    a(onclick='delRole()',data-toggle='modal',data-target='#delRole', aria-label='Left Align')删除角色&nbsp;|&nbsp;
+                    a(onclick='editComment()',data-toggle='modal',data-target='#comment', aria-label='Left Align')修改备注
+
+        ul#pagination.pagination(pageCount='#{page.pageCount}', pageNum='#{page.num}', pagesize='#{page.size}', pageLimit='#{page.limit}', numberOfPages='#{page.numberOf}',count='#{page.count}')
+
+        #addRole.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+          .modal-dialog
+            .modal-content
+              .container
+                .modal-body
+                  .row.clearfix
+                    .col-md-12.column
+                      form.form-horizontal(action='/addRole',id='addRole',method='post')
+                        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                        input#roleId(type='hidden',name='roleId')
+                        label(for='group') 添加角色:
+                        select.form-control(name='roleGroup',style="width:30%")
+                        br
+                        .center-block
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-success(type='submit') 保存
+
+        #allGroup.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+          .modal-dialog
+            .modal-content
+              .container
+                .modal-body
+                  .row.clearfix
+                    .col-md-12.column
+                      form.form-horizontal(action='/editAllGroup',id='allGroupFrom',method='post')
+                        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                        input#txtValue(type="text",name="txtValue")
+                        label(for='group') 分组修改:
+                        select.form-control(name='roleGroup',style="width:30%")
+                        br
+                        .center-block
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-success(type='submit') 保存
+
+        #delRole.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+          .modal-dialog
+            .modal-content
+              .container
+                .modal-body
+                  .row.clearfix
+                    .col-md-12.column
+                      form.form-horizontal(action='/delRole',id='delRole',method='post')
+                        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                        input#delId(type='hidden',name='delId')
+                        label(for='group') 角色删除:
+                        select.form-control(name='roleDelGroup',style="width:30%")
+                        br
+                        .center-block
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-success(type='submit') 保存
+
+        #comment.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+          .modal-dialog
+            .modal-content
+              .container
+                .modal-body
+                  .row.clearfix
+                    .col-md-12.column
+                      form.form-horizontal(action='/editComment',id='editComment',method='post')
+                        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                        input#commentId(type='hidden',name='id')
+                        label(for='group') 备注修改:
+                        input#comment(type='text',name='comment',style="width:30%")
+                        br
+                        br
+                        .center-block
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-success(type='submit') 保存
+
+        #addgroup.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+          .modal-dialog
+            .modal-content
+              .container
+                .modal-body
+                  .row.clearfix
+                    .col-md-12.column
+                      form.form-horizontal(action='/addGroupFrom',id='addGroupFrom',method='post')
+                        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                        input(type='hidden',name='id')
+                        label 添加分组:
+                        input#addGroup(type='text',name='addGroup',style="width:30%")
+                        br
+                        br
+                        .center-block
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-success(type='submit') 保存
+
+      .col-md-2.column
+        br
+        br
+        button.btn.btn-primary(data-toggle='modal',data-target='#addgroup', aria-label='Left Align',onclick="editGroup()") 增加分组
+        ul#groupList.nav.nav-stacked.nav-pills
+          each item,i in group
+            li
+              a(href='/groupLink/' + item.usergroup) #{item.usergroup}
+
+    script(type='text/javascript').
+      $(function () {
+        showGroup();
+        accountNum();
+      })
+
+      //全选与全不选
+      $('#checkAll').click(function () {
+        if (this.checked) {
+          $(':checkbox').prop('checked', true);
+          $('#allcheck').removeClass('disabled');
+        } else {
+          $(':checkbox').prop('checked', false);
+          $('#allcheck').addClass('disabled');
+        }
+      });
+
+      //选择相对应的昵称进行批量修改
+      $("#tablist :checkbox").change(function () {
+        var txtvalue = $(this).parent().next().text();
+        if ($("#txtvalue").val == "") {
+          if (this.checked == true) {
+            var txtalso = $.trim(txtvalue);
+          } else {
+            var txtalso = "";
+          }
+        }
+        //jquery1.6 以后：$(this).prop("checked") == true
+        //2.0版本把属性和特性做了区分，因此不能使用  $(this).attr("checked") == true
+        else {
+          if (this.checked == true) {
+            var txtalso = $.trim($("#txtValue").val()) + "," + $.trim(txtvalue);
+          } else {
+            var txtelse = $.trim($("#txtValue").val());
+            var txtnow = $.trim(txtvalue);
+            var reg1 = "," + txtnow;
+            var reg2 = txtnow + ",";
+            var reg3 = txtnow;
+            var txtelse = txtelse.replace(reg1, "").replace(reg2, "").replace(reg3, "");
+            var txtalso = txtelse;
+          }
+        }
+        $("#txtValue").val(txtalso);
+        if (txtalso !== '') {
+          $('#allcheck').removeClass('disabled');
+        } else {
+          $('#allcheck').addClass('disabled');
+        }
+      });
+
+      //添加Role时候显示的下拉选框
+      function showGroup() {
+        $.ajax({
+          type: "get",
+          url: "/getGroupSelect",
+          data: {},
+          success: function (data) {
+            $.each(data, function (i, item) {
+              var ui = "<option value='" + item._id + "'>" + item.name + "</option>"
+              $("select[name='roleGroup']").append(ui);
+            })
+          }
+        });
+      }
+
+      //传值 选中的具体行的ID
+      function delRole(){
+        $('table tr').click(function(){
+          var objId = $(this).find('td').eq(1).text();
+          $('#delId').val(objId);
+          showDelGroup(objId);
+        })
+      }
+
+      //删除Role时候显示的下拉选框
+      function showDelGroup(params){
+        $.ajax({
+          type:"get",
+          url:"/delGroupSelect",
+          data:{roleId:params},
+          success:function(data){
+            if(data == null){
+              alert('111');
+            }
+            $("select[name='roleDelGroup'] option").remove();
+              $.each(data,function(i,item){
+                var ui = "<option value='" + item._id + "'>" + item.name+ "</option>"
+                $("select[name='roleDelGroup']").append(ui);
+              })
+          }
+        });
+      }
+
+      //传值 选中的具体行的ID
+      function addRole(){
+        $('table tr').click(function () {
+          var objId = $(this).find('td').eq(1).text();
+          $('#roleId').val(objId);
+        })
+      }
+
+
+      //点批量修改按钮之后,将每一个用户ID放入隐藏域中
+      function editAllGroup() {
+        $('table tr').each(function (index) {
+          var objtext = $(this).find('td').eq(1).text();
+          var webChatUserId = document.createElement("input");
+          webChatUserId.type = "text";
+          webChatUserId.name = "inputGroup";
+          webChatUserId.value = objtext;
+          document.getElementById("allGroupFrom").appendChild(webChatUserId);
+        });
+      }
+
+
+      function editComment() {
+        $('table tr').click(function () {
+          var objId = $(this).find('td').eq(1).text();
+          $('#commentId').val(objId);
+        })
+      }
+
+      function searchFrom() {
+        $('#fromId').submit();
+      }
+
+      //每个分组的个数
+      function accountNum() {
+        $.ajax({
+          type: "get",
+          url: "/accountNum",
+          data: {},
+          success: function (data) {
+            $('#groupList li').each(function (index) {
+              var groupValue = $(this).find('a').eq(0).text();
+              var groupInfo = groupValue + '(' + data[index] + ')';
+              $(this).find('a').eq(0).text(groupInfo);
+            })
+          }
+        });
+      }
+
+      //每页显示多少条数据(pageSize),显示多少个分页按钮(buttons),传入数据总行数(total)即可
+      //如果需要在选中某一页，然后去请求服务器端，可以在onPageClicked回调函数中完成。
+      $(function () {
+        var page = $('#pagination');
+        var pageSize = page.attr('size');
+        var pageCount = page.attr('pageCount');
+        var count = page.attr('count');
+        var buttons = page.attr('numberOfPages');
+        createPage(5, buttons, count);
+        function createPage(pageSize, buttons, total) {
+          $(".pagination").jBootstrapPage({
+            pageSize: 5,
+            total: count,
+            maxPageButton: 5,
+            onPageClicked: function (obj, pageIndex) {
+              window.location = '/webChatUser?&p=' + (pageIndex + 1);
+            }
+          });
+        }
+      });
+

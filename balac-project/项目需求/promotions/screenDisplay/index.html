@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!--<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+    <title>大屏展示</title>
+    <script src="js/flexible/fix.js"></script>
+    <script src="js/flexible/flexible.js"></script>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <!--<script src="http://192.168.1.116:8088/target/target-script-min.js#anonymous"></script>-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/fastclick.min.js"></script>
+    <script>
+        $(function() {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="js/project/configuration.properties.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/zyf.js"></script>
+</head>
+<body>
+    <div class="common-content">
+        <div class="common-box pos0">
+            <div class="box-title">
+                <span>股价走势</span>
+                <div class="box-title-right">
+                    <span class="fs-14">格力电器<i class="fc-green" id="otherA">16.04</i></span>
+                    <span class="fs-14"><b class="box-tip">HK</b>海尔电器<i class="fc-green" id="otherB">12.52</i></span>
+                    <span class="fs-14">九阳股份<i class="fc-red" id="otherC">15.05</i></span>
+                    <span class="fs-14">老板电器<i class="fc-green" id="otherD">34.30</i></span>
+                </div>
+            </div>
+            <ul class="contentbox clearfix">
+                <li>
+                    <div>
+                        <div class="contentbox-title fs-14">美的集团<span class="fc-green" id="sharesAStatus"><b class="cb-num" id="sharesANow">27.20</b><i class="icon icon-down" id="iconA"></i><b class="cb-minnum" id="sharesAContrast">-0.16 (-0.58%)</b></span></div>
+                        <div class="main mt-up40" id="main"></div>
+                        <ul class="contentbox-info">
+                            <li><span class="contentbox-info-left">今开</span><span class="contentbox-info-right fc-green" id="sharesAToday">27.43</span></li>
+                            <li><span class="contentbox-info-left">昨收</span><span class="contentbox-info-right" id="sharesAYesterday">27.36</span></li>
+                            <li><span class="contentbox-info-left">最高</span><span class="contentbox-info-right fc-red" id="sharesAHigh">27.55</span></li>
+                            <li><span class="contentbox-info-left">最低</span><span class="contentbox-info-right fc-green" id="sharesALow">27.20</span></li>
+                            <li><span class="contentbox-info-left">成交量</span><span class="contentbox-info-right" id="sharesANum">401.26万</span></li>
+                            <li><span class="contentbox-info-left">成交额</span><span class="contentbox-info-right" id="sharesAMoney">1.10亿</span></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div class="contentbox-title fs-14">小天鹅A<span class="fc-green" id="sharesBStatus"><b class="cb-num" id="sharesBNow">17.75</b><i class="icon icon-down" id="iconB"></i><b class="cb-minnum" id="sharesBContrast">-0.16 (-0.58%)</b></span></div>
+                        <div class="main mt-up40" id="main2"></div>
+                        <ul class="contentbox-info">
+                            <li><span class="contentbox-info-left">今开</span><span class="contentbox-info-right fc-green" id="sharesBToday">27.43</span></li>
+                            <li><span class="contentbox-info-left">昨收</span><span class="contentbox-info-right" id="sharesBYesterday">27.36</span></li>
+                            <li><span class="contentbox-info-left">最高</span><span class="contentbox-info-right fc-red" id="sharesBHigh">27.55</span></li>
+                            <li><span class="contentbox-info-left">最低</span><span class="contentbox-info-right fc-green" id="sharesBLow">27.20</span></li>
+                            <li><span class="contentbox-info-left">成交量</span><span class="contentbox-info-right" id="sharesBNum">401.26万</span></li>
+                            <li><span class="contentbox-info-left">成交额</span><span class="contentbox-info-right" id="sharesBMoney">1.10亿</span></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="pt-40">
+                    <div>
+                        <div class="contentbox-title fs-14 pt-40"><b class="box-tip">HK</b>威灵控股<span class="fc-red" id="sharesCStatus"><b class="cb-num" id="sharesCNow">1.29</b><i class="icon icon-up" id="iconC"></i><b class="cb-minnum" id="sharesCContrast">+0.02 (+1.58%)</b></span></div>
+                        <div class="main" id="main3"></div>
+                        <ul class="contentbox-info">
+                            <li><span class="contentbox-info-left">今开</span><span class="contentbox-info-right fc-green" id="sharesCToday">27.43</span></li>
+                            <li><span class="contentbox-info-left">昨收</span><span class="contentbox-info-right" id="sharesCYesterday">27.36</span></li>
+                            <li><span class="contentbox-info-left">最高</span><span class="contentbox-info-right fc-red" id="sharesCHigh">27.55</span></li>
+                            <li><span class="contentbox-info-left">最低</span><span class="contentbox-info-right fc-green" id="sharesCLow">27.20</span></li>
+                            <li><span class="contentbox-info-left">成交量</span><span class="contentbox-info-right" id="sharesCNum">401.26万</span></li>
+                            <li><span class="contentbox-info-left">成交额</span><span class="contentbox-info-right" id="sharesCMoney">1.10亿</span></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="pt-40">
+                    <div>
+                        <div class="contentbox-title fs-14 pt-40">小天鹅B<span class="fc-green" id="sharesDStatus"><b class="cb-num" id="sharesDNow">27.20</b><i class="icon icon-down" id="iconD" ></i><b class="cb-minnum"  id="sharesDContrast">-0.16 (-0.58%)</b></span></div>
+                        <div class="main" id="main4"></div>
+                        <ul class="contentbox-info">
+                            <li><span class="contentbox-info-left">今开</span><span class="contentbox-info-right fc-green" id="sharesDToday">27.43</span></li>
+                            <li><span class="contentbox-info-left">昨收</span><span class="contentbox-info-right" id="sharesDYesterday">27.36</span></li>
+                            <li><span class="contentbox-info-left">最高</span><span class="contentbox-info-right fc-red" id="sharesDHigh">27.55</span></li>
+                            <li><span class="contentbox-info-left">最低</span><span class="contentbox-info-right fc-green" id="sharesDLow">27.20</span></li>
+                            <li><span class="contentbox-info-left">成交量</span><span class="contentbox-info-right" id="sharesDNum">401.26万</span></li>
+                            <li><span class="contentbox-info-left">成交额</span><span class="contentbox-info-right" id="sharesDMoney">1.10亿</span></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="common-box pos1">
+            <div class="data-box">
+                <div class="box-title pl-40">
+                    <span>财务概况</span>
+                    <div class="box-title-right pt-7">
+                        <span class="c-white fs-12">内销 <a class="box-color  bg-49c7fa">&nbsp;</a></span>
+                        <span class="c-white fs-12">外销 <a class="box-color  bg-007463">&nbsp;</a></span>
+                        <span class="c-747b83 fs-12">单位：万元</span>
+                    </div>
+                </div>
+                <div>
+                    <ul class="contentbox-three clearfix ">
+                        <li class="border-right">
+                            <div class="fs-16 c-white text-center pt-40">年度累计合计：<span class="c-0084ff" id="biASum">3658.89</span> 同比：<span class="c-0084ff" id="biASumPer">99%</span></div>
+                            <div class="pos-re">
+                                <div class="main pie-style" id="pie">
+                                </div>
+                                <div class="fs-12 c-white pie-text">
+                                    年度累计：<span class="c-49c7fa" id="biAIn">1465.25</span> 同比：<span id="biAInPer">99%</span>
+                                    <p class="pt-5"> 年度累计：<span  class="c-007463" id="biAOut">1465.25</span> 同比：<span id="biAOutPer">99%</span></p>
+                                </div>
+                                <div class="pie-main-text line-h-35">
+                                    销售
+                                </div>
+                            </div>
+                            <div class="pos-re pt-20">
+                                <div class="main bar-style" id="bar" style="width: 120%;">
+                                </div>
+                                <div class="bar-text">
+                                    <span id="sumBarAL">319.23</span>
+                                </div>
+                                <div class="bar-text left-30 w-50">
+                                    <span id="sumBarAVovL">同比80%</span>
+                                </div>
+                                <div class="bar-text-right">
+                                    <span id="sumBarAR">319.23</span>
+                                </div>
+                                <div class="bar-text-right left-81 w-50">
+                                    <span  id="sumBarAVovR">同比80%</span>
+                                </div>
+                            </div>
+                            <div class="plr-10 fs-12 pt-40">
+                                <table class="stock-table">
+                                    <thead class=" c-white">
+                                    <tr>
+                                        <th rowspan="2"></th>
+                                        <th colspan="3">上月</th>
+                                        <th colspan="2">本月</th>
+                                    </tr>
+                                    <tr>
+                                        <th>金额</th>
+                                        <th>环比</th>
+                                        <th>同比</th>
+                                        <th>金额</th>
+                                        <th>同比</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="c-white">内销</td>
+                                        <td class="fc-darkblue" id="AinSumT">103.22</td>
+                                        <td class="fc-darkblue" id="AinHuanT">86%</td>
+                                        <td class="fc-darkblue" id="AinTongT">98%</td>
+                                        <td class="fc-darkblue" id="AinHuanTs">102.22</td>
+                                        <td class="fc-darkblue" id="AinTongTs">98%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="c-white">外销</td>
+                                        <td class="fc-darkblue"  id="AinSumB" >123.11</td>
+                                        <td class="fc-darkblue" id="AinHuanB">86%</td>
+                                        <td class="fc-darkblue"  id="AinTongB">98%</td>
+                                        <td class="fc-darkblue" id="AinHuanBs">512.11</td>
+                                        <td class="fc-darkblue" id="AinTongBs">98%</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li class="border-right">
+                            <div class="fs-16 c-white text-center pt-40">年度累计合计：<span class="c-0084ff" id="biBSum">3658.89</span> 同比：<span class="c-0084ff" id="biBSumPer">99%</span></div>
+                            <div class="pos-re">
+                                <div class="main pie-style" id="pie2">
+                                </div>
+                                <div class="fs-12 c-white pie-text">
+                                    年度累计：<span class="c-49c7fa" id="biBIn">1465.25</span> 同比：<span id="biBInPer">99%</span>
+                                    <p class="pt-5"> 年度累计：<span  class="c-007463" id="biBOut">1465.25</span> 同比：<span id="biBOutPer">99%</span></p>
+                                </div>
+                                <div class="pie-main-text line-h-35">
+                                    回款
+                                </div>
+                            </div>
+                            <div class="pos-re pt-20">
+                                <div class="main bar-style" id="bar2" style="width:120%;">
+                                </div>
+                                <div class="bar-text">
+                                    <span id="sumBarBL">319.23</span>
+                                </div>
+                                <div class="bar-text left-30 w-50">
+                                    <span  id="sumBarBVovL"></span>
+                                </div>
+                                <div class="bar-text-right">
+                                    <span id="sumBarBR">319.23</span>
+                                </div>
+                                <div class="bar-text-right left-81 w-50">
+                                    <span  id="sumBarBVovR"></span>
+                                </div>
+                            </div>
+                            <div class="plr-10 fs-12 pt-40">
+                                <table class="stock-table">
+                                    <thead class=" c-white">
+                                    <tr>
+                                        <th rowspan="2"></th>
+                                        <th colspan="3">上月</th>
+                                        <th colspan="2">本月</th>
+                                    </tr>
+                                    <tr>
+                                        <th>金额</th>
+                                        <th>环比</th>
+                                        <th>同比</th>
+                                        <th>金额</th>
+                                        <th>同比</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="c-white">内销</td>
+                                        <td class="fc-darkblue" id="BinSumT">103.22</td>
+                                        <td class="fc-darkblue" id="BinHuanT">86%</td>
+                                        <td class="fc-darkblue" id="BinTongT">98%</td>
+                                        <td class="fc-darkblue" id="BinHuanTs">102.22</td>
+                                        <td class="fc-darkblue" id="BinTongTs">98%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="c-white">外销</td>
+                                        <td class="fc-darkblue"  id="BinSumB" >123.11</td>
+                                        <td class="fc-darkblue" id="BinHuanB">86%</td>
+                                        <td class="fc-darkblue"  id="BinTongB">98%</td>
+                                        <td class="fc-darkblue" id="BinHuanBs">512.11</td>
+                                        <td class="fc-darkblue" id="BinTongBs">98%</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="fs-16 c-white text-center pt-40">年度累计合计：<span class="c-0084ff" id="biCSum">3658.89</span> 同比：<span class="c-0084ff" id="biCSumPer">99%</span></div>
+                            <div class="pos-re">
+                                <div class="main pie-style" id="pie3">
+                                </div>
+                                <div class="fs-12 c-white pie-text ">
+                                    年度累计：<span class="c-49c7fa" id="biCIn">1465.25</span> 同比：<span id="biCInPer">99%</span>
+                                    <p class="pt-5"> 年度累计：<span  class="c-007463" id="biCOut">1465.25</span> 同比：<span id="biCOutPer">99%</span></p>
+                                </div>
+                                <div class="pie-main-text">
+                                    成品<br>库存
+                                </div>
+                            </div>
+                            <div class="pos-re pt-20">
+                                <div class="main bar-style" id="bar3" style="width:120%;">
+                                </div>
+                                <div class="bar-text">
+                                    <span id="sumBarCL">319.23</span>
+                                </div>
+                                <div class="bar-text left-30 w-50">
+                                    <span  id="sumBarCVovL"></span>
+                                </div>
+                                <div class="bar-text-right">
+                                    <span id="sumBarCR">319.23</span>
+                                </div>
+                                <div class="bar-text-right left-81 w-50">
+                                  <span  id="sumBarCVovR"></span>
+                                </div>
+                            </div>
+                            <div class="plr-10 fs-12 pt-40">
+                                <table class="stock-table">
+                                    <thead class=" c-white">
+                                    <tr>
+                                        <th rowspan="2"></th>
+                                        <th colspan="3">上月</th>
+                                        <th colspan="2">本月</th>
+                                    </tr>
+                                    <tr>
+                                        <th>金额</th>
+                                        <th>环比</th>
+                                        <th>同比</th>
+                                        <th>金额</th>
+                                        <th>同比</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="c-white">内销</td>
+                                        <td class="fc-darkblue" id="CinSumT">103.22</td>
+                                        <td class="fc-darkblue" id="CinHuanT">86%</td>
+                                        <td class="fc-darkblue" id="CinTongT">98%</td>
+                                        <td class="fc-darkblue" id="CinHuanTs">102.22</td>
+                                        <td class="fc-darkblue" id="CinTongTs">98%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="c-white">外销</td>
+                                        <td class="fc-darkblue"  id="CinSumB" >123.11</td>
+                                        <td class="fc-darkblue" id="CinHuanB">86%</td>
+                                        <td class="fc-darkblue"  id="CinTongB">98%</td>
+                                        <td class="fc-darkblue" id="CinHuanBs">512.11</td>
+                                        <td class="fc-darkblue" id="CinTongBs">98%</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="common-box pos2">
+            <div class="box-title">
+                <span>事业部经营概览</span>
+                <div class="box-title-right fc-gray fs-12">
+                    单位：万元
+                </div>
+            </div>
+            <table class="stock-table mt-30 big-table fs-16">
+                <thead>
+                <tr>
+                    <th>事业部</th>
+                    <th>计划</th>
+                    <th>累计</th>
+                    <th>进度</th>
+                    <th>同比</th>
+                    <th>成品库存</th>
+                    <th>同比</th>
+                </tr>
+                </thead>
+                <tbody id="sumTable">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="common-box pos3">
+            <div class="flip-card">
+                <div class="side1">
+                    <div class="box-title">
+                        <span>事业部经营概览（内销）</span>
+                        <div class="box-title-right fc-gray fs-12">
+                            单位：万元
+                        </div>
+                    </div>
+                    <table class="stock-table mt-30 big-table fs-16">
+                        <thead>
+                        <tr>
+                            <th>事业部</th>
+                            <th>计划</th>
+                            <th>累计</th>
+                            <th>进度</th>
+                            <th>同比</th>
+                            <th>成品库存</th>
+                            <th>同比</th>
+                        </tr>
+                        </thead>
+                        <tbody id="inTable">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="side2 flipY">
+                    <div class="box-title">
+                        <span>事业部经营概览（外销）</span>
+                        <div class="box-title-right fc-gray fs-12">
+                            单位：万元
+                        </div>
+                    </div>
+                    <table class="stock-table mt-30 big-table fs-16">
+                        <thead>
+                        <tr>
+                            <th>事业部</th>
+                            <th>计划</th>
+                            <th>累计</th>
+                            <th>进度</th>
+                            <th>同比</th>
+                            <th>成品库存</th>
+                            <th>同比</th>
+                        </tr>
+                        </thead>
+                        <tbody id="outTable">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-main">
+
+    </div>
+
+
+    <div class="left-place">
+        <div class="left-go">
+            <a href="http://10.16.26.166:8080/pentaho/kdisplay/No3.html">
+
+            </a>
+        </div>
+    </div>
+
+    <div class="right-place">
+        <div class="right-go">
+            <a href="http://10.16.26.166:8080/pentaho/kdisplay/No3.html">
+
+            </a>
+        </div>
+    </div>
+
+    <script src="js/echarts-all.js"></script>
+    <script>
+        function getEChart(id) {
+            // 图表实例化------------------
+            // srcipt标签式引入
+            var myChart = echarts.init(document.getElementById(id));
+
+            // 过渡---------------------
+            myChart.showLoading({
+                text: '正在努力的读取数据中...',    //loading话术
+            });
+
+            // ajax getting data...............
+
+            // ajax callback
+            myChart.hideLoading();
+
+
+
+            // 图表使用-------------------
+            var option = {
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: [0.01, 0.01],
+                        data: ['2014.09', '2014.10', '2014.11', '2014.12', '2015.01', '2015.02','2015.03','2015.04','2015.05','2015.06','2015.07','2015.08','2015.09'],
+                        axisLine: {
+                            lineStyle: {
+                                color: '#252b32',
+                                width: 1,
+                                type: 'solid'
+                            }
+                        },
+                        splitLine: {
+                            show: false,
+                            lineStyle: {
+                                color: ['#ccc'],
+                                width: 0,
+                                type: 'solid'
+                            }
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#67717a',
+                                fontSize:24
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        boundaryGap: false,
+                        splitNumber: 4,
+                        min:20,
+                        max:30,
+                        axisLine: {
+                            lineStyle: {
+                                color: '#252b32',
+                                width: 1,
+                                type: 'solid'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: ['#252b32'],
+                                width: 1,
+                                type: 'dashed'
+                            }
+                        },
+                        axisLabel: {
+                            formatter: function(value) {
+                                return value.toFixed(2);
+                            },
+                            textStyle: {
+                                color: '#67717a'
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: '美的集团',
+                        type: 'line',
+                        itemStyle: {
+                            normal: {
+                                color: '#4399fe',
+                                lineStyle: {
+                                    color: '#e00404',
+                                    width: 2,
+                                    type: 'solid'
+                                }
+                            }
+                        },
+                        data: [24.88, 25, 24.99, 26, 26.55, 27, 40,30,33.4,33.2,33.8,24.56,35.8,23.55,35.78],
+                        boundaryGap: false,
+                        symbol:'none'
+                    }
+                ]
+            };
+            var option1 = {
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: [0.01, 0.01],
+                        data: ['2014.09', '2014.10', '2014.11', '2014.12', '2015.01', '2015.02','2015.03','2015.04','2015.05','2015.06','2015.07','2015.08','2015.09'],
+                        axisLine: {
+                            lineStyle: {
+                                color: '#252b32',
+                                width: 1,
+                                type: 'solid'
+                            }
+                        },
+                        splitLine: {
+                            show: false,
+                            lineStyle: {
+                                color: ['#ccc'],
+                                width: 0,
+                                type: 'solid'
+                            }
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#67717a',
+                                fontSize:24
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        boundaryGap: false,
+                        splitNumber: 4,
+                        min:10,
+                        max:20,
+                        axisLine: {
+                            lineStyle: {
+                                color: '#252b32',
+                                width: 1,
+                                type: 'solid'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: ['#252b32'],
+                                width: 1,
+                                type: 'dashed'
+                            }
+                        },
+                        axisLabel: {
+                            formatter: function(value) {
+                                return value.toFixed(2);
+                            },
+                            textStyle: {
+                                color: '#67717a'
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: '小天鹅A',
+                        type: 'line',
+                        itemStyle: {
+                            normal: {
+                                color: '#4399fe',
+                                lineStyle: {
+                                    color: '#e00404',
+                                    width: 2,
+                                    type: 'solid'
+                                }
+                            }
+                        },
+                        data: [24.88, 25, 24.99, 26, 26.55, 27, 40,30,33.4,33.2,33.8,24.56,35.8,23.55,35.78],
+                        boundaryGap: false,
+                        symbol:'none'
+                    }
+                ]
+            };
+            var option2 = {
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: [0.01, 0.01],
+                        data: ['9:30', '10:30', '11:30', '13:30', '14:30', '15:00'],
+                        axisLine: {
+                            lineStyle: {
+                                color: '#252b32',
+                                width: 1,
+                                type: 'solid'
+                            }
+                        },
+                        splitLine: {
+                            show: false,
+                            lineStyle: {
+                                color: ['#ccc'],
+                                width: 0,
+                                type: 'solid'
+                            }
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#67717a',
+                                fontSize:24
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        boundaryGap: false,
+                        splitNumber: 4,
+                        min:1,
+                        max:2,
+                        axisLine: {
+                            lineStyle: {
+                                color: '#252b32',
+                                width: 1,
+                                type: 'solid'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: ['#252b32'],
+                                width: 1,
+                                type: 'dashed'
+                            }
+                        },
+                        axisLabel: {
+                            formatter: function(value) {
+                                return value.toFixed(2);
+                            },
+                            textStyle: {
+                                color: '#67717a'
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: '威灵控股',
+                        type: 'line',
+                        itemStyle: {
+                            normal: {
+                                color: '#4399fe',
+                                lineStyle: {
+                                    color: '#e00404',
+                                    width: 2,
+                                    type: 'solid'
+                                }
+                            }
+                        },
+                        data: [0, 0, 0, 0, 0, 0],
+                        boundaryGap: false,
+                        symbol:'none'
+                    }
+                ]
+            };
+            var option3 = {
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: [0.01, 0.01],
+                        data: ['2014.09', '2014.10', '2014.11', '2014.12', '2015.01', '2015.02','2015.03','2015.04','2015.05','2015.06','2015.07','2015.08','2015.09'],
+                        axisLine: {
+                            lineStyle: {
+                                color: '#252b32',
+                                width: 1,
+                                type: 'solid'
+                            }
+                        },
+                        splitLine: {
+                            show: false,
+                            lineStyle: {
+                                color: ['#ccc'],
+                                width: 0,
+                                type: 'solid'
+                            }
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#67717a',
+                                fontSize:24
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        boundaryGap: false,
+                        splitNumber: 4,
+                        min:10,
+                        max:20,
+                        axisLine: {
+                            lineStyle: {
+                                color: '#252b32',
+                                width: 1,
+                                type: 'solid'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: ['#252b32'],
+                                width: 1,
+                                type: 'dashed'
+                            }
+                        },
+                        axisLabel: {
+                            formatter: function(value) {
+                                return value.toFixed(2);
+                            },
+                            textStyle: {
+                                color: '#67717a'
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: '小天鹅B',
+                        type: 'line',
+                        itemStyle: {
+                            normal: {
+                                color: '#4399fe',
+                                lineStyle: {
+                                    color: '#e00404',
+                                    width: 2,
+                                    type: 'solid'
+                                }
+                            }
+                        },
+                        data: [24.88, 25, 24.99, 26, 26.55, 27, 40,30,33.4,33.2,33.8,24.56,35.8,23.55,35.78],
+                        boundaryGap: false,
+                        symbol:'none'
+                    }
+                ]
+            };
+
+            if(id == 'main'){
+                stockService.getDetail('sz000333').done(function(data) {
+
+                    resetWH('main');
+                    console.log(data);
+                    var x =[],y =[];
+                    x = data.x;
+                    y = data.y;
+                    option.yAxis[0].min = getArrayMin(data.y);
+                    option.yAxis[0].max = getArrayMax(data.y);
+                    option.xAxis[0].data = [];
+                    option.series[0].data = [];
+                    option.xAxis[0].data = x;
+                    option.series[0].data = y;
+                    myChart.setOption(option);
+                });
+            } else if(id == 'main2'){
+                stockService.getDetail('sz000418').done(function(data) {
+
+                    resetWH('main2');
+                    console.log(data);
+                    var x =[],y =[];
+                    x = data.x;
+                    y = data.y;
+                    option1.yAxis[0].min = getArrayMin(data.y);
+                    option1.yAxis[0].max = getArrayMax(data.y);
+                    option1.xAxis[0].data = [];
+                    option1.series[0].data = [];
+                    option1.xAxis[0].data = x;
+                    option1.series[0].data = y;
+                    myChart.setOption(option1);
+                });
+            } else if(id == 'main3'){
+                stockService.getDetail('hk00382').done(function(data) {
+
+                    resetWH('main3');
+                    console.log(data);
+                    var x =[],y =[];
+                    if(data.y.length == 0){
+
+                    } else {
+                        x = data.x;
+                        y = data.y;
+                        option2.yAxis[0].min = getArrayMin(data.y);
+                        option2.yAxis[0].max = getArrayMax(data.y);
+                        option2.xAxis[0].data = [];
+                        option2.series[0].data = [];
+                        option2.xAxis[0].data = x;
+                        option2.series[0].data = y;
+
+                    }
+                    console.log(option2);
+                    myChart.setOption(option2);
+                });
+            } else if(id == 'main4'){
+                stockService.getDetail('sz200418').done(function(data) {
+
+                    resetWH('main4');
+                    console.log(data);
+                    var x =[],y =[];
+                    x = data.x;
+                    y = data.y;
+                    option3.yAxis[0].min = getArrayMin(data.y);
+                    option3.yAxis[0].max = getArrayMax(data.y);
+                    option3.xAxis[0].data = [];
+                    option3.series[0].data = [];
+                    option3.xAxis[0].data = x;
+                    option3.series[0].data = y;
+                    myChart.setOption(option3,true);
+                });
+            }
+
+
+        }
+//        function getBar(id) {
+//            // 图表实例化------------------
+//            // srcipt标签式引入
+//            var myChart = echarts.init(document.getElementById(id));
+//
+//            // 过渡---------------------
+//            myChart.showLoading({
+//                text: '正在努力的读取数据中...',    //loading话术
+//            });
+//
+//            // ajax getting data...............
+//
+//            // ajax callback
+//            myChart.hideLoading();
+//
+//            // 图表使用-------------------
+//            var option = {
+//                calculable: true,
+//                grid: {
+//                    borderWidth: 0
+//                },
+//                xAxis: [
+//                    {
+//                        type: 'category',
+//                        show: true,
+//                        data: [{
+//                            value:'3C连锁',
+//                            textStyle:{
+//                                color:'#fff'
+//                            }
+//                        },{
+//                            value:'全国商超',
+//                            textStyle:{
+//                                color:'#fff'
+//                            }
+//                        },{
+//                            value:'TOP门店',
+//                            textStyle:{
+//                                color:'#fff'
+//                            }
+//                        },{
+//                            value:'旗舰店',
+//                            textStyle:{
+//                                color:'#fff'
+//                            }
+//                        },{
+//                            value:'渠道门店',
+//                            textStyle:{
+//                                color:'#fff'
+//                            }
+//                        },{
+//                            value:'电商',
+//                            textStyle:{
+//                                color:'#fff'
+//                            }
+//                        }],
+//                        axisLine:{
+//                            lineStyle:{
+//                                width:1,
+//                                color: '#393d46'
+//                            }
+//                        },
+//                        itemStyle: {normal: {color:'#fff'}},
+//                        splitLine: {
+//                            lineStyle: {
+//                                color: ['#ccc'],
+//                                width: 0,
+//                                type: 'solid'
+//                            }
+//                        }
+//                    },
+//                    {
+//                        type: 'category',
+//                        data: ['3C连锁','全国商超','TOP门店','旗舰店','渠道门店','电商'],
+//                        axisLine: {show:false},
+//                        axisTick: {show:false},
+//                        axisLabel: {show:false},
+//                        splitArea: {show:false},
+//                        splitLine: {show:false}
+//                    }
+//                ],
+//                yAxis: [
+//                    {
+//                        type: 'value',
+//                        show: false
+//                    }
+//                ],
+//
+//                series: [
+//                    {
+//                        name:'内销',
+//                        type:'bar',
+//                        barWidth:30,
+//                        barCategoryGap:180,
+//                        itemStyle: {normal: {color:'#49c7fa'}},
+//                        data:[20,50,70,80,50,60]
+//                    },
+//                    {
+//                        name:'外销',
+//                        type:'bar',
+//                        barWidth:30,
+//                        barCategoryGap:180,
+//                        itemStyle: {normal: {color:'#007463'}},
+//                        data:[100,120,80,90,130,150]
+//                    }
+//                ]
+//            };
+//            myChart.setOption(option);
+//        }
+        function getPie(id) {
+            // 图表实例化------------------
+            // srcipt标签式引入
+            var myChart = echarts.init(document.getElementById(id));
+
+            // 过渡---------------------
+            myChart.showLoading({
+                text: '正在努力的读取数据中...',    //loading话术
+            });
+
+            // ajax getting data...............
+
+            // ajax callback
+            myChart.hideLoading();
+
+            // 图表使用-------------------
+            var option = {
+                calculable: false,
+                series: [
+                    {
+                        name: '数据统计',
+                        type: 'pie',
+                        radius: [50, 70],
+
+                        // for funnel
+                        x: '5%',
+                        width: '80%',
+                        funnelAlign: 'center',
+                        itemStyle: {
+                            normal: {
+                                label : {
+                                    show : false
+                                },
+                                labelLine : {
+                                    show : false
+                                }
+                            }
+                        },
+                        data: [
+                            {
+                                value:20,
+                                name:'one',
+                                itemStyle:{
+                                    normal:{
+                                        color:'#49c7fa'
+                                    }
+                                }
+                            },
+                            {
+                                value:80,
+                                name:'two',
+                                itemStyle:{
+                                    normal:{
+                                        color:'#007463'
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            if(id == 'pie'){
+                stockService.getBiDetail(formatDate(dataNow)).done(function(data){
+                    console.log(data);
+                    var inSale = parseInt(data[1].ytd_amt);
+                    var outSale =  parseInt(data[2].ytd_amt);
+                    option.series[0].data =  [
+                        {
+                            value:inSale,
+                            name:'one',
+                            itemStyle:{
+                                normal:{
+                                    color:'#49c7fa',
+                                    fontSize:24
+                                }
+                            }
+                        },
+                        {
+                            value:outSale,
+                            name:'two',
+                            itemStyle:{
+                                normal:{
+                                    color:'#007463',
+                                    fontSize:24
+                                }
+                            }
+                        }
+                    ];
+                    console.log(option);
+                    myChart.setOption(option,true);
+                });
+            } else if(id == 'pie2'){
+                stockService.getBackDetail(formatDate(dataNow)).done(function(data){
+                    console.log(data);
+                    var inSale = parseInt(data[1].ytd_amt);
+                    var outSale = parseInt(data[2].ytd_amt);
+                    option.series[0].data =  [
+                        {
+                            value:inSale,
+                            name:'one',
+                            itemStyle:{
+                                normal:{
+                                    color:'#49c7fa',
+                                    fontSize:24
+                                }
+                            }
+                        },
+                        {
+                            value:outSale,
+                            name:'two',
+                            itemStyle:{
+                                normal:{
+                                    color:'#007463',
+                                    fontSize:24
+                                }
+                            }
+                        }
+                    ];
+                    myChart.setOption(option,true);
+                });
+            } else if(id == 'pie3'){
+                stockService.getInv(formatDate(dataNow)).done(function(data){
+                    console.log(data);
+                    var inSale =  parseInt(data[data.length - 2].inv_amt);
+                    var outSale =  parseInt(data[data.length - 1].inv_amt);
+                    option.series[0].data =  [
+                        {
+                            value:inSale,
+                            name:'one',
+                            itemStyle:{
+                                normal:{
+                                    color:'#49c7fa',
+                                    fontSize:24
+                                }
+                            }
+                        },
+                        {
+                            value:outSale,
+                            name:'two',
+                            itemStyle:{
+                                normal:{
+                                    color:'#007463',
+                                    fontSize:24
+                                }
+                            }
+                        }
+                    ];
+                    myChart.setOption(option,true);
+                });
+            }
+        }
+        function getBarOne(id) {
+            // 图表实例化------------------
+            // srcipt标签式引入
+            var myChart = echarts.init(document.getElementById(id));
+
+            // 过渡---------------------
+            myChart.showLoading({
+                text: '正在努力的读取数据中...',    //loading话术
+            });
+
+            // ajax getting data...............
+
+            // ajax callback
+            myChart.hideLoading();
+
+            // 图表使用-------------------
+            var option = {
+                calculable: true,
+                grid: {
+                    borderWidth: 0
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        show: true,
+                        data: [{
+                            value:'上月合计',
+                            textStyle:{
+                                color:'#fff',
+                                fontSize:24,
+                                fontFamily:'Microsoft YaHei'
+                            }
+                        },{
+                            value:'本月合计',
+                            textStyle:{
+                                color:'#fff',
+                                fontSize:24,
+                                fontFamily:'Microsoft YaHei'
+                            }
+                        }],
+                        axisLine:{
+                            lineStyle:{
+                                width:1,
+                                color: '#28313b'
+                            }
+                        },
+                        itemStyle: {normal: {color:'#fff'}},
+                        splitLine: {
+                            lineStyle: {
+                                color: ['#ccc'],
+                                width: 0,
+                                type: 'solid'
+                            }
+                        }
+                    },
+                    {
+                        type: 'category',
+                        data: ['上月合计','本月合计'],
+                        axisLine: {show:false},
+                        axisTick: {show:false},
+                        axisLabel: {show:false},
+                        splitArea: {show:false},
+                        splitLine: {show:false}
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        show: false
+                    }
+                ],
+
+                series: [
+                    {
+                        name: 'ECharts例子个数统计',
+                        type: 'bar',
+                        itemStyle: {normal: {color:'rgba(0,106,94,0.9)'}},
+                        data: [150,100],
+                        barWidth:30,
+                        barGap:30,
+                        boundaryGap: false
+                    },
+                    {
+                        name: 'ECharts例子个数统计',
+                        type: 'bar',
+                        itemStyle: {normal: {color:'rgba(73,199,250,0.9)'}},
+                        data: [50,50],
+                        xAxisIndex:1,
+                        barWidth:30,
+                        barGap:30,
+                        boundaryGap: false
+                    }
+                ]
+            };
+            if(id == 'bar'){
+
+                stockService.getSaleAll(formatDate(dataNow)).done(function(data,data2){
+                    console.log(data,data2);
+                    data = data[0];
+                    data2 = data2[0];
+                    var barList = [],barLsitOne = [];
+                    $('#sumBarAR').html(addPiont(data[0].mtd_amt));
+                    if(!getNumTF(data[0].mtd_amt_yoy)){
+                        $('#sumBarAVovR').addClass('fc-red');
+                    }
+                    $('#sumBarAVovR').html(formatNull(notNull(data[0].mtd_amt_yoy) + '%'));
+
+
+                    $('#AinHuanTs').html(addPiont(data[1].mtd_amt));
+                    if(!getNumTF(data[1].mtd_amt_yoy)){
+                        $('#AinTongTs').removeClass('fc-darkblue');
+                        $('#AinTongTs').addClass('fc-red');
+                    }
+                    $('#AinTongTs').html(formatNull(notNull(data[1].mtd_amt_yoy) + '%'));
+
+
+                    $('#AinHuanBs').html(addPiont(data[2].mtd_amt));
+                    if(!getNumTF(data[2].mtd_amt_yoy)){
+                        $('#AinTongBs').removeClass('fc-darkblue');
+                        $('#AinTongBs').addClass('fc-red');
+                    }
+                    $('#AinTongBs').html(formatNull(notNull(data[2].mtd_amt_yoy) + '%'));
+                    var thisIn = parseInt(data[1].mtd_amt);
+                    var thisOut =  parseInt(data[2].mtd_amt);
+                    var lastIn = parseInt(data2[1].lasm_total);
+                    var lastOut =  parseInt(data2[2].lasm_total);
+                    barList.push(lastIn);
+                    barList.push(thisIn);
+                    barLsitOne.push(lastOut);
+                    barLsitOne.push(thisOut);
+                    option.series[0].data = barLsitOne;
+                    option.series[1].data = barList;
+                    console.log(option);
+                    resetWH('bar');
+                    myChart.setOption(option,true);
+                });
+            } else if(id == 'bar2'){
+
+                stockService.getBackAll(formatDate(dataNow)).done(function(data,data2){
+                    console.log(data,data2);
+                    data = data[0];
+                    data2 = data2[0];
+                    var barList = [],barLsitOne = [];
+
+                    $('#sumBarBR').html(addPiont(data[0].mtd_amt));
+                    if(!getNumTF(data[0].mtd_amt_yoy)){
+                        $('#sumBarBVovR').addClass('fc-red');
+                    }
+                    $('#sumBarBVovR').html(formatNull(notNull(data[0].mtd_amt_yoy) + '%'));
+
+
+                    $('#BinHuanTs').html(addPiont(data[1].mtd_amt));
+                    if(!getNumTF(data[1].mtd_amt_yoy)){
+                        $('#BinTongTs').removeClass('fc-darkblue');
+                        $('#BinTongTs').addClass('fc-red');
+                    }
+                    $('#BinTongTs').html(formatNull(notNull(data[1].mtd_amt_yoy) + '%'));
+
+
+                    $('#BinHuanBs').html(addPiont(data[2].mtd_amt));
+                    if(!getNumTF(data[2].mtd_amt_yoy)){
+                        $('#BinTongBs').removeClass('fc-darkblue');
+                        $('#BinTongBs').addClass('fc-red');
+                    }
+                    $('#BinTongBs').html(formatNull(notNull(data[2].mtd_amt_yoy) + '%'));
+
+                    $('#biBSum').html(addPiont(data[0].ytd_amt));
+                    if(!getNumTF(data[0].ytd_amt_yoy)){
+                        $('#biBSumPer').removeClass('c-0084ff');
+                        $('#biBSumPer').addClass('fc-red');
+                    }
+                    $('#biBSumPer').html(formatNull(notNull(data[0].ytd_amt_yoy) + '%'));
+
+                    $('#biBIn').html(addPiont(data[1].ytd_amt));
+                    if(!getNumTF(data[1].ytd_amt_yoy)){
+                        $('#biBInPer').addClass('fc-red');
+                    }
+                    $('#biBInPer').html(formatNull(notNull(data[1].ytd_amt_yoy) + '%'));
+
+                    $('#biBOut').html(addPiont(data[2].ytd_amt));
+                    if(!getNumTF(data[2].ytd_amt_yoy)){
+                        $('#biBOutPer').addClass('fc-red');
+                    }
+                    $('#biBOutPer').html(formatNull(notNull(data[2].ytd_amt_yoy) + '%'));
+
+                    var thisIn = parseInt(data[1].mtd_amt);
+                    var thisOut =  parseInt(data[2].mtd_amt);
+                    var lastIn = parseInt(data2[1].lasm_total);
+                    var lastOut =  parseInt(data2[2].lasm_total);
+                    barList.push(lastIn);
+                    barList.push(thisIn);
+                    barLsitOne.push(lastOut);
+                    barLsitOne.push(thisOut);
+                    option.series[0].data = barLsitOne;
+                    option.series[1].data = barList;
+                    console.log(option);
+                    resetWH('bar2');
+                    myChart.setOption(option,true);
+                });
+            } else if(id == 'bar3'){
+
+                stockService.getInv(formatDate(dataNow)).done(function(data){
+                    console.log('getInv',data);
+                    var sumB = [],saleOutB = [],saleInB = [],barList= [],barLsitOne =[];
+                    for(var j = 0;j<data.length;j++) {
+                        if(data[j].direct_code == '合计'){
+                            sumB.push(data[j]);
+                        } else if(data[j].direct_code == '出口'){
+                            saleOutB.push(data[j]);
+                        } else if(data[j].direct_code == '内销'){
+                            saleInB.push(data[j]);
+                        }
+                    }
+                    console.log('getInv',sumB,saleOutB,saleInB);
+
+                    $('#biCSum').html(addPiont(sumB[sumB.length-2].inv_amt));
+                    $('#biCSumPer').html(formatNull(notNull(sumB[sumB.length-2].inv_amt_yoy) + '%'));
+
+                    $('#biCIn').html(addPiont(saleInB[saleInB.length-2].inv_amt));
+                    $('#biCInPer').html(formatNull(notNull(saleInB[saleInB.length-2].inv_amt_yoy) + '%'));
+
+                    $('#biCOut').html(addPiont(saleOutB[saleOutB.length-2].inv_amt));
+                    $('#biCOutPer').html(formatNull(notNull(saleOutB[saleOutB.length-2].inv_amt_yoy) + '%'));
+
+                    var thisIn = parseInt(saleInB[saleInB.length -2].inv_amt);
+                    var thisOut =  parseInt(saleOutB[saleOutB.length -2].inv_amt);
+                    var lastIn = parseInt(saleInB[saleInB.length -1].inv_amt);
+                    var lastOut =  parseInt(saleOutB[saleOutB.length -1].inv_amt);
+                    barList.push(thisIn);
+                    barList.push(lastIn);
+                    barLsitOne.push(thisOut);
+                    barLsitOne.push(lastOut);
+                    option.series[0].data = barLsitOne;
+                    option.series[1].data = barList;
+                    console.log(option);
+                    resetWH('bar3');
+                    myChart.setOption(option,true);
+                });
+            }
+            myChart.setOption(option);
+        }
+
+//        getPie('pie');
+//        getPie('pie2');
+//        getPie('pie3');
+//        getBarOne('bar');
+//        getBarOne('bar2');
+//        getBarOne('bar3');
+//
+//        getBar('bar4');
+//        getEChart('main');
+//        getEChart('main2');
+//        getEChart('main3');
+//        getEChart('main4');
+
+        setTimeout("initChart()",100);
+
+        setInterval('initChart()',300000);
+        setInterval('goOther()',180000);
+        function initChart(){
+            getPie('pie');
+            getPie('pie2');
+            getPie('pie3');
+            getBarOne('bar');
+            getBarOne('bar2');
+            getBarOne('bar3');
+//
+//        getBar('bar4');
+            getEChart('main');
+            getEChart('main2');
+            getEChart('main3');
+            getEChart('main4');
+        }
+
+        function goOther(){
+            window.location.href = "http://10.16.26.166:8080/pentaho/kdisplay/No3.html";
+        }
+
+        window.onresize=function(){
+            window.location.href =  window.location.href;
+        }
+
+        //        function first(){
+//            var params = 'sz000418';
+//            var url = 'http://10.73.164.48:8080/cxo/GetStock.do?stockid='+ params;
+//            console.log(url);
+//            $.ajax({
+//                url:url,
+//                type:'GET',
+//                async:true,
+//                success: function(data){
+//                    console.log(data);
+//                    var reg = /^null\(|\)|\;/g;
+//                    var a = data.replace(reg, '');
+//                    console.log(JSON.parse(a));
+//                    a = JSON.parse(a);
+//                    $('#sharesBToday').html(a.today_open);
+//                    $('#sharesBYesterday').html(a.yesterday_close);
+//                    $('#sharesBHigh').html(a.today_high_price);
+//                    $('#sharesBLow').html(a.today_low_price);
+//                    $('#sharesBNum').html(dealNum(a.deal_num));
+//                    $('#sharesBMoney').html(dealNum(a.deal_money));
+////                    console.log(JSON.parse(data));
+//                },
+//                error:function(data){console.log('miss');}
+//            });
+//        }
+//        first();
+        initData();
+        initChart();
+//        function initData() {
+//            var code = 'sz000418';
+//            stockService.getStock('sz000418').done(function(data) {
+//                console.log(data);
+//                var a = data;
+//                $('#sharesBToday').html(a.today_open);
+//                $('#sharesBYesterday').html(a.yesterday_close);
+//                $('#sharesBHigh').html(a.today_high_price);
+//                $('#sharesBLow').html(a.today_low_price);
+//                $('#sharesBNum').html(dealNum(a.deal_num));
+//                $('#sharesBMoney').html(dealNum(a.deal_money));
+//            }).fail(function() {
+//                alert('获取' + code + '的数据出错了');
+//            });
+//        }
+//
+//        initData();
+
+    </script>
+</body>
+</html>

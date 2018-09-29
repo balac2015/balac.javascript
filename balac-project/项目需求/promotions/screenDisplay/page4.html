@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!--<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+    <title>大屏展示</title>
+    <script src="js/flexible/fix.js"></script>
+    <script src="js/flexible/flexible.js"></script>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <!--<script src="http://192.168.1.116:8088/target/target-script-min.js#anonymous"></script>-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/fastclick.min.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script src="js/chart.js"></script>
+    <script>
+        $(function() {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="js/project/configuration.properties.js"></script>
+    <script src="js/zyf.js"></script>
+</head>
+<body  style="cursor: pointer">
+<div class="moni">
+<div class="common-content">
+    <div class="common-box pos0">
+        <div class="common-box0 bg-fen">
+            <div>
+                <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                    进销存
+                </div>
+                <div class="xy-frame-unit fl">
+                    <div class="unit-money fl-r mr-100">单位：亿</div>
+                </div>
+            </div>
+
+                <div class="pos-re">
+                    <div class="ab-stock top-370">
+                        15
+                    </div>
+                    <div class="ab-distribution top-150">
+                        7
+                    </div>
+                    <div class="ab-goods top-480">
+                        8
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="common-box pos1">
+        <div class="common-box1">
+            <div class="title-box txt-left xy-frame-m-l bg-none">
+                提货进度与同比
+            </div>
+            <!-- <div class="first-box-content">
+                 <div class="unit-money">单位：万元</div>
+             </div>-->
+            <!-- 这父元素要需加上相对定位-->
+            <div class="xy-frame-arrow xy-frame-arrow-blue xy-frame-m-l pos-re">
+                <div class="xy-frame-hor-txt-div xy-framte-txt-postion1">
+                    <div class="xy-frame-circle fl-l">
+                    </div>
+                    <div class="fl-l ml-10">中央</div>
+                    <div class="fl-l xy-frame-txt-clr ml-40">同比：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">36%</div>
+                    <div class="fl-l xy-frame-txt-clr xy-frame-txt-ml">进度：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">64%</div>
+                </div>
+                <div class="xy-frame-hor-txt-div xy-framte-txt-postion2">
+                    <div class="xy-frame-circle fl-l">
+                    </div>
+                    <div class="fl-l ml-10">冰箱</div>
+                    <div class="fl-l xy-frame-txt-clr ml-40">同比：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">36%</div>
+                    <div class="fl-l xy-frame-txt-clr xy-frame-txt-ml">进度：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">64%</div>
+                </div>
+                <div class="xy-frame-hor-txt-div xy-framte-txt-postion3">
+                    <div class="xy-frame-circle fl-l">
+                    </div>
+                    <div class="fl-l ml-10">环电</div>
+                    <div class="fl-l xy-frame-txt-clr ml-40">同比：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">36%</div>
+                    <div class="fl-l xy-frame-txt-clr xy-frame-txt-ml">进度：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">64%</div>
+                </div>
+                <div class="xy-frame-hor-txt-div xy-framte-txt-postion4">
+                    <div class="xy-frame-circle fl-l">
+                    </div>
+                    <div class="fl-l ml-10">家用</div>
+                    <div class="fl-l xy-frame-txt-clr ml-40">同比：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">36%</div>
+                    <div class="fl-l xy-frame-txt-clr xy-frame-txt-ml">进度：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">64%</div>
+                </div>
+                <div class="xy-frame-hor-txt-div xy-framte-txt-postion5">
+                    <div class="xy-frame-circle fl-l">
+                    </div>
+                    <div class="fl-l ml-10">洗衣机</div>
+                    <div class="fl-l xy-frame-txt-clr ml-40">同比：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">36%</div>
+                    <div class="fl-l xy-frame-txt-clr xy-frame-txt-ml">进度：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">64%</div>
+                </div>
+                <!--下面-->
+                <div class="xy-frame-hor-txt-div xy-framte-txt-postion6">
+                    <div class="xy-frame-circle fl-l">
+                    </div>
+                    <div class="fl-l ml-10">生活</div>
+                    <div class="fl-l xy-frame-txt-clr ml-40">同比：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">36%</div>
+                    <div class="fl-l xy-frame-txt-clr xy-frame-txt-ml">进度：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">64%</div>
+                </div>
+                <div class="xy-frame-hor-txt-div xy-framte-txt-postion7">
+                    <div class="xy-frame-circle fl-l">
+                    </div>
+                    <div class="fl-l ml-10">厨电</div>
+                    <div class="fl-l xy-frame-txt-clr ml-40">同比：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">36%</div>
+                    <div class="fl-l xy-frame-txt-clr xy-frame-txt-ml">进度：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">64%</div>
+                </div>
+                <div class="xy-frame-hor-txt-div xy-framte-txt-postion8">
+                    <div class="xy-frame-circle fl-l">
+                    </div>
+                    <div class="fl-l ml-10">热水器</div>
+                    <div class="fl-l xy-frame-txt-clr ml-40">同比：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">36%</div>
+                    <div class="fl-l xy-frame-txt-clr xy-frame-txt-ml">进度：</div>
+                    <div class="fl-l xy-frame-txt-clr ml-10">64%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="common-box pos2">
+        <div class="common-box2">
+            <div>
+                <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                    分销额及分销提货比
+                </div>
+                <div class="xy-frame-unit fl">
+                    <div class="fl-l pl-130">
+                        <div class="text-left"><img src="images/blue.png" class="img-bottom">年度目标 <img src="images/line-orange.png" class="img-bottom ml-70">分销提货比</div>
+                    </div>
+                    <div class="unit-money fl-l ml-100">单位：万元</div>
+                </div>
+            </div>
+
+            <div>
+                <div class=" fl-l page5-bar-style" id="page4-bar-one">
+
+                </div>
+                <div class="fl-r mr-95 page5-menu5-box">
+                    <ul class="page5-menu" id="page5-menu-1">
+                        <li class="active">年度累计</li>
+                        <li>月度累计</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="common-box pos3">
+        <div class="common-box3">
+            <div>
+                <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                    分销额及分销提货比
+                </div>
+                <div class="xy-frame-unit fl">
+                    <div class="fl-l pl-130">
+                        <div class="text-left"><img src="images/blue.png" class="img-bottom">年度目标 <img src="images/line-orange.png" class="img-bottom ml-70">分销提货比</div>
+                    </div>
+                    <div class="unit-money fl-l ml-100">单位：万元</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="bar-hole-shu" id="page4-bar-two">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="back-main">-->
+
+<!--</div>-->
+
+</div>
+<!--<div class="left-place">-->
+    <!--<div class="left-go">-->
+        <!--<a href="http://10.16.26.166:8080/pentaho/kdisplay/No3.html">-->
+
+        <!--</a>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div class="right-place">-->
+    <!--<div class="right-go">-->
+        <!--<a href="http://10.16.26.166:8080/pentaho/kdisplay/No3.html">-->
+
+        <!--</a>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<script>
+    var echartsInstance= {};
+    function getBarPage4(id) {
+        // 图表实例化------------------
+        // srcipt标签式引入
+        var myChart = echartsInstance.init(document.getElementById(id));
+
+        // 过渡---------------------
+        myChart.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+
+        // ajax getting data...............
+
+        // ajax callback
+        myChart.hideLoading();
+
+        // 图表使用-------------------
+        var option = {
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    axisLine:{
+                        show:false
+                    },
+                    data : ['家电','厨电','洗衣机','冰箱','生活','热水器','环电','中央'],
+                    axisLabel:{
+                        textStyle:{
+                            color:'#fff'
+                        }
+                    }
+
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    name : '水量',
+                    axisLabel: {
+                        textStyle: {
+                            color: '#8393aa'
+                        }
+                    },
+                    axisLine:{
+                        lineStyle:{
+                            width:1,
+                            color: '#393d46'
+                        }
+                    }
+                },
+
+                {
+                    type : 'value',
+                    name : '温度',
+                    axisLabel : {
+                        textStyle: {
+                            color: '#8393aa'
+                        }
+                    },
+                    axisLine:{
+                      show:false
+                    }
+                }
+            ],
+            series : [
+                {
+                    name:'降水量',
+                    type:'bar',
+                    barWidth:30,
+                    itemStyle: {normal: { color : (function (){
+                        var zrColor = require('zrender/tool/color');
+                        return zrColor.getLinearGradient(
+                                0, 400, 0, 300,
+                                [[0, '#fa560d'],[1, '#fd964a']]
+                        )
+                    })(),label : {show: true, position: 'top',textStyle:{color:'#fff'}}}},
+                    data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2]
+                },
+                {
+                    name:'平均温度',
+                    type:'line',
+                    yAxisIndex: 1,
+                    itemStyle:{normal:{color:'#ff3a38',lineStyle:{color:'#fa9010'}}},
+                    data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4]
+                }
+            ]
+        };
+        myChart.setOption(option);
+    }
+    setTimeout("initChart()",100);
+
+    setInterval('initChart()',300000);
+    function initChart(){
+        getBarPage4('page4-bar-one');
+        getBarPage4('page4-bar-two')
+    }
+    initData();
+    initChart();
+</script>
+</body>
+</html>

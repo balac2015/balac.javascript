@@ -1,0 +1,113 @@
+//
+   Created by yu869 on 2015/10/27.
+
+extends ../layouts/vendor
+block header
+//应用的page title
+block pageTitle
+  h1 加盟商申请
+    small 加盟商申请信息
+block main
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title 申请信息
+    .panel-body
+      div#storeEdit.row
+        div.col-md-12
+          form#franchiseeForm.form-horizontal(name='franchiseeForm',  method='post')
+            input#_id(type='hidden', name='_id', value='#{fran._id}')
+            input#_csrf(type='hidden', name='_csrf', value=_csrf)
+            div.form-group
+              label.control-label.col-xs-4 申请人:
+              div.col-xs-8.form-control-static.form-control-static
+                span #{fran.fullname}
+            div.form-group
+              label.control-label.col-xs-4 身份证:
+              div.col-xs-8.form-control-static.form-control-static
+                span #{fran.numberID}
+            div.form-group
+              label.control-label.col-xs-4 移动电话:
+              div.col-xs-8.form-control-static
+                span #{fran.mobile}
+            div.form-group
+              label.control-label.col-xs-4 邮箱:
+              div.col-xs-8.form-control-static
+                span #{fran.email}
+            div.form-group
+              label.control-label.col-xs-4 申请时间:
+              div.col-xs-8.form-control-static
+                span #{formatDatetime(fran.applyTime)}
+            div.form-group
+              label.control-label.col-xs-4 审核状态:
+              div.col-xs-8.form-control-static
+                span.label.label-success #{fran.approvedStatus == '02' ? "通过" : fran.approvedStatus == '01' ? "待审核" : "未通过"}
+            if fran.approvedBy != null && fran.approvedBy != ''
+              div.form-group
+                label.control-label.col-xs-4 审核时间:
+                div.col-xs-8.form-control-static
+                  span #{formatDatetime(fran.approvedTime)}
+  .box.box-widget
+    .box-header.with-border
+      h3.box-title 服务主体信息
+      .box-tools.pull-right
+        //a.btn.btn-xs.btn-default.addSchool(href='#' title='添加服务主体')
+        //  spn 添加服务主体
+    .box-body
+      form#schoolDelForm(method='post', style='display:none', action='/vendor/delSchool')
+        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+        input#index(type='hidden', name='index', value="")
+        input#id(type="hidden", name='id', value="")
+      each v,i in fran.school
+        .box-header
+          h4 #{(i+1) + '.' + v.schoolName}
+          .box-tools.pull-right
+            //a.btn.btn-xs.btn-info(href="/vendor/editSchool?&index=#{i}",title='修改学校')
+            //  i.fa.fa-edit
+            //| &nbsp;
+            //a.btn.btn-xs.btn-danger.del(title='删除学校',onclick="del(#{i})",data-toggle='modal' data-target='#delSchool' aria-label='Left Align')
+            //  i.fa.fa-trash-o
+            //| &nbsp;
+        .portlet-body.form
+          div.form.form-horizontal
+            div.form-group
+              label.control-label.col-xs-4 学校名称:
+              div.col-xs-8.form-control-static
+                span #{v.schoolName}
+            div.form-group
+              label.control-label.col-xs-4 所在省市:
+              div.col-xs-8.form-control-static
+                span #{v.ubietyAddress}
+            div.form-group
+              label.control-label.col-xs-4 预计客户数量:
+              div.col-xs-8.form-control-static
+                span #{v.stuNum}
+            div.form-group
+              label.control-label.col-xs-4 洗衣机数量:
+              div.col-xs-8.form-control-static
+                span #{v.washerNum}
+
+
+    //应用添加的脚本在scripts block中定义
+block scripts
+  script.
+    $(document).ready(function () {
+      $(".btn.addSchool").on('click', function(){
+        var stauts = "#{fran.approvedStatus}";
+        if (stauts != '02'){
+          bootbox.alert("未审核通过的加盟商不允许添加服务主体!");
+        } else {
+          window.location = '/vendor/editSchool';
+        }
+      })
+    });
+
+    function del(index){
+      $("#schoolDelForm #index").val(index);
+      if (id) {
+        bootbox.confirm("确定要删除数据吗?", function (result) {
+          if (result) {
+            $("#schoolDelForm").submit();
+          }
+        });
+      }
+    }

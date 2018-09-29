@@ -1,0 +1,21 @@
+{
+  "name": "mobile-app-package",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.5.0",
+    "gulp": "^3.8.7",
+    "gulp-svg-sprite": "*",
+    "gulp-requirejs": "*",
+    "requirejs": "*",
+	"url": "*",
+	"fs": "*",
+	"path": "*",
+	"gulp-plumber": "*",
+	"gulp-clean": "*",
+	"gulp-replace": "*",
+	"gulp-rename": "*"
+  },
+  "devDependencies": {
+    "gulp-svg-sprite": "^1.2.9"
+  }
+}

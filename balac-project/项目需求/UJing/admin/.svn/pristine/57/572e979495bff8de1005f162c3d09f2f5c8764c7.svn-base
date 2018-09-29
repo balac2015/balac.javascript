@@ -1,0 +1,94 @@
+// Small boxes (Stat box)
+extends ../layouts/default
+//应用的page title
+block pageTitle
+  h1 仪表盘
+    small
+block main
+  .row
+    .col-lg-3.col-xs-12
+      // small box
+      .small-box.bg-aqua
+        .inner
+          h3
+            p 活动：#{countNum.franchiseeCount}
+            p 新增：#{countNum.countNewFran}
+          p 加盟商数量
+        .icon
+          i.ion.ion-person-add
+        a.small-box-footer(href='/franchisee/list')
+          | More info
+          i.fa.fa-arrow-circle-right
+    // ./col
+    .col-lg-3.col-xs-12
+      // small box
+      .small-box.bg-yellow
+        .inner
+          h3
+            | #{countNum.storeCount}
+            sup(style='font-size: 20px')
+          p 店铺的数量
+        .icon
+          i.ion.ion-pie-graph
+        a.small-box-footer(href='/store/list')
+          | More info
+          i.fa.fa-arrow-circle-right
+    // ./col
+    .col-lg-3.col-xs-12
+      // small box
+      .small-box.bg-green
+        .inner
+          h3 #{countNum.orderOkCount}
+          p 今日已完成的订单
+        .icon
+          i.ion.ion-bag
+        a.small-box-footer(href='/order/todayOrder')
+          | More info
+          i.fa.fa-arrow-circle-right
+    .col-lg-3.col-xs-12
+      // small box
+      .small-box.bg-red
+        .inner
+          h3 #{countNum.orderAllowance == null ? '0:00':countNum.orderAllowance.toFixed(2)} | #{countNum.realIincome == null ? '0:00':countNum.realIincome.toFixed(2)}
+          p 今日完成订单的金额 | 实际收入金额
+        .icon
+          i.ion.ion-pie-graph
+        a.small-box-footer(href='/order/list')
+          | More info
+          i.fa.fa-arrow-circle-right
+
+  .row
+    .col-lg-3.col-xs-12
+      div.small-box.bg-green
+        div.small-box-footer
+          | 今日成交额TOP 10 加盟商
+      div
+        table.table.table-hover.table-bordered
+          thead
+            tr
+              th #
+              th 加盟商名称
+              th.text-center 成交额
+          each fran,i in countNum.topByFran
+            tr
+              td #{i+1}
+              td #{fran.franchiseeName}
+              td.text-center #{fran.allowance.toFixed(2)}
+    .col-lg-3.col-xs-12
+      div.small-box.bg-aqua
+        div.small-box-footer
+          | 今日成交额TOP 10 店铺
+      div
+        table.table.table-hover.table-bordered
+          thead
+            tr
+              th #
+              th 店铺名称
+              th.text-center 成交额
+          each store,i in countNum.topByStore
+            tr
+              td #{i+1}
+              td #{store.storeName}
+              td.text-center #{store.allowance.toFixed(2)}
+    // ./col
+  // /.row

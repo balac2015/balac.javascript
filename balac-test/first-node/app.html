@@ -1,0 +1,35 @@
+<script src="./lib/jquery.js"></script>
+
+<script>
+
+var request = function (type, config, callback, err) {
+
+	$.ajax({
+		type: type,
+		url: 'http://localhost:3300/',
+		dataType: 'json',
+		data: {
+			id: +new Date(),
+			name: type
+		},
+		success: function (data) {
+			console.log(type + ': %o', data);
+		},
+		error: function (data) {
+
+			if (!!err) {
+				err(data);
+			}
+		}
+	})
+};
+request('get');
+request('post');
+request('put');
+request('delete');
+request('options');
+
+
+
+
+</script>

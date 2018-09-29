@@ -1,0 +1,100 @@
+//
+   Created by yu869 on 2015/10/27.
+
+extends ../layouts/vendor
+block header
+//应用的page title
+block pageTitle
+  h1 加盟商学校
+    small 加盟商学校添加和申请加盟
+block main
+  .box.box-primary
+    .box-header.with-border
+      h2.box-title 加盟商学校信息
+      .box-tools.pull-right
+        a.btn.btn-xs.btn-primary(href='/vendor/franchApply' title='返回信息页面')
+          i.fa.fa-reply
+    each v,i in fran.school
+      div.box.box-primary
+        div.box-header.with-border
+          i.fa.fa-hospital-o
+          span #{v.schoolName}
+          .box-tools.pull-right
+            a.btn.btn-xs.btn-info(href="/vendor/editSchool?&index=#{i}",title='修改学校')
+              i.fa.fa-edit
+            | &nbsp;
+            a.btn.btn-xs.btn-danger(title='删除学校',onclick="del(#{i})",data-toggle='modal' data-target='#delSchool' aria-label='Left Align')
+              i.fa.fa-trash-o
+            | &nbsp;
+      div.portlet-body.form
+        form.form-horizontal(action="#")
+          div.form-body
+            div.form-group
+              label.control-label.col-md-3 学校名称:
+              div.col-md-8
+                span #{v.schoolName}
+            div.form-group
+              label.control-label.col-md-3 所在省市:
+              div.col-md-8
+                span #{v.ubietyAddress}
+            div.form-group
+              label.control-label.col-md-3 管理主体:
+              div.col-md-8
+                span #{v.mgSubject}
+    a#addSchool.btn.btn-block.btn-primary(href="/vendor/editSchool",title='添加学校')
+      i.fa.fa-plus-circle
+      span &nbsp;添加学校
+
+    if fran.school != null && fran.school.length >0
+      a#apply.btn.btn-block.btn-primary(title='提交申请加盟信息',data-toggle='modal' data-target='#applyFranchisee' aria-label='Left Align')
+        i.fa.fa-check
+        span &nbsp;提交审批
+
+
+
+      #delSchool.modal.fade.text-center(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog.modal-lg(style="display: inline-block; width: auto;")
+          .modal-content
+            .container
+              .modal-body
+                .row.clearfix
+                  .col-md-6.column
+                      form#ratioForm.form-horizontal(action='/vendor/delSchool',name='ratioForm',method='post')
+                          input#id(type="hidden", name='id', value="")
+                          input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                          input#index(type='hidden', name='index', value="")
+                          div.form-group
+                            span.control-label
+                              | 您确定要删除该学校信息吗？
+                    .center-block.pull-right
+                      | &nbsp;&nbsp;&nbsp;
+                      button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                      | &nbsp;&nbsp;&nbsp;
+                      button.btn.btn-success(type="submit") 确定
+
+      #applyFranchisee.modal.fade.text-center(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog.modal-lg(style="display: inline-block; width: auto;")
+          .modal-content
+            .container
+              .modal-body
+                .row.clearfix
+                  .col-md-6.column
+                      div.form-group
+                        span.control-label
+                          | 信息一旦提交，所有数据将不可修改，您还需要继续提交信息吗？请确定...
+                    .center-block.pull-right
+                      | &nbsp;&nbsp;&nbsp;
+                      a.btn.btn-primary( data-dismiss='modal', aria-hidden='false') 取消
+                      | &nbsp;&nbsp;&nbsp;
+                      a.btn.btn-success(href='/vendor/applyFranchisee',) 确定
+
+block scripts
+  script.
+    $(document).ready(function () {
+      $("#apply").on('click',function(){
+       // window.location="/vendor/applyFranchisee";
+      });
+    });
+    function del(index){
+      $("#index").val(index);;
+    }

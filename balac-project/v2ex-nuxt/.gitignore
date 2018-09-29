@@ -1,0 +1,24 @@
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# Workbox
+static/sw.js
+static/workbox-sw*.js
+
+# build
+build
+
+# System Files
+.DS_Store
+
+# nyc
+.nyc_output

@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ieaseMusic</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        if (process.env.HOT) {
+            let script = document.createElement('script');
+            let port = process.env.PORT || 3001;
+
+            script.async = '';
+            script.src = `http://localhost:${port}/dist/bundle.js`;
+
+            document.body.appendChild(script);
+        }
+
+        document.addEventListener('dragover', e => e.preventDefault(), false);
+        document.addEventListener('drop', e => e.preventDefault(), false);
+    </script>
+</body>
+</html>

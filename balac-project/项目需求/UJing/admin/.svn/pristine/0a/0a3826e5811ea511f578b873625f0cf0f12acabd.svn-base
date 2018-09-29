@@ -1,0 +1,72 @@
+//
+   Created by yu869 on 2015/11/10.
+
+extends ../layouts/vendor
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+  h1 洗衣店统计订单
+    small 您洗衣店的订单统计
+block main
+  .box
+    .box-header.with-border
+      h3.box-title 按月份统计订单的查看
+      | &nbsp;
+      a.btn.btn-xs.btn-default(href='/vendor/orderDayReport' title='按日期查看统计')
+        span 日期
+    div.col-md-12
+      div#datetimepicker.input-append.date.col-md-8
+        input#createDate(type="text" value='#{dateText}')
+        span#dateText(style='color:red')
+        button.btn.btn-xs.btn-danger
+          i.fa.fa-calendar
+      div.pull-right
+        button#search.btn.btn-xs.btn-primary(title='搜索')
+          i.fa.fa-search
+          span 搜索
+    .panel-body
+      div.row
+        div.col-md-12
+          p.
+          each sm in sumMonth
+            h3
+              #{sm.franchisee}
+            div.well
+              ul
+                li 洗衣店 : #{sm.storeName}
+                li 总订单数 : #{sm.total}
+                li 预约订单数 : #{sm.reservationNum}
+                li 未支付订单数 : #{sm.noPayNum}
+                li 使用中订单数 : #{sm.usingNum}
+                li 已完成订单数 : #{sm.completedNum}
+                li 已取消订单数 : #{sm.cancelNum}
+                li 支付金额 : #{sm.allowance.toFixed(2)}
+                li 金额 : #{sm.amount.toFixed(2)}
+                li 日期 : #{formatDate(sm.month).substring(0,7)}
+
+block scripts
+  script(src='/plugins/datepicker/bootstrap-datepicker.js')
+  script.
+    $(document).ready(function () {
+      //$('#createDate').val("");
+      var dates=$('#datetimepicker').datepicker({
+        format: "yyyy-mm",
+        language: 'cn',
+        weekStart: 1,
+        autoclose: true,
+        todayBtn: 'linked'
+      }).on('changeDate',function(ev){
+        $('#createDate').val(ev.date);
+      });
+      $('#search').on("click",function(e){
+        var date=$('#createDate').val();
+        if(date!=''){
+            $('#dateText').html('');
+            window.location="/vendor/vendorMonthList?&dateText="+date
+        }else{
+            $('#dateText').html("请输入时间");
+        }
+      });
+
+    })

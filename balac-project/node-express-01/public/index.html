@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="index_entry">index_entry 接口：</button>
+
+    <script src="jquery.js"></script>
+    <script>
+        $('#index_entry').on('click', function () {
+            $.ajax({
+                url: 'http://127.0.0.1:8001/v2/index_entry',
+                type: 'GET',
+                success: function (msg) {
+                    console.log( msg )
+                }
+            })
+        })
+    </script>
+</body>
+</html>

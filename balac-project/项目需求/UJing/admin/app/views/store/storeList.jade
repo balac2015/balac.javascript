@@ -1,0 +1,314 @@
+//
+   Created by yu869 on 2015/10/26.
+
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+  h1 洗衣店管理
+    small 添加，删除，更新，分成比例，审核系统中洗衣店信息
+block main
+  .box
+    .box-header.with-border
+      h3.box-title 洗衣店列表
+      | &nbsp;
+      a.btn.btn-xs.btn-default(href='/store/waitList' title='查看未审核的加盟商')
+        span 未审核
+      //.pull-right
+      //  a.btn.btn-xs.btn-primary(href='#',onclick='audit()')
+      //    i.fa.fa-check
+      //    span 资格审核
+      //  | &nbsp;
+      .pull-right
+        a.btn.btn-xs.btn-primary(href='/store/add')
+          i.fa.fa-plus
+          span 添加洗衣店
+        | &nbsp;
+    .panel-body
+
+      form#storeDelForm(method='post', style='display:none', action='/store/del')
+        input#ids(type='hidden',name='ids')
+        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+      form#storeAuditForm(method='post', style='display:none', action='/store/audit')
+        input#ids(type='hidden',name='ids')
+        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+      table#storesList.table.table-bordered.table-hover.table-striped(style="width:100%")
+        thead
+          th #
+          th 编号
+          th 名称
+          th 加盟商
+          th 详细地址
+          th 经度,纬度
+          th 审核资格
+          th 分成比例
+          th 标签
+          th 操作
+        tbody
+  #myModal.modal.fade.aria-hidden(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .container
+          .modal-body
+            .row.clearfix
+              .col-md-12.column
+                form#ratioForm.form-horizontal(action='/store/ratio',name='ratioForm',method='post')
+                  input#id(type="hidden", name='id', value="")
+                  input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+                  #articleTitleDiv.form-group.has-success
+                    | &nbsp;&nbsp;&nbsp;
+                    label(for='articleTitle') 分成比例:
+                    input#ratio.form-control(type='number',name='ratio',placeholder='分成比例',style="width:30%",maxlength=5,required)
+
+                  .center-block
+                    | &nbsp;&nbsp;&nbsp;
+                    button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                    | &nbsp;&nbsp;&nbsp;
+                    button.btn.btn-success(type="submit") 保存
+
+  #moreModal.modal.fade.text-center(tabindex='-1', role='dialog', aria-labelledby='moreModalLabel', aria-hidden='true')
+    .modal-dialog.modal-lg(style="display: inline-block; width: auto;")
+      .modal-content
+        .container
+          .modal-header
+            h3.text-left
+              span#title
+          .modal-body
+            .row.clearfix
+              .col-md-12
+                table#deviceList.table.table-bordered.table-hover.table-striped(style="width:100%")
+                  thead
+                    th 洗衣店
+                    th 设备名称
+                    th 设备类型
+                    th 设备编号
+                    th 设备型号
+                    th 是否占用
+                    th 使用时间
+                  tbody
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datatables/jquery.dataTables.min.js')
+  script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+  script.
+    $(document).ready(function () {
+      $('#storesList').dataTable({
+        "language": {
+          "url": "/plugins/datatables/Chinese.json"
+        },
+        select: true,
+        searching: true,
+        processing: true,
+        serverSide: true,
+        scrollX:true,
+        ajax: {url: '/store/datatable'},
+        rowid: '_id',
+        columnDefs: [
+          {targets: 0, visible: false, orderable: false, width: 80},
+          {
+            targets: -3,
+            visible: true,
+            orderable: true,
+            width: 80,
+            render: function(data, type, row ) {
+              var msg = row.ratio;
+              if (msg){
+                msg = msg + "%";
+              }
+              return msg;
+            }
+          },
+          {
+            targets: -2,
+            visible: true,
+            orderable: false,
+            width: 80,
+            render: function(data, type, row ) {
+              var label = row.label.split(',');
+              var returnString = "";
+              label.forEach(function (item) {
+                returnString += "<span class='label label-success'>"+item+"</span>&nbsp;";
+              })
+              return returnString;
+            }
+          },
+          {
+            targets: -4,
+            visible: true,
+            orderable: true,
+            width: 150,
+            render: function (data, type, row) {
+              var status = row.storeStatus;
+              if ( status === '0' ) {
+                return "未审核";
+              } else if ( status === '1' ) {
+                return "已审核";
+              }
+
+            }
+          },
+          {
+            targets: -1,
+            visible: true,
+            orderable: false,
+            width: 100,
+            render: function(data, type, row ) {
+              var id = row._id;
+              return "<button id='editrow' class='btn btn-default btn-xs' title='修改' type='button' onclick=edit('" + id + "')><i class='fa fa-edit'></i></button>"
+                + "<button id='delrow' class='btn btn-default btn-xs' title='删除' type='button' onclick=del('" + id + "')><i class='fa fa-trash-o'></i></button>"
+                + "<button id='ratio' class='btn btn-default btn-xs' title='分成比例' type='button' onclick=ratio('" + id + "'," + row.storeStatus + ")><i class='fa fa-pie-chart'></i></button>"
+                + "<button id='more' class='btn btn-default btn-xs' title='查看设备' type='button' onclick=more('" + id + "','" + row.name + "')><i class='fa fa-ellipsis-h'></i></button>";
+            }
+          }
+        ],
+        columns: [
+          {data: "_id"},
+          {data: "no", defaultContent: ''},
+          {data: "name", defaultContent: ''},
+          {data: "franchiseeId.fullname", defaultContent: ''},
+          {data: "address", defaultContent: ''},
+          {data: "coordinate", defaultContent: ''},
+          {data: "storeStatus", defaultContent: ''},
+          {data: "ratio", defaultContent: ''},
+          {data: "label", defaultContent: ''},
+          {data: ""}
+        ]
+      });
+
+      $("#ratioForm").validate({
+        rules: {
+          ratio: {
+            required: true
+            ,priceNum: true
+            ,min: 0
+            ,max: 100
+          }
+        },
+        messages: {
+          ratio: {
+            required:"分成比例必填！"
+            ,min: "最小值为0！"
+            ,max: "最大值为100！"
+          }
+        }
+      });
+
+      createTable();
+
+    });
+
+    function edit(id) {
+      window.location = "/store/edit/" + id;
+    }
+
+    function del(id) {
+      $("#storeDelForm #ids").val(id);
+      if (id) {
+        bootbox.confirm("确定要删除数据吗?", function(result) {
+          if (result) {
+            $("#storeDelForm").submit();
+          }
+        });
+      }
+    }
+
+    function ratio(id) {
+      var msg = id.split(",");
+      if (msg[1] == '0') {
+        bootbox.alert("需先审核洗衣店资格后再设置分成比例！")
+        return;
+      } else {
+        $("#ratioForm #id").val(msg[0]);
+        $("#myModal").modal('show');
+      }
+    }
+
+    function more(id, storeName) {
+      $("#title").html(storeName + "设备明细");
+
+      var TT = $('#deviceList').DataTable();
+      TT.ajax.url('/device/datatable/'+id).load();
+      $("#moreModal").modal('show').css({
+       // width: auto
+      });
+    }
+
+    function createTable(){
+      var table = $('#deviceList').DataTable({
+        "language": {
+          "url": "/plugins/datatables/Chinese.json"
+        },
+        autoWidth: true,
+        select: true,
+        searching: false,
+        processing: true,
+        serverSide: true,
+        ajax: {url: '/device/datatable/0'},
+        paging: false,
+        rowid: '_id',
+        columnDefs: [],
+        columns: [
+          {
+            data: "storeId.name", defaultContent: '', render: function (data, type, row, meta) {
+            var result = '';
+            var name = row.storeId.name;
+            if (name != null && name != undefined) {
+              result = name;
+            }
+            return result;
+          }
+          },
+          {data: "name", defaultContent: ''},
+          {
+            data: "deviceType", defaultContent: '', render: function (data, type, row, meta) {
+            var type = row.deviceType;
+            if (type === '0xDA') {
+              return "波轮";//波轮
+            } else if (type === '0xDB') {
+              return "滚筒";//滚筒
+            } else if (type === '0xDC') {
+              return "干衣";//干衣
+            }
+          }
+          },
+          {data: "no", defaultContent: ''},
+          {
+            data: "devicePriceId.type", defaultContent: '', render: function (data, type, row, meta) {
+            var result = '';
+            var type = row.devicePriceId.type;
+            if (type != null && type != undefined) {
+              result = type;
+            }
+            return result;
+          }
+          },
+          {
+            data: "status", defaultContent: '', render: function (data, type, row, meta) {
+            var type = row.status;
+            if (type === '0') {
+              return "空闲";
+            } else if (type === '1') {
+              return "已使用";
+            } else if (type === '2') {
+              return "故障";
+            } else {
+              return "停用";
+            }
+          }
+          },
+          {
+            data: "useDate", defaultContent: '', render: function (data, type, full, meta) {
+            var b = moment(new Date(data));
+            if (data != null) {
+              return b.format("YYYY/MM/DD HH:mm:ss");
+            }
+          }
+          }
+        ]
+      });
+    }

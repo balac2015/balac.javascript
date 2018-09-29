@@ -1,0 +1,61 @@
+header.main-header
+  nav.navbar.navbar-static-top
+    .navbar-header
+      a.navbar-brand(href='/vendor',style="display:block;text-align:center;float:none")
+        b U净 云洗衣
+
+    // Collect the nav links, forms, and other content for toggling
+    #navbar-collapse.collapse.navbar-collapse.pull-left
+      ul.nav.navbar-nav
+        li(class="#{isActive('/vendor/dashboard')}")
+          a(href='/vendor/dashboard')
+            | 首页
+            span.sr-only (current)
+        li.dropdown(class="#{isActive('/vendor/franchApply')}")
+          a(href='/vendor/franchApply') 服务主体
+        //li(class="#{isActive('/vendor/storeList')}")
+        //  a(href='/vendor/storeList') 我的洗衣店
+
+        li(class="#{isActive('/vendor/schoolList')}")
+          a(href='/vendor/schoolList') 我的服务主体
+
+        li.dropdown
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            | 订单统计
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li(class="#{isActive('/vendor/orderRecord?&today=today')}")
+              a(href='/vendor/orderRecord?&today=today') 今日订单
+            li(class="#{isActive('/order/orderRecord')}")
+              a(href='/order/orderRecord') 全部订单
+            li(class="#{isActive('/vendor/orderDayReport')}")
+              a(href='/vendor/orderDayReport') 订单统计
+    // /.navbar-collapse
+    // Navbar Right Menu
+    .navbar-custom-menu(style="right:0;")
+      ul.nav.navbar-nav
+        // User Account Menu
+        - if (req.isAuthenticated())
+        li.dropdown.user.user-menu
+          // Menu Toggle Button
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            // The user image in the navbar
+            if (req.user)
+              img.user-image(src="#{req.user.photo_profile ? req.user.photo_profile : '/dist/img/avatar.png'}")
+            span.hidden-xs &nbsp;#{req.user.username}
+            b.caret
+          ul.dropdown-menu
+            // The user image in the menu
+            li.user-header
+              img.img-circle(src="#{req.user.photo_profile ? req.user.photo_profile : '/dist/img/avatar.png'}", alt="头像")
+              p #{req.user.username}
+            // Menu Footer
+            li.user-footer
+              .pull-left
+                a.btn.btn-default.btn-flat(href='/vendor/profile/#{req.user.mobile}') 个人资料
+
+              .pull-right
+                a.btn.btn-default.btn-flat(href='/vendor/logout') 退出
+        li
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar-collapse')
+            i.fa.fa-bars

@@ -1,0 +1,110 @@
+//
+   Created by yu869 on 2015/11/2.
+
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+  h1 设备信息查看
+    small 查看系统中设备信息
+block main
+  .box
+    .box-header.with-border
+      h3.box-title 设备列表
+      | &nbsp;
+      a.btn.btn-xs.btn-default(href='/device/list' title='查看正常机器')
+        span 正常
+    .panel-body
+      table#deviceList.table.table-bordered.table-hover.table-striped(style="width:100%")
+        thead
+          th 加盟商
+          th 洗衣店
+          th 设备名称
+          th 设备类型
+          th 设备编号
+          th 设备型号
+          th 是否占用
+          th 投入使用时间
+          th 操作
+        tbody
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datatables/jquery.dataTables.min.js')
+  script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+  script.
+    $(document).ready(function () {
+      $('#deviceList').dataTable({
+        "language": {
+          "url": "/plugins/datatables/Chinese.json"
+        },
+        select: true,
+        searching: true,
+        processing: true,
+        serverSide: true,
+        scrollX:true,
+        ajax: {url: '/device/faultDatatable'},
+        rowid: '_id',
+        columnDefs: [{
+          targets: 3,
+          visible: true,
+          orderable: false,
+          render: function (data, type, row) {
+            var type = row.deviceType;
+            if ( type === '0xDA' ) {
+              return "波轮";//波轮
+            } else if ( type === '0xDB' ) {
+              return "滚筒";//滚筒
+            } else if ( type === '0xDC' ) {
+              return "干衣";//干衣
+            }
+          }
+        },{
+          targets: -3,
+          visible: true,
+          orderable: false,
+          render: function (data, type, row) {
+            var type = row.status;
+            if ( type === '0' ) {
+              return "空闲";
+            } else if ( type === '1' ) {
+              return "已使用";
+            } else if ( type === '2' ) {
+              return "故障";
+            } else {
+              return "停用";
+            }
+          }
+        },{
+          targets: -1,
+          visible: true,
+          orderable: false,
+          width: 120,
+          render: function(data, type, row ) {
+            var id = row._id;
+            return "<a id='editrow' class='btn btn-default btn-xs' title='查看洗衣价格' type='button' href='/device/devicePrice/"+id+"'><i class='fa fa-search'></i></button>";
+          }
+        }],
+        columns: [
+          {data: "franchiseeId.fullname", defaultContent: ''},
+          {data: "storeId.name", defaultContent: ''},
+          {data: "name", defaultContent: ''},
+          {data: "deviceType", defaultContent: ''},
+          {data: "no", defaultContent: ''},
+          {data: "devicePriceId.type", defaultContent: ''},
+          {data: "status", defaultContent: ''},
+          {data: "useDate", defaultContent: '',render: function ( data, type, full, meta ) {
+            var b = moment(new Date(data));
+            var date = "";
+            if (data != null) {
+              date = b.format("YYYY-MM-DD HH:mm:ss");
+            }
+            return date;
+          }},
+          {data: ""}
+        ]
+      });
+
+    });
+

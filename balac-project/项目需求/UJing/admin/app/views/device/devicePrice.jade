@@ -1,0 +1,133 @@
+//
+   Created by yu869 on 2015/11/9.
+
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+  h1 洗衣价格
+    small 查看系统中洗衣价格信息
+block main
+  .box
+    .box-header.with-border
+      h3.box-title 洗衣价格列表
+
+      .pull-right
+        a.btn.btn-xs.btn-default(href='/device/list')
+          i.fa.fa-reply
+          span 返回
+        | &nbsp;
+    .panel-body
+      form#priceAuditForm(method='post', style='display:none', action='/store/price/audit')
+        input#ids(type='hidden',name='ids')
+        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+      table#devicePriceApplyList.table.table-bordered.table-hover.table-striped(style="width:100%")
+        thead
+          th #
+          th 洗衣程序
+          th 基准价格
+          th 设定价格
+          th 状态
+        tbody
+
+  #refuseModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='refuseModalLabel', aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .container
+          .modal-body
+            .row.clearfix
+              .col-md-12.column
+                form#refuseForm.form-horizontal(action='/store/refuse',name='refuseForm',method='post')
+                  input#id(type="hidden", name='id', value="")
+                  input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                  #refuseReasonDiv.form-group.has-success
+                    | &nbsp;&nbsp;&nbsp;
+                    label(for='articleTitle') 拒绝原因:
+                    input#reason.form-control(type='text',name='reason',placeholder='拒绝原因',style="width:30%",required)
+                  .center-block
+                    | &nbsp;&nbsp;&nbsp;
+                    button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                    | &nbsp;&nbsp;&nbsp;
+                    button.btn.btn-success(type="submit") 保存
+
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datatables/jquery.dataTables.min.js')
+  script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+  script.
+    $(document).ready(function () {
+
+      var deviceId = "#{deviceID}";
+
+      $('#devicePriceApplyList').dataTable({
+        "language": {
+          "url": "/plugins/datatables/Chinese.json"
+        },
+        select: true,
+        searching: true,
+        processing: true,
+        serverSide: true,
+        scrollX:true,
+        ajax: {url: '/device/applyDatatable/'+deviceId},
+        rowid: '_id',
+        columnDefs: [
+          {targets: 0, visible: false, orderable: false, width: 80},
+          {
+            targets: 4,
+            visible: true,
+            orderable: false,
+            width: 80,
+            render: function (data, type, row) {
+              var status = row.status;
+              var msg = "";
+              switch (status) {
+                case '0':
+                  msg = "待审核";
+                  break;
+                case '1':
+                  msg = "已审核";
+                  break;
+                case '2':
+                  msg = "审核未通过";
+                  break;
+              }
+              return msg;
+            }
+          }
+        ],
+        columns: [
+          {data: "_id"},
+          {data: "devicePriceId.type", defaultContent: ''},
+          {data: "devicePriceId.price", defaultContent: ''},
+          {data: "price", defaultContent: ''},
+          {data: "status", defaultContent: ''},
+
+        ]
+      });
+    });
+
+    function audit(id, status){
+      if (status == 1) {
+        bootbox.alert("该申请已经通过!");
+        return;
+      }
+      $("#priceAuditForm #ids").val(id);
+        if (id) {
+          bootbox.confirm("是否对该数据进行审核?", function (result) {
+            if (result) {
+              $("#priceAuditForm").submit();
+            }
+          });
+      }
+    }
+
+    function refuse(id, status){
+      if (status == 2){
+        bootbox.alert("该申请已经被拒绝!");
+        return;
+      }
+      $("#refuseModal #id").val(id);
+      $("#refuseModal").modal('show');
+    }

@@ -1,0 +1,9 @@
+﻿{
+	"autoDownload": false,
+    "identifier": "com.midea.demo",
+	"name": "底座测试",
+	"hidden":false,
+	"build": 1110,
+	"version": "1.1.10",
+	"releaseNote": ""
+}

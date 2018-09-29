@@ -1,0 +1,236 @@
+//
+   Created by danne on 2015/10/29.
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+  if viewType == 'add'
+    h1 角色信息新增
+      small 添加角色信息
+  if viewType == 'edit'
+    h1 角色信息编辑
+      small 编辑角色信息
+  if viewType == 'view'
+    h1 角色信息查看
+      small 查看角色信息
+
+block main
+  .box
+    .box-header.with-border
+      if viewType == 'add'
+        h3.box-title 添加角色信息
+      if viewType == 'edit'
+        h3.box-title 编辑角色信息
+      if viewType == 'view'
+        h3.box-title 查看角色信息
+
+      .box-tools.pull-right
+        a.btn.btn-box-tool.btn-default(href='/system/role')
+          i.fa.fa-reply
+          span  返回
+        | &nbsp;
+        if viewType == 'add' || viewType == 'edit'
+          button#save.btn.btn-box-tool.btn-default
+            i.fa.fa-save
+            span  保存
+        | &nbsp;
+        if viewType == 'view' || viewType == 'edit'
+          button#del.btn.btn-box-tool.btn-default.del
+            i.fa.fa-trash
+            span  删除
+      //&nbsp;
+      //button.btn.btn-box-tool(data-widget="collapse")
+      //  i.fa.fa-minus
+    .box-body
+      div#roleEdit.row
+        .col-md-12
+          if viewType == 'edit'
+            form#roleDelForm(method='post', style='display:none', action='/system/role/del')
+              input#ids(type='hidden',name='ids',value="#{role._id}")
+              input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+          form#roleForm.form-horizontal(name='roleForm', action='/system/role/save', method='post')
+            if viewType == 'edit'
+              input#id(type='hidden', name='id', value="#{role._id}")
+
+            input#_csrf(type='hidden', name='_csrf', value=_csrf)
+            .form-group
+              label.control-label.col-md-2 名称：
+                span.required *
+              .controls.col-md-9
+                input#name.form-control.required(name='name', value="#{role != null ? role.name : ''}")
+            .form-group
+              label.control-label.col-md-2 描述：
+              .controls.col-md-9
+                input#name.form-control.required(name='description', value="#{role != null ? role.description : ''}")
+
+            if(!role.isNew)
+              fieldset
+                legend 角色权限
+                .row
+                  .col-md-6
+                    .box.box-success.box-solid
+                      .box-header.with-border
+                        h3.box-title 未授予的权限
+                        .box-tools.pull-right
+                          button#grant.btn.btn-box-tool(type="button")
+                            i.fa.fa-plus
+                            |  授予已选权限
+                      .box-body
+                        table#permissionList.table.table-bordered.table-hover.table-striped
+                          thead
+                            th(width="5")
+                              input.selectAll(type="checkbox")
+                            th 权限名
+                            th 主体
+                            th 操作
+                            th URL
+                          tbody
+                  .col-md-6
+                    .box.box-success.box-solid
+                      .box-header.with-border
+                        h3.box-title 已授予权限
+                        .box-tools.pull-right
+                          button#revoke.btn.btn-box-tool(type="button")
+                            i.fa.fa-minus
+                            |  解除已选权限
+                      .box-body
+                        table#grantedList.table.table-bordered.table-hover.table-striped
+                          thead
+                            th(width="5")
+                              input.selectAll(type="checkbox")
+                            th 权限名
+                            th 主体
+                            th 操作
+                            th URL
+                          tbody
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datatables/jquery.dataTables.min.js')
+  script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+
+  script.
+    $(document).ready(function () {
+      var form = $('#roleForm');
+      $("#save").on('click', function () {
+        form.submit();
+      });
+      form.validate({
+        rules: {
+          name: {
+            required: true,
+            remote: '/system/role/checkname?oldName=#{role ? role.name : ''}'
+          }
+        },
+        messages: {
+          name: {
+            remote: '该角色已存在!'
+          }
+        }
+      });
+
+      $('#del').on('click', function () {
+        bootbox.confirm("确定要删除数据吗?", function (result) {
+          if (result) {
+            $("#roleDelForm").submit();
+          }
+        });
+      });
+
+      // permission list
+      var opts = {
+        "language": {
+          "url": "/plugins/datatables/Chinese.json"
+        },
+        autoWidth: false,
+        lengthChange: true,
+        searching: true,
+        processing: false,
+        serverSide: true,
+        deferRender: true
+      };
+
+      var t = $('#permissionList').DataTable($.extend({
+                ajax: {url: '/system/role/permission/datatable/#{role.id}'},
+                order: [[1, 'asc']],
+                columnDefs: [/*{targets: 0, visible: true, sortable: false, searchable: false, render:function(){return 'input(type = "checkbox")'}}*/],
+                columns: [{
+                  data: "_id", sortable: false, render: function (data, type, row) {
+                    return '<input type = "checkbox" name="permissionIds" value="' + data + '">';
+                  }
+                }, {data: "name"}, {data: "subject"},
+                  {data: "action"},
+                  {data: "url"}
+                ]
+              }, opts
+      ));
+
+      var g = $('#grantedList').DataTable($.extend({
+                ajax: {url: '/system/role/permissions/#{role.id}', dataSrc: ""},
+                order: [[1, 'asc']],
+                columnDefs: [/*{targets: 0, visible: true, sortable: false, searchable: false, render:function(){return 'input(type = "checkbox")'}}*/],
+                columns: [{
+                  data: "_id", sortable: false, render: function (data, type, row) {
+                    return '<input type = "checkbox" name="permissionIds" value="' + data + '">';
+                  }
+                }, {data: "name"}, {data: "subject"},
+                  {data: "action"},
+                  {data: "url"}
+                ]
+              }, opts, {serverSide: false, deferRender: true}
+      ));
+
+      $("#grant").on("click", function (e) {
+        var permissionIds = [];
+        $('#permissionList').find(":checkbox[name='permissionIds']:checked").each(function (el) {
+          permissionIds.push($(this).val());
+        });
+        console.log(permissionIds);
+        $.ajax('/system/role/addpermissions/#{role.id}', {
+          method: "POST",
+          data: {
+            permissionIds: permissionIds,
+            ajax: true
+          },
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+            if (data.code === '1') {
+              bootbox.alert(data.msg);
+            } else {
+              g.ajax.reload();
+              t.ajax.reload();
+
+            }
+          }
+        });
+      });
+      $("#revoke").on("click", function (e) {
+        var permissionIds = [];
+        $('#grantedList').find(":checkbox[name='permissionIds']:checked").each(function (el) {
+          permissionIds.push($(this).val());
+        });
+        console.log(permissionIds);
+        $.ajax('/system/role/revokepermissions/#{role.id}', {
+          method: "POST",
+          data: {
+            permissionIds: permissionIds,
+            ajax: true
+          },
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+            g.ajax.reload();
+            t.ajax.reload();
+          }
+        });
+      });
+
+      $(".selectAll").on("click", function (e) {
+        console.log($(this).parents("table").find("tbody :checkbox").length);
+        $(this).parents("table").find("tbody :checkbox").prop("checked", $(this).is(":checked"));
+      });
+
+    });

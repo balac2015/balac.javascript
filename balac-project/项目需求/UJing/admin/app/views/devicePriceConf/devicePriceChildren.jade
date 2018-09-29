@@ -1,0 +1,32 @@
+//
+   Created by yu869 on 2015/11/6.
+
+each DevicePrice,index in DevicePrices
+    tr(data-tt-id='#{DevicePrice._id}',data-tt-parent-id='#{DevicePrice.parentId == null ? "" : DevicePrice.parentId}', data-tt-branch='#{DevicePrice.deep != "2" ? "true" : "false"}')
+        td #{DevicePrice.type}
+        td #{DevicePrice.shortName}
+        td
+            span.pull-right #{DevicePrice.deep == '2' ? DevicePrice.price.toFixed(2) + " 元" : ""}
+        td
+            span.pull-right #{DevicePrice.deep == '2' ? DevicePrice.execMinute + " 分钟" : ""}
+        td #{DevicePrice.deep == '2' ? DevicePrice.note : ""}
+        td
+            if (DevicePrice.deep == '0')
+                a#addDevice.btn.btn-box-tool.btn-default(href='/store/addDeviceType/#{DevicePrice.id}', title='添加型号') 添加型号
+                | &nbsp;
+            else if (DevicePrice.deep == '1')
+                a#addDevice.btn.btn-box-tool.btn-default(href='/store/addDevicePrice/#{DevicePrice.id}', title='添加程序价格') 添加程序价格
+                | &nbsp;
+
+
+            if (DevicePrice.deep == '0')
+                button#addDevice.btn.btn-box-tool.btn-default(title='编辑', onclick="editDevice('#{DevicePrice.id}')") 编辑
+                | &nbsp;
+            else if (DevicePrice.deep == '1')
+                button#addDevice.btn.btn-box-tool.btn-default(title='编辑', onclick="editDeviceType('#{DevicePrice.id}')") 编辑
+                | &nbsp;
+            else if (DevicePrice.deep == '2')
+                button#addDevice.btn.btn-box-tool.btn-default(title='编辑', onclick="editDevicePrice('#{DevicePrice.id}')") 编辑
+                | &nbsp;
+
+            button#addDevice.btn.btn-box-tool.btn-default(title='删除', onclick="del('#{DevicePrice.id}', '#{DevicePrice.deep}')") 删除

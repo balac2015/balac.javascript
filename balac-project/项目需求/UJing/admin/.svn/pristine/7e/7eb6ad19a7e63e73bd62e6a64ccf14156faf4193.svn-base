@@ -1,0 +1,95 @@
+//
+   Created by danne on 2015/10/24.
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+
+//应用的page title
+block pageTitle
+  h1 促销信息
+    small 添加，删除，更新促销信息
+block main
+  .box
+    .box-header.with-border
+      h3.box-title 促销信息
+      .box-tools.pull-right
+        a.btn.btn-box-tool.btn-default(href="/basicSet/promotion/add")
+          i.fa.fa-plus
+          span  添加促销价
+        //button.btn.btn-box-tool(data-widget="collapse")
+        //  i.fa.fa-minus
+    .box-body
+      table#promotionsList.table.table-bordered.table-hover.table-striped
+        thead
+          //th.text-right(width="40") #
+          th 促销价
+          th 生效时间
+          th 失效时间
+          th.text-center(width="80") 操作
+        tbody
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datatables/jquery.dataTables.min.js')
+  script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+  script.
+    $(function () {
+      var opts = {
+        "language": {
+          "url": "/plugins/datatables/Chinese.json"
+        },
+        autoWidth: false,
+        lengthChange: true,
+        searching: true,
+        processing: false,
+        serverSide: true,
+        deferRender: true
+      };
+      var t = $('#promotionsList').DataTable($.extend(opts, {
+                ajax: {url: '/basicSet/promotion/datatable'},
+                order: [[1, 'asc']],
+                columnDefs: [
+                  //{targets: 0, visible: true, sortable: false, searchable: false, defaultContent: ''},
+                  {
+                    targets: -1, visible: true, sortable: false, className: 'text-center',
+                    render: function (data, type, row) {
+                      return "<a class='btn btn-default btn-xs edit' href='/basicSet/promotion/edit/" + row._id + "'><i class='fa fa-edit'></i></a>"
+                              + " <button class='btn btn-default btn-xs del' type='button'><i class='fa fa-trash-o'></i></button>";
+                    }
+                  }
+                ],
+                columns: [
+                  //{data: ""},
+                  {data: "price", defaultContent: '',width: 80,'class':'text-right',render: function ( data, type, full, meta ) {
+                    return data.toFixed(2) + " 元";
+                  }},
+                  {data: "effectiveTime", defaultContent: '',render: function ( data, type, full, meta ) {
+                    var b = moment(new Date(data));
+                    var date = "";
+                    if (data != null) {
+                      date = b.format("YYYY-MM-DD");
+                    }
+                    return date;
+                  }},
+                  {data: "failureTime", defaultContent: '',render: function ( data, type, full, meta ) {
+                    var b = moment(new Date(data));
+                    var date = "";
+                    if (data != null) {
+                      date = b.format("YYYY-MM-DD");
+                    }
+                    return date;
+                  }},
+                  {data: ""}
+                ]
+              }
+      ));
+      $('#promotionsList').on('click', 'button.del', function () {
+        var id = t.row($(this).parents('tr')).data()._id;
+        if (id) {
+          bootbox.confirm("确定要删除数据吗?", function (result) {
+            if (result) {
+              window.location="/basicSet/promotion/del/"+id;
+            }
+          });
+        }
+      });
+    });

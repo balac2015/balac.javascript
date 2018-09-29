@@ -1,0 +1,32 @@
+工作
+	停用（紧急停用接口 stop）
+
+空闲
+	解绑（设备二维码解除绑定 unbindQrcode）
+
+	扫码（绑定二维码 bindQrcode）
+
+	编辑（修改设备信息 updateDeviceInfo）
+
+
+故障
+	停用（紧急停用接口 stop）
+
+	启用（重新启动 restart）
+
+	电话
+
+	更多：
+
+		补偿
+
+
+停用
+	启用（restart）
+
+	更多：
+		解绑（unbindQrcode）
+
+		扫一扫（bindQrcode）
+
+		编辑（updateDeviceInfo）

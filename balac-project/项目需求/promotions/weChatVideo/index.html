@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>美信3.0全新升级 你的惊喜,是我们最大的动力</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<img src="" style="position:fixed; width: 0; height: 0">
+<div class="wp ">
+    <div class="wp-inner">
+        <div class="page my-page">
+            <div class="title">美信3.0全新升级</div>
+            <div class="sub-title">你的惊喜,是我们最大的动力</div>
+            <div class="video-txt">精彩呈现，请戳视频:</div>
+            <div class="position-r mt-8 my-video video-full">
+                <img class="portal-video-hover-short" src="images/test1.jpg" ng-click="playVideo()">
+                <video id="video-full" width="100%" webkit-playsinline controls>
+                    <source type="video/mp4" src="http://video.midea.com/public/2014/06/23/20140623_146c7dd6e29_r1_200k.mp4">
+                </video>
+            </div>
+            <div class="position-r mt-8 my-video video-short">
+                <img class="portal-video-hover-full" src="images/test2.png" ng-click="playVideo()">
+                <video id="video-short" width="100%" webkit-playsinline controls>
+                    <source type="video/mp4" src="http://video.midea.com/public/2014/06/23/20140623_146c7dd6e29_r1_200k.mp4">
+                </video>
+            </div>
+<!--            <video src="http://video.midea.com/public/2014/06/23/20140623_146c7dd6e29_r1_200k.mp4" controls="controls" autoplay class="my-video">ss</video>-->
+            <div class="video-tab pd-left-20 mg-r-5-percent short-cp">精简版</div>
+            <div class="video-tab full-cp">完整版</div>
+        </div>
+    </div>
+</div>
+
+    <script src="js/lib/zepto.min.js"></script>
+    <script src="js/lib/zepto.fullpage.js"></script>
+    <script src="js/zepto.min.js?v=1.0.2"></script>
+    <script src="js/zepto.fullpage.js?v=1.0.2"></script>
+    <!--<script src="js/script.js"></script>-->
+    <script type="text/javascript">
+        $('.full-cp').addClass('red');
+        $('.short-cp').removeClass('red');
+        $('.video-short').hide();
+        $('.video-full').show();
+        $('.wp-inner').fullpage({drag:true,afterChange:function(data){
+            if(data.cur == 5){
+                $('.start').hide();
+                $('.btn-refresh').show();
+            } else if (data.cur == 0){
+                    $('.start').hide();
+                } else{
+                $('.start').show();
+                $('.btn-refresh').hide();
+            }
+        }});
+        $('.btn-refresh').click(function(){
+            $.fn.fullpage.moveTo(0, true);
+        });
+        $('.main-img-t').click(function(){
+            $.fn.fullpage.moveTo(1, true);
+        });
+        $('.portal-video-hover-short').click(function(){
+            $('.portal-video-hover-short').hide();
+            document.getElementsByTagName('video')[0].play();
+            document.getElementsByTagName('video')[1].pause();
+        });
+        $('.portal-video-hover-full').click(function(){
+            $('.portal-video-hover-full').hide();
+            document.getElementsByTagName('video')[0].pause();
+            document.getElementsByTagName('video')[1].play();
+        });
+        $('.short-cp').click(function(){
+            document.getElementsByTagName('video')[0].pause();
+            $('.short-cp').addClass('red');
+            $('.full-cp').removeClass('red');
+            $('.video-short').show();
+            $('.video-full').hide();
+        });
+        $('.full-cp').click(function(){
+            document.getElementsByTagName('video')[1].pause();
+            $('.full-cp').addClass('red');
+            $('.short-cp').removeClass('red');
+            $('.video-short').hide();
+            $('.video-full').show();
+        })
+    </script>
+</body>
+</html>

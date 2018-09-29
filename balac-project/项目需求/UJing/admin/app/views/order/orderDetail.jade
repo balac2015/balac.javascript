@@ -1,0 +1,41 @@
+//
+   Created by yu869 on 2015/10/27.
+
+extends ../layouts/vendor
+block header
+//应用的page title
+block pageTitle
+  h1 加盟商查看订单明细
+    small 查看单明细
+block main
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title 订单明细
+      .box-tools.pull-right
+        a.btn.btn-xs.btn-primary(href='/order/orderRecord',title='返回')
+          i.fa.fa-reply
+    .panel-body
+      div.row
+        div.col-md-12
+          div.tabbable.tabbable-custom.boxless
+            div.portlet-body.form
+              div#stores.well
+                ul
+                  li 订&nbsp;&nbsp;单&nbsp;&nbsp;号 : #{order.orderNo}
+                  li 微信用户 : #{order.wechatFansId == null ?"":order.wechatFansId.nickname}
+                  li 设备编号 : #{order.deviceId.no}
+                  li 设备名称 : #{order.deviceId.name}
+                  li 设备类型 : #{order.deviceId.deviceType == '0xDA'?'波轮':order.deviceId.type == '0xDB'?'滚筒':'干衣机'}
+                  li 支付金额 : #{order.allowance}
+                  li 业务状态 : #{order.status == '10'?'预约':order.status == '20'?'已支付':order.status == '21'?'桶自洁中':order.status == '22'?'桶自洁完成':order.status == '30'?'使用中':order.status == '40'?'完成':order.status == '50'?'撤销':'退款'}
+                  li 开始时间 : #{order.useTime == null ? "":formatDatetime(order.useTime)}
+                  li 结束时间 : #{order.endTime == null ? "":formatDatetime(order.endTime)}
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/bootstrap/js/bootstrap.min.js')
+  script.
+    $(document).ready(function () {
+
+    });
+

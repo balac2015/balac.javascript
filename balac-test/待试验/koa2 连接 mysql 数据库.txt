@@ -1,0 +1,80 @@
+项目结构
+demo
+├──bin
+│ └──www //建立服务
+├──controllers //所有接口文件
+│ ├──index.js* //获取当前文件夹下所有文件
+│ └──test.js //测试接口
+├──middlewares //中间件
+│ └──response.js* //处理接口返回中间件*
+├──public //静态资源
+│ └──index.html
+├──routes //路由
+│ └──route.js* //路由配置
+├──tools //工具
+│ └──db.js* //连接数据库
+├──views //模板文件(api接口服务用不到)
+├──app.js //项目启动
+├──config.js* //配置文件
+└──package.json //项目依赖
+安装knex.js和相应的数据库
+knex是用来编写sql语句来操作数据库的 knex文档
+
+npm install knex --save-dev
+npm install mysql --save-dev
+先新建一个配置文件config.js
+/**
+ * Created by Administrator on 2017/10/12 0012.
+ */
+const CONF = {
+    mysql: {
+        // host: 'localhost',
+        host: 'mysql.sql45.cdncenter.net',
+        port: 3306,
+        user: 'sq_reborn',
+        db: 'sq_reborn',
+        pass: '19931104',
+        char: 'utf8mb4'
+    },
+    port: 3000,
+    //设置token过期时间 单位 默认 秒  1d = 1天 1h = 一小时
+    expires: '7d',
+    secret: '19931104'
+}
+module.exports = CONF
+这里我用了一个我自己的云数据库,也可以使用本地localhost 默认端口3306
+
+连接数据库tool/db.js
+/**
+ * Created by Administrator on 2017/10/12 0012.
+ */
+const config = require('../config')
+const knex = require('knex')({
+    client: 'mysql',
+    connection: {
+        host: config.mysql.host,
+        user: config.mysql.user,
+        password: config.mysql.pass,
+        database: config.mysql.db
+    }
+})
+
+module.exports = knex
+修改之前写的接口
+在数据库中新建张表 例如 user_table 用来储存用户信息
+
+/**
+ * Created by Administrator on 2017/10/12 0012.
+ */
+const knex = require('../tools/db')
+
+module.exports = async (ctx, next) => {
+    let user = await knex.select('*').from('user_table').orderBy('updatetime', 'desc')
+    
+    ctx.state.data = user
+}
+这里使用async/await 来解决异步问题
+
+启动服务
+npm start
+访问127.0.0.1:3000/api/test 就能看到返回的user_table中的数据了

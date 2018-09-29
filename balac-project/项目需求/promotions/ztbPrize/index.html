@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>直通宝抽奖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name = "format-detection" content = "telephone=no">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/lvmx.css">
+</head>
+<body class="no-margin bg-red">
+<div class="header fc-earth fs-12">
+	<i class="usr"></i>
+	<span id="ztbAccount"></span>
+	<i class="integral mag-l-10"></i>
+	<span id="integral"></span>
+	<span class="fc-white mag-l-10">您有<span class="fc-earth" id="chanceNum"></span>次抽奖机会</span>
+</div>
+<img src="images/title.png" alt="" class="title"/>
+<div class="turnplate_box mag-t--50 mag-btm-10">
+	<canvas id="myCanvas" width="600" height="600" style="width:300px;height:300px;">抱歉！浏览器不支持。</canvas>
+	<button id="tupBtn" class="turnplatw_btn"></button>
+</div>
+<div class="usr-list">
+	<div class="tb-header">
+		<span style="width: 34%" class="fc-dark-yellow" id="all">中奖名单</span>
+		<span style="width: 30%" class="fc-white" id="myPrize">我的奖品</span>
+		<span style="width: 30%" class="fc-white" id="rule">活动规则</span>
+	</div>
+	<div class="tb-body" id="list1"></div>
+	<div class="tb-body" id="list2"></div>
+	<!--<div class="tb-body" id="list2">暂无奖品</div>-->
+	<div class="tb-body" id="list3">
+		<div class="pad-t-15 pad-15">
+			<div class="rule-txt">“玩转”直通宝，现金、手机送不停</div>
+			<div class="txt-left pad-t-15">
+				<div class="rule-title">一、活动内容：</div>
+				<div class="rule-content">	司机抢单并与货主成功达成交易，即可参加抽奖活动。</div>
+			</div>
+			<div class="txt-left pad-t-15">
+				<div class="rule-title">二、活动说明：</div>
+				<div class="rule-content">
+					1、	参与资格：所有直通宝认证司机皆可参加本次抽奖活动；<br>
+					2、	参与方式：在活动期间登陆直通宝APP，在活动公告栏里点击参加活动；<br>
+					3、	活动时间：2016年3月1日至2016年3月31日；<br>
+					4、	抽奖条件：司机抢单并成功交易可参与抢单一次；<br>
+				</div>
+			</div>
+			<div class="txt-left pad-t-15">
+				<div class="rule-title">三、奖品奖项：</div>
+				<div class="rule-content">
+					一等奖：小米手机<br>
+					二等奖：500积分<br>
+					三等奖：200积分<br>
+					四等奖：100积分<br>
+				</div>
+			</div>
+			<div class="txt-left pad-t-15">
+				<div class="rule-title">四、活动规则：</div>
+				<div class="rule-content">
+					1、司机抢单并与货主达成交易即可参与抽奖一次（货主选择司机即为达成交易）；<br>
+					2、内部员工不得参与本次活动；<br>
+					3、中奖后7个工作日内客服确认中奖人信息（中奖人身份证、车牌、电话、地址）并由快递寄出，现金与积分奖励在24小时内到达直通宝钱包；<br>
+					4、实物奖品不能兑换现金；<br>
+					5、中奖人与认证用户资料必须一致；<br>
+					6、小米手机每周（3月1日-6日，3月7日-13日，3月14日-20 日，3月21-27日，3月28-31日）产生两名中奖用户。活动周期内，一个用户只能中奖一次，抽完即止，其他奖项不做此限制。<br>
+					7、500积分、200积分、100积分每周（时间同上）中奖名额分别为1000名。<br></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--popup-->
+<div class="mask" id="tip-mask" style="display: none">
+	<div class="tip">
+		<div class="fs-28 w-100-percent" style="position: absolute; top: 25px;" id="tip1"></div>
+		<div class="fw-bold w-100-percent" style="position: absolute; top: 66px; font-size: 38px" id="tip2"></div>
+		<div class="w-100-percent" style="position: absolute; top: 130px;font-size: 22px" id="tip3"></div>
+		<div class="prize-tip" id="prize-name"></div>
+		<img src="images/prize_box.png" alt="" class="prize-box" id="prize-box"/>
+	</div>
+	<div class="close-btn" id="close-btn">关闭</div>
+</div>
+<!--no chance popup-->
+<div class="mask" id="no-chance-tip" style="display: none">
+	<div class="no-chance">
+		<div class="ok-txt" id="ok-txt"></div>
+		<div class="ok-btn" id="ok-btn">确定</div>
+	</div>
+</div>
+<img id="outline" class="no-display" src="images/outline300.png">
+<!--<img id="card" class="no-display" src="images/red1.png">-->
+<img id="card2" class="no-display" src="images/100.png">
+<!--<img id="card3" class="no-display" src="images/card2.png">-->
+<img id="card4" class="no-display" src="images/xmphone.png">
+<img id="card6" class="no-display" src="images/thank.png">
+<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery/rotate.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

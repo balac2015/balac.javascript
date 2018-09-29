@@ -1,0 +1,132 @@
+extends ../layouts/default
+block form
+  html
+  head(lang='en')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0', charset='utf-8')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    link(rel='stylesheet', href='//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css')
+    title 微信用户权限设置
+    script(src='http://libs.baidu.com/jquery/2.0.0/jquery.min.js')
+    script(src='//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    script(src='/js/libs/jBootstrapPage.js')
+  body
+  .container
+    .row.clearfix
+      .col-md-2.column
+        ul.nav.nav-stacked.nav-pills
+          li
+            a(href='/getWebChatUser') 用户管理
+          li.active
+            a(href='/getWebChatRbac') 权限管理
+      .col-md-10.column
+        if message != ''
+          .alert.alert-success.animated.fadeIn
+            button.close(type='button', data-dismiss='alert') ×
+            div= message
+      .col-md-10.column
+        table#tablist.table.table-hover.table-striped
+          thead
+            tr
+              th
+                | 序号
+              th
+                | 角色名称
+              th(style="text-align:center;")
+                | 操作
+            tbody
+              each v,i in userGroup
+                tr
+                  td(style="display: none") #{v._id}
+                  td #{i+1}
+                  td #{v.name}
+                  td(style="text-align:center;")
+                    a(onclick='delRights()',data-toggle='modal',data-target='#delRights', aria-label='Left Align')删除权限 |
+                    a(onclick='addRights()',data-toggle='modal',data-target='#addRights', aria-label='Left Align')增加权限
+
+        #delRights.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+          .modal-dialog
+            .modal-content
+              .container
+                .modal-body
+                  .row.clearfix
+                    .col-md-12.column
+                      form.form-horizontal(action='/delPermission',id='',method='post')
+                        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                        input#roleDelId(type='hidden',name='roleDelId')
+                        label 删除权限:
+                        |&nbsp;
+                        select#delPermission.from-control(name='delPermission',style='width:30%')
+                        br
+                        br
+                        .center-block
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-success(type='submit') 确定
+
+        #addRights.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+          .modal-dialog
+            .modal-content
+              .container
+                .modal-body
+                  .row.clearfix
+                    .col-md-12.column
+                      form.form-horizontal(action='/addPermission',id='',method='post')
+                        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                        input#roleEditId(type='hidden',name='roleId')
+                        input#roleEditName(type='hidden',name='roleName')
+                        label 增加权限:
+                        |&nbsp;
+                        input#addPermission.form-control(type='text',name='addPermission',style="width:30%")
+                        br
+                        br
+                        .center-block
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                          | &nbsp;&nbsp;&nbsp;
+                          button.btn.btn-success(type='submit') 保存
+
+
+    script(type='text/javascript').
+      $(function () {
+
+      })
+
+      //修改权限
+      function addRights(){
+        $('table tr ').click(function(){
+          var RoleId = $(this).find("td").eq(0).text();
+          var RoleName = $(this).find("td").eq(2).text();
+          $('#roleEditName').val(RoleName);
+          $('#roleEditId').val(RoleId);
+        });
+      }
+
+      //删除权限
+      function delRights() {
+        $('table tr ').click(function () {
+          var RoleId = $(this).find("td").eq(0).text();
+          $('#roleDelId').val(RoleId);
+          showGroup(RoleId)
+        });
+      }
+
+      //显示下拉选框
+      function showGroup(param) {
+        $.ajax({
+          type: "get",
+          url: "/getPermissionSelect",
+          data: {RoleId:param},
+          success: function (data) {
+            $.each(data, function (i, item) {
+              var ui = "<option value='" + item._id + "'>" + item.action + "</option>"
+              $("select[name='delPermission']").append(ui);
+            })
+          }
+        });
+      }
+
+
+
+
+

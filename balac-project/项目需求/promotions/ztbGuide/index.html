@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>直通宝操作指引</title>
+		<meta name="format-detection" content="telephone=no" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="css/style.css"/>
+        <script src="js/zepto.min.js?v=1.0.1"></script>
+        <script src="js/main.js?v=1.0.1"></script>
+	</head>
+	<body>
+    <!--<div class="header">直通宝操作指引</div>-->
+    <div class="sub-header">
+        <div class="sub-header-left active" id="sub-header-left" onclick="changeSubHeader('left')">大物流系统</div>
+        <div class="sub-header-right" id="sub-header-right" onclick="changeSubHeader('right')">A3排单</div>
+    </div>
+    <div id="lms-area">
+        <div class="area-title-text">大物流系统-直通宝APP操作指引</div>
+        <div class="area-part-title">一、大物流TMS排单、调度流程</div>
+        <div class="area-part-content-white">
+            <div class="area-small-title">网店操作：</div>
+            <div>1、TMS排单调度选择司机，大物流做调车、排单、发车，APP端会实时同步TMS的信息，信息确认并发车后，司机可登录直通宝在进行中的订单中查询到相应的订单信息。</div>
+            <img class="area-img1" src="img/lms1.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>2、在司机端，直通宝APP对在途订单轨迹进行跟踪，对应的跟踪信息实时回传大物流系统。</div>
+            <img class="area-img1" src="img/lms2.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>3、送货到达或者TMS手工到达以后APP可以进行卸货确认操作，司机可在APP上做卸货确认以后，TMS的发车单变成已经卸货状态。</div>
+            <img class="area-img1" src="img/lms3.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>4、卸货确认以后等待司机把客户签收以后的回单通过直通宝拍照上传，上传成功后可在TMS系统上看到司机上传的回单图片。</div>
+            <img class="area-img1" src="img/lms4.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div class="area-small-title">司机操作：</div>
+            <div>1、系统TMS排单调度选择司机之后，司机登录直通宝可查看当前订单显示在APP进行中订单里面。</div>
+            <img class="area-img1" src="img/lms5.jpg">
+            <div>2、网点操作系统发货后，司机要保持登录直通宝以获取跟踪信息，相应跟踪记录将实时回传大物流系统。</div>
+        </div>
+        <div class="area-part-content-gray">
+            <div>3、送货到达或者TMS手工到达以后APP可以进行卸货确认操作，司机可在APP上做卸货确认操作，相应信息传回大物流系统。</div>
+            <img class="area-img1" src="img/lms6.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>4、卸货确认以后，司机需要把客户签收以后的回单通过直通宝拍照上传，上传成功后网点在TMS系统上可看到司机上传的回单图片。</div>
+            <img class="area-img1" src="img/lms7.jpg">
+        </div>
+        <div class="area-part-title">二、	发布抢单流程</div>
+        <div class="area-part-content-white">
+            <div class="area-small-title">网点操作：</div>
+            <div>1、在大物流TMS系统上面进行录入订单-预排-任务下发，在TMS进行发布抢单，发布以后可以在货主端查看订单是否发布成功。</div>
+            <img class="area-img1" src="img/lms8.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>2、订单发布成功后，在货主端APP可以查看相应的货源信息。</div>
+            <img class="area-img1" src="img/lms9.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>3、发布成功后，等待司机抢单报价。</div>
+            <div>4、当有司机抢单报价后，货主端会显示抢单司机信息，可以对已经报价的司机进行选择，选择适合自己的司机承运。</div>
+            <img class="area-img1" src="img/lms10.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>5、选择司机成功后，司机可看到相应信息，等待司机点击发货，订单状态转变为在途。</div>
+            <div>6、司机到货以后，等待司机点击到货完成，并进行签单上传。</div>
+            <div>7、司机签单上传成功后，订单状态转变为待评价，货主端对此次司机送货综合情况进行评价（点击[评价订单]弹出评价页面进行评价）。</div>
+            <img class="area-img1" src="img/lms11.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div class="area-small-title">司机操作：</div>
+            <div>1、网点在TMS系统上发布抢单后，司机在APP上可查看到待抢的订单信息，司机可以选择合适自己的货源进行抢单。</div>
+            <img class="area-img1" src="img/lms12.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>2、抢单成功后，等待货主选择抢单司机。</div>
+            <div>3、货主选择自己作为承运司机之后，在司机端可看到相应信息，司机需点击发货，订单状态转变为在途。</div>
+            <img class="area-img1" src="img/lms13.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>4、司机到货以后，点击[到货完成]并进行[签单上传]，签单上传完毕以后APP上面会显示[已签单]，然后点击确认即可，确认成功后订单就会变成[待评价]状态，此次送货任务就算完成。</div>
+            <img class="area-img1" src="img/lms14.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>5、等待货主对待评价订单进行评价操作，货主评价后司机可在APP上查看货主对自己的评价。</div>
+            <img class="area-img1" src="img/lms15.jpg">
+        </div>
+    </div>
+    <div id="a3-area" style="display: none">
+        <div class="area-title-text">自调车A3排单-直通宝发货操作指引</div>
+        <div class="area-part-content-white">
+            <div class="area-small-title">网店操作：</div>
+            <div>1、进入A3系统选择“运输管理”流程</div>
+            <img class="area-img1" data-img="img/a3_1.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>2、选择“流程管理”—“调车计划制定”</div>
+            <img class="area-img1" data-img="img/a3_2.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>3、输入排单信息点击“查询”按钮</div>
+            <img class="area-img1" data-img="img/a3_3.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>4、选择相应订单—点击“排单”</div>
+            <img class="area-img1" data-img="img/a3_4.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>5、在采购渠道中选择“自调车”</div>
+            <img class="area-img1" data-img="img/a3_5.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>6、勾选“是否发货直通宝”</div>
+            <img class="area-img1" data-img="img/a3_6.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>7、“货主账号”一栏必须填写直通宝注册货主账号</div>
+            <img class="area-img1" data-img="img/a3_7.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>8、客户送货单号前“红色圆圈”内打勾</div>
+            <img class="area-img1" data-img="img/a3_8.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>9、点击“保存”</div>
+            <img class="area-img1" data-img="img/a3_9.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>10、直通宝货主端可查看司机抢单信息—点击“选择司机”按钮，订单进行到待发货状态；</div>
+            <img class="area-img1" data-img="img/a3_10.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>11、选择司机—点击确定，并确认订单</div>
+            <img class="area-img1" data-img="img/a3_11.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>12、待司机发货后，货主端订单进行到在途状态-货主可“查看轨迹”</div>
+            <img class="area-img1" data-img="img/a3_12.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>13、待司机点击到货完成后货主对此次司机送货综合情况进行评价（点击[评价订单]弹出评价页面进行评价）</div>
+            <img class="area-img1" data-img="img/a3_13.jpg">
+            <div>至此，网点的自调车A3排单直通宝发货操作完成</div>
+        </div>
+        <div class="area-part-content-gray">
+            <div class="area-small-title">司机操作：</div>
+            <div>1、待A3排单成功后，直通宝司机端显示货源信息，司机点击“抢单”按钮</div>
+            <img class="area-img1" data-img="img/a3_14.jpg">
+        </div>
+        <div class="area-part-content-white">
+            <div>2、待货主端选择司机后，被选择的司机需要点击发货按钮并点击确认操作，订单转变为在途，司机需保持登录直通宝。</div>
+            <img class="area-img1" data-img="img/a3_15.jpg">
+        </div>
+        <div class="area-part-content-gray">
+            <div>3、待司机到货以后，点击[到货完成]进行[签单上传]，签单上传完毕以后APP上面会显示[已签单]，然后点击确认即可，确认成功订单就会变成[待评价]状态，此次送货任务就算完成。</div>
+            <img class="area-img1" data-img="img/a3_16.jpg">
+            <div>至此，司机端的相关操作已经完成（注：整个在途过程需要司机保持直通宝的后台运行。）</div>
+        </div>
+    </div>
+    <img class="download" src="img/download.png" onclick="toDownload()">
+    <img class="go-top" src="img/top.png" onclick="goTop()">
+	</body>
+</html>

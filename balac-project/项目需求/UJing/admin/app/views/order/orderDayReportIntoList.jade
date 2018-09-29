@@ -1,0 +1,72 @@
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+
+//应用的page title
+block pageTitle
+  h1 商家经营
+    small 订单实时统计列表
+block main
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title 订单实时统计列表
+    .box-body
+      table#orderDayReportList.table.table-bordered.table-hover.table-striped(style="width:100%")
+        thead
+          th 加盟商
+          th 洗衣店
+          th 总订单数
+          th 预约订单数
+          th 未支付订单数
+          th 使用中订单数
+          th 已完成订单数
+          th 已取消订单数
+          th 支付金额
+          th 金额
+
+//应用添加的脚本在scripts block中定义
+block scripts
+    script(src='/plugins/datatables/jquery.dataTables.min.js')
+    script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+    script.
+          $(document).ready(function () {
+            var opts = {
+              "language": {
+                "url": "/plugins/datatables/Chinese.json"
+              },
+              autoWidth: true,
+              select: true,
+              searching: true,
+              processing: true,
+              serverSide: true,
+              scrollX:true,
+              ajax: {url: '/order/datatableReportInto'},
+              rowid: '_id',
+              columnDefs: [
+                //{targets: 0, visible: true, sortable: false, width: 40, searchable: false, defaultContent: ''},
+              ]
+            };
+            var code = 1;
+            var t = $('#orderDayReportList').dataTable(
+                    $.extend(opts,
+                            {
+                              order: [[1, 'asc']],
+                              columns: [
+                                {data: "franchiseName", defaultContent: ''},
+                                {data: "storeName", defaultContent: ''},
+                                {data: "total", defaultContent: '0','class':'text-center'},
+                                {data: "reservationNum", defaultContent: '0','class':'text-center'},
+                                {data: "noPayNum", defaultContent: '0','class':'text-center'},
+                                {data: "usingNum", defaultContent: '0','class':'text-center'},
+                                {data: "completedNum", defaultContent: '0','class':'text-center'},
+                                {data: "cancelNum", defaultContent: '0','class':'text-center'},
+                                {data: "allowance", defaultContent: '0','class':'text-right',render: function ( data, type, full, meta ) {
+                                  return data.toFixed(2) + " 元";
+                                }},
+                                {data: "amount", defaultContent: '0','class':'text-right',render: function ( data, type, full, meta ) {
+                                  return data.toFixed(2) + " 元";
+                                }}
+                              ]
+                            }));
+
+          });

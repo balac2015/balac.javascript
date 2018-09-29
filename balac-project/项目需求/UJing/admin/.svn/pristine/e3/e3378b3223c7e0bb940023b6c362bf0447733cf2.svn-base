@@ -1,0 +1,123 @@
+//
+   Created by yu869 on 2015/11/23.
+
+extends ../layouts/vendor
+block header
+   link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+block main
+   .row
+      .col-lg-3.col-xs-6
+         // small box
+         .small-box.bg-teal-active
+            .inner
+               h3 #{reports == null ? 0 : reports.lastMonthOrderAmount.toFixed(2)}
+               p 上月总收入
+            .icon
+               i.fa.fa-flag-o
+            a.small-box-footer(href='#')
+                  i.fa.fa-arrow-circle-right
+
+      .col-lg-3.col-xs-6
+         // small box
+         .small-box.bg-olive-active
+            .inner
+               h3 #{reports == null ? 0 : reports.lastMonthOrderNum}
+               p 上月订单数
+            .icon
+               i.fa.fa-flag-o
+            a.small-box-footer(href='#')
+               i.fa.fa-arrow-circle-right
+
+      .col-lg-3.col-xs-6
+         // small box
+         .small-box.bg-lime-active
+            .inner
+               h3 #{reports == null ? 0 : reports.todayAmount.toFixed(2)}
+               p 今日金额数
+            .icon
+               i.fa.fa-flag-o
+            a.small-box-footer(href='#')
+               i.fa.fa-arrow-circle-right
+
+      .col-lg-3.col-xs-6
+         // small box
+         .small-box.bg-orange-active
+            .inner
+               h3 #{reports == null ? 0 : reports.todayOrderNum}
+               p 今日订单数
+            .icon
+               i.fa.fa-flag-o
+            a.small-box-footer(href='#')
+               i.fa.fa-arrow-circle-right
+
+      .col-lg-3.col-xs-6
+         // small box
+         .small-box.bg-yellow-active
+            .inner
+               h3 #{reports == null ? 0 : reports.thisWeekAmount.toFixed(2)}
+               p 本周金额数
+            .icon
+               i.fa.fa-flag-o
+            a.small-box-footer(href='#')
+               i.fa.fa-arrow-circle-right
+
+      .col-lg-3.col-xs-6
+         // small box
+         .small-box.bg-fuchsia-active
+            .inner
+               h3 #{reports == null ? 0 : reports.thisWeekOrderNum}
+               p 本周订单数
+            .icon
+               i.fa.fa-flag-o
+            a.small-box-footer(href='#')
+               i.fa.fa-arrow-circle-right
+
+      .col-lg-3.col-xs-6
+         // small box
+         .small-box.bg-purple-active
+            .inner
+               h3 #{reports == null ? 0 : reports.thisMouthAmount.toFixed(2)}
+               p 本月金额数
+            .icon
+               i.fa.fa-flag-o
+            a.small-box-footer(href='#')
+               i.fa.fa-arrow-circle-right
+
+      .col-lg-3.col-xs-6
+         // small box
+         .small-box.bg-maroon-active
+            .inner
+               h3 #{reports == null ? 0 : reports.thisMonthOrderNum}
+               p 本月订单数
+            .icon
+               i.fa.fa-flag-o
+            a.small-box-footer(href='#')
+               i.fa.fa-arrow-circle-right
+
+   .row
+      a.small-box-footer(href='/vendor/deviceInfo/1')
+         .col-md-4.col-sm-6.col-xs-12
+            .info-box
+               span.info-box-icon.bg-aqua
+                  i.fa.fa-play
+               .info-box-content
+                  span.info-box-text 运转正常设备
+                  span.info-box-number #{reports == null ? 0 : reports.run}
+
+      a.small-box-footer(href='/vendor/deviceInfo/0')
+         .col-md-4.col-sm-6.col-xs-12
+            .info-box
+               span.info-box-icon.bg-gray
+                  i.fa.fa-pause
+               .info-box-content
+                  span.info-box-text 停止机器数
+                  span.info-box-number #{reports == null ? 0 : reports.standby}
+
+      a.small-box-footer(href='/vendor/deviceInfo/2')
+         .col-md-4.col-sm-6.col-xs-12
+            .info-box
+               span.info-box-icon.bg-red
+                  i.fa.fa-wrench
+               .info-box-content
+                  span.info-box-text 故障机器数
+                  span.info-box-number #{reports == null ? 0 : reports.broken}

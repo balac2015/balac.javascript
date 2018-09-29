@@ -1,0 +1,114 @@
+//
+   Created by yu869 on 2015/11/13.
+
+extends ../layouts/vendor
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+  h1 加盟商信息查看
+    small 查看加盟商信息
+block main
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title 加盟商信息查看
+    .panel-body
+      if (franchisee == undefined)
+        p 当前登录账号无加盟商信息
+      else
+        div.row
+          div.col-md-12
+            div.tabbable.tabbable-custom.boxless
+              div.portlet-body.form
+                div.form-body
+                  div.form-group
+                    label.control-label.col-md-6.text-left 加盟申请人:
+                    div.col-md-6.form-control-static.text-right
+                      span #{franchisee.fullname}
+
+                  div.form-group
+                    label.control-label.col-md-6.text-left 身份证号:
+                    div.col-md-6.form-control-static.text-right
+                      span #{franchisee.numberID}
+
+                  div.form-group
+                    label.control-label.col-md-6.text-left 加盟类型:
+                    div.col-md-6.form-control-static.text-right
+                      span #{franchisee.joinType == "00" ? "个人" : "公司"}
+
+                  div.form-group
+                    label.control-label.col-md-6.text-left 审核状态:
+                    div.col-md-6.form-control-static.text-right
+                      span #{franchisee.approvedStatus == '01' ? "待审核" : franchisee.approvedStatus == '02' ? '通过' : '不通过'}
+
+                  div.form-group
+                    label.control-label.col-md-6.text-left 固定电话:
+                    div.col-md-6.form-control-static.text-right
+                      span #{franchisee.tel}
+
+                  div.form-group
+                    label.control-label.col-md-6.text-left 移动电话:
+                    div.col-md-6.form-control-static.text-right
+                      span #{franchisee.mobile}
+
+                  div.form-group
+                    label.control-label.col-md-6.text-left 邮箱:
+                    div.col-md-6.form-control-static.text-right
+                      span #{franchisee.email}
+
+                  div.form-group
+                    label.control-label.col-md-6.text-left 邮政编码:
+                    div.col-md-6.form-control-static.text-right
+                      span #{franchisee.postCode}
+
+                  if (franchisee.joinType == "00")
+                    div.form-group
+                      label.control-label.col-md-6.text-left 个人地址:
+                      div.col-md-6.form-control-static.text-right
+                        span #{franchisee.personal.personalAddress}
+
+                    div.form-group
+                      label.control-label.col-md-6.text-left 紧急联系人:
+                      div.col-md-6.form-control-static.text-right
+                        span #{franchisee.personal.emergencyPerson}
+
+                    div.form-group
+                      label.control-label.col-md-6.text-left 紧急联系电话:
+                      div.col-md-6.form-control-static.text-right
+                        span #{franchisee.personal.emergencyTel}
+
+                    div.form-group
+                      label.control-label.col-md-6.text-left 是否美的内部员工:
+                      div.col-md-6.form-control-static.text-right
+                        span #{franchisee.personal.isStaff ? "是" : "否"}
+
+                  else
+                    div.form-group
+                      label.control-label.col-md-6.text-left 公司名称:
+                      div.col-md-6.form-control-static.text-right
+                        span #{franchisee.company.companyName}
+
+                    div.form-group
+                      label.control-label.col-md-6.text-left 公司法人代表:
+                      div.col-md-6.form-control-static.text-right
+                        span #{franchisee.company.companyCorporation}
+
+                    div.form-group
+                      label.control-label.col-md-6.text-left 注册日期:
+                      div.col-md-6.form-control-static.text-right
+                        span #{franchisee.company.registerDate}
+
+                    div.form-group
+                      label.control-label.col-md-6.text-left 注册资金:
+                      div.col-md-6.form-control-static.text-right
+                        span #{franchisee.company.registerCapital}
+
+                    div.form-group
+                      label.control-label.col-md-6.text-left 注册地址:
+                      div.col-md-6.form-control-static.text-right
+                        span #{franchisee.company.registerAddress}
+
+                    div.form-group
+                      label.control-label.col-md-6.text-left 是否美的集团代理商:
+                      div.col-md-6.form-control-static.text-right
+                        span #{franchisee.company.isAgent ? "是" : "否"}

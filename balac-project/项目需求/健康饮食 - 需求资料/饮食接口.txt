@@ -1,0 +1,58 @@
+1、添加饮食记录
+diet/add
+参数：	sessionId
+		type	1早餐，2午餐，3晚餐，4上午茶，5下午茶，6夜宵
+		recipeType	1普通菜谱，2自定义
+		recipeId
+		mealTime
+
+
+2、删除饮食记录
+diet/delete
+参数：	sessionId
+		dietId
+
+
+3、批量删除
+diet/batch/delete
+参数：	sessionId
+		dietIds		以英文,分割的ID字符串
+
+
+
+4、营养分析
+nutrition/statistic
+参数：	sessionId
+		since		开始时间
+		max			结束时间
+
+
+
+5、自定义饮食
+custom/recipe/add
+参数：	sessionId
+		name
+		weight
+		picUrl		可选
+
+
+6、获取饮食记录
+/diet/list/get
+参数：sessionId
+since    开始时间     格式：'yyyyMMddHHmmss'
+max      结束时间     格式同上
+start      起始记录索引     用于分页，从0开始
+rows     行数                  用于分页，start不为空时才有效
+
+
+7、
+饮食记录单个条目的详情
+/diet/detail
+参数：sessionId
+id	记录ID
+都是必填参数
+
+
+
+8、具体食材的营养成分
+food/common/detail

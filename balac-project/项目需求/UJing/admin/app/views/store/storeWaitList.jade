@@ -1,0 +1,174 @@
+//
+   Created by yu869 on 2015/10/26.
+
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+  h1 洗衣店管理
+    small 添加，删除，更新，分成比例，审核系统中洗衣店信息
+block main
+  .box
+    .box-header.with-border
+      h3.box-title 洗衣店列表
+      | &nbsp;
+      a.btn.btn-xs.btn-default(href='/store/list' title='查看未审核的加盟商')
+        span 已审核
+      //.pull-right
+      //  a.btn.btn-xs.btn-primary(href='#',onclick='audit()')
+      //    i.fa.fa-check
+      //    span 资格审核
+      //  | &nbsp;
+
+
+      .pull-right
+        a.btn.btn-xs.btn-primary(href='/store/add')
+          i.fa.fa-plus
+          span 添加洗衣店
+        | &nbsp;
+        a#auditAll.btn.btn-xs.btn-default.pull-right(href='#' title='审核已选的洗衣价格')
+          span 审核已选
+        | &nbsp;
+    .panel-body
+
+      form#storeDelForm(method='post', style='display:none', action='/store/del')
+        input#ids(type='hidden',name='ids')
+        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+      form#storeAuditForm(method='post', style='display:none', action='/store/audit')
+        input#ids(type='hidden',name='ids')
+        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+      table#storesList.table.table-bordered.table-hover.table-striped(style="width:100%")
+        thead
+          th #
+          th
+            input.selectAll(type="checkbox" title="全选" id="selectAll")
+          th 编号
+          th 名称
+          th 加盟商
+          th 详细地址
+          th 经度,纬度
+          th 审核资格
+          th 标签
+          th 操作
+        tbody
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datatables/jquery.dataTables.min.js')
+  script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+  script.
+    $(document).ready(function () {
+
+      $(".selectAll").on('click', function () {
+        $("#storesList").find("tbody :checkbox").prop("checked", $(this).is(":checked"));
+      });
+
+      $("#auditAll").on('click', function() {
+        var ids = [];
+        $('#storesList').find('input:checked').each(
+                function (i, item) {
+                  ids.push($(item).val());
+                });
+
+        $("#storeAuditForm #ids").val(ids);
+        if (ids) {
+          bootbox.confirm("是否对选定数据进行审核?", function (result) {
+            if (result) {
+              $("#storeAuditForm").submit();
+            }
+          });
+        }
+      })
+
+      $('#storesList').dataTable({
+        "language": {
+          "url": "/plugins/datatables/Chinese.json"
+        },
+        select: true,
+        searching: true,
+        processing: true,
+        serverSide: true,
+        scrollX:true,
+        ajax: {url: '/store/waitDatatable'},
+        rowid: '_id',
+        columnDefs: [
+          {targets: 0, visible: false, orderable: false, width: 80},
+          {
+            targets: 1,
+            visible: true,
+            orderable: false,
+            render: function (data, type, row) {
+              return '<input type="checkbox" name="ids" value="' + row._id + '">'
+            }
+          },
+          {
+            targets: -2,
+            visible: true,
+            orderable: false,
+            width: 80,
+            render: function(data, type, row ) {
+              var label = row.label.split(',');
+              var returnString = "";
+              label.forEach(function (item) {
+                returnString += "<span class='label label-success'>"+item+"</span>&nbsp;";
+              })
+              return returnString;
+            }
+          },
+          {
+            targets: -3,
+            visible: true,
+            orderable: true,
+            width: 150,
+            render: function (data, type, row) {
+              var status = row.storeStatus;
+              if ( status === '0' ) {
+                return "未审核";
+              } else if ( status === '1' ) {
+                return "已审核";
+              }
+
+            }
+          },
+          {
+            targets: -1,
+            visible: true,
+            orderable: false,
+            width: 120,
+            render: function(data, type, row ) {
+              var id = row._id;
+              return "<button id='audit' class='btn btn-default btn-xs' title='审核' type='button' onclick=audit('" + id + "','" + row.storeStatus + "')><i class='fa fa-check'></i></button>";
+            }
+          }
+        ],
+        columns: [
+          {data: "_id"},
+          {data: ""},
+          {data: "no", defaultContent: ''},
+          {data: "name", defaultContent: ''},
+          {data: "franchiseeId.fullname", defaultContent: ''},
+          {data: "address", defaultContent: ''},
+          {data: "coordinate", defaultContent: ''},
+          {data: "storeStatus", defaultContent: ''},
+          {data: "label", defaultContent: ''},
+          {data: ""}
+        ]
+      });
+
+    });
+
+    function audit(id, status) {
+      $("#storeAuditForm #ids").val(id);
+      if (status == '0') {
+        bootbox.confirm("确定要审核选中的数据吗?", function(result) {
+          if (result) {
+            $("#storeAuditForm").submit();
+          }
+        });
+      }else{
+        bootbox.alert("已审核的洗衣店不能被审核!")
+      }
+    }

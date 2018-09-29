@@ -1,0 +1,118 @@
+//
+   Created by danne on 2015/10/29.
+extends ../layouts/default
+block header
+//应用的page title
+block pageTitle
+  if viewType == 'add'
+    h1 促销信息新增
+      small 添加促销信息
+  if viewType == 'edit'
+    h1 促销信息编辑
+      small 编辑促销信息
+  if viewType == 'view'
+    h1 促销信息查看
+      small 查看促销信息
+
+block main
+  .box
+    .box-header.with-border
+      if viewType == 'add'
+        h3.box-title 添加促销信息
+      if viewType == 'edit'
+        h3.box-title 编辑促销信息
+      if viewType == 'view'
+        h3.box-title 查看促销信息
+
+      .box-tools.pull-right
+        a.btn.btn-box-tool.btn-default(href='/basicSet/promotion')
+          i.fa.fa-reply
+          span  返回
+        | &nbsp;
+        if viewType == 'edit' || viewType == 'add'
+          button#save.btn.btn-box-tool.btn-default
+            i.fa.fa-save
+            span  保存
+      //&nbsp;
+      //button.btn.btn-box-tool(data-widget="collapse")
+      //  i.fa.fa-minus
+    .box-body
+      div#permissionEdit.row
+        .col-md-12
+          form#permissionForm.form-horizontal(name='permissionForm', action='/basicSet/promotion/save', method='post')
+            if viewType == 'edit'
+              input#id(type='hidden', name='id', value="#{promotion._id}")
+            input#_csrf(type='hidden', name='_csrf', value=_csrf)
+            .form-group
+              label.control-label.col-md-2 促销价：
+                span.required(style='color:red') *
+              .controls.col-md-9
+                input#price.form-control.required(name='price', value="#{promotion != null ? promotion.price : ''}")
+
+            .form-group
+              label.control-label.col-md-2 生效时间：
+                span.required(style='color:red') *
+              .controls.col-md-9
+
+                input#effectiveTime.form-control(name='effectiveTime',readonly='true', value="#{promotion != null ? formatDate(promotion.effectiveTime) : ''}")
+
+            .form-group
+              label.control-label.col-md-2 失效时间：
+                span.required(style='color:red') *
+              .controls.col-md-9
+                input#failureTime.form-control.required(name='failureTime',readonly='true', value="#{promotion != null ? formatDate(promotion.failureTime) : ''}")
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datepicker/bootstrap-datepicker.js')
+  script.
+    $(document).ready(function () {
+      var form = $('#permissionForm');
+      $("#save").on('click', function () {
+        form.submit();
+      });
+      form.validate({
+        rules: {
+          price: {
+            required: true,
+            priceNum:true
+          },
+          effectiveTime: {
+            required: true
+          },
+          failureTime: {
+            required: true
+          }
+        },
+        messages: {
+          name: {
+            required: '请输入价格',priceNum:'请输入标准价格'
+          },effectiveTime: {
+            required: '请输入生效时间!'
+          },failureTime: {
+            required: '请输入失效时间!'
+          }
+        }
+      });
+      $("input[name='urlPrefix'], input[name='subject'], input[name='action']").change(function (e) {
+        $("input[name='url']").val("/" + $("input[name='urlPrefix']").val() + "/" + $("input[name='subject']").val() + "/" + $("input[name='action']").val());
+      });
+      var dates = $('#effectiveTime').datepicker({
+        format: "yyyy-mm-dd",
+        language: 'cn',
+        weekStart: 1,
+        autoclose: true,
+        todayBtn: 'linked'
+      }).on('changeDate', function (ev) {
+        $('#effectiveTime').val(ev.date);
+      });
+      var time = $('#failureTime').datepicker({
+        format: "yyyy-mm-dd",
+        language: 'cn',
+        weekStart: 1,
+        autoclose: true,
+        todayBtn: 'linked'
+      }).on('changeDate', function (ev) {
+        $('#failureTime').val(ev.date);
+      });
+    });

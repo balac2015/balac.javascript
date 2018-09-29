@@ -1,0 +1,56 @@
+extends ../layouts/front
+block header
+
+block main
+  .login-box
+    .login-logo
+      a(href='/')
+        b U净
+        | 云洗衣管理平台
+    // /.login-logo
+    .login-box-body
+      p.login-box-msg 请使用用户名和密码登录系统
+      form#loginForm(action='/login', method='post')
+        input(type='hidden', name='_csrf', value=_csrf)
+        input(type='hidden', name='userType', value='platform')
+        .form-group.has-feedback
+          input.form-control(type='text', placeholder='请使用用户名/Email/手机登录', name="username")
+          span.glyphicon.glyphicon-envelope.form-control-feedback
+        .form-group.has-feedback
+          input.form-control(type='password', placeholder='登录密码', name="password")
+          span.glyphicon.glyphicon-lock.form-control-feedback
+        .checkbox.icheck
+          label
+            input#rememberMe(type='checkbox',name="rememberMe")
+            | &nbsp;&nbsp; 记住我
+        button.btn.btn-primary.btn-block.btn-flat(type='submit') 登 录
+          // /.col
+      // /.social-auth-links
+      .social-auth-links.text-center
+        p - OR -
+      //a(href='#') 忘记密码？
+      //br
+      a.text-center(href='/vendor')
+        i.fa.fa-arrow-right
+        | &nbsp;&nbsp;我是加盟商
+    // /.login-box-body
+  // /.login-box
+block scripts
+  script.
+    $(function () {
+      $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' // optional
+      });
+      $("#loginForm").validate({
+        rules: {
+          username: {required: true},
+          password: {required: true}
+        },
+        messages: {
+          username: {required: "请输入登录用户名"},
+          password: {required: "请输入登录密码"}
+        }
+      });
+    });

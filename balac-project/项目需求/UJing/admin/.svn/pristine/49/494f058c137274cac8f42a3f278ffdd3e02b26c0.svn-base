@@ -1,0 +1,263 @@
+//
+   Created by yu869 on 2015/10/27.
+
+extends ../layouts/default
+block header
+//应用的page title
+block pageTitle
+  if viewType == 'add'
+    h1 洗衣店信息新增
+      small 添加洗衣店信息
+  if viewType == 'edit'
+    h1 洗衣店信息编辑
+      small 编辑洗衣店信息
+block main
+  .box
+    .box-header.with-border
+      if viewType == 'add'
+        h3.box-title 添加洗衣店信息
+      if viewType == 'edit'
+        h3.box-title 编辑洗衣店信息
+
+      .pull-right
+        a.btn.btn-xs.btn-primary(href='/store/list')
+          i.fa.fa-reply
+          span 返回
+        | &nbsp;
+
+      .pull-right
+        button#save.btn.btn-xs.btn-primary
+          i.fa.fa-save
+          span 保存
+        | &nbsp;
+
+    .panel-body
+      div#storeEdit.row
+        div.col-md-12
+          form#storeDelForm(method='post', style='display:none', action='/store/del')
+            input#ids(type='hidden',name='ids')
+
+          form#storeForm.form-horizontal(name='storeForm', action='/store/save', method='post')
+            input#id(type='hidden', name='id', value="#{store != null ? store._id : ''}")
+            input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+            div.row.form-group
+              label.control-label.col-md-2 加盟商：
+                span.required *
+              div.controls.col-md-9
+                select#franchiseeId.form-control(name="franchiseeId")
+                  option(value="") 请选择加盟商
+
+            div.row.form-group
+              label.control-label.col-md-2 服务主体：
+                span.required *
+              div.controls.col-md-9
+                select#schoolId.form-control(name="schoolId")
+                  option(value="") 请选择
+
+            div.row.form-group
+              label.control-label.col-md-2 名称：
+                span.required *
+              div.controls.col-md-9
+                input#name.form-control.required(name='name', value="#{store != null ? store.name : ''}", required, placeholder=)
+
+            div.row.form-group
+              label.control-label.col-md-2 营业时间从：
+                span.required *
+              div.controls.col-md-9
+                div.input-group
+                  .input-group-addon
+                    i.fa.fa-clock-o
+                  input#start.form-control.required(name='start', data-inputmask="'alias': 'hh:mm'" data-mask value="#{store != null ? store.start : ''}")
+
+            div.row.form-group
+              label.control-label.col-md-2 营业时间到：
+                span.required *
+              div.controls.col-md-9
+                div.input-group
+                  .input-group-addon
+                    i.fa.fa-clock-o
+                  input#end.form-control.required(name='end', data-inputmask="'alias': 'hh:mm'" data-mask value="#{store != null ? store.end : ''}")
+
+            div.row.form-group
+              label.control-label.col-md-2 省：
+                span.required *
+              div.controls.col-md-9
+                select#province.form-control(name="province")
+                  option(value="") 请选择
+
+            div.row.form-group
+              label.control-label.col-md-2 市：
+                span.required *
+              div.controls.col-md-9
+                select#city.form-control(name="city")
+                  option(value="") 请选择
+
+            div.row.form-group
+              label.control-label.col-md-2 区：
+                span.required *
+              div.controls.col-md-9
+                select#district.form-control(name="district")
+                  option(value="") 请选择
+
+            div.row.form-group
+              label.control-label.col-md-2 地址：
+                span.required *
+              .controls.col-md-9
+                input#address.form-control.required(name='address', value="#{store != null ? store.address : ''}")
+
+            div.row.form-group
+              label.control-label.col-md-2 坐标：
+              .controls.col-md-9
+                input#coordinate.form-control.required(name='coordinate', value="#{store != null ? store.coordinate : ''}")
+
+            div.row.form-group
+              label.control-label.col-md-2
+                if (i == 0)
+                  |服务项目
+                  span.required *
+              div.controls.col-md-9
+                - for (var i = 0; i < DevicePrices.length; i++){
+                  input#label(type="checkbox", name="label", value="#{DevicePrices[i].shortName}", checked=store != null ? store.label.indexOf(DevicePrices[i].shortName) != -1 : false)
+                  | &nbsp;#{DevicePrices[i].type}
+                - }
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datepicker/bootstrap-datepicker.js')
+  script(src='/plugins/input-mask/jquery.inputmask.js')
+  script(src='/plugins/input-mask/jquery.inputmask.date.extensions.js')
+  script.
+    $(document).ready(function () {
+
+      //Money Euro
+      $("[data-mask]").inputmask();
+
+      var form = $('#storeForm');
+
+      $("#save").on('click',function(){
+        form.submit();
+      });
+
+      form.validate({
+        rules: {
+          franchiseeId: {
+            required: true
+          },
+          schoolId: {
+            required: true
+          },
+          name: {
+            required: true
+          }
+          ,label: {
+            required: true
+          }
+        },
+        messages: {
+          franchiseeId: "加盟商必选!"
+          ,schoolId: "服务主体必选"
+          ,name: "洗衣店名称必填!"
+          ,label: "至少选取一个标签!"
+        }
+      });
+
+      $.getJSON("/franchisee/hasRoleFran", function (data) {
+        $.each(data, function (i, item) {
+          $("#franchiseeId").append("<option value='" + item._id + "'>&nbsp;" + item.fullname + "</option>");
+        });
+        var franchiseeId = "#{store != null ? store.franchiseeId : ""}";
+        if (franchiseeId) {
+          $("#franchiseeId").val(franchiseeId);
+        }
+      });
+
+      $.getJSON("/store/province", function (data) {
+
+        $.each(data, function (i, item) {
+          $("#province").append("<option value='" + item.code + "|" + item._id + "|" + item.name + "'>&nbsp;" + item.name + "</option>");
+          $("#province").append("<input type='hidden' id='"+item._id+"' value='" + item.code + "|" + item._id + "|" + item.name + "'/>");
+        });
+
+        var provinceId = "#{provinceId}";
+        if (provinceId) {
+          var key = $("#" + provinceId).val();
+          $("#province").val(key);
+          city(key);
+        }
+
+      });
+
+      $("#province").on('change', function () {
+        city($(this).val());
+      });
+
+      $("#city").on('change', function () {
+        district($(this).val())
+      });
+
+      // 服务主体
+      $("#franchiseeId").on('change', function (req, res) {
+        var franId = $(this).val();
+        if (franId){
+          $.getJSON("/franchisee/getFranById/" + franId, function (data) {
+            var schools = data.school;
+            console.log(schools);
+            $.each(schools, function (i, item) {
+              $("#schoolId").append("<option value='" + item._id +"'>&nbsp;" + item.schoolName + "</option>");
+            });
+          });
+        }
+      });
+    })
+
+    function city(provinceCode) {
+      $.ajax({url: "/store/city",
+        type: "GET",
+        async : false,
+        data: {'provinceCode' : provinceCode},
+        success: function(data){
+          if (data) {
+            $("#city").html("");
+            $("#city").append("<option value=''>&nbsp;请选择</option>");
+            $("#district").html("");
+            $("#district").append("<option value=''>&nbsp;请选择</option>");
+            $.each(data, function (i, item) {
+              $("#city").append("<option value='" + item.code + "|" + item._id + "|" + item.name + "'>&nbsp;" + item.name + "</option>");
+              $("#city").append("<input type='hidden' id='"+item._id+"' value='" + item.code + "|" + item._id + "|" + item.name + "'/>");
+            });
+
+            var cityId = "#{cityId}";
+            if (cityId) {
+              var key = $("#" + cityId).val();
+              $("#city").val(key);
+              district(key);
+            }
+          }
+        }
+      });
+    }
+
+    function district(cityCode){
+      $.ajax({
+        url: "/store/district",
+        type: "GET",
+        async: false,
+        data: {'cityCode': cityCode},
+        success: function (data) {
+          if (data) {
+            $("#district").html("");
+            $.each(data, function (i, item) {
+              $("#district").append("<option value='" + item.code + "|" + item._id + "|" + item.name + "'>&nbsp;" + item.name + "</option>");
+              $("#district").append("<input type='hidden' id='"+item._id+"' value='" + item.code + "|" + item._id + "|" + item.name + "'/>");
+            });
+
+            var districtId = "#{districtId}";
+            if (districtId) {
+              var key = $("#" + districtId).val();
+              $("#district").val(key);
+            }
+          }
+        }
+      });
+    }

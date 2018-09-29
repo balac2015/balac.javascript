@@ -1,0 +1,8 @@
+extends layouts/default
+
+block main
+  if !req.isAuthenticated()
+    h1 首页
+  else
+    #home-page.block-tricks
+      h1 首页

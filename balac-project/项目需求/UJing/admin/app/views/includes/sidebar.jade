@@ -1,0 +1,120 @@
+// Left side column. contains the logo and sidebar
+aside.main-sidebar
+  // sidebar: style can be found in sidebar.less
+  section.sidebar
+    // Sidebar user panel (optional)
+    .user-panel
+      .pull-left.image
+        - if(req.user)
+        img.img-circle(src='#{req.user.photo_profile ? req.user.photo_profile : "/dist/img/avatar.png"}', alt='头像')
+
+      .pull-left.info
+        p #{req.isAuthenticated() ? User.username : 'Please log in'}
+        // Status
+        a(href='#')
+          i.fa.fa-circle.text-success
+          |  #{req.isAuthenticated() ? 'Online' : 'Offline'}
+    // search form (Optional)
+    //form.sidebar-form(action='#', method='get')
+    //  .input-group
+    //    input.form-control(type='text', name='q', placeholder='Search...')
+    //
+    //    span.input-group-btn
+    //      button#search-btn.btn.btn-flat(type='submit', name='search')
+    //        i.fa.fa-search
+    // /.search form
+    // Sidebar Menu
+    ul.sidebar-menu
+      li.header 导航菜单
+      // Optionally, you can add icons to the links
+      li(class="#{isActive('/dashboard')}")
+        a(href='/dashboard')
+          i.fa.fa-dashboard
+          span 仪表盘
+
+      li.treeview
+        a(href='#')
+          i.fa.fa-link
+          span 基础设定
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li(class="#{isActive('/store/priceSet')}")
+            a(href='/store/priceSet')
+              i.fa.fa-user
+              span 基准价格设定
+          li(class="#{isActive('/basicSet/promotion')}")
+            a(href='/basicSet/promotion')
+              i.fa.fa-user
+              span 促销信息
+      li.treeview
+        a(href='#')
+          i.fa.fa-link
+          span 加盟商管理
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li(class="#{isActive('/franchisee/list')}")
+            a(href='/franchisee/list')
+              i.fa.fa-user
+              span 加盟商信息
+          li(class="#{isActive('/store/list')}")
+            a(href='/store/list')
+              i.fa.fa-university
+              span 洗衣店信息
+          li(class="#{isActive('/device/list')}")
+            a(href='/device/list')
+              i.fa.fa-user
+              span 加盟商设备信息
+          li(class="#{isActive('/store/priceApplyList')}")
+            a(href='/store/priceApplyList')
+              i.fa.fa-user
+              span 洗衣价格查询
+      li(class="treeview #{isActive('/order')}")
+        a(href='#')
+          i.fa.fa-link
+          span 订单管理
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li(class="#{isActive('/order/todayOrder')}")
+            a(href='/order/todayOrder')
+              i.fa.fa-user
+              span 今日订单
+          li(class="#{isActive('/order/showList')}")
+            a(href='/order/showList')
+              i.fa.fa-user
+              span 全部订单
+          li(class="#{isActive('/order/list')}")
+            a(href='/order/list')
+              i.fa.fa-user
+              span 统计报表
+
+      li(class="treeview #{isActive('/wechatFans')}")
+        a(href='#')
+          i.fa.fa-link
+          span 微信服务号
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='/wechatFans/list')
+              i.fa.fa-university
+              span 关注粉丝
+
+      li(class="treeview #{isActive('/system')}")
+        a(href='/system/user')
+          i.fa.fa-gear
+          span 系统管理
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li(class="#{isActive('/system/user')}")
+            a(href='/system/user/')
+              i.fa.fa-user
+              span 用户管理
+          li(class="#{isActive('/system/role')}")
+            a(href='/system/role/')
+              i.fa.fa-user-secret
+              span 角色管理
+          li(class="#{isActive('/system/permission')}")
+            a(href='/system/permission/')
+              i.fa.fa-user-secret
+              span 权限管理
+// /.sidebar-menu
+// /.sidebar

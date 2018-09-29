@@ -1,0 +1,94 @@
+//
+   Created by yu869 on 2015/11/10.
+
+extends ../layouts/vendor
+block header
+//应用的page title
+block pageTitle
+  h1 设备
+    small[#{storeName}]
+    //small 添加，删除，更新洗衣店中设备信息
+    .buttonWrapper.pull-right
+      a.btn.btn-success(href="/vendor/storeInFran/#{schoolId}")
+        i.fa.fa-list
+        | &nbsp;洗衣店列表
+block main
+  //.box
+  //  .box-header.with-border
+  //    .pull-right
+  //      a.btn.btn-sm(href='/vendor/deviceAdd?storeId=#{storeId}')
+  //        i.fa.fa-plus
+  //          | 添加新设备
+  each device in devices
+    .row
+      .col-md-4
+        .box.box-widget
+          .box-header.with-border
+            h3.box-title
+              | #{device.device.name}
+            .pull-right
+              a.btn.btn-xs(href='/vendor/deviceEdit/#{device.device._id}', onclick="#")
+                i.fa.fa-pencil &nbsp;修改
+          .box-body
+            ul.nav
+              //li
+              //  | 设备类型
+              //  span.pull-right
+              //    if device.device.deviceType == '0xDA'
+              //      | 波轮
+              //    if device.device.deviceType == '0xDB'
+              //      | 滚筒
+              //    if device.device.deviceType == '0xDC'
+              //      | 干衣
+
+              li
+                | 设备编号
+                span.pull-right #{device.device.no}
+              //li
+              //  | 设备型号
+              //  span.pull-right #{device.device.devicePriceId.type}
+
+              li
+                | 设备状态
+                if (device.device.status == '0')
+                  span.pull-right.label.label-default
+                    | 空闲
+                if (device.device.status == '1')
+                  span.pull-right.label.label-success
+                    | 使用中
+                if (device.device.status == '2')
+                  span.pull-right.label.label-danger
+                    | 故障
+                if (device.device.status == '3')
+                  span.pull-right.label.label-warning
+                    | 停用
+              li
+                | 投入使用时间
+                span.pull-right #{formatDatetime(device.device.useDate)}
+              li
+                | 开始使用时间
+                span.pull-right #{formatDatetime(device.device.useTime)}
+              li
+                | 预计执行时间
+                span.pull-right #{device.device.execTime}
+
+                each price in device.prices
+                  li
+                    |   #{price.type}
+                    if price.status == 0
+                      span.pull-right.label.label-warning
+                        | 价格:#{price.price}元,价格审核申请中
+
+                    if price.status == 1
+                      span.pull-right.label.label-success
+                        | 价格:#{price.price}元,价格审核通过
+
+                    if price.status == 2
+                      span.pull-right.label.label-danger
+                        | 价格:#{price.price}元,价格审核未通过,
+                        if price.reason
+                        | 原因为#{price.reason}
+
+
+
+

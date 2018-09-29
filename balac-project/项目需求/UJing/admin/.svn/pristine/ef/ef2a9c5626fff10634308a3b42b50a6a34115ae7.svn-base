@@ -1,0 +1,9 @@
+extends layouts/front
+
+block main
+  h2= error
+  pre #{url}
+  p
+    button.btn.btn-link(onclick='window.history.back();')
+      i.icon.icon-backward 返回
+

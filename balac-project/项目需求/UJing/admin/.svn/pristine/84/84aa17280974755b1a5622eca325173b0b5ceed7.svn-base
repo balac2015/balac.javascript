@@ -1,0 +1,44 @@
+//
+   Created by yu869 on 2015/11/10.
+extends ../layouts/vendor
+block header
+    link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+block main
+    .box.box-primary
+        .box-header.with-border
+            h3.box-title 我的洗衣店
+            .pull-right
+                a#addStore.btn.btn-sm()
+                    i.fa.fa-plus &nbsp;&nbsp;添加新服务主体
+        .box-body
+            ul.products-list.product-list-in-box
+                each v,i in franchisee.school
+                    li.item
+                        .input-group
+                            a(href="/vendor/storeInFran/#{v._id}")
+                                .product-img
+                                    img(alt="服务主体图片" src="/dist/img/default-50x50.gif")
+                                .product-info
+                                    .product-title
+                                        h5 #{v.schoolName}
+                                    #stores.product-description.h6
+                                        span.fa.fa-map-marker
+                                            | #{v.ubietyAddress}
+                            .input-group-btn
+                                a#location.btn.btn-link(href="/vendor/editSchool?&index=#{i}")
+                                    i.fa.fa-pencil &nbsp;修改
+//应用添加的脚本在scripts block中定义
+block scripts
+    script.
+        $(document).ready(function () {
+            $("#addStore").on('click', function () {
+                var stauts = "#{franchisee.approvedStatus}";
+                if (stauts != '02') {
+                    bootbox.alert("未审核通过的加盟商不允许添加服务主体!");
+                } else {
+                    window.location = '/vendor/editSchool';
+                }
+            })
+        });

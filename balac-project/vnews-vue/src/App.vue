@@ -1,0 +1,52 @@
+<template>
+	<div id="app">
+		<Navigation />
+			<transition name="fade" mode="out-in">
+				<router-view class="view"></router-view>
+			</transition>
+		</transition>
+	</div>
+</template>
+
+<script>
+	import Navigation from './views/Navigation.vue';
+
+	export default {
+		name: 'app',
+		components: {
+			Navigation
+		}
+	}
+</script>
+
+<style>
+
+	body {
+	font-family: "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 15px;
+	background-color: #f2f3f5;
+	margin: 0;
+	padding-top: 55px;
+	color: #34495e;
+	overflow-y: scroll;
+	}
+	a {
+	color: #34495e;
+	text-decoration: none;
+	cursor: pointer;
+	}
+	.view {
+	max-width: 800px;
+	margin: 0 auto;
+	position: relative;
+	}
+	.fade-enter-active, .fade-leave-active {
+	transition: all .2s ease;
+	}
+
+	.fade-enter, .fade-leave-active {
+	opacity: 0;
+	}
+</style>

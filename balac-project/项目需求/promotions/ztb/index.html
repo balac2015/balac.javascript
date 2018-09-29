@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>直通宝有二宝， 助你发货无烦恼</title>
+		<meta name="format-detection" content="telephone=no" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="css/style.css"/>
+	</head>
+	<body>
+        <img src='img/part1.jpg' style="position:fixed; width: 0; height: 0;"/>
+        <!--<audio class="play-audio" id="music1" src="audio/demo.mp3" autoplay="autoplay" loop="loop"></audio>-->
+        <div class="part-area">
+            <img class="part-img" src="img/part1.jpg"/>
+            <img class="light-img" src="img/light.png">
+            <!--<img class="music-img" id="start-music" src="img/start.png">-->
+            <!--<img class="music-img" id="pause-music" src="img/pause.png">-->
+        </div>
+        <div class="part-area">
+            <img class="part-img" src="img/part2.jpg"/>
+            <!--<img class="small-person-img" src="img/small_person.png">-->
+            <img class="red-glass-img" src="img/red_glass.png">
+            <img class="dollar-img" src="img/dollar.png">
+            <img class="glass-img" src="img/glass.png">
+        </div>
+        <div class="part-area">
+            <img class="part-img" src="img/part3.jpg"/>
+            <img class="rocket-img" src="img/rocket.png">
+        </div>
+        <div class="part-area">
+            <img class="part-img" src="img/part4.jpg"/>
+            <div class="to-top" id="to-top"></div>
+        </div>
+        <script src="js/zepto.min.js?v=1.0.1"></script>
+		<script>
+//            var myVideo = document.getElementById("music1");
+//            $('#start-music').hide();
+//            $('#start-music').click(function() {
+//                $('#pause-music').show();
+//                $('#start-music').hide();
+//                myVideo.play();
+//            });
+//            $('#pause-music').click(function() {
+//                $('#pause-music').hide();
+//                $('#start-music').show();
+//                myVideo.pause();
+//            });
+            function goTop(acceleration, time) {
+                acceleration = acceleration || 0.1;
+                time = time || 16;
+                var x1 = 0;
+                var y1 = 0;
+                var x2 = 0;
+                var y2 = 0;
+                var x3 = 0;
+                var y3 = 0;
+                if (document.documentElement) {
+                    x1 = document.documentElement.scrollLeft || 0;
+                    y1 = document.documentElement.scrollTop || 0;
+                }
+                if (document.body) {
+                    x2 = document.body.scrollLeft || 0;
+                    y2 = document.body.scrollTop || 0;
+                }
+                var x3 = window.scrollX || 0;
+                var y3 = window.scrollY || 0;
+            // 滚动条到页面顶部的水平距离
+                var x = Math.max(x1, Math.max(x2, x3));
+            // 滚动条到页面顶部的垂直距离
+                var y = Math.max(y1, Math.max(y2, y3));
+            // 滚动距离 = 目前距离 / 速度, 因为距离原来越小, 速度是大于 1 的数, 所以滚动距离会越来越小
+                var speed = 1 + acceleration;
+                window.scrollTo(Math.floor(x / speed), Math.floor(y / speed));
+            // 如果距离不为零, 继续调用迭代本函数
+                if (x > 0 || y > 0) {
+                    var invokeFunction = "goTop(" + acceleration + ", " + time + ")";
+                    window.setTimeout(invokeFunction, time);
+                }
+            }
+            $('#to-top').click(function() {
+                goTop();
+//                $("body").scrollTop(0);
+            });
+        </script>
+	</body>
+</html>

@@ -1,0 +1,154 @@
+//
+   Created by danne on 2015/10/29.
+extends ../layouts/default
+block header
+//应用的page title
+block pageTitle
+  if viewType == 'add'
+    h1 用户信息新增
+      small 添加用户信息
+  if viewType == 'edit'
+    h1 用户信息编辑
+      small 编辑用户信息
+  if viewType == 'view'
+    h1 用户信息查看
+      small 查看用户信息
+
+block main
+  .box.box-primary
+    .box-header.with-border
+      if viewType == 'add'
+        h3.box-title 添加用户信息
+      if viewType == 'edit'
+        h3.box-title 编辑用户信息
+      if viewType == 'view'
+        h3.box-title 查看用户信息
+
+      .box-tools.pull-right
+        a.btn.btn-box-tool.btn-default(href='/system/user')
+          i.fa.fa-reply
+          span  返回
+        | &nbsp;
+        if viewType == 'add' || viewType == 'edit'
+          button#save.btn.btn-box-tool.btn-default
+            i.fa.fa-save
+            span  保存
+        | &nbsp;
+        if viewType == 'view' || viewType == 'edit'
+          button#del.btn.btn-box-tool.btn-danger.del
+            i.fa.fa-trash
+            span  删除
+      //&nbsp;
+      //button.btn.btn-box-tool(data-widget="collapse")
+      //  i.fa.fa-minus
+    .box-body
+      div#userEdit.row
+        .col-md-12
+          if viewType == 'edit'
+            form#userDelForm(method='post', style='display:none', action='/system/user/del')
+              input#ids(type='hidden',name='ids',value="#{user._id}")
+              input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+          form#userForm.form-horizontal(name='userForm', action='/system/user/save', method='post')
+            if viewType == 'edit'
+              input#id(type='hidden', name='id', value="#{user._id}")
+
+            input#_csrf(type='hidden', name='_csrf', value=_csrf)
+            .form-group
+              label.control-label.col-md-2 用户名：
+                span.required *
+              .controls.col-md-9
+                input#username.form-control.required(name='username', value="#{user ? user.username : ''}")
+            .form-group
+              label.control-label.col-md-2 Email：
+                span.required *
+              .controls.col-md-9
+                input#email.form-control.required(name='email', value="#{user ? user.email : ''}")
+
+            .form-group
+              label.control-label.col-md-2 设定密码：
+              .controls.col-md-9
+                input#password.form-control.required(name='password',type="password",class="#{viewType == 'edit' ? 'ignore' : ''}")
+            .form-group
+              label.control-label.col-md-2 重复密码：
+              .controls.col-md-9
+                input#confirmPassword.form-control.required(name='confirmPassword',type="password",class="#{viewType == 'edit' ? 'ignore' : ''}")
+            .form-group
+              label.control-label.col-md-2 姓氏：
+              .controls.col-md-9
+                input#lastname.form-control(name='lastname', value="#{user ? user.lastname : ''}")
+            .form-group
+              label.control-label.col-md-2 名字：
+              .controls.col-md-9
+                input#firstname.form-control(name='firstname', value="#{user ? user.firstname : ''}")
+            fieldset
+              legend.text-center
+                h4 角色授权
+              .form-group
+                label.control-label.col-md-2
+                .controls.col-md-9
+                  each role in roles
+                    .checkbox.icheck.col-md-6
+                      label
+                        - if (user !=null && user.roles.join(",").match(''+role.id))
+                          input(type="checkbox", name="roles", value="#{role.id}", checked="checked")
+                        - else
+                          input(type="checkbox", name="roles", value="#{role.id}")
+                          | &nbsp;&nbsp; #{role.name}[#{role.description}]
+
+    //.box-footer
+    //  if viewType == 'add' || viewType == 'edit'
+    //    button#save.btn.btn-primary
+    //      i.fa.fa-save
+    //      span  保存
+
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script.
+    $(document).ready(function () {
+      $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' // optional
+      });
+      var form = $('#userForm');
+      $("#save").on('click', function () {
+        form.submit();
+      });
+
+      form.validate({
+        ignore: '.ignore',
+        rules: {
+          username: {
+            required: true,
+            remote: '/system/user/checkname?oldName=#{user ? user.username : ''}'
+          },
+          email: {
+            email: true
+          },
+          confirmPassword: {
+            equalTo: "#password"
+          }
+        },
+        messages: {
+          username: {
+            remote: '该用户已经存在!'
+          },
+          confirmPasswod: {
+            equalTo: '重复密码必须与设定密码一致!'
+          }
+        }
+      });
+
+      $('#del').on('click', function () {
+        bootbox.confirm("确定要删除数据吗?", function (result) {
+          if (result) {
+            $("#userDelForm").submit();
+          }
+        });
+      });
+
+
+    });
+

@@ -1,0 +1,93 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title= pkg.name + ' - ' + title
+    // Tell the browser to be responsive to screen width
+    meta(name='keywords', content='')
+    meta(name='description', content='')
+    meta(name='format-detection', content='telephone=no,email=no')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='grey')
+    meta(name='screen-orientation', content='portrait')
+    meta(name='x5-orientation', content='portrait')
+    meta(http-equiv='pragma', content='no-cache')
+    meta(http-equiv='Cache-Control', content='no-cache, must-revalidate')
+    // Bootstrap 3.3.5
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    // Font Awesome
+    link(rel='stylesheet', href='http://cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css')
+    // Ionicons
+    //link(rel='stylesheet', href='http://cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css')
+    link( rel="stylesheet" href="/plugins/pace/pace.min.css" type="text/css")
+
+    // iCheck
+    link(rel='stylesheet', href='/plugins/iCheck/square/blue.css')
+    block header
+
+    // Theme style
+    link(rel='stylesheet', href='/dist/css/AdminLTE.min.css')
+    //
+      AdminLTE Skins. Choose a skin from the css/skins
+      folder instead of downloading all of them to reduce the load.
+    link(rel='stylesheet', href='/dist/css/skins/_all-skins.min.css')
+
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
+  // ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR.
+  body.hold-transition.skin-blue.layout-top-nav
+    .wrapper
+      include ../includes/nav-top
+      // Full Width Column
+      .content-wrapper
+        //.container
+        // Content Header (Page header)
+        section.content-header
+          block pageTitle
+          block breadcrumb
+        // Main content
+        section.content
+          include ../includes/flash
+          block main
+          // /.content
+        // /.container
+      // /.content-wrapper
+      include ../includes/footer
+        // /.container
+    // ./wrapper
+    // jQuery 2.1.4
+    script(src='/plugins/jQuery/jQuery-2.1.4.min.js')
+    // Bootstrap 3.3.5
+    script(src='/bootstrap/js/bootstrap.min.js')
+    // SlimScroll
+    script(src='/plugins/slimScroll/jquery.slimscroll.min.js')
+    // FastClick
+    script(src='/plugins/fastclick/fastclick.js')
+    // icheck
+    script(src='/plugins/iCheck/icheck.min.js')
+    //PACE
+    script(src='/plugins/pace/pace.min.js')
+
+    script(src='/plugins/bootbox/bootbox.min.js')
+    // AdminLTE App
+    script(src='/dist/js/app.min.js')
+    script.
+      $(document).ajaxStart(function() { Pace.restart(); });
+    // highlight error input
+    if messages.error
+      script.
+        $(document).ready(function () {
+        for err in messages.error
+          if(err.name === 'ValidationError')
+            for e in err.errors
+              $("input[name='#{e.path}']").parents(".form-group").addClass("has-error");
+        });
+
+    // App scripts go here
+    block scripts

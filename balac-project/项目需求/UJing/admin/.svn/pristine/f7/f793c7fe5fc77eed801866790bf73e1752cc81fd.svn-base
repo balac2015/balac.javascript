@@ -1,0 +1,156 @@
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+  link( rel="stylesheet" href="/plugins/datepicker/datepicker3.css")
+
+//应用的page title
+block pageTitle
+  h1 商家经营订单统计
+    small 加盟商统计列表
+block main
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title 按加盟商和日期查看订单统计报表
+      | &nbsp;
+      a.btn.btn-xs.btn-default(href='/order/list' title='按店铺查看统计')
+        span 店铺
+      | &nbsp;
+      a.btn.btn-xs.btn-default(href='/order/orderMFrancList' title='按月份查看统计')
+        span 月份
+      .box-tools.pull-right
+        div.col-md-2.form-group
+          span.control-label 按时间段:
+        div.col-md-10.form-group
+          div.col-md-10.form-group
+            div#datetimepicker.input-append.date.col-md-6.form-group
+              input#createDate1(type="text")
+              span#start.add-on(style="color:red")
+            div#datetimepicker2.input-append.date.col-md-6.form-group
+              input#createDate2(type="text")
+              span#end.add-on(style="color:red")
+          button#search.btn.btn-xs.btn-default(title='搜索')
+            i.fa.fa-search
+            span 搜索
+
+    .box-body
+      table#orderDayFrancList.table.table-bordered.table-hover.table-striped(style="width:100%")
+        thead
+          th 日期
+          th 加盟商
+          th 总订单数
+          th 预约订单数
+          th 未支付订单数
+          th 使用中订单数
+          th 已完成订单数
+          th 已取消订单数
+          th 收入金额
+          th 基准价
+          th 实际收入
+
+//应用添加的脚本在scripts block中定义
+block scripts
+    script(src='/plugins/datatables/jquery.dataTables.min.js')
+    script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+    script(src='/plugins/datepicker/bootstrap-datepicker.js')
+    script.
+          $(document).ready(function () {
+            $('#createDate1').val("");
+            $('#createDate2').val("");
+            var dates = $('#datetimepicker').datepicker({
+              format: "yyyy-mm-dd",
+              language: 'cn',
+              maxDate: new Date(),
+              showButtonPanel: true,
+              weekStart: 1,
+              autoclose: true,
+              todayBtn: 'linked'
+            }).on('changeDate', function (ev) {
+              $('#createDate1').val(ev.date);
+            });
+            var date2 = $('#datetimepicker2').datepicker({
+              format: "yyyy-mm-dd",
+              language: 'cn',
+              maxDate: new Date(),
+              weekStart: 1,
+              autoclose: true,
+              todayBtn: 'linked',
+              setEndDate: new Date()
+            }).on('changeDate', function (ev) {
+              $('#createDate2').val(ev.date);
+            });
+            var opts = {
+              "language": {
+                "url": "/plugins/datatables/Chinese.json"
+              },
+              autoWidth: true,
+              select: true,
+              searching: false,
+              processing: true,
+              serverSide: true,
+              scrollX:true,
+              ajax: {url: '/order/datatableFranc'},
+              rowid: '_id',
+              columnDefs: [
+
+                //{targets: 0, visible: true, sortable: false, width: 40, searchable: false, defaultContent: ''},
+              ]
+            };
+            var  Tdata=$('#orderDayFrancList').dataTable(
+                $.extend(opts,
+                  {
+                    order: [[1, 'asc']],
+                    columns: [
+                      {data: "day", defaultContent: '', render: function ( data, type, full, meta ) {
+                        var b = moment(new Date(data));
+                        var date = "";
+                        if (data != null) {
+                          date = b.format("YYYY-MM-DD");
+                        }
+                        return date;
+                      }},
+                      {data: "franchiseeName", defaultContent: ''},
+                      {data: "total", defaultContent: '0','class':'text-right'},
+                      {data: "reservationNum", defaultContent: '0','class':'text-center'},
+                      {data: "noPayNum", defaultContent: '0','class':'text-center'},
+                      {data: "usingNum", defaultContent: '0','class':'text-center'},
+                      {data: "completedNum", defaultContent: '0','class':'text-center'},
+                      {data: "cancelNum", defaultContent: '0','class':'text-center'},
+                      {data: "allowance", defaultContent: '0','class':'text-right',render: function ( data, type, full, meta ) {
+                        return data.toFixed(2) + " 元";
+                      }},
+                      {data: "amount", defaultContent: '0','class':'text-right',render: function ( data, type, full, meta ) {
+                        return data.toFixed(2) + " 元";
+                      }},
+                      {data: "realIincome", defaultContent: '0','class':'text-right',render: function ( data, type, full, meta ) {
+                        return data ? data.toFixed(2) + " 元": "0.00 元";
+                      }}
+
+                    ]
+                })
+            );
+            $('#search').on("click",function(e){
+              var starts = $('#createDate1').val();
+              var end = $('#createDate2').val();
+              if (starts == "" && end != "") {
+                $("#start").html("需要输入开始日期");
+                return false;
+              } else {
+                $("#start").html("");
+              }
+              if (end == "" && starts != "") {
+                $("#end").html("需要输入结束日期");
+                return false;
+              } else {
+                $("#end").html("");
+              }
+              if (starts > end) {
+                $("#start").html("开始日期需小于结束日期");
+                return false;
+              } else {
+                $("#start").html("");
+              }
+              var TT = $('#orderDayFrancList').DataTable();
+              TT.ajax.url('/order/datatableFranc?starts='+starts+'&end='+end).load();
+            });
+          })
+

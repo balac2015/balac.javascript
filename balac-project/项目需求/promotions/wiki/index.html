@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>移动系统部知识分享平台</title>
+
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/batch.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/global.css">
+
+    <!--[if lte IE 8]>
+    <link type="text/css" rel="stylesheet" href="css/batch-lte8.css" media="all">
+    <![endif]-->
+
+    <!--[if lte IE 9]>
+    <link type="text/css" rel="stylesheet" href="css/batch-lte9.css" media="all">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <link type="text/css" rel="stylesheet" href="css/batch-lt9.css" media="all">
+    <![endif]-->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/old/batch.js"></script>
+
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="js/old/batch-lte8.js" ></script>
+    <![endif]-->
+</head>
+<body>
+<!-- header -->
+<div class="aui-header">
+    <header id="header" role="banner">
+        <nav class="aui-header aui-dropdown2-trigger-group" role="navigation" data-aui-responsive="true">
+            <div class="aui-header-inner">
+                <div class="aui-header-primary">
+                    <h1 id="logo" class="aui-header-logo aui-header-logo-custom">
+                        <a href="/wiki.html">
+                            <img src="s/zh_CN-1988229788/4733/f235dd088df5682b0560ab6fc66ed22c9124c0be.5/_/images/logo/confluence-logo.png" alt="知识库" data-aui-responsive-header-index="0">
+                            <span class="aui-header-logo-text">首页</span>
+                        </a>
+                    </h1>
+                    <ul class="aui-nav" style="width: auto;">
+                        <li style="display: inline-block;">
+                            <a href="flow.html" title="流程">
+                                流程
+                            </a>
+                        </li>
+                        <li style="display: inline-block;">
+                            <a href="pages/viewpage.action?pageId=3113171" title="规范">
+                                规范
+                            </a>
+                        </li>
+                        <li style="display: inline-block;">
+                            <a href="base.html" title="知识库">
+                                知识库
+                            </a>
+                        </li>
+                        <li>
+                            <a id="space-menu-link" class="aui-nav-link aui-dropdown2-trigger" href="#" aria-haspopup="true" aria-owns="space-menu-link-content" title="空间" aria-controls="space-menu-link-content">
+                                <span class="browse">空间</span>
+                                <span class="aui-icon-dropdown"></span>
+                            </a>
+                            <div id="space-menu-link-content" class="aui-dropdown2 aui-style-default aui-dropdown2-in-header" aria-hidden="true" data-dropdown2-alignment="left" style="display: none; left: 276px; top: 40px;">
+                                <div class="aui-dropdown2-section">
+                                    <ul id="view-all-spaces-link-content" class="aui-list-truncate section-user-content">
+                                        <li><a id="view-all-spaces-link" href="/spacedirectory/view.action" title="空间目录" class="">空间目录</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="aui-header-secondary">
+                    <ul class="aui-nav">
+                        <li>
+                            <form id="quick-search" class="aui-quicksearch dont-default-focus header-quicksearch" action="dosearchsite.action" method="get">
+                                <fieldset>
+                                    <label for="quick-search-query" class="assistive">快速搜索</label>
+                                    <input id="quick-search-query" class="text app-search search quick-search-query" type="text" accesskey="q" autocomplete="off" name="queryString" title="快速搜索" placeholder="搜索">
+                                    <input id="quick-search-submit" class="quick-search-submit" type="submit" value="搜索">
+                                    <div class="aui-dd-parent quick-nav-drop-down"></div>
+                                </fieldset>
+                                <div class="hidden parameters">
+                                    <meta name="ajs-quick-nav-enabled" content="true">
+                                </div>
+                            </form>
+                        </li>
+
+                        <li></li>
+                        <li>
+                            <a id="user-menu-link" class="aui-dropdown2-trigger " aria-haspopup="true" aria-owns="user-menu-link-content"  href="#">
+                                <div class="aui-avatar aui-avatar-small">
+                                    <div class="aui-avatar-inner">
+                                        <img src="s/en_GB-1988229788/4733/f235dd088df5682b0560ab6fc66ed22c9124c0be.1/_/images/icons/profilepics/default.png">
+                                    </div>
+                                </div>
+                                <span class="aui-icon-dropdown"></span>
+                            </a>
+                            <nav id="user-menu-link-content" class="aui-dropdown2 aui-style-default">
+                                <div class="aui-dropdown2-section">
+                                    <ul id="user-menu-link-user-preferences" class="aui-list-truncate section-user-preferences first">
+                                        <li>
+                                            <a id="create-personal-space-link" href="spaces/createpersonalspace.action" class="user-item personal-space create-personal-space-link" title="">
+                                                添加个人空间…
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="view-user-history-link" href="users/viewuserhistory.action" class="user-item user-history popup-link" title="">
+                                                最近浏览
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="aui-dropdown2-section">
+                                    <ul id="user-menu-link-user-content" class="aui-list-truncate section-user-content">
+                                        <li>
+                                            <a id="view-user-profile-link" href="users/viewmyprofile.action" class="user-item user-profile" title="">
+                                                用户信息
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-settings-link" href="users/viewmysettings.action" class="user-item" title="">
+                                                设置
+                                            </a>
+                                        </li>
+                                        <li><!-- ?username=zhaolun.he -->
+                                            <a href="users/viewfollow.action" class="follow-link" title="">
+                                                网络
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-favourites-link" href="users/viewmyfavourites.action" class="user-item" title="">
+                                                收藏
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-watches-link" href="users/viewnotifications.action" class="user-item" title="">
+                                                关注
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-drafts-link" href="users/viewmydrafts.action" class="user-item" title="">
+                                                草稿
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="upm-requests-link" href="plugins/servlet/upm/requests?source=header_user" class=" " title="">
+                                                Atlassian 应用程序商店
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="aui-dropdown2-section">
+                                    <ul id="user-menu-link-user-operations" class="aui-list-truncate section-user-operations">
+                                        <li>
+                                            <a id="logout-link" href="logout.action" class="user-item logout-link" title="">
+                                                注销
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- .aui-header-inner-->
+        </nav><!-- .aui-header -->
+        <br class="clear">
+    </header>
+</div>
+
+<!-- main-->
+<div class="box-wrap  pos-absolute ">
+    <img class="pos-absolute index-bg" src="images/bg_index.jpg" />
+    <div class="box-content pos-relative">
+        <img src="images/bg_index_transparency.png" />
+        <a class="dis-block" href="flow.html">
+            <div class="pos-absolute item-content flow-icon">
+                <img src="images/flow-font1.png" alert="" />
+            </div>
+        </a>
+        <a  class="dis-block" href="pages/viewpage.action?pageId=3113171" >
+            <div class="pos-absolute item-content standard-icon">
+                <img src="images/standard-font1.png" alert="" />
+            </div>
+        </a>
+        <a  class="dis-block" href="base.html" >
+            <div class="pos-absolute item-content knowledge-icon">
+                <img src="images/base-font1.png" alert="" />
+            </div>
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>

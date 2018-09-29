@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/app/config/config.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/config/express.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/controllers/RoleController.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/helper/utils.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/middleware/authorization.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/models/User.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/includes/footer.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/includes/sidebar.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/includes/sidebar_right.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/index.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/layouts/default.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/role/roleForm.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/user/userForm.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/package.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/dist/css/AdminLTE.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/dist/css/AdminLTE.min.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/starter.jade" charset="UTF-8" />
+  </component>
+</project>

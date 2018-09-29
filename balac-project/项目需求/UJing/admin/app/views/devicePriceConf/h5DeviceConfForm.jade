@@ -1,0 +1,81 @@
+//
+   Created by yu869 on 2015/11/11.
+
+extends ../layouts/vendor
+block header
+  link(rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+  h1 洗衣价格设定
+  small 设定系统中的洗衣价格
+block main
+  div#deviceConfEdit.row
+    div.col-md-12
+      form#priceConfForm.form-horizontal(name='priceConfForm', action='', method='post')
+        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+        input#deviceId(type='hidden', name='deviceId', value='#{deviceId}')
+
+        each devicePrice in DevicePrices
+          div.row.form-group
+            label.control-label.col-md-2 #{devicePrice.type}：
+              span.required *
+            div.controls.col-md-9
+              input#typeId.typeId(type='hidden',name='typeId', value='#{devicePrice._id}')
+              input(type='hidden',name='#{devicePrice._id}_command', id='#{devicePrice._id}_command', value='#{devicePrice.command}')
+              input(type='hidden',name='#{devicePrice._id}_type', id='#{devicePrice._id}_type', value='#{devicePrice.type}')
+              input.form-control.priceNum(name='#{devicePrice._id}', id='#{devicePrice._id}', placeholder='建议价 : #{devicePrice.price} ¥')
+              input(type='hidden',name='#{devicePrice._id}_price', id='#{devicePrice._id}_price', value='#{devicePrice.price}')
+
+        div.row.form-group
+          div.controls.col-md-9
+            a#save.btn.btn-block.btn-primary(href="#", onclick="submit()")
+              i.fa.fa-save
+              span 完成
+
+
+
+    div#button
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/jquery-validation/dist/jquery.validate.min.js')
+  script(src='/plugins/jquery-validation/dist/jquery.validate.messages_zh.js')
+  script(src='/plugins/setup_validation.js')
+  script.
+    function submit() {
+      var form = $("#priceConfForm");
+      if ($("#priceConfForm").valid() == false) {
+        return;
+      }
+
+      var needSubmitInfo = [];
+      $.each($("input:hidden.typeId"), function(i, item){
+        var submitObj = new Object();
+        submitObj.key = $(item).val();
+        var price = $("#" + submitObj.key).val() ;
+        if (price || price == ""){
+          price = $("#" + submitObj.key + "_price").val();
+        }
+        submitObj.value = price;
+        submitObj.command = $("#" + submitObj.key + "_command").val();
+        submitObj.type = $("#" + submitObj.key + "_type").val();
+        needSubmitInfo.push(submitObj);
+      })
+
+      var _csrf = $("#_csrf").val();
+      var deviceId = $("#deviceId").val();
+
+      $.ajax({
+        url: "/vendor/setPrice",
+        type: "POST",
+        async: false,
+        data: {
+          'needSubmitInfo': needSubmitInfo
+          , '_csrf': _csrf
+          , 'deviceId': deviceId
+        },
+        success: function (data) {
+          window.location = "/vendor/storeList";
+        }
+      });
+
+    }

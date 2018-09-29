@@ -1,0 +1,27 @@
+     
+<ul class="aui-nav">
+    <li style="display: inline-block;">
+        <a href="/wiki.html" title="首页">
+            首页
+        </a>
+    </li>
+    
+    <li style="display: inline-block;">
+        <a href="/wiki/flow.html" title="流程">
+            流程
+        </a>
+    </li>
+
+    <li style="display: inline-block;">
+        <a href="/wiki/pages/viewpage.action?pageId=3113171" title="规范">
+            规范
+        </a>
+    </li>
+
+    <li style="display: inline-block;">
+        <a href="/wiki/base.html" title="知识库">
+            知识库
+        </a>
+    </li>
+    #menuMacros_renderHeaderLeftImageLinks()    
+</ul>

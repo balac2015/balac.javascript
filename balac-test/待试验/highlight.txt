@@ -1,0 +1,19 @@
+最近看到一些复古的东西,勾起了我怀旧感. 还特此用了这个 windows 95 主题风格 稍微改动了一下
+
+其中用到了highlight.js 来高亮代码 ,不过其中给代码增加 行号的地方有些问题, 会使代码高亮出现问题
+
+所以改造了一下
+
+var fields = document.querySelectorAll('code')
+
+    fields.forEach(function(field, index) {
+        field.innerHTML = "<ul><li>" + field.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>"
+        let li = field.querySelectorAll('li')
+        let ul = field.querySelector('ul')
+        ul.removeChild(li[li.length - 1])
+    })
+效果如下图：图highlight.png
+
+
+
+这样就可以给代码块增加行号,而且能正常高亮代码了

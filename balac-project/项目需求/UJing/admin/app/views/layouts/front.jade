@@ -1,0 +1,22 @@
+doctype html
+html.app(lang='en')
+  head
+    include ../includes/header
+    
+    block header
+
+  body.register-page.hold-transition
+    include ../includes/flash
+    block main
+
+    // REQUIRED JS SCRIPTS jQuery 2.1.4
+    script(src='/plugins/jQuery/jQuery-2.1.4.min.js')
+    script(src='/plugins/jQuery/jquery.cookie.js')
+    // Bootstrap 3.3.5
+    script(src='/bootstrap/js/bootstrap.min.js')
+    // iCheck
+    script(src='/plugins/iCheck/icheck.min.js')
+    script(src='/plugins/jquery-validation/dist/jquery.validate.min.js')
+    script(src='/plugins/jquery-validation/dist/jquery.validate.messages_zh.js')
+    script(src='/plugins/setup_validation.js')
+    block scripts

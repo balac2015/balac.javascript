@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>开测吧</title>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="content pos-relative">
+    <img src="images/text_bg.png" class="text-bg">
+    <a class="text-btn down-andriod" href="http://map.midea.com/map/mam/apps/download/com.midea.health.house/android?appKey=378580501ac51877f08c8bb6e1b49bf9"></a>
+    <a class="text-btn down-ios" href="http://map.midea.com/map/mam/apps/download/com.midea.health.house/ios?appKey=378580501ac51877f08c8bb6e1b49bf9"></a>
+</div>
+<script src="js/zepto.min.js?v=1.0.2"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var u = navigator.userAgent;
+        if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
+//            alert("安卓手机");
+            $('.down-andriod').removeClass('hide').addClass('show').show();
+            $('.down-ios').removeClass('show').addClass('hide').hide();
+//            $('.english').addClass('font-andor').removeClass('font-ios');
+        } else if (u.indexOf('iPhone') > -1) {//苹果手机
+//            alert("苹果手机");
+            $('.down-andriod').removeClass('show').addClass('hide').hide();
+            $('.down-ios').removeClass('hide').addClass('show').show();
+//            $('.english').removeClass('font-andor').addClass('font-ios');
+        } else if (u.indexOf('Windows Phone') > -1) {//winphone手机
+//            alert("winphone手机");
+        }
+    }
+</script>
+</body>
+</html>

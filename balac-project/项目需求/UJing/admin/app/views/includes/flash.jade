@@ -1,0 +1,34 @@
+if messages.errors
+  #flash-message
+    .alert.alert-danger.animated.fadeIn
+      button.close(type='button', data-dismiss='alert') ×
+      for err in messages.errors
+        div= err
+  
+if messages.error
+  #flash-message
+    .alert.alert-danger.animated.fadeIn
+      button.close(type='button', data-dismiss='alert') ×
+      for err in messages.error
+        if(err.name === 'ValidationError')
+          for e in err.errors
+            div=e.message
+        else if(err.name === 'MongoError')
+          div 发生数据库错误
+        else
+          div= err
+
+if messages.info
+  #flash-message
+    .alert.alert-info.animated.fadeIn
+      button.close(type='button', data-dismiss='alert') ×
+      for info in messages.info
+        div= info
+
+if messages.success
+  #flash-message
+    .alert.alert-success.animated.fadeIn
+      button.close(type='button', data-dismiss='alert') ×
+      for success in messages.success
+        div=success
+

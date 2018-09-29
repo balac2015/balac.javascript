@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>移动系统部知识分享平台</title>
+
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/batch.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/global.css">
+
+
+    <!--[if lte IE 8]>
+    <link type="text/css" rel="stylesheet" href="css/batch-lte8.css" media="all">
+    <![endif]-->
+
+    <!--[if lte IE 9]>
+    <link type="text/css" rel="stylesheet" href="css/batch-lte9.css" media="all">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <link type="text/css" rel="stylesheet" href="css/batch-lt9.css" media="all">
+    <![endif]-->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/old/batch.js"></script>
+
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="js/old/batch-lte8.js" ></script>
+    <![endif]-->
+
+</head>
+<body>
+<!-- header -->
+<div class="aui-header">
+    <header id="header" role="banner">
+        <nav class="aui-header aui-dropdown2-trigger-group" role="navigation" data-aui-responsive="true">
+            <div class="aui-header-inner">
+                <div class="aui-header-primary">
+                    <h1 id="logo" class="aui-header-logo aui-header-logo-custom">
+                        <a href="/wiki.html">
+                            <img src="s/zh_CN-1988229788/4733/f235dd088df5682b0560ab6fc66ed22c9124c0be.5/_/images/logo/confluence-logo.png" alt="知识库" data-aui-responsive-header-index="0">
+                            <span class="aui-header-logo-text">首页</span>
+                        </a>
+                    </h1>
+                    <ul class="aui-nav" style="width: auto;">
+                        <li style="display: inline-block;">
+                            <a href="flow.html" title="流程">
+                                流程
+                            </a>
+                        </li>
+                        <li style="display: inline-block;">
+                            <a href="pages/viewpage.action?pageId=3113171" title="规范">
+                                规范
+                            </a>
+                        </li>
+                        <li style="display: inline-block;">
+                            <a href="base.html" title="知识库">
+                                知识库
+                            </a>
+                        </li>
+                        <li>
+                            <a id="space-menu-link" class="aui-nav-link aui-dropdown2-trigger" href="#" aria-haspopup="true" aria-owns="space-menu-link-content" title="空间" aria-controls="space-menu-link-content">
+                                <span class="browse">空间</span>
+                                <span class="aui-icon-dropdown"></span>
+                            </a>
+                            <div id="space-menu-link-content" class="aui-dropdown2 aui-style-default aui-dropdown2-in-header" aria-hidden="true" data-dropdown2-alignment="left" style="display: none; left: 276px; top: 40px;">
+                                <div class="aui-dropdown2-section">
+                                    <ul id="view-all-spaces-link-content" class="aui-list-truncate section-user-content">
+                                        <li><a id="view-all-spaces-link" href="/spacedirectory/view.action" title="空间目录" class="">空间目录</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="aui-header-secondary">
+                    <ul class="aui-nav">
+                        <li>
+                            <form id="quick-search" class="aui-quicksearch dont-default-focus header-quicksearch" action="dosearchsite.action" method="get">
+                                <fieldset>
+                                    <label for="quick-search-query" class="assistive">快速搜索</label>
+                                    <input id="quick-search-query" class="text app-search search quick-search-query" type="text" accesskey="q" autocomplete="off" name="queryString" title="快速搜索" placeholder="搜索">
+                                    <input id="quick-search-submit" class="quick-search-submit" type="submit" value="搜索">
+                                    <div class="aui-dd-parent quick-nav-drop-down"></div>
+                                </fieldset>
+                                <div class="hidden parameters">
+                                    <meta name="ajs-quick-nav-enabled" content="true">
+                                </div>
+                            </form>
+                        </li>
+
+                        <li></li>
+                        <li>
+                            <a id="user-menu-link" class="aui-dropdown2-trigger " aria-haspopup="true" aria-owns="user-menu-link-content"  href="#">
+                                <div class="aui-avatar aui-avatar-small">
+                                    <div class="aui-avatar-inner">
+                                        <img src="s/en_GB-1988229788/4733/f235dd088df5682b0560ab6fc66ed22c9124c0be.1/_/images/icons/profilepics/default.png">
+                                    </div>
+                                </div>
+                                <span class="aui-icon-dropdown"></span>
+                            </a>
+                            <nav id="user-menu-link-content" class="aui-dropdown2 aui-style-default">
+                                <div class="aui-dropdown2-section">
+                                    <ul id="user-menu-link-user-preferences" class="aui-list-truncate section-user-preferences first">
+                                        <li>
+                                            <a id="create-personal-space-link" href="spaces/createpersonalspace.action" class="user-item personal-space create-personal-space-link" title="">
+                                                添加个人空间…
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="view-user-history-link" href="users/viewuserhistory.action" class="user-item user-history popup-link" title="">
+                                                最近浏览
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="aui-dropdown2-section">
+                                    <ul id="user-menu-link-user-content" class="aui-list-truncate section-user-content">
+                                        <li>
+                                            <a id="view-user-profile-link" href="users/viewmyprofile.action" class="user-item user-profile" title="">
+                                                用户信息
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-settings-link" href="users/viewmysettings.action" class="user-item" title="">
+                                                设置
+                                            </a>
+                                        </li>
+                                        <li><!-- ?username=zhaolun.he -->
+                                            <a href="users/viewfollow.action" class="follow-link" title="">
+                                                网络
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-favourites-link" href="users/viewmyfavourites.action" class="user-item" title="">
+                                                收藏
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-watches-link" href="users/viewnotifications.action" class="user-item" title="">
+                                                关注
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="user-drafts-link" href="users/viewmydrafts.action" class="user-item" title="">
+                                                草稿
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="upm-requests-link" href="plugins/servlet/upm/requests?source=header_user" class=" " title="">
+                                                Atlassian 应用程序商店
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="aui-dropdown2-section">
+                                    <ul id="user-menu-link-user-operations" class="aui-list-truncate section-user-operations">
+                                        <li>
+                                            <a id="logout-link" href="logout.action" class="user-item logout-link" title="">
+                                                注销
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- .aui-header-inner-->
+        </nav><!-- .aui-header -->
+        <br class="clear">
+    </header>
+</div>
+
+    <div class="box-wrap pos-absolute mt-20">
+        <div class="flow-wrap pos-relative">
+            <div class="pos-absolute arrow-down">
+                <div class="arrow-down-wrap">
+                    <img src="images/arrow.png" alt="" />
+                </div>
+            </div>
+            <div class="flow-head">
+                <span class="c-949494"><a href="index.html"><span class="c-949494">首页</span></a> > </span><span class="c-264fc3">流程</span>
+            </div>
+            <div class="flow-box">
+                <div class="float-left box-one text-center">
+                    <div class="bg-ebebeb h-54 border-right"></div>
+                </div>
+                <div class="float-left box-two text-center">
+                    <div class="bg-e9f2ff role border-right">角色</div>
+                    <div class="">
+                        <div class="float-left type c-43abff">
+                            <div class="type-content border-right">产品</div>
+                        </div>
+                        <div class="float-left type c-43abff">
+                            <div class="type-content border-right">设计</div>
+                        </div>
+                        <div class="float-left type c-43abff">
+                            <div class="type-content border-right">研发</div>
+                        </div>
+                        <div class="float-left type c-43abff">
+                            <div class="type-content border-right">测试</div>
+                        </div>
+                        <div class="float-left type c-43abff">
+                            <div class="type-content border-right">运营</div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                </div>
+                <div class="float-left box-three text-center">
+                    <div class="bg-e9fdbc c-77b111 h-54">
+                        <div class="lh-54 border-right">交付说明</div>
+                    </div>
+                </div>
+                <div class="float-left box-four text-center">
+                    <div class="bg-ffdad9 c-ff9091 h-54">
+                        <div class="lh-54">评审人</div>
+                    </div>
+                </div>
+                <div class="clear-both"></div>
+                <!--内容主题部分-->
+                <div class="flow-percent">
+                    <div class="float-left flow-cell one border-top">
+                        <div>
+                            <img class="pre-online-img" src="images/pre-online.png" alt="" />
+                        </div>
+                    </div>
+                    <div class="float-left flow-row">
+                        <div>
+                            <div  class="float-left flow-cell two border-top">
+                                <div class="box-80 w-111  border-right bg-2380ff">
+                                    需求分析
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="/pages/viewpage.action?pageId=3113902">
+                                        需求分析
+                                        <!--<ul class="item-repeat">-->
+                                            <!--<li class="item-li">规范</li>-->
+                                            <!--<li class="item-li">模板</li>-->
+                                            <!--<li>方法</li>-->
+                                        <!--</ul>-->
+                                    </a>
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="/pages/viewpage.action?pageId=1278116">
+                                        确认后台系统
+                                        <!--<ul class="item-repeat">-->
+                                            <!--<li class="item-li">规范</li>-->
+                                            <!--<li class="item-li">模板</li>-->
+                                            <!--<li>方法</li>-->
+                                        <!--</ul>-->
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="/pages/viewpage.action?pageId=3114086">
+                                        营销推广策略
+                                        <!--<ul class="item-repeat">-->
+                                            <!--<li class="item-li">规范</li>-->
+                                            <!--<li class="item-li">模板</li>-->
+                                            <!--<li>方法</li>-->
+                                        <!--</ul>-->
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell four border-top">
+                                <div class="box-80 border-right">
+                                    <div class="dis-in-b pay">
+                                        <a class="dis-in-b btn-green mt-6" target="_blank" href="/pages/viewpage.action?pageId=3113904">PRD</a>
+                                        <div class="pay-text">目标&价值   用户角色 用户路径图/业务流程图 竞品分析</div>
+                                    </div>
+                                    <div class="dis-in-b pay-type"></div>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell five border-top">
+                                <div class="box-80">
+                                    <div class="approver">
+                                        <p>BOSS</p>
+                                        <p>产品</p>
+                                        <p>设计</p>
+                                        <p>业务</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="float-left flow-row bg-f8f8f8">
+                        <div>
+                            <div  class="float-left flow-cell two border-top-fff">
+                                <div class="box-80 w-111 border-right bg-239fff">
+                                    交互设计
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="/pages/viewpage.action?pageId=3113303">
+                                        交互设计
+                                        <!--<ul class="item-repeat">-->
+                                            <!--<li class="item-li">规范</li>-->
+                                            <!--<li class="item-li">模板</li>-->
+                                            <!--<li>方法</li>-->
+                                        <!--</ul>-->
+                                    </a>
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="pages/viewpage.action?pageId=3113303">
+                                        交互调优
+                                    <!--    <ul class="item-repeat">
+                                            <li class="item-li">规范</li>
+                                            <li class="item-li">模板</li>
+                                            <li>方法</li>
+                                        </ul> -->
+                                    </a>
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell four border-top">
+                                <div class="box-80 border-right">
+                                    <div class="dis-in-b pay">
+                                        <a class="dis-in-b btn-green mt-6" target="_blank" href="/pages/viewpage.action?pageId=3113904">原型图</a>
+                                        <div class="pay-text">信息架构  原型图</div>
+                                    </div>
+                                    <div class="dis-in-b pay-type"></div>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell five border-top">
+                                <div class="box-80">
+                                    <div class="approver">
+                                        <p>产品</p>
+                                        <p>设计</p>
+                                        <p>研发</p>
+                                        <p>测试</p>
+                                        <p>业务</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="float-left flow-row">
+                        <div>
+                            <div  class="float-left flow-cell two border-top-fff">
+                                <div class="box-80 w-111  border-right bg-23b9ff">
+                                    视觉设计
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80  border-right ">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="/pages/viewpage.action?pageId=3113145">
+                                        编写接口文档
+                                        <!--<ul class="item-repeat">-->
+                                            <!--<li class="item-li">规范</li>-->
+                                            <!--<li class="item-li">模板</li>-->
+                                            <!--<li>方法</li>-->
+                                        <!--</ul>-->
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell four border-top">
+                                <div class="box-80 border-right">
+                                    <div class="dis-in-b pay ">
+                                        <a class="dis-in-b btn-green mt-6" target="_blank" href="/pages/viewpage.action?pageId=3113299">高保真</a>
+                                        <a class="dis-in-b btn-green mt-6" target="_blank" href="/pages/viewpage.action?pageId=3113307">切图</a>
+                                        <a class="dis-in-b btn-green mt-6" target="_blank" href="/pages/viewpage.action?pageId=3113309">标注</a>
+                                    </div>
+                                    <div class="dis-in-b pay-type"></div>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell five border-top">
+                                <div class="box-80">
+                                    <div class="approver">
+                                        <p>BOSS</p>
+                                        <p>产品</p>
+                                        <p>设计</p>
+                                        <p>研发</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="float-left flow-row bg-f8f8f8">
+                        <div>
+                            <div  class="float-left flow-cell two border-top-fff">
+                                <div class="box-80 w-111 border-right bg-23d8ff">
+                                    研发
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="/pages/viewpage.action?pageId=1278116">
+                                        编码联调
+                                    <!--    <ul class="item-repeat">
+                                            <li class="item-li">规范</li>
+                                            <li class="item-li">模板</li>
+                                            <li>方法</li>
+                                        </ul>  -->
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="/pages/viewpage.action?pageId=3113693">
+                                       编写测试用例
+                                    <!--    <ul class="item-repeat">
+                                            <li class="item-li">规范</li>
+                                            <li class="item-li">模板</li>
+                                            <li>方法</li>
+                                        </ul>  -->
+                                    </a>
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell four border-top">
+                                <div class="box-80 border-right">
+                                    <div class="dis-in-b pay">
+                                        <div class="pay-text">
+                                            <a class="dis-in-b btn-green mt-6" target="_blank" href="/pages/viewpage.action?pageId=1278044">可用代码</a>
+                                            <a class="dis-in-b btn-green mt-6" target="_blank" href="/pages/viewpage.action?pageId=3113693">测试用例</a>
+                                        </div>
+                                    </div>
+                                    <div class="dis-in-b replace-type"></div>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell five border-top">
+                                <div class="box-80">
+
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="float-left flow-row">
+                        <div>
+                            <div  class="float-left flow-cell two border-top-fff">
+                                <div class="box-80 w-111  border-right bg-10d9bf">
+                                    测试
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+                                    <a class="dis-in-b btn-type-blue pos-relative">
+                                        业务逻辑检查
+                                    <!--    <ul class="item-repeat">
+                                            <li class="item-li">规范</li>
+                                            <li class="item-li">模板</li>
+                                            <li>方法</li>
+                                        </ul>  -->
+                                    </a>
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="/pages/viewpage.action?pageId=3114008">
+                                        设计检查
+                                    <!--    <ul class="item-repeat">
+                                            <li class="item-li">规范</li>
+                                            <li class="item-li">模板</li>
+                                            <li>方法</li>
+                                        </ul> -->
+                                    </a>
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+                                    <a class="dis-in-b btn-type-blue pos-relative dis-block" target="_blank" href="/pages/viewpage.action?pageId=3113175">
+                                        测试
+                                    <!--    <ul class="item-repeat">
+                                            <li class="item-li">规范</li>
+                                            <li class="item-li">模板</li>
+                                            <li>方法</li>
+                                        </ul> -->
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell four border-top">
+                                <div class="box-80 border-right">
+                                    <div class="dis-in-b pay">
+                                        <div class="pay-text">
+                                            <a class="dis-in-b btn-green" target="_blank" href="/pages/viewpage.action?pageId=3113549">Bugs</a>
+                                            <a class="dis-in-b btn-green" target="_blank" href="/pages/viewpage.action?pageId=3113909">测试报告</a>
+                                        </div>
+                                    </div>
+                                    <div class="dis-in-b replace-type"></div>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell five border-top">
+                                <div class="box-80">
+
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="float-left flow-row bg-f8f8f8">
+                        <div>
+                            <div  class="float-left flow-cell two border-top-fff border-bottom-fff">
+                                <div class="box-80 w-111 border-right bg-32e4b4">
+                                    预发布
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="/pages/viewpage.action?pageId=3113909">
+                                        验收
+                                    <!--    <ul class="item-repeat">
+                                            <li class="item-li">规范</li>
+                                            <li class="item-li">模板</li>
+                                            <li>方法</li>
+                                        </ul> -->
+                                    </a>
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell four border-top">
+                                <div class="box-80 border-right">
+                                    <div class="dis-in-b pay">
+                                        <a class="dis-in-b btn-green mt-10" target="_blank" href="/pages/viewpage.action?pageId=3114086">部署文档</a>
+                                        <div class="pay-text">
+                                            <a class="dis-in-b btn-green" target="_blank" href="/pages/viewpage.action?pageId=3113909">验收报告</a>
+                                            <div class="dis-in-b">一业务部门</div>
+                                        </div>
+                                    </div>
+                                    <div class="dis-in-b replace-type"></div>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell five border-top">
+                                <div class="box-80">
+
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+                <!--上线 -->
+                <div class=" flow-row change-flow-online">
+                    <div class="online-item text-center">上线</div>
+                </div>
+
+                <div class="flow-percent">
+                    <div class="float-left flow-cell one  change-type-persent">
+                        <div>
+                            <img class="next-online-img" src="images/next-online.png" alt="" />
+                        </div>
+                    </div>
+                    <div class="float-left flow-row ">
+                        <div>
+                            <div  class="float-left flow-cell two border-top-fff">
+                                <div class="box-80 w-111  border-right bg-52cc9d">
+                                    上线总结
+                                </div>
+                            </div>
+                            <div  class="float-left border-top">
+                                <div class="project-item ">
+                                    <a class="dis-in-b project c-white">项目总结</a>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell four border-top">
+                                <div class="box-80 border-right">
+                                    <div class="dis-in-b pay">
+                                        <a class="dis-in-b btn-green six mt-15">项目总结报告</a>
+                                        <div class="pay-text">上线结果评估  反思</div>
+                                    </div>
+                                    <div class="dis-in-b replace-type"></div>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell five border-top">
+                                <div class="box-80">
+
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="float-left flow-row bg-f8f8f8">
+                        <div>
+                            <div  class="float-left flow-cell two border-top-fff">
+                                <div class="box-80 w-111 border-right bg-52cc9d">
+                                    运维
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 border-right ">
+                                    <a class="dis-in-b btn-type-blue pos-relative" target="_blank" href="/pages/viewpage.action?pageId=3114086">
+                                       运维
+                                        <!--<ul class="item-repeat">-->
+                                            <!--<li class="item-li">规范</li>-->
+                                            <!--<li class="item-li">模板</li>-->
+                                            <!--<li>方法</li>-->
+                                        <!--</ul>-->
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell four border-top">
+                                <div class="box-80 border-right">
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell five border-top">
+                                <div class="box-80">
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="float-left flow-row">
+                        <div class="bg-eeeeee">
+                            <div  class="float-left flow-cell two border-top-fff">
+                                <div class="box-80 w-111  bg-52cc9d">
+                                    改良
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80  ">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80 ">
+
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80  ">
+
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell three border-top">
+                                <div class="box-80 ">
+                                    <span class="c-000">......</span>
+                                </div>
+                            </div>
+                            <div  class="float-left flow-cell three border-top">
+                                <div class="box-80  ">
+
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell four border-top">
+                                <div class="box-80 ">
+                                </div>
+                            </div>
+                            <div class="float-left flow-cell five border-top">
+                                <div class="box-80">
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+            </div>
+        </div>
+        <div class="flow-footer text-center">
+            <span>Copyright © 1968-2014 Midea Group. all right reserved 美的集团 版权所有</span>
+        </div>
+    </div>
+</body>
+</html>

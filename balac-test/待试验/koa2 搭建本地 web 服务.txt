@@ -1,0 +1,178 @@
+最之前学习了vue react 这些前端框架后,用于构建前端页面, 然后对后端服务也起了兴趣,就想起了node,新起的可以搭建服务的nodejs,最后选择了 koa2这个框架,从文档中看出这个框架对于异步的处理async/await No Callback! No Callback! No Callback! 重要的事情说三遍！ 中间件 上下文,比较适合新手来学习
+
+koa官网
+
+构建项目
+使用koa-generator项目生成器
+
+安装koa-generator
+
+npm install -g koa-generator
+生成koa2项目
+
+koa2 demo
+进入项目目录,安装依赖
+
+cd demo 
+npm install
+启动项目
+
+npm start
+项目启动后，默认端口号是3000,在浏览器输入127.0.0.1:3000 就能看到 welcome to koa2 title ,说明项目运行成功
+
+项目目录结构
+demo
+├──bin
+│ └──www //建立服务
+├──controllers //所有接口文件
+│ ├──index.js* //获取当前文件夹下所有文件
+│ └──test.js //测试接口
+├──middlewares //中间件
+│ └──response.js* //处理接口返回中间件*
+├──public //静态资源
+│ └──index.html
+├──routes //路由
+│ └──route.js* //路由配置
+├──tools //工具
+├──views //模板文件(api接口服务用不到)
+├──app.js //项目启动
+├──config.js* //配置文件
+└──package.json //项目依赖
+打 * 是我新建的文件
+
+controllers/index.js
+/**
+ * Created by reborn on 2017/10/12 0012.
+ */
+const _ = require('lodash')
+const fs = require('fs')
+const path = require('path')
+
+/**
+ * 映射 d 文件夹下的文件为模块
+ */
+const mapDir = d => {
+    const tree = {}
+
+    // 获得当前文件夹下的所有的文件夹和文件
+    const [dirs, files] = _(fs.readdirSync(d)).partition(p => fs.statSync(path.join(d, p)).isDirectory())
+
+    // 映射文件夹
+    dirs.forEach(dir => {
+        tree[dir] = mapDir(path.join(d, dir))
+    })
+
+    // 映射文件
+    files.forEach(file => {
+        if (path.extname(file) === '.js') {
+            tree[path.basename(file, '.js')] = require(path.join(d, file))
+        }
+    })
+
+    return tree
+}
+
+// 默认导出当前文件夹下的映射
+module.exports = mapDir(path.join(__dirname))
+middlewares/response.js
+/**
+ * Created by reborn on 2017/10/12 0012.
+ */
+const debug = require('debug')
+
+module.exports = async function (ctx, next) {
+    try {
+        // 调用下一个 middleware
+        await next()
+
+        // 处理响应结果
+        // 如果直接写入在 body 中，则不作处理
+        // 如果写在 ctx.body 为空，则使用 state 作为响应
+        ctx.body = ctx.body ? ctx.body : {
+            code: ctx.state.code !== undefined ? ctx.state.code : 0,
+            data: ctx.state.data !== undefined ? ctx.state.data : {}
+        }
+    } catch (e) {
+        // catch 住全局的错误信息
+        debug('Catch Error: %o', e)
+
+        // 设置状态码为 200 - 服务端错误
+        ctx.status = 200
+
+        // 输出详细的错误信息
+        ctx.body = {
+            code: -1,
+            error: e && e.message ? e.message : e.toString()
+        }
+    }
+}
+routes/route.js
+/**
+ * Created by reborn on 2017/10/12 0012.
+ */
+/**
+ * ajax 服务路由集合  以/api/*** 格式请求
+ */
+const router = require('koa-router')({
+    prefix: '/api'
+})
+const controllers = require('../controllers')
+
+// 测试接口
+router.get('/index', controllers.test)
+
+module.exports = router
+controllers/test.js
+浏览器输入 127.0.0.1:3000/api/test 就能看到返回 hello Reborn 了
+
+/**
+ * Created by reborn on 2017/10/12 0012.
+ */
+
+
+module.exports = async (ctx, next) => {
+    ctx.state.data = 'hello Reborn'
+}
+app.js
+const Koa = require('koa')
+const app = new Koa()
+const views = require('koa-views')
+const json = require('koa-json')
+const onerror = require('koa-onerror')
+const bodyparser = require('koa-bodyparser')
+const logger = require('koa-logger')
+const response = require('./middlewares/response')
+const history = require('koa-history-api-fallback')
+
+// error handler
+onerror(app)
+
+// middlewares
+app.use(bodyparser({
+  enableTypes:['json', 'form', 'text']
+}))
+app.use(response)
+app.use(json())
+app.use(logger())
+// 引入路由分发
+const router = require('./routes/route')
+app.use(router.routes())
+app.use(history())
+app.use(require('koa-static')(__dirname + '/public'))
+
+// logger
+app.use(async (ctx, next) => {
+  const start = new Date()
+  await next()
+  const ms = new Date() - start
+  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+})
+
+// error-handling
+app.on('error', (err, ctx) => {
+  console.error('server error', err, ctx)
+});
+
+module.exports = app
+
+以上就是简单的用koa2 搭建一个api接口服务器 前后端分离 前端用vue或react 调用接口来获取展示数据 下一次写一篇如何连接mysql数据库,和 用jwt 来实现接口访问校验

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>lazyLoad</title>
+    <script src="js/jquery.js" type=text/javascript></script>
+    <script src="js/jquery.lazyload.js" type=text/javascript></script>
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+            $("img").lazyload({
+                placeholder : "images/loading.png",
+                effect: "fadeIn"
+            });
+        });
+    </script>
+    <style>
+        img a,img{
+            border:0;
+        }
+        div{
+            margin-bottom:10px;
+        }
+    </style>
+</head>
+<body>
+<div><a href="#"><img src="images/loading.png" data-original="https://gw.alicdn.com/tps/i1/TB1eSyDGFXXXXaRXVXXszjdGpXX-140-140.png?imgtag=avatar"></a></div>
+<div><a href="#"><img src="images/loading.png" data-original="https://gw.alicdn.com/tps/i3/TB1unlMIVXXXXauXXXXszjdGpXX-140-140.png?imgtag=avatar"></a></div>
+<div><a href="#"><img src="images/loading.png" data-original="https://gw.alicdn.com/tps/i2/TB1oq4xHXXXXXbxXpXXszjdGpXX-140-140.png?imgtag=avatar"></a></div>
+<div><a href="#"><img src="images/loading.png" data-original="https://gw.alicdn.com/tps/i3/TB1QeiDGFXXXXb8XVXXszjdGpXX-140-140.png?imgtag=avatar"></a></div>
+<div><a href="#"><img src="images/loading.png" data-original="https://gw.alicdn.com/tps/i3/TB1pAV7HXXXXXX5aXXXszjdGpXX-140-140.png?imgtag=avatar"></a></div>
+<div><a href="#"><img src="images/loading.png" data-original="https://gw.alicdn.com/tps/i3/TB1GafkKVXXXXcLXFXXszjdGpXX-140-140.png?imgtag=avatar"></a></div>
+<div><a href="#"><img src="images/loading.png" data-original="https://gw.alicdn.com/tps/i3/TB1hW9KGFXXXXXLXpXXszjdGpXX-140-140.png?imgtag=avatar"></a></div>
+<div><a href="#"><img src="images/loading.png" data-original="https://gw.alicdn.com/tps/i4/TB1Ed9LGFXXXXc3XXXXszjdGpXX-140-140.png?imgtag=avatar"></a></div>
+<div><a href="#"><img src="images/loading.png" data-original="https://img.alicdn.com/imgextra/i2/5/TB2LnapfpXXXXXBXXXXXXXXXXXX_!!5-2-subaru.png?imgtag=avatar"></a></div>
+<div><a href="#"><img src="images/loading.png" data-original="https://img.alicdn.com/tps/TB1YubuKFXXXXatXFXXXXXXXXXX-333-324.png"></a></div>
+</body>
+</html>

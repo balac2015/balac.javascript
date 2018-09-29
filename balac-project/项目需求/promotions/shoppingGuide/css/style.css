@@ -1,0 +1,234 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft Yahei',"Î¢ÈíÑÅºÚ",arial,'ËÎÌå',sans-serif;
+    color: #2C2C2C;
+    font-size: 13px;
+    text-shadow: 0 1px 0 #545454;
+    background: #ffffff;
+    text-align: center;
+}
+header {
+    position: absolute;
+    left:0;
+    right:0;
+    top:10px;
+}
+footer {
+    position: absolute;
+    left:0;
+    right:0;
+    bottom:10px;
+}
+.main-img {
+    width:100%;
+    height: auto;
+    margin:0 auto;
+}
+.fullPage-wp{
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+.fullPage-wp:after {
+    display: block;
+    content: ' ';
+    height: 0;
+    clear: both;
+}
+.fullPage-wp.anim{
+    -webkit-transition: all 500ms ease-out 0s;
+    transition: all 500ms ease-out 0s;
+}
+.fullPage-page{
+    display: block;
+    overflow: hidden;
+}
+
+.fullPage-dir-h {
+    float: left;
+}
+.guide-pic1 {
+    position: absolute;
+    top: 12%;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 292px;
+ }
+.guide-write1 {
+    position: absolute;
+    display: block;
+    top: 72%;
+    left: 50%;
+    margin-left: -102px;
+    /*margin: 10% auto 0 auto;*/
+    width: 204px;
+    height: 52px;
+}
+
+.guide-pic2 {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    margin-left: -111px;
+    display: block;
+    width: 222px;
+    height: 273px;
+}
+.guide-write2 {
+    position: absolute;
+    display: block;
+    top: 72%;
+    left: 50%;
+    margin-left: -109px;
+    width: 218px;
+    height: 46px;
+}
+
+.guide-pic3 {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    margin-left: -110px;
+    display: block;
+    width: 220px;
+    height: 230px;
+}
+.guide-write3 {
+    position: absolute;
+    display: block;
+    top: 72%;
+    left: 50%;
+    margin-left: -81px;
+    width: 162px;
+    height: 68px;
+}
+
+.guide-pic4 {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    margin-left: -108px;
+    display: block;
+    width: 216px;
+    height: 320px;
+}
+.guide-write4 {
+    position: absolute;
+    display: block;
+    top: 78%;
+    left: 50%;
+    margin-left: -126px;
+    width: 252px;
+    height: 46px;
+}
+.guide-pic5 {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    display: block;
+    margin-left: -151px;
+    width: 302px;
+    height: 380px;
+}
+.guide-write5 {
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    margin-left: -54px;
+    display: block;
+    width: 108px;
+    height: 17px;
+}
+.guide-link {
+    position: absolute;
+    top: 86%;
+    left: 50%;
+    margin-left: -94px;
+    display: block;
+    width: 188px;
+    height: 37px;
+    background: url(../images/5_09.png) no-repeat center center;
+    background-size: 188px 37px;
+}
+
+.wp{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 5;
+}
+.page{
+    position: relative;
+    height:100%;
+    font-size: 72px;
+    line-height: 320px;
+    text-align: center;
+    overflow: hidden;
+}
+@-webkit-keyframes start {
+0%,30% {
+    opacity: 0.2;
+    -webkit-transform: translate(0,10px);
+}
+60% {
+    opacity: 1;
+    -webkit-transform: translate(0,0);
+}
+100% {
+    opacity: 0.2;
+    -webkit-transform: translate(0, -5px);
+}
+}
+@keyframes start {
+0%,30% {
+    opacity: 0.2;
+    transform: translate(0,10px);
+}
+60% {
+    opacity: 1;
+    transform: translate(0,0);
+}
+100% {
+    opacity: 0.2;
+    transform: translate(0, -5px);
+}
+}
+.start{
+    position: fixed;
+    left: 50%;
+    margin-left: -17px;
+    top: 99%;
+    margin-top: -34px;
+    width: 34px;
+    height: 34px;
+    z-index: 6;
+}
+.start b{
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    margin-left: -9px;
+    width: 19px;
+    height: 12px;
+    background: url(../images/arrow.png);
+    background-size: 100% 100%;
+    -webkit-animation: start 1.5s infinite ease-in-out;
+    animation: start 1.5s infinite ease-in-out;
+}
+.btn-refresh {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    display: none;
+    color: #000;
+    font-size: 15px;
+    text-shadow: none;
+    text-align: center;
+    font-family: 'Microsoft Yahei',"Î¢ÈíÑÅºÚ",arial,'ËÎÌå',sans-serif;
+    z-index: 28;
+}

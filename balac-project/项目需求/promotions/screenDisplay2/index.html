@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="teleitphone=no" />
+    <!--<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+    <title>大屏展示</title>
+    <script src="js/flexible/fix.js?v=1001"></script>
+    <script src="js/flexible/flexible.js?v=1001"></script>
+    <link href="css/style.css?v=1003" type="text/css" rel="stylesheet" />
+    <link href="css/odometer-theme-digital.css" type="text/css" rel="stylesheet" />
+    <link href="css/footable.bootstrap.css?v=1001" type="text/css" rel="stylesheet" />
+    <link href="css/footable.sorting.css?v=1001" type="text/css" rel="stylesheet" />
+    <!--<script src="http://192.168.1.116:8088/target/target-script-min.js#anonymous"></script>-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <!--<script src="js/animateBackground-plugin.js"></script>-->
+    <script src="js/fastclick.min.js"></script>
+    <script src="js/echarts/echarts.js?v=1001"></script>
+    <script src="js/odometer.min.js"></script>
+    <script src="js/chart.js?v=1001"></script>
+    <script src="js/project/configuration.properties.js?v=1001"></script>
+    <script src="js/table/footable.js?v=1001"></script>
+    <script src="js/table/footable.sorting.js?v=1001"></script>
+    <script src="js/scrollMenu.js?v=1001"></script>
+
+</head>
+<div class="moni-p">
+    <div class="right-place">
+        <div class="right-go">
+            <a href="javascript: goRightOther()">
+            </a>
+        </div>
+    </div>
+
+    <div class="left-place">
+        <div class="left-go">
+            <a href="javascript: goLeftOther()">
+            </a>
+        </div>
+    </div>
+
+    <div class="moni">
+        <!--**************************************左上角返回******************************-->
+      <!--  <div class="back-icon hide" id="backIconId">
+        </div>-->
+        <!--**************************************右上角菜单栏******************************-->
+        <div class="right-menu right-menu-normal hide" id="rightMenuId">
+        </div>
+        <div class="right-menu-bg" id="rightMenuBgId" style="display: none">
+            <div class="right-menu-txt" id="rightMenuItem1" style="margin-top: .2rem;">
+                财务总览
+            </div>
+            <div class="right-menu-txt" id="rightMenuItem2">
+                总部出货
+            </div>
+            <div class="right-menu-txt" id="rightMenuItem3">
+                渠道分销            </div>
+            <div class="right-menu-txt" id="rightMenuItem4">
+                终端零售
+            </div>
+        </div>
+        <!--**************************************右下角菜单栏******************************-->
+        <!--<div class="right-bottom-menu" style="display: block">-->
+            <!--<div class="bottom-menu-one"></div>-->
+            <!--<div class="bottom-menu-one mr-20"></div>-->
+            <!--<div class="bottom-menu-two mr-20"></div>-->
+        <!--</div>-->
+
+        <!--**************************************右上角菜单栏******************************-->
+<!--
+        <div class="left-bottom-time">
+            数据最后更新:<span id="lbTimeId"></span>
+        </div>
+-->
+
+        <!--**************************************首页******************************-->
+        <div class="common-content hide" id="page1">
+            <div class="common-box pos0">
+                <div class="common-box0" id="index-box0">
+
+                    <div class="title-box">
+                        财务总览
+                    </div>
+
+                    <div class="first-box-content">
+                        <div class="unit-money">单位：亿元</div>
+                        <div class="unit-chart">
+                            <div class="text-center"><img src="images/red.png" class="img-bottom">内销 <img src="images/pink.png" class="img-bottom ml-50">外销</div>
+                        </div>
+                    </div>
+                    <div class="adapt-seperate">
+                    </div>
+                    <div class="ml-45">
+                        <ul class="pie-ul-three clearfix">
+                            <li>
+                                <div class="pos-re">
+                                    <div class=" pie-content" id="pie">
+
+                                    </div>
+                                    <div class="pie-text">
+                                        <p id="oneSaleHole" class="fm-app"></p>
+                                        销售
+                                    </div>
+                                </div>
+                                <div class="pie-kong"></div>
+                                <div class="text-center fs-36">
+                                    <p>内销：<span id="oneSaleIn" class="fm-app"></span></p>
+                                    <p class="c-8393aa">进度<span id="oneSaleInPlan" class="fm-app"></span><span class="fm-app">%</span> 同比<span id="oneSaleInYoy" class="fm-app"></span><span class="fm-app">%</span></p>
+                                    <p>外销：<span id="oneSaleOut" class="fm-app"></span></p>
+                                    <p class="c-8393aa">进度<span id="oneSaleOutPlan" class="fm-app"></span><span class="fm-app">%</span> 同比<span id="oneSaleOutYoy" class="fm-app"></span><span class="fm-app">%</span></p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pos-re">
+                                    <div class=" pie-content" id="pie2">
+
+                                    </div>
+                                    <div class="pie-text">
+                                        <p id="oneBackHole" class="fm-app fm-app"></p>
+                                        回款
+                                    </div>
+                                </div>
+                                <div class="pie-kong"></div>
+                                <div class="text-center fs-36">
+                                    <p>内销：<span id="oneBackIn" class="fm-app"></span></p>
+                                    <p class="c-8393aa">进度<span id="oneBackInPlan" class="fm-app"></span><span class="fm-app">%</span> 同比<span id="oneBackInYoy" class="fm-app"></span><span class="fm-app">%</span></p>
+                                    <p>外销：<span id="oneBackOut" class="fm-app"></span></p>
+                                    <p class="c-8393aa">进度<span id="oneBackOutPlan" class="fm-app"></span><span class="fm-app">%</span> 同比<span id="oneBackOutYoy" class="fm-app"></span><span class="fm-app">%</span></p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pos-re">
+                                    <div class=" pie-content" id="pie3">
+
+                                    </div>
+                                    <div class="pie-text">
+                                        <p id="oneStockHole" class="fm-app fm-app"></p>
+                                        库存
+                                    </div>
+                                </div>
+                                <div class="pie-kong"></div>
+                                <div class="text-center fs-36">
+                                    <p>内销：<span id="oneStockIn"  class="fm-app"></span></p>
+                                    <p class="c-8393aa">同比<span id="oneStockInYoy" class="fm-app"></span><span class="fm-app">%</span></p>
+                                    <p>外销：<span id="oneStockOut"  class="fm-app"></span></p>
+                                    <p class="c-8393aa">同比<span id="oneStockOutYoy" class="fm-app"></span><span class="fm-app">%</span></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="common-box pos1">
+                <div class="common-box1" id="index-box1">
+                    <div class="title-box">
+                        总部出货
+                    </div>
+
+                    <div class="first-box-content">
+                        <div class="unit-money">单位：亿元</div>
+                        <div class="unit-chart">
+                            <div class="text-center"><img src="images/orange.png" class="img-bottom">年度目标 <img src="images/yellow.png" class="img-bottom ml-50">销售累计</div>
+                        </div>
+                    </div>
+                    <div class="adapt-seperate">
+                    </div>
+
+                    <div class="xy-frame-sales-div" id="bar4">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="common-box pos2">
+                <div class="common-box2" id="index-box2">
+                    <div class="title-box">
+                            渠道分销
+                        </div>
+                    <div class="first-box-content">
+                        <div class="unit-money">单位：亿元</div>
+                        <div class="unit-chart real-top">
+                            <div class="pl-500 c-8393aa line-h-6">年度实时分销总额：<span id="real_fen" class="real_fen fm-app odometer"></span> 元</div>
+                        </div>
+                    </div>
+                    <div class="adapt-seperate-full">
+                    </div>
+                    <div class="bg-fen-page1">
+                        <div class="pos-re">
+                            <div class="ab-stock fm-app">
+                            </div>
+                            <div class="ab-distribution fm-app">
+                            </div>
+                            <div class="ab-goods fm-app">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-box pos3">
+                <div class="common-box3" id="index-box3">
+
+                    <div class="title-box">
+                        终端零售
+                    </div>
+
+                    <div class="first-box-content">
+                        <div class="unit-money">单位：亿元</div>
+                        <div class="unit-chart real-top">
+                            <div class="pl-500 c-8393aa line-h-6">年度实时零售总额：<span id="real_leng" class="real_leng fm-app odometer"></span> 元</div>
+                        </div>
+                    </div>
+                    <div class="adapt-seperate">
+                    </div>
+                    <div class="bar-hole-shu" id="bar1">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**************************************第二页******************************-->
+        <div class="common-content hide" id="page2">
+            <div class="common-box pos0">
+                <div class="common-box0">
+                    <div class="title-mt-70">
+                        <div>
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                财务总览
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-95">单位：亿元</div>
+                                <div class="fl-r mr-95">
+                                    <div class="text-left"><img src="images/red.png" class="img-bottom">内销 <img src="images/pink.png" class="img-bottom ml-70">外销</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+
+                        <div class="ml-45">
+                            <ul class="pie-ul-three clearfix">
+                                <li>
+                                    <div class="pos-re">
+                                        <div class=" pie-content" id="page2-pie-1">
+
+                                        </div>
+                                        <div class="pie-text">
+                                            <p class="fm-app" id="page2-pie-total-1"></p>
+                                            销售
+                                        </div>
+                                    </div>
+                                    <div class="pie-kong"></div>
+                                    <div class="text-center fs-36">
+                                        <p>内销：<span class="fm-app" id="page2-pie-insale-1"></span></p>
+                                        <p class="c-8393aa">进度<span class="fm-app" id="page2-insale-plan-1" class="fm-app"></span>% 同比<span class="fm-app" id="page2-insale-yoy-1"></span><span class="fm-app">%</span></p>
+                                        <p>外销：<span class="fm-app" id="page2-pie-outsale-1"></span></p>
+                                        <p class="c-8393aa">进度<span class="fm-app" id="page2-outsale-plan-1" class="fm-app"></span>% 同比<span class="fm-app" id="page2-outsale-yoy-1"></span><span class="fm-app">%</span></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="pos-re">
+                                        <div class=" pie-content" id="page2-pie-2">
+
+                                        </div>
+                                        <div class="pie-text">
+                                            <p class="fm-app" id="page2-pie-total-2"></p>
+                                            回款
+                                        </div>
+                                    </div>
+                                    <div class="pie-kong"></div>
+                                    <div class="text-center fs-36">
+                                        <p>内销：<span class="fm-app" id="page2-pie-insale-2"></span></p>
+                                        <p class="c-8393aa">进度<span class="fm-app" class="fm-app" id="page2-insale-plan-2"></span>% 同比<span class="fm-app" id="page2-insale-yoy-2"></span><span class="fm-app">%</span></p>
+                                        <p>外销：<span class="fm-app" id="page2-pie-outsale-2"></span></p>
+                                        <p class="c-8393aa">进度<span class="fm-app" id="page2-outsale-plan-2"></span>% 同比<span class="fm-app" id="page2-outsale-yoy-2"></span><span class="fm-app">%</span></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="pos-re">
+                                        <div class=" pie-content" id="page2-pie-3">
+
+                                        </div>
+                                        <div class="pie-text">
+                                            <p class="fm-app" id="page2-pie-total-3"></p>
+                                            库存
+                                        </div>
+                                    </div>
+                                    <div class="pie-kong"></div>
+                                    <div class="text-center fs-36">
+                                        <p>内销：<span class="fm-app" id="page2-pie-insale-3"></span></p>
+                                        <p class="c-8393aa">同比<span class="fm-app" id="page2-insale-yoy-3"></span><span class="fm-app">%</span></p>
+                                        <p>外销：<span class="fm-app" id="page2-pie-outsale-3"></span></p>
+                                        <p class="c-8393aa">同比<span class="fm-app" id="page2-outsale-yoy-3"></span><span class="fm-app">%</span></p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-box pos1">
+                <div class="common-box1">
+                    <div class="title-mt-70">
+                        <div class="mb-20">
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                销售进度
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-95">单位：亿元</div>
+                                <div class="fl-r mr-95">
+                                    <div class="text-left"><img src="images/pink.png" class="img-bottom">年度目标 <img src="images/red.png" class="img-bottom ml-70">销售累计</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div class="main page2-bar-style" id="page2-bar-1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="common-box pos2">
+                <div class="common-box2">
+                    <div class="title-mt-70">
+                        <div class="mb-20">
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                回款进度
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-95">单位：亿元</div>
+                                <div class="fl-r mr-95">
+                                    <div class="text-left"><img src="images/pink.png" class="img-bottom">年度目标 <img src="images/red.png" class="img-bottom ml-70">回款累计</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div class="main page2-bar-style" id="page2-bar-2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="common-box pos3">
+                <div class="common-box3">
+                    <div class="title-mt-70">
+                        <div class="mb-20">
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                成品库存
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-95">单位：亿元</div>
+                                <div class="fl-r mr-95">
+                                    <div class="text-left"><img src="images/red.png" class="img-bottom ml-70">当前库存</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div class="main page2-bar-style" id="page2-bar-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**************************************第三页******************************-->
+        <div class="common-content hide" id="page3">
+            <div class="common-box pos0">
+                <div class="common-box0">
+                    <div class="title-mt-70">
+                        <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                            销售目标及完成（内销）
+                        </div>
+                        <div class="xy-frame-unit fl">
+                            <div class="fl-l pl-130">
+                                <div class="text-left"><img src="images/orange.png" class="img-bottom">年度目标 <img src="images/yellow.png" class="img-bottom ml-70">销售累计</div>
+                            </div>
+                            <div class="unit-money fl-r mr-100">单位：亿元</div>
+                        </div>
+                    </div>
+                    <div class="adapt-seperate">
+                    </div>
+                    <div class="xy-frame-sales-div" id="salesBarId1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-box pos1">
+                <div class="common-box1">
+                    <div class="title-mt-70">
+                        <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                            销售目标及完成（外销）
+                        </div>
+                        <div class="xy-frame-unit fl">
+                            <div class="fl-l pl-130">
+                                <div class="text-left"><img src="images/orange.png" class="img-bottom">年度目标 <img src="images/yellow.png" class="img-bottom ml-70">销售累计</div>
+                            </div>
+                            <div class="unit-money fl-r mr-100">单位：亿元</div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div class="xy-frame-sales-div" id="salesBarId2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="common-box pos2">
+                <div class="common-box2">
+                    <div class="title-mt-70">
+                        <div class="title-box txt-left xy-frame-m-l bg-none">
+                            销售进度及同比（内销）
+                        </div>
+                        <!-- <div class="first-box-content">
+                             <div class="unit-money">单位：万元</div>
+                         </div>-->
+                        <!-- 这父元素要需加上相对定位-->
+                        <div class="adapt-seperate">
+                        </div>
+                        <div class="xy-frame-sales-div" id="salesScatterId1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="common-box pos3">
+                <div class="common-box3">
+                    <div class="title-mt-70">
+                        <div class="title-box txt-left xy-frame-m-l bg-none">
+                            销售进度及同比（外销）
+                        </div>
+                        <!--<div class="first-box-content">
+                            <div class="unit-money">单位：万元</div>
+                        </div>-->
+                        <div class="adapt-seperate">
+                        </div>
+                        <div class="xy-frame-sales-div" id="salesScatterId2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--**************************************第四页******************************-->
+        <div class="common-content hide" id="page4">
+            <div class="common-box pos0">
+                <div class="common-box0">
+                    <div class="title-mt-70">
+                        <div>
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                总览
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-100">单位：亿元</div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate-full">
+                        </div>
+                        <div class="bg-fen-none">
+                            <div class="pos-re">
+                                <div class="ab-stock ab-stock2 fm-app">
+                                </div>
+                                <div class="ab-distribution ab-distribution2 fm-app">
+                                </div>
+                                <div class="ab-goods ab-goods2 fm-app">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="common-box pos1">
+                <div class="common-box1">
+                    <div class="title-mt-70">
+                        <div class="title-box txt-left xy-frame-m-l bg-none">
+                            提货
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div class="xy-frame-sales-div" id="ScatterPage4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="common-box pos2">
+                <div class="common-box2">
+                    <div class="title-mt-70">
+                        <div>
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                分销
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-95">单位：万元</div>
+                                <div class="fl-r mr-95">
+                                    <div class="text-left"><img src="images/blue.png" class="img-bottom">累计金额 <img src="images/line-orange.png" class="img-bottom w-100 ml-70">分销提货比</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div>
+                            <div class=" fl-l page5-bar-style" id="page4-bar-1">
+                            </div>
+                            <div class="fl-r mr-95 page5-menu5-box">
+                                <ul class="page4-menu page5-menu" id="page4-menu-1">
+                                    <li>年度累计</li>
+                                    <li>月度累计</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="common-box pos3">
+                <div class="common-box3">
+                    <div class="title-mt-70">
+                        <div>
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                库存
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-95">单位：万元</div>
+                                <div class="fl-r mr-95">
+                                    <div class="text-left"><img src="images/blue.png" class="img-bottom">今日库存 <img src="images/line-orange.png" class="img-bottom w-100 ml-70">库存任务比</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div>
+                            <div class="page4-bar-style" id="page4-bar-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--**************************************第五页******************************-->
+        <div class="common-content hide" id="page5">
+
+            <div class="common-box pos0">
+                <div class="common-box0">
+                    <div class="title-mt-70">
+                        <div>
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                终端零售
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-95">单位：亿元</div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div>
+                            <div class="fl-l main page5-bar-style" id="page5-bar-1"></div>
+                            <div class="fl-r mr-95 page5-menu5-box">
+                                <ul class="page5-menu" id="page5-menu-1">
+                                    <li class="active">年度累计</li>
+                                    <li>月度累计</li>
+                                    <li>今日累计</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-box pos1">
+                <div class="common-box1">
+                    <div class="title-mt-70">
+                        <div>
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                事业部零售
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-95">单位：亿元</div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div>
+                            <div class="fl-l main page5-bar-style" id="page5-bar-2"></div>
+                            <div class="fl-r mr-95 page5-menu5-box">
+                                <ul class="page5-menu" id="page5-menu-2">
+                                    <li class="active">年度累计</li>
+                                    <li>月度累计</li>
+                                    <li>今日累计</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-box pos2">
+                <div class="common-box2">
+                    <div class="title-mt-70">
+                        <div>
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                年度零售
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-95">单位：亿元</div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div>
+                            <div class="fl-l main page5-pie-style" id="page5-pie-1"></div>
+                            <div class="fl-r mr-95 page5-menu5-box">
+                                <ul class="page5-menu page5-menu2" id="page5-menu-4">
+                                    <li class="active">总体</li>
+                                    <li>3C连锁</li>
+                                    <li>全国商超</li>
+                                    <li>TOP门店</li>
+                                    <li>旗舰店</li>
+                                    <li>电商ECM</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-box pos3">
+                <div class="common-box3">
+                    <div class="title-mt-70">
+                        <div>
+                            <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                                月度趋势
+                            </div>
+                            <div class="xy-frame-unit fl">
+                                <div class="unit-money fl-r mr-95">单位：亿元</div>
+                            </div>
+                        </div>
+                        <div class="adapt-seperate">
+                        </div>
+                        <div>
+                            <div class="fl-l main page5-bar-style" id="page5-bar-3"></div>
+                            <div class="fl-r mr-95 page5-menu5-box">
+                                <ul class="page5-menu page5-menu2" id="page5-menu-3">
+                                    <li class="active">总体</li>
+                                    <li>3C连锁</li>
+                                    <li>全国商超</li>
+                                    <li>TOP门店</li>
+                                    <li>旗舰店</li>
+                                    <li>电商ECM</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--**************************************外销******************************-->
+        <div class="common-content hide" id="index_2">
+            <div class="common-box pos0">
+                <div class="common-box0" id="index2-box0">
+
+                    <div class="title-box">
+                        外销月度趋势
+                    </div>
+
+                    <div class="first-box-content">
+                        <div class="unit-money">单位：亿美元</div>
+                        <div class="unit-chart">
+                            <div class="pl-30">出口额</div>
+                        </div>
+                    </div>
+
+                    <div class="adapt-seperate">
+                    </div>
+                    <div>
+                        <div class="fl-l main page5-bar-style" id="index2-bar-1"></div>
+                        <div class="fl-r mr-95 scroll-menu-box">
+                            <ul class="scroll-menu index2-menu menu-active" id="index2-menu-1">
+                                <li style="display: none">总体</li>
+                                <li style="display: none">东亚</li>
+                                <li style="display: none">东盟</li>
+                                <li style="display: none">南亚</li>
+                                <li style="display: none">中亚</li>
+                                <li style="display: none">中东</li>
+                                <li style="display: none">大洋洲</li>
+                                <li style="display: none">西北欧</li>
+                                <li style="display: none">东南欧</li>
+                                <li style="display: none">非洲</li>
+                                <li style="display: none">北美</li>
+                                <li style="display: none">拉美</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="common-box pos1">
+                <div class="common-box1" id="index2-box1">
+                    <div class="title-box">
+                        外销品类
+                    </div>
+
+                    <div class="first-box-content">
+                    </div>
+
+                    <div class="adapt-seperate">
+                    </div>
+                    <div class="xy-frame-sales-div" id="index2-scatter">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="common-box pos2">
+                <div class="common-box2" id="index2-box2">
+                    <div class="title-box">
+                        外销竞品比较
+                    </div>
+                    <div class="first-box-content">
+                        <div class="unit-money">单位：亿美元</div>
+                        <div class="unit-chart2">
+                            <div class="text-center"><img src="images/blue.png" class="img-bottom">年累计出口额 <img src="images/line-orange.png" class="img-bottom w-100 ml-70">同比增长</div>
+                        </div>
+                    </div>
+                    <div class="adapt-seperate">
+                    </div>
+                    <div>
+                        <div class=" fl-l page5-bar-style" id="index2-bar-2">
+                        </div>
+                        <div class="fl-r mr-95 scroll-menu-box" id="index2-menu-div">
+                            <ul class="scroll-menu index2-menu" id="index2-menu-2">
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-box pos3">
+                <div class="common-box3" id="index2-box3">
+                    <div class="title-box">
+                        外销市场份额
+                    </div>
+                    <div class="first-box-content">
+                        <div class="unit-money">单位：亿美元</div>
+                    </div>
+                    <div class="adapt-seperate">
+                    </div>
+                    <div>
+                        <div class="fl-l main page5-pie-style" id="index2-pie-1"></div>
+                        <div class="fl-r mr-95 scroll-menu-box">
+                            <ul class="scroll-menu index2-menu menu-active2" id="index2-menu-3">
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--**************************************评价******************************-->
+        <div class="common-content hide" id="index_3">
+            <div class="common-box pos0">
+                <div class="common-box0" id="index3-box0">
+                    <div class="title-box">
+                        线上评价
+                    </div>
+                    <div class="first-box-content mb-20">
+                        <div class="unit-chart2">
+                            <div class="text-center c-8393aa">
+                                <img src="images/blue.png" class="img-bottom"><span id="index3_menu0_label0">美的</span>
+                                <img src="images/red2.png" class="img-bottom ml-50"><span id="index3_menu0_label1">海尔</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="adapt-seperate">
+                    </div>
+                    <div>
+                        <div class="fl-l main index3-radar-style" id="index3-radar-1"></div>
+                        <div class="fl-r mr-95 scroll-menu-box index-box-menu-margin">
+                            <ul class="scroll-menu index3-menu" id="index3-menu-1">
+                                <!--总共19个，占位-->
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-box pos1">
+                <div class="common-box1" id="index3-box1">
+                    <div class="title-box">
+                        淘系产品布局
+                    </div>
+                    <div class="first-box-content mb-20">
+                        <div class="unit-chart2">
+                            <div class="text-center c-8393aa">
+                                <img src="images/cblue.png" class="img-bottom"><span id="index3_menu1_label0">美的</span>
+                                <img src="images/cpink.png" class="img-bottom ml-50"><span id="index3_menu1_label1">海尔</span>
+                                <img src="images/cyellow.png" class="img-bottom ml-50"><span id="index3_menu1_label2">格力</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="adapt-seperate">
+                    </div>
+                    <div>
+                        <div class="fl-l main page5-bar-style" id="index3-scatter-1"></div>
+                        <div class="fl-r mr-95 scroll-menu-box index-box-menu-margin">
+                            <ul class="scroll-menu index3-menu" id="index3-menu-2">
+                                <!--总共19个，占位-->
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <!--<li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-box pos2">
+                <div class="common-box2" id="index3-box2">
+                    <div class="title-box">
+                        淘系市场份额
+                    </div>
+                    <div class="adapt-seperate">
+                    </div>
+                    <div>
+                        <div class="fl-l main page5-pie-style" id="index3-pie-1"></div>
+                        <div class="fl-r mr-95 scroll-menu-box">
+                            <ul class="scroll-menu index3-menu menu-active3" id="index3-menu-3">
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-box pos3">
+                <div class="common-box3" id="index3-box3">
+                    <div class="title-box">
+                        最新评论
+                    </div>
+                    <div class="adapt-seperate">
+                    </div>
+                    <div class="table-offset">
+                        <div class="index3-table1-style" id="index3-table-div-2">
+                            <table class="footable fs-36">
+                                <thead class="table-head-linear">
+                                <tr class="text-center">
+                                    <th class="index3-table-col1-width text-center">
+                                        渠道
+                                    </th>
+                                    <th class="text-center">
+                                        评论时间
+                                    </th>
+                                    <th class="index3-table-col3-width">
+                                        产品
+                                    </th>
+                                    <th class="text-center">
+                                        评论
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center table-body-border" id="index3-table-2">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="index3-table2-style" id="index3-table-div">
+                            <table class="footable fs-36 pos-ab" id="index3-table">
+                                <thead>
+                                <tr class="text-center table-head-hide">
+                                    <th class="index3-table-col1-width text-center">
+                                        渠道
+                                    </th>
+                                    <th class="text-center">
+                                        评论时间
+                                    </th>
+                                    <th class="index3-table-col3-width text-center">
+                                        产品
+                                    </th>
+                                    <th class="text-center">
+                                        评论
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center table-body-border" id="index3-table-1">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="index3-table-line" class="pos-ab table-right-line hide"></div>
+                </div>
+            </div>
+        </div>
+
+    </div> <!--moni-->
+</div>
+
+<script src="js/util.js?v=1003"></script>
+<script src="js/myscatter.js?v=1003"></script>
+<script src="js/myradar.js?v=1003"></script>
+<script src="js/mypie.js?v=1003"></script>
+<script src="js/mybar.js?v=1003"></script>
+<script src="js/controller.js?v=1003"></script>
+<script src="js/page.js?v=1003"></script>
+<script src="js/data.js?v=1003"></script>
+<script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="js/common.js?v=1003"></script>
+<script src="js/style.js?v=1003"></script>
+<script src="js/index_1.js?v=1003"></script>
+<script src="js/index_1_page2.js?v=1003"></script>
+<script src="js/index_1_page3.js?v=1003"></script>
+<script src="js/index_1_page4.js?v=1003"></script>
+<script src="js/index_1_page5.js?v=1003"></script>
+<script src="js/index_2.js?v=1003"></script>
+<script src="js/index_3.js?v=1003"></script>
+
+<script>
+    $(document).ready(function() {
+//    var windowH = $(window).height(),
+//        windowW = $(window).width(),
+//        $html = $('html'),
+//        initSize = parseInt($html.css('font-size'))/100,
+//        indexCommonH = windowH/2 - 80*initSize,
+//        indexCommonW = windowW/2 - 80*initSize;
+//
+//    console.log(indexCommonH,indexCommonW);
+//    $('.index-box0').css({'width':indexCommonW,'height':indexCommonH});
+//    $('.index-box1').css({'width':indexCommonW,'height':indexCommonH});
+//    $('.index-box2').css({'width':indexCommonW,'height':indexCommonH});
+//    $('.index-box3').css({'width':indexCommonW,'height':indexCommonH});
+        commonJsReady();
+        IndexJsReady();
+        data_init();
+    });
+
+    PAGE_ITEMS[PN_INDEX_1].entry = page1_entry;    PAGE_ITEMS[PN_INDEX_1].exit = page1_exit;
+    PAGE_ITEMS[PN_INDEX_1_PAGE2].entry = page2_entry;    PAGE_ITEMS[PN_INDEX_1_PAGE2].exit = page2_exit;
+    PAGE_ITEMS[PN_INDEX_1_PAGE3].entry = page3_entry;    PAGE_ITEMS[PN_INDEX_1_PAGE3].exit = page3_exit;
+    PAGE_ITEMS[PN_INDEX_1_PAGE4].entry = page4_entry;    PAGE_ITEMS[PN_INDEX_1_PAGE4].exit = page4_exit;
+    PAGE_ITEMS[PN_INDEX_1_PAGE5].entry = page5_entry;    PAGE_ITEMS[PN_INDEX_1_PAGE5].exit = page5_exit;
+    PAGE_ITEMS[PN_INDEX_2].entry = index2_entry;    PAGE_ITEMS[PN_INDEX_2].exit = index2_exit;
+    PAGE_ITEMS[PN_INDEX_3].entry = index3_entry;    PAGE_ITEMS[PN_INDEX_3].exit = index3_exit;
+</script>
+
+</body>
+</html>

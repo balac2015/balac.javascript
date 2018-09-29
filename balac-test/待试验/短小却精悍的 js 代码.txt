@@ -1,0 +1,90 @@
+平时看到些神奇的js代码
+
+就把它记录了下来
+
+统计字符串中相同字符出现次数
+var arr = 'abcdaabc';
+
+var info = arr
+    .split('')
+    .reduce((p, k) => (p[k]++ || (p[k] = 1), p), {});
+
+console.log(info); //{ a: 3, b: 2, c: 2, d: 1 }
+正则判断质数
+const isPrime = function(x) { return (!(/^,?$|^(,,+?)\1+$/.test(Array(++x)))) }
+
+优雅的取整数
+var a = ~~2.33
+var b = 2.33 | 0
+var c = 2.33 >> 0
+数组去重
+let arr = [1,2,3,4,4,3,5]
+const uniq1 = res =>{
+  let newArr = []
+  res.forEach((item)=>{
+    if(newArr.indexOf(item) < 0){
+      newArr.push(item)
+    }
+  })
+  return newArr
+}
+console.log(uniq1(arr))
+// [1, 2, 3, 4, 5]
+
+const uniq2 = res =>{
+  return Array.from(new Set(arr))
+}
+
+console.log(uniq2(arr))
+// [1, 2, 3, 4, 5]
+
+数组中求最大最小值
+let arr = [23,44,34,15,4]
+
+const arrayGetMax1 = res =>{
+  let imax = res.shift()
+  res.forEach((item)=>{
+    imax = item > imax ? item : imax
+  })
+  return imax
+}
+
+console.log(arrayGetMax1(arr))
+// 44
+
+const arrayGetMax2 = res =>{
+  return Math.max(...res)
+}
+
+console.log(arrayGetMax1(arr))
+// 44
+
+随机颜色值
+const getRandomColor = () =>{
+  return '#'+Math.floor(Math.random() * (2 << 23)).toString(16)
+}
+getRandomColor()
+//  "#317e74"
+
+数据类型
+const typeOf = res =>{
+  return Object.prototype.toString.call(res).match(/^\[.* (.*)\]$/)[1].toLowerCase()
+} 
+console.log(typeOf({}))
+console.log(typeOf([]))
+console.log(typeOf(''))
+console.log(typeOf(.1))
+console.log(typeOf(true))
+console.log(typeOf())
+console.log(typeOf(undefined))
+console.log(typeOf(/x/))
+console.log(typeOf(function(){}))
+// object
+// array
+// string
+// number
+// boolean
+// undefined
+// undefined
+// regexp
+// function

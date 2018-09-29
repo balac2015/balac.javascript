@@ -1,0 +1,128 @@
+//
+   Created by yu869 on 2015/11/10.
+
+extends ../layouts/vendor
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+//应用的page title
+block pageTitle
+  h1 洗衣店统计订单
+    small 您洗衣店的订单统计
+block main
+
+  .box
+    .box-header.with-border
+      h3.box-title 按日期统计订单的查看
+      | &nbsp;
+      a.btn.btn-xs.btn-default(href='/vendor/vendorMonthList' title='按月份查看统计')
+        span 月份
+    div.row.form-group
+      label.control-label.col-md-2 日期从：
+        span.required *
+      div.controls.col-md-9
+        div.datetimepicker.input-append.date.input-group
+          .input-group-addon
+            i.fa.fa-clock-o
+          input#start.form-control.required(name='start' value="#{store != null ? store.start : ''}")
+        span#startDateText(style='color:red')
+
+    div.row.form-group
+      label.control-label.col-md-2 到：
+        span.required *
+      div.controls.col-md-9
+        div.datetimepicker.input-append.date.input-group
+          .input-group-addon
+            i.fa.fa-clock-o
+          input#end.form-control.required(name='start' value="#{store != null ? store.start : ''}")
+        span#endDateText(style='color:red')
+
+    div.row.form-group
+      label.control-label.col-md-2
+      div.controls.col-md-10
+        button#search.btn.btn-block.btn-primary
+          i.fa.fa-save
+          span 搜索
+
+        a#export.btn.btn-block.btn-primary
+          i.fa.fa-save
+          span 导出
+
+    .panel-body
+      div.row
+        div.col-md-12
+          p.
+          each report in reports
+            h3
+              #{report.franchisee}
+            div.well
+              ul
+                li 洗衣店 : #{report.storeName}
+                li 总订单数 : #{report.total}
+                li 预约订单数 : #{report.reservationNum}
+                li 未支付订单数 : #{report.noPayNum}
+                li 使用中订单数 : #{report.usingNum}
+                li 已完成订单数 : #{report.completedNum}
+                li 已取消订单数 : #{report.cancelNum}
+                li 支付金额 : #{report.allowance.toFixed(2)}
+                li 金额 : #{report.amount}
+                li 日期 : #{formatDate(report.day)}
+
+block scripts
+  script(src='/plugins/datepicker/bootstrap-datepicker.js')
+  script.
+    $(document).ready(function () {
+      //$('#createDate').val("");
+      var dates=$('.datetimepicker').datepicker({
+        format: "yyyy-mm-dd",
+        language: 'cn',
+        weekStart: 1,
+        autoclose: true,
+        todayBtn: 'linked'
+      }).on('changeDate',function(ev){
+        $('#createDate').val(ev.date);
+      });
+
+      $('#search').on("click",function(e){
+        var start=$('#start').val();
+        var end = $('#end').val();
+        if (start == ''){
+          $('#startDateText').html("请输入起始时间");
+          return;
+        }
+        if (end == ''){
+          $('#endDateText').html("请输入结束时间");
+          return;
+        }
+
+        var a = new Date(start);
+        var b = new Date(end);
+        if (a > b){
+          $('#endDateText').html("结束日期不能小于开始日期");
+          return;
+        } else {
+          window.location = "/vendor/orderDayReport?start=" + start + "&end=" + end;
+        }
+      });
+
+      $('#export').on('click', function (e) {
+        var start=$('#start').val();
+          var end = $('#end').val();
+          if (start == ''){
+            $('#startDateText').html("请输入起始时间");
+          return;
+        }
+        if (end == ''){
+          $('#endDateText').html("请输入结束时间");
+          return;
+        }
+        var a = new Date(start);
+        var b = new Date(end);
+        if (a > b){
+          $('#endDateText').html("结束日期不能小于开始日期");
+          return;
+        } else {
+          window.location.href='/order/exportOrder?start=' + start + '&end=' + end + '&isFranchisee=true'
+        }
+      });
+
+    })

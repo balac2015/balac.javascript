@@ -1,0 +1,201 @@
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+  link( rel="stylesheet" href="/plugins/datepicker/datepicker3.css")
+
+
+//应用的page title
+block pageTitle
+  h1 订单信息
+    small 全部订单查看
+block main
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title 订单列表
+      | &nbsp;
+      button#exportOrder.btn.btn-xs.btn-default(title='导出按时间段查询的订单')
+        span 导出订单
+      .box-tools.pull-right
+          div.col-md-2.form-group
+              span.control-label 按时间段:
+          div.col-md-10.form-group
+              div.col-md-10.form-group
+                  div#datetimepicker.input-append.date.col-md-6.form-group
+                      input#createDate1(type="text")
+                      span#start.add-on(style="color:red")
+                  div#datetimepicker2.input-append.date.col-md-6.form-group
+                      input#createDate2(type="text")
+                      span#end.add-on(style="color:red")
+              button#search.btn.btn-xs.btn-default(title='搜索')
+                  i.fa.fa-search
+                  span 搜索
+    .box-body
+      table#orderList.table.table-bordered.table-hover.table-striped(style="width:100%")
+        thead
+          th 订单号
+          th 微信用户
+          th 洗衣房名称
+          th 设备
+          th 金额
+          th 交易金额
+          th 订单状态
+          th 使用方式
+          th 开始时间
+          th 结束时间
+          th 虚拟ID
+
+//应用添加的脚本在scripts block中定义
+block scripts
+    script(src='/plugins/datatables/jquery.dataTables.min.js')
+    script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+    script(src='/plugins/datepicker/bootstrap-datepicker.js')
+    script.
+          $(document).ready(function () {
+              $('#createDate1').val("");
+              $('#createDate2').val("");
+              var dates = $('#datetimepicker').datepicker({
+                  format: "yyyy-mm-dd",
+                  language: 'cn',
+                  maxDate: new Date(),
+                  showButtonPanel: true,
+                  weekStart: 1,
+                  autoclose: true,
+                  todayBtn: 'linked'
+              }).on('changeDate', function (ev) {
+                  $('#createDate1').val(ev.date);
+              });
+              var date2 = $('#datetimepicker2').datepicker({
+                  format: "yyyy-mm-dd",
+                  language: 'cn',
+                  maxDate: new Date(),
+                  weekStart: 1,
+                  autoclose: true,
+                  todayBtn: 'linked',
+                  setEndDate: new Date()
+              }).on('changeDate', function (ev) {
+                  $('#createDate2').val(ev.date);
+              });
+
+              var opts = {
+                  "language": {
+                      "url": "/plugins/datatables/Chinese.json"
+                  },
+                  autoWidth: true,
+                  select: true,
+                  searching: true,
+                  processing: true,
+                  serverSide: true,
+                  scrollX:true,
+                  ajax: {url: '/order/datatable'},
+                  rowid: '_id',
+                  columnDefs: [
+                      {targets: 0, visible: true, sortable: true, width: 40, searchable: true, defaultContent: ''}
+
+                  ]
+              };
+              var code=1;
+              var t = $('#orderList').dataTable(
+                  $.extend(opts,
+                      {
+                          order: [[5, 'asc'],[7, 'desc']],
+                          columns: [
+                              {data: "orderNo", defaultContent: ''},
+                              {data: "wechatFansId.nickname",defaultContent: ''},
+                              {data: "storeId.name", defaultContent: ''},
+                              {data: "deviceId.name", defaultContent: ''},
+                              {data: "amount", defaultContent: '','class':'text-right',render: function ( data, type, full, meta ) {
+                                  return data.toFixed(2) + " 元";
+                              }},
+                              {data: "allowance", defaultContent: '','class':'text-right',render: function ( data, type, full, meta ) {
+                                  return data.toFixed(2) + " 元";
+                              }},
+                              {data: "status", defaultContent: '',render:function ( data, type, full, meta ) {
+                                  var name=getStatusName(data);
+                                  return name;
+                              }},
+                              {data: "commandId.type", defaultContent: ''},
+                              {data: "useTime", defaultContent: '', render: function ( data, type, full, meta ) {
+                                  var b = moment(new Date(data));
+                                  var date = "";
+                                  if (data != null) {
+                                      date = b.format("YYYY-MM-DD HH:mm:ss");
+                                  }
+                                  return date;
+                              }},
+                              {data: "endTime", defaultContent: '',render: function ( data, type, full, meta ) {
+                                  var b = moment(new Date(data));
+                                  var date = "";
+                                  if (data != null) {
+                                      date = b.format("YYYY-MM-DD HH:mm:ss");
+                                  }
+                                  return date;
+                              }},
+                              {data: "deviceId.virtualId", defaultContent: ''}
+                          ]
+                      }));
+              $('#search').on("click", function (e) {
+                  var starts = $('#createDate1').val();
+                  var end = $('#createDate2').val();
+                  if (starts == "" && end != "") {
+                      $("#start").html("需要输入开始日期");
+                      return false;
+                  } else {
+                      $("#start").html("");
+                  }
+                  if (end == "" && starts != "") {
+                      $("#end").html("需要输入结束日期");
+                      return false;
+                  } else {
+                      $("#end").html("");
+                  }
+                  if (starts > end) {
+                      $("#start").html("开始日期需小于结束日期");
+                      return false;
+                  } else {
+                      $("#start").html("");
+                  }
+                  var TT = $('#orderList').DataTable();
+                  TT.ajax.url('/order/datatable?starts=' + starts + '&end=' + end).load();
+              });
+              $("#exportOrder").on('click', function () {
+                  var starts = $('#createDate1').val();
+                  var end = $('#createDate2').val();
+                  if (starts == "" && end != "") {
+                      $("#start").html("需要输入开始日期");
+                      return false;
+                  } else {
+                      $("#start").html("");
+                  }
+                  if (end == "" && starts != "") {
+                      $("#end").html("需要输入结束日期");
+                      return false;
+                  } else {
+                      $("#end").html("");
+                  }
+                  if (starts > end) {
+                      $("#start").html("开始日期需小于结束日期");
+                      return false;
+                  } else {
+                      $("#start").html("");
+                  }
+                  window.location.href='/order/exportOrder?starts=' + starts + '&end=' + end
+              });
+          });
+          function edit(id){
+            window.location = '/order/init';
+          }
+          function getStatusName(code) {
+              var status = [{"code": '10', "name": '预约'}
+                        , {"code": '20', "name": '已支付'}
+                        , {"code": '21', "name": '桶自洁中'}
+                        , {"code": '22', "name": '桶自洁完成'}
+                        , {"code": '30', "name": '使用中'}
+                        , {"code": '40', "name": '完成'}
+                        , {"code": '50', "name": '撤销'}
+                        , {"code": '60', "name": '退款'}];
+              for (i in status) {
+                  if (status[i].code == code) {
+                      return status[i].name;
+                  }
+              }
+          }

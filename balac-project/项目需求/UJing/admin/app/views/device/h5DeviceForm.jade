@@ -1,0 +1,114 @@
+//
+   Created by yu869 on 2015/11/26.
+
+extends ../layouts/vendor
+block header
+//应用的page title
+block pageTitle
+
+block main
+   .box
+      .box-header.with-border
+         h3.box-title 修改洗衣店设备
+         .pull-left
+            a.btn.btn-xs(href='/vendor/deviceInStore/#{storeId}')
+               i.fa.fa-reply
+            | &nbsp;
+
+      .panel-body
+         div#storeEdit.row
+            div.col-md-12
+               form#deviceForm.form-horizontal(name='storeForm', action='/vendor/saveDevice', method='post')
+                  input#deviceId(type='hidden', name='deviceId', value="#{device._id}")
+                  input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+                  div#messageBox.callout.callout-danger.hidden
+
+                  div.row.form-group
+                     label.control-label.col-md-2 名称：
+                        span.required *
+                     div.controls.col-md-9
+                        input#name.form-control.required(name='name', value="#{device != null ? device.name : ''}")
+
+                  div.row.form-group
+                     label.control-label.col-md-2 编号：
+                        span.required *
+                     div.controls.col-md-9
+                        input#no.form-control.required(name='no', value="#{device != null ? device.no : ''}")
+
+                  each price in prices
+                     div.row.form-group
+                        label.control-label.col-md-2 #{price.type}
+                           span.required *
+                        div.controls.col-md-9
+                           input.form-control.required(type="number" name='#{price._id}', id='#{price._id}', value="#{price != null ? price.price : ''}")
+
+                  div.row.form-group
+                     label.control-label.col-md-2 是否可用:
+                        span.required *
+                     div.controls.col-md-9
+                        div.checkbox.icheck
+                           input#enable(type="checkbox", name="enable", value="enable", checked=device != null ? device.status == '3' ? false : true : false)
+                           | &nbsp;
+
+
+                  div.row.form-group
+                     label.control-label.col-md-2
+                     div.controls.col-md-9
+                        button#save.btn.btn-block.btn-primary
+                           i.fa.fa-save
+                           span 保存
+
+
+
+//应用添加的脚本在scripts block中定义
+block scripts
+   script(src='/plugins/jquery-validation/dist/jquery.validate.min.js')
+   script(src='/plugins/jquery-validation/dist/jquery.validate.messages_zh.js')
+   script.
+      $(document).ready(function () {
+
+         // icheckbox
+         $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+         });
+
+         $.getJSON("/vendor/typeList", function (data) {
+            $.each(data, function (i, item) {
+               $("#devicePriceId").append("<option value='"+item._id+"'>&nbsp;" + item.type + "</option>");
+            });
+
+            var devicePriceId = "#{devicePriceId}";
+            if (devicePriceId) {
+               $("#devicePriceId").val(devicePriceId);
+            }
+         });
+
+         var form = $('#deviceForm');
+         form.validate({
+            rules: {
+               name: {
+                  required: true
+               }
+               , no: {
+                  required: true
+               }
+            },
+            messages: {
+               name: "洗衣店名称必填!"
+               , no: "编号必填!"
+            },
+            errorLabelContainer: "#messageBox",
+            wrapper: "li",
+            invalidHandler: function (event, validator) {
+               var errors = validator.numberOfInvalids();
+               if (errors) {
+                  $("#messageBox").removeClass("hidden");
+               } else {
+                  $("#messageBox").addClass("hidden");
+               }
+            }
+         });
+      });

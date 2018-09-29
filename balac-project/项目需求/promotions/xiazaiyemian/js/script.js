@@ -1,0 +1,5 @@
+//$(function(){
+//    $('#all').fullpage({
+//        sectionsColor: ['#' , '#', '#', '#','#']
+//    });
+//});

@@ -1,0 +1,83 @@
+extends ../layouts/front
+block header
+
+block main
+  .login-box
+    .login-logo
+      a(href='/vendor')
+        b U净
+        | <br>加盟商管理平台
+    // /.login-logo
+    .login-box-body
+      p.login-box-msg
+      form#loginForm(action='/vendor/login', method='post')
+        input(type='hidden', name='_csrf', value=_csrf)
+        input(type='hidden', name='userType', value='vendor')
+        .form-group.has-feedback
+          input#username.form-control(type='text', placeholder='请使用手机号登陆', name="username")
+          span.glyphicon.glyphicon-envelope.form-control-feedback
+        .form-group.has-feedback
+          input#password.form-control(type='password', placeholder='登录密码', name="password")
+          span.glyphicon.glyphicon-lock.form-control-feedback
+        .checkbox.icheck
+          label
+            input#rememberMe(type='checkbox',name="rememberMe")
+            | &nbsp;&nbsp;记住我
+      .row
+        a#register.btn.pull-left(href='/vendor/register') 立即注册
+        a.btn.pull-right(href='/vendor/forgetPass') 忘记密码?
+      a#login.btn.btn-primary.btn-block.btn-flat 登 录
+
+
+
+    // /.login-box-body
+  // /.login-box
+block scripts
+  script.
+    $(function () {
+      $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' // optional
+      });
+
+      var form = $("#loginForm");
+
+      $('#username').val($.cookie('username'))
+      var check = $.cookie('rememberMe');
+      if (check == "true") {
+        $('#rememberMe').iCheck('check');
+      } else {
+        $('#rememberMe').iCheck('uncheck');
+      }
+
+      form.validate({
+        rules: {
+          username: {required: true},
+          password: {required: true}
+        },
+        messages: {
+          username: {required: "请输入登录用户名"},
+          password: {required: "请输入登录密码"}
+        }
+      });
+
+      $("#login").on('click', function() {
+
+        var rememberMe = $("#rememberMe").is(":checked");
+        if (rememberMe){
+          if ($.cookie('username') == undefined) {
+            $.cookie('username', $('#username').val(), { expires: 7 });
+          }
+          if ($.cookie('rememberMe') == undefined) {
+            $.cookie('rememberMe', true, {expires: 7});
+          }
+        } else {
+          $.cookie('username', '', { expires: -1 }); // 删除 cookie
+          $.cookie('rememberMe', '', { expires: -1 }); // 删除 cookie
+        }
+       form.submit();
+      })
+
+
+    });

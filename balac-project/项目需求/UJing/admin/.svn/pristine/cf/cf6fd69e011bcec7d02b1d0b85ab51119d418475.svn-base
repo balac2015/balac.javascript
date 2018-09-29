@@ -1,0 +1,103 @@
+//
+   Created by yu869 on 2015/10/26.
+
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+  style.
+    .table > tbody > tr > td {
+      vertical-align: middle;
+    }
+  //应用的page title
+block pageTitle
+  h1 微信粉丝查询
+
+block main
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title 粉丝列表
+    .panel-body
+      table#wechatFansList.table.table-bordered.table-hover.table-striped
+        thead
+          th #
+          th openid
+          th 昵称
+          th 性别
+          th 语言
+          th 城市
+          th 省
+          th 国家
+          th 头像
+          //th 注册时间
+          th 创建时间
+        tbody
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datatables/jquery.dataTables.min.js')
+  script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+  script.
+    $(document).ready(function () {
+      Date.prototype.format = function (format) {
+        var o = {
+          "M+": this.getMonth() + 1, //month
+          "d+": this.getDate(), //day
+          "h+": this.getHours(), //hour
+          "m+": this.getMinutes(), //minute
+          "s+": this.getSeconds(), //second
+          "q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+          "S": this.getMilliseconds() //millisecond
+        }
+        if (/(y+)/.test(format)) {
+          format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+          if (new RegExp("(" + k + ")").test(format)) {
+            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+          }
+        }
+        return format;
+      }
+
+      var table = $('#wechatFansList')
+        .dataTable({
+        "language": {
+          "url": "/plugins/datatables/Chinese.json"
+        },
+        select: true,
+        searching: true,
+        processing: true,
+        serverSide: true,
+        ajax: {url: '/wechatFans/datatable'},
+        rowid: '_id',
+        columnDefs: [
+          {targets: 0, visible: false, orderable: false, width: 10}
+        ],
+        columns: [
+          {data: "_id", defaultContent: ''},
+          {data: "openid", defaultContent: ''},
+          {data: "nickname", defaultContent: ''},
+          {data: "sex", defaultContent: ''},
+          {data: "language", defaultContent: ''},
+          {data: "city", defaultContent: ''},
+          {data: "province", defaultContent: ''},
+          {data: "country", defaultContent: ''},
+          {data: "headimgurl", defaultContent: '',
+            render: function ( data, type, full, meta ) {
+            return '<img width=50 height=50 class="img-circle" src="'+data+'" />';
+          }},
+            //          {data: "subscribe_time", render: function ( data, type, full, meta ) {
+            //            var date = new Date(data*1000).format('yyyy/mm/dd hh:MM:ss');//这里必须是整数，毫秒
+            //            return date;
+            //          }},
+          {data: "createAt", defaultContent:'',render: function ( data, type, full, meta ) {
+            var b = moment(new Date(data));
+            var date = "";
+            if (data != null) {
+              date = b.format("YYYY-MM-DD HH:mm:ss");
+            }
+            return date;
+          }}
+        ]
+      });
+    });

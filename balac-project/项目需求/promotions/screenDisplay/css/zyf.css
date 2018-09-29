@@ -1,0 +1,138 @@
+/**
+* css by zhouyf
+**/
+
+body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+.main-bg{
+    padding: 20px 35px;
+    height: 100%;
+}
+.clear:after{
+    display:block;
+    clear:both;
+    content:"";
+    visibility:hidden;
+    height:0
+}
+.clear{zoom:1}
+.fl-l{
+    float: left;
+}
+.fl-r{
+    float: right;
+}
+.mr-25{
+    margin-right:25px;
+}
+.ml-25{
+    margin-left:25px;
+}
+.mr-10{
+    margin-right:10px;
+}
+.ml-10{
+    margin-left:10px;
+}
+.main-box{
+    width: 740px;
+    background: #ccc;
+    position: relative;
+}
+.layer-cover{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.data-box{
+    height: 100%;
+    /*background:-webkit-gradient(linear, 0 0, 100% 100%, from(#333), to(#999));*/
+    background: rgba(0,0,0,.86);
+    border-radius: 10px;
+    padding: 35px 0;
+}
+.data-box .title{
+
+}
+.c-white{
+    color: #fff;
+}
+.box-title-right .box-color {
+    height: 13px;
+    width: 13px;
+    margin-right: 3px;
+    font-style: normal;
+}
+
+.contentbox-three li{
+    position: relative;
+    float: left;
+    width: 33%;
+}
+.border-right{
+    border-right: 1px solid #2d3037;
+}
+.c-0084ff{
+    color: #0084ff;
+}
+.text-center{
+    text-align: center;
+}
+.pie-style{
+    margin-left: -32%!important;
+    margin-top: -10px!important;
+    position: relative;
+    height: 150px!important;
+}
+.bar-style{
+    margin-left: -29%!important;
+    margin-top: -50px!important;
+    position: relative;
+    height: 150px!important;
+}
+.pie-text {
+    position: absolute;
+    left: 33%;
+    top: 38%;
+}
+.bar-text{
+    position: absolute;
+    left: 8%;
+    top: 40%;
+    color: #fff;
+    font-size: 12px;
+}
+.bar-text-right{
+    position: absolute;
+    left: 54%;
+    top: 40%;
+    color: #fff;
+    font-size: 12px;
+}
+
+.pos-re{
+    position: relative;
+}
+.pr-10{
+    padding-right: 10px;
+}
+.ff-inherit{
+    font-family: inherit;
+}
+.plr-40{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.left-40{
+    left: 40px!important;
+}
+.plr-10{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+

@@ -1,0 +1,127 @@
+//
+   Created by yu869 on 2015/10/27.
+
+extends ../layouts/default
+block header
+//应用的page title
+block pageTitle
+  h1 加盟商审核
+    small 审核加盟商信息
+block main
+  .box.box-primary
+    .box-header.with-border
+      if fran.approvedStatus != '01'
+        h3.box-title 查看
+      if fran.approvedStatus == '01'
+        h3.box-title 审核
+
+      .box-tools.pull-right
+        if fran.approvedStatus == '01'
+          a.btn.btn-xs.btn-default(href='/franchisee/waitList' title='返回')
+            i.fa.fa-reply
+            span 返回
+          | &nbsp;&nbsp;
+          button#save.btn.btn-xs.btn-default(title='保存')
+            i.fa.fa-save
+            span 保存
+          | &nbsp;
+        if fran.approvedStatus != '01'
+          a.btn.btn-xs.btn-default(href='/franchisee/list' title='返回')
+            i.fa.fa-reply
+            span 返回
+
+    .panel-body
+      div#storeEdit.row
+        div.col-md-12
+          form#franchiseeForm.form-horizontal(name='franchiseeForm', action='/franchisee/save', method='post')
+            input#_id(type='hidden', name='_id', value='#{fran._id}')
+            input#_csrf(type='hidden', name='_csrf', value=_csrf)
+            div.row.form-group
+              label.control-label.col-sm-4 申请人:
+              div.col-sm-8.form-control-static
+                span #{fran.fullname}
+            div.row.form-group
+              label.control-label.col-sm-4 身份证:
+              div.col-sm-8.form-control-static
+                span #{fran.numberID}
+            div.row.form-group
+              label.control-label.col-sm-4 联系电话:
+              div.col-sm-8.form-control-static
+                span #{fran.mobile}
+            div.row.form-group
+              label.control-label.col-sm-4 邮箱:
+              div.col-sm-8.form-control-static
+                span #{fran.email}
+            div.row.form-group
+              label.control-label.col-sm-4 申请时间:
+              div.col-sm-8.form-control-static
+                span #{formatDatetime(fran.applyTime)}
+            div.row.form-group
+              label.control-label.col-sm-4 审核状态:
+              div.col-sm-8.form-control-static
+                if fran.approvedStatus == '01'
+                  input#status(type='hidden' name='status' value='#{fran.approvedStatus}')
+                  select#approvedStatus.from-control(name='approvedStatus',style='width:30%')
+                    option(value='') --请选择--
+                if fran.approvedStatus != '01'
+                  span #{fran.approvedStatus == '02' ? "通过":"不通过"}
+            if fran.approvedBy != null && fran.approvedBy != ''
+              div.row.form-group
+                label.control-label.col-sm-4 审核人:
+                div.col-sm-8.form-control-static
+                  span #{fran.approvedBy}
+              div.row.form-group
+                label.control-label.col-sm-4 审核时间:
+                div.col-sm-8.form-control-static
+                  span #{formatDatetime(fran.approvedTime)}
+
+//应用添加的脚本在scripts block中定义
+block scripts
+  script.
+    $(document).ready(function () {
+      $('#approvedStatus').ready(function(e) {
+          $.ajax({
+             type: "get",
+             url: "/franchisee/getAllStatus",
+             data: {},
+            success: function (data) {
+                $.each(data, function (i, item) {
+                  if (item.code != '01') {
+                    var ui = '';
+                    var status = $("#status").val();
+                    if (status == item.code) {
+                      ui = "<option value='" + item.code + "' selected='true'>" + item.name + "</option>"
+                    } else {
+                      ui = "<option value='" + item.code + "'>" + item.name + "</option>"
+                    }
+                    $("select[name='approvedStatus']").append(ui);
+                  }
+                })
+              }
+           });
+
+      });
+      $("#save").on('click',function(){
+        $("#franchiseeForm").submit();
+      });
+      $("#franchiseeForm").validate({
+        rules: {
+            approvedStatus: {
+            required: true
+          }
+        },
+        messages: {
+            approvedStatus: {required:"审核状态不能为空"}
+        }
+      });
+    });
+//          var id=$("#_id").val();
+//          var status=$("#approvedStatus").val();
+//          $.ajax({
+//            type: "post",
+//            url: "/franchisee/save",
+//            data: {id: id,status:status},
+//            success: function (data) {
+//              alert(data);
+//            }
+//          });

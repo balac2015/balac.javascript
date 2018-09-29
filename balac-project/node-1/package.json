@@ -1,0 +1,19 @@
+{
+  "name": "node-1",
+  "version": "1.0.0",
+  "description": "nodejs 初探\u001b[D\u001b[D\u001b[D项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookies": "^0.7.1",
+    "express": "^4.16.2",
+    "mongoose": "^4.12.5",
+    "promise": "^8.0.1",
+    "swig": "^1.4.2"
+  }
+}

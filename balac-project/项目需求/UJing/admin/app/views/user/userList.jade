@@ -1,0 +1,121 @@
+//
+   Created by danne on 2015/10/24.
+extends ../layouts/default
+block header
+  link( rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css")
+
+//应用的page title
+block pageTitle
+  h1 系统用户管理
+    small 添加，删除，更新系统中管理用户
+
+block main
+  .box
+    .box-header.with-border
+      h3.box-title 用户列表
+      .box-tools.pull-right
+        a.btn.btn-box-tool.btn-default(href="/system/user/add")
+          i.fa.fa-plus
+          span  添加用户
+    .box-body
+      table#userList.table.table-bordered.table-hover.table-striped
+        thead
+          th 用户名
+          th Email
+          th 姓名
+          th 名
+          th 用户角色
+          th.text-center(width="80") 操作
+        tbody
+
+      form#userDelForm(method='post', style='display:none', action='/system/user/del')
+        input#ids(type='hidden',name='ids')
+        input#_csrf(type='hidden', name='_csrf', value=_csrf)
+
+    #resetPassword.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .container
+            .modal-body
+              .row.clearfix
+                .col-md-6.column
+                  h3 重置密码
+                  form#resetPasswordForm.form-horizontal(action='/system/user/resetPassword',method='post')
+                    input#_csrf(type='hidden', name='_csrf', value=_csrf)
+                    input#userId(type='hidden',name='userId',value='')
+                    span.control-label 您确定要重置密码？
+                    br
+                    .center-block.pull-right
+                      | &nbsp;&nbsp;&nbsp;
+                      button.btn.btn-primary(type='button', data-dismiss='modal', aria-hidden='false') 取消
+                      | &nbsp;&nbsp;&nbsp;
+                      button.btn.btn-success(type='submit') 确定
+//应用添加的脚本在scripts block中定义
+block scripts
+  script(src='/plugins/datatables/jquery.dataTables.min.js')
+  script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+  script.
+    $(document).ready(function () {
+      var opts = {
+        "language": {
+          "url": "/plugins/datatables/Chinese.json"
+        },
+        autoWidth: false,
+        lengthChange: true,
+        searching: true,
+        processing: false,
+        serverSide: true,
+        deferRender: true
+
+      };
+      var t = $('#userList').DataTable($.extend(opts, {
+        ajax: {url: '/system/user/datatable'},
+        order: [[0, 'asc']],
+        columnDefs: [
+          //{targets: 0, visible: true, sortable: false, searchable: false, className: 'text-right', defaultContent: ''},
+          {
+            targets: 2, visible: true, sortable: false,
+            render: function (data, type, row) {
+              return (row.lastname ? row.lastname : '') + " " + (row.firstname ? row.firstname : '');
+            }
+          },
+          {
+            targets: -1, visible: true, sortable: false, className: 'text-center',
+            render: function (data, type, row) {
+              return "<a class='btn btn-default btn-xs edit' title='修改' href='/system/user/edit?id=" + row._id + "'><i class='fa fa-edit'></i></a>"
+                      + " <button class='btn btn-default btn-xs del' title='删除' type='button'><i class='fa fa-trash-o'></i></button>"
+                      +"<button class='btn btn-default btn-xs' data-toggle='modal' data-target='#resetPassword' aria-label='Left Align' title='重置密码' " +
+                      "onclick=reseted('"+row._id+"') ><i class='fa fa-refresh'></i></button>";
+            }
+          }
+        ],
+        columns: [
+          //{data: ""},
+          {data: "username"},
+          {data: "email"},
+          {data: "firstname", defaultContent: ''},
+          {data: "lastname", defaultContent: '', visible: false},
+          {data: "roles.name", defaultContent: ''},
+          {data: ""}
+        ]
+      }));
+      //      t.on('order.dt search.dt page.dt', function () {
+      //        t.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+      //          cell.innerHTML = i + 1;
+      //        });
+      //      }).draw();
+      $('#userList').on('click', 'button.del', function () {
+        var id = t.row($(this).parents('tr')).data()._id;
+        $("#userDelForm #ids").val(id);
+        if (id) {
+          bootbox.confirm("确定要删除数据吗?", function (result) {
+            if (result) {
+              $("#userDelForm").submit();
+            }
+          });
+        }
+      });
+    });
+    function reseted(id){
+      $("#userId").val(id);
+    }

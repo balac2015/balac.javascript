@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>全新导购APP，整装待发</title>
+    <link rel="stylesheet" href="css/style.css?v=1.0.2">
+</head>
+<img src='images/logo.png' style="position:fixed; width: 0; height: 0"/>
+<body>
+    <div class="wp">
+        <div class="wp-inner">
+            <div class="page page1">
+                <img class="guide-pic1" src="images/1_02.png" />
+                <img class="guide-write1" src="images/1_04.png" />
+            </div>
+            <div class="page page2">
+                <img class="guide-pic2" src="images/2_02.png" />
+                <img class="guide-write2" src="images/2_03.png" />
+            </div>
+            <div class="page page3">
+                <img class="guide-pic3" src="images/3_02.png" />
+                <img class="guide-write3" src="images/3_05.png" />
+            </div>
+            <div class="page page4">
+                <img class="guide-pic4" src="images/4_02.png" />
+                <img class="guide-write4" src="images/4_07.png" />
+            </div>
+            <div class="page page5">
+                <img class="guide-pic5" src="images/5_02.png" />
+                <img class="guide-write5" src="images/5_05.png" />
+                <a href="http://apps.midea.com/mobileSg.html" class="guide-link"></a>
+            </div>
+        </div>
+    </div>
+    <span class="start"><b></b></span>
+    <script src="js/zepto.min.js?v=1.0.2"></script>
+    <script src="js/zepto.fullpage.js?v=1.0.2"></script>
+    <script type="text/javascript">
+        $('.wp-inner').fullpage({drag:false,afterChange:function(data){
+            if(data.cur == 4){
+                $('.start').hide();
+            }else{
+                $('.start').show();
+            }
+        }});
+    </script>
+</body>
+</html>

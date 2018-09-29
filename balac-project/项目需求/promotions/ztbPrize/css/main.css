@@ -1,0 +1,63 @@
+.turnplate_box{
+	width: 300px;
+	height: 300px;
+	margin: 100px auto;
+	position: relative; 
+}
+.turnplate_box canvas{
+	position: absolute;
+}
+#myCanvas{
+	background-color: white;
+	border-radius: 100%;
+}
+/*#myCanvas{
+    -o-transition:  transform 6s;
+	-ms-transition:  transform 6s;
+	-moz-transition:  transform 6s;
+	-webkit-transition:  transform 6s;
+	transition: transform 6s;
+	-o-transform-origin:  50% 50%;
+	-ms-transform-origin:  50% 50%;
+	-moz-transform-origin:  50% 50%;		
+	-webkit-transform-origin:  50% 50%;
+	transform-origin: 50% 50%;
+}*/
+.turnplatw_btn{
+	width: 120px;
+	height: 120px;
+	left: 50%;
+	top: 50%;
+	margin-left: -60px;
+	margin-top: -72px;
+	border-radius: 100%;
+	position: absolute;
+	cursor: pointer;
+	border: none;
+	background: url('../images/start.png') no-repeat center;
+	background-size: contain;
+	outline: none;
+	z-index: 40;
+}
+.ing_btn{
+	width: 120px;
+	height: 120px;
+	left: 50%;
+	top: 50%;
+	margin-left: -60px;
+	margin-top: -72px;
+	border-radius: 100%;
+	position: absolute;
+	cursor: pointer;
+	border: none;
+	background: url('../images/ing.png') no-repeat center;
+	background-size: contain;
+	outline: none;
+	z-index: 40;
+}
+.no-display {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+}

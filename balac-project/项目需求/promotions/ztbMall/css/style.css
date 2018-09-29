@@ -1,0 +1,62 @@
+body {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    font-family: "simHei";
+    font-size: 1em;
+    background-color: #fff;
+    color: #fff;
+    -webkit-overflow-scroll: touch;
+    overflow-x: hidden;
+}
+* {
+    font-family: "simHei" !important;
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+.part-img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.part-area {
+    position: relative;
+}
+.download-img {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.tip-img {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 85%;
+    margin-left: 10%;
+}
+.mask {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.60);
+}
+.to-top {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 50%;
+    height: 7%;
+    margin-left: -25%;
+}
+

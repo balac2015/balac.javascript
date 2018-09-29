@@ -1,0 +1,117 @@
+U净问题：
+	
+	个人退出，调用原生 logout() 无反应
+
+
+
+
+数据处理
+	
+	服务主体列表 laundryList、单个服务主体 laundryItem
+
+	洗衣房列表 storeList、单个洗衣房 storeItem
+
+	设备列表 deviceList、单个设备 deviceItem
+
+	基础数据 baseData
+
+	所有洗衣房 storeAll
+
+
+
+
+洗衣房管理
+
+	服务主体列表 laundry
+
+			新增、单个服务主体
+
+	服务主体新建 laundryAdd									laundryEdit
+
+	服务主体详情 laundryDetail?id 服务主体ID
+
+	洗衣房列表（单个服务主体下洗衣房）store?id 服务主体ID
+
+			新增、单个服务主体详情、单个洗衣房
+
+	洗衣房新增 storeAdd?id 服务主体ID						storeEdit
+
+	洗衣房详情（可删除）storeDetail?id 洗衣房ID
+
+			删除
+
+	设备列表（单个洗衣房下设备、审核）examine?id 洗衣房ID
+
+			添加设备、单个洗衣房详情
+
+
+
+设备管理
+	
+	
+
+longitude 经度 118.12.25.39
+
+latitude 纬度 22.56.7.77
+
+location:
+	
+	 * address: '广东省佛山市顺德区怡和路靠近美的总部大楼'
+	 * city: '佛山市'
+	 * citycode: '0757'
+	 * district: '顺德区'
+	 * latitude: 22.934392
+	 * longitude: 113.220649
+	 * province: '广东省'
+	 * street: '怡和路'
+
+
+
+
+订单状态：
+	
+ if (value === 10) {
+    result = '预订';
+} else if (value === 20) { // 支付成功
+    result = '待启动';
+} else if (value === 30) {
+    result = '自洁';
+} else if (value === 35) {
+    result = '自洁完成';
+} else if (value === 40) {
+    result = '洗涤中';
+} else if (value === 50) {
+    result = '洗涤正常完成';
+} else if (value === 51) {
+    result = '预订超时结束订单';
+} else if (value === 52) {
+    result = '设备启动超时结束订单';
+} else if (value === 53) {
+    result = '用户取消结束订单';
+} else if (value === 54) {
+    result = '不可处理故障结束订单';
+} else if (value === 60) {
+    result = '故障中(可处理故障)';
+} else if (value === 61) {
+    result = '自洁中故障';
+} else if (value === 62) {
+    result = '自洁正常完成后故障';
+} else if (value === 63) {
+    result = '洗涤中故障';
+} else if (value === 70) {
+    result = '离线中';
+} else if (value === 7010) {
+    result = '预订阶段离线';
+} else if (value === 7020) {
+    result = '启动阶段离线';
+} else {
+    // TODO: 7030, 7035, 7040, 7050
+}
+
+home 页：
+	
+	预定：10
+
+pay 页：
+	
+	支付

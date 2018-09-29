@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!--<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+    <title>大屏展示</title>
+    <script src="js/flexible/fix.js"></script>
+    <script src="js/flexible/flexible.js"></script>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <!--<script src="http://192.168.1.116:8088/target/target-script-min.js#anonymous"></script>-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/fastclick.min.js"></script>
+    <script>
+        $(function() {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="js/project/configuration.properties.js"></script>
+    <script src="js/zyf.js"></script>
+<!--
+    <script src="js/echarts-all.js"></script>
+-->
+    <script src="js/echarts/echarts.js"></script>
+    <script src="js/chart.js"></script>
+</head>
+<body  style="cursor: pointer">
+<div class="moni">
+    <div class="common-content">
+
+        <div class="common-box pos0">
+            <div class="common-box0">
+                <div>
+                    <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                        整体
+                    </div>
+                    <div class="xy-frame-unit fl">
+                        <div class="unit-money fl-r mr-95">单位：亿</div>
+                        <div class="fl-r mr-95">
+                            <div class="text-left"><img src="images/blue.png" class="img-bottom">内销 <img src="images/red.png" class="img-bottom ml-70">外销</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <ul class="pie-ul-three clearfix">
+                        <li>
+                            <div class="pos-re">
+                                <div class=" pie-content" id="page2-pie-1">
+
+                                </div>
+                                <div class="pie-text">
+                                    <p id="page2-pie-total-1"></p>
+                                    销售
+                                </div>
+                            </div>
+                            <div class="text-center fs-36">
+                                <p>内销：<span id="page2-pie-insale-1"></span></p>
+                                <p class="c-8393aa">目标完成：60% 同比：85%</p>
+                                <p>外销：<span id="page2-pie-outsale-1"></span></p>
+                                <p class="c-8393aa">目标完成：80% 同比：76%</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pos-re">
+                                <div class=" pie-content" id="page2-pie-2">
+
+                                </div>
+                                <div class="pie-text">
+                                    <p id="page2-pie-total-2"></p>
+                                    回款
+                                </div>
+                            </div>
+                            <div class="text-center fs-36">
+                                <p>内销：<span id="page2-pie-insale-2"></span></p>
+                                <p class="c-8393aa">目标完成：60% 同比：85%</p>
+                                <p>外销：<span id="page2-pie-outsale-2"></span></p>
+                                <p class="c-8393aa">目标完成：80% 同比：76%</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pos-re">
+                                <div class=" pie-content" id="page2-pie-3">
+
+                                </div>
+                                <div class="pie-text">
+                                    <p id="page2-pie-total-3"></p>
+                                    库存
+                                </div>
+                            </div>
+                            <div class="text-center fs-36">
+                                <p>内销：<span id="page2-pie-insale-3"></span></p>
+                                <p class="c-8393aa">目标完成：60% 同比：85%</p>
+                                <p>外销：<span id="page2-pie-outsale-3"></span></p>
+                                <p class="c-8393aa">目标完成：80% 同比：76%</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="common-box pos1">
+            <div class="common-box1">
+
+                <div class="mb-20">
+                    <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                        销售
+                    </div>
+                    <div class="xy-frame-unit fl">
+                        <div class="unit-money fl-r mr-95">单位：亿</div>
+                        <div class="fl-r mr-95">
+                            <div class="text-left"><img src="images/blue.png" class="img-bottom">年度目标 <img src="images/red.png" class="img-bottom ml-70">销售累计</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main page2-bar-style" id="page2-bar-1"></div>
+
+            </div>
+        </div>
+
+        <div class="common-box pos2">
+            <div class="common-box2">
+
+                <div class="mb-20">
+                    <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                        回款
+                    </div>
+                    <div class="xy-frame-unit fl">
+                        <div class="unit-money fl-r mr-95">单位：亿</div>
+                        <div class="fl-r mr-95">
+                            <div class="text-left"><img src="images/blue.png" class="img-bottom">年度目标 <img src="images/red.png" class="img-bottom ml-70">回款累计</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main page2-bar-style" id="page2-bar-2"></div>
+
+            </div>
+        </div>
+
+        <div class="common-box pos3">
+            <div class="common-box3">
+
+                <div class="mb-20">
+                    <div class="title-box txt-left xy-frame-m-l fl-l bg-none">
+                        成品库存
+                    </div>
+                    <div class="xy-frame-unit fl">
+                        <div class="unit-money fl-r mr-95">单位：亿</div>
+                        <div class="fl-r mr-95">
+                            <div class="text-left"><img src="images/blue.png" class="img-bottom">年度目标 <img src="images/red.png" class="img-bottom ml-70">库存累计</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main page2-bar-style" id="page2-bar-3"></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/page2.js"></script>
+
+</body>
+</html>

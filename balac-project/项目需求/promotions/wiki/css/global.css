@@ -1,0 +1,421 @@
+/**
+Design by Ken 2015-06-08
+Version 0.0.1
+
+全局变量的命名方式是字母缩写，然后用 - 连接具体数值，其中数字正常书写，百分比需要在数字后面加%，负数则在数字前面加上n(表示negative)
+用例：
+width,height,top,left,right,bottom,margin,margin-top,margin-left,margin-right,margin-bottom,padding,padding-top,padding-left,padding-right,padding-bottom,line-height,font-size
+width:10px 写成 .w-10{width: 10px}
+width:10% 写成 .w-10p{width:10px}
+width:-10px 写成 .w-n10{width: -10px}
+
+直接命名法就是比较通用的字符就直接命名表示，如
+display:block 写成 .block{display:block}
+
+颜色命名根据项目的主体颜色来进行实际的取主题色，如
+background:#ccc 写成 .bg-gray{background:#ccc}
+color:#ccc 写成 .color-gray{#ccc}
+border: solid 1px #ccc 写成 .border-gray{border: solid 1px #ccc}
+
+**/
+
+body {
+    min-width: 320px;
+    font-family: 'microsoft yahei',Verdana,"\5FAE\8F6F\96C5\9ED1",Helvetica,Tahoma,sans-serif,"\5b8b\4f53",Arial;
+    color: #000;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    -ms-content-zooming: none;
+    -webkit-text-size-adjust: 100%
+}
+
+
+/* width */
+.w-10{width: 10px}
+.w-20{width: 20px}
+.w-30{width: 30px}
+.w-40{width: 40px}
+.w-50{width: 50px}
+.w-60{width: 60px}
+.w-70{width: 70px}
+.w-80{width: 80px}
+.w-90{width: 90px}
+.w-100{width: 100px}
+
+.w-5p{width: 5%}
+.w-10p{width: 10%}
+.w-20p{width: 20%}
+.w-30p{width: 30%}
+.w-40p{width: 40%}
+.w-50p{width: 50%}
+.w-60p{width: 60%}
+.w-70p{width: 70%}
+.w-80p{width: 80%}
+.w-90p{width: 90%}
+.w-100p{width: 100% !important;}
+
+/* height */
+.h-10{height: 10px}
+.h-20{height: 20px}
+.h-25{height: 25px!important;}
+.h-30{height: 30px}
+.h-32{height: 32px!important;}
+.h-40{height: 40px!important;}
+.h-50{height: 50px!important;}
+.h-60{height: 60px!important;}
+
+
+.h-10p{height: 10%}
+.h-20p{height: 20%}
+.h-100p{height: 100%}
+
+/* margin */
+.no-m{margin: 0 !important;}
+.margin-1{margin: 1px}
+.margin-5{margin: 5px}
+.margin-10{margin: 10px}
+.margin-15{margin: 15px}
+.margin-20{margin: 20px}
+
+.margin-5p{margin: 5%}
+.margin-10p{margin: 10%}
+.margin-15p{margin: 15%}
+.margin-20p{margin: 20%}
+
+.mt-0{margin-top: 0}
+.mt-5{margin-top: 5px !important;}
+.mt-10{margin-top: 10px !important;}
+.mt-15{margin-top: 15px !important;}
+.mt-20{margin-top: 20px !important;}
+.mt-30{margin-top: 30px !important;}
+.mt-40{margin-top: 40px !important;}
+.mt-60{margin-top: 60px !important;}
+.mt-n5{margin-top: -5px}
+.mt-n20{margin-top: -20px}
+
+.mt-5p{margin-top: 5%}
+.mt-10p{margin-top: 10%}
+.mt-15p{margin-top: 15%}
+.mt-20p{margin-top: 20%}
+.mt-25p{margin-top: 25%}
+.mt-n5p{margin-top: -5%}
+
+.ml-0{margin-left: 0}
+.ml-5{margin-left: 5px !important;}
+.ml-10{margin-left: 10px !important;}
+.ml-15{margin-left: 15px !important;}
+.ml-20{margin-left: 20px !important;}
+.ml-25{margin-left: 25px}
+.ml-30{margin-left: 30px !important;}
+.ml-40{margin-left: 40px !important;}
+.ml-60{margin-left: 60px !important;}
+.ml-n1{margin-left: -1px !important;}
+.ml-n5{margin-left: -5px}
+.ml-n40{margin-left: -40px}
+
+.ml-5p{margin-left: 5%}
+.ml-10p{margin-left: 10%}
+.ml-15p{margin-left: 15%}
+.ml-20p{margin-left: 20%}
+.ml-25p{margin-left: 25%}
+.ml-5np{margin-left: -5%}
+
+.mr-0{margin-right: 0}
+.mr-5{margin-right: 5px}
+.mr-10{margin-right: 10px}
+.mr-15{margin-right: 15px}
+.mr-20{margin-right: 20px}
+.mr-25{margin-right: 25px}
+.mr-n5{margin-right: -5px}
+
+.mr-5p{margin-right: 5%}
+.mr-10p{margin-right: 10%}
+.mr-15p{margin-right: 15%}
+.mr-20p{margin-right: 20%}
+.mr-25p{margin-right: 25%}
+.mr-n5p{margin-right: -5%}
+
+.mb-0{margin-bottom: 0 !important;}
+.mb-5{margin-bottom: 5px}
+.mb-10{margin-bottom: 10px}
+.mb-15{margin-bottom: 15px}
+.mb-20{margin-bottom: 20px}
+.mb-25{margin-bottom: 25px}
+.mb-40{margin-bottom: 40px !important;}
+.mb-n5{margin-bottom: -5px}
+
+.mb-5p{margin-bottom: 5%}
+.mb-10p{margin-bottom: 10%}
+.mb-15p{margin-bottom: 15%}
+.mb-20p{margin-bottom: 20%}
+.mb-25p{margin-bottom: 25%}
+.mb-n5p{margin-bottom: -5%}
+
+/* padding */
+.no-p{padding: 0 !important;}
+.padding-5{padding: 5px}
+.padding-10{padding: 10px!important;}
+.padding-15{padding: 15px}
+.padding-16{padding: 16px}
+.padding-20{padding: 20px}
+
+.padding-5p{padding: 5%}
+.padding-10p{padding: 10%}
+.padding-15p{padding: 15%}
+.padding-20p{padding: 20%}
+
+.pt-0{padding-top: 0}
+.pt-5{padding-top: 5px}
+.pt-10{padding-top: 10px !important;}
+.pt-15{padding-top: 15px}
+.pt-20{padding-top: 20px !important;}
+.pt-25{padding-top: 25px}
+.pt-30{padding-top: 30px !important;}
+.pt-n5{padding-top: -5px}
+
+.pt-5p{padding-top: 5%}
+.pt-10p{padding-top: 10%}
+.pt-15p{padding-top: 15%}
+.pt-20p{padding-top: 20%}
+.pt-25p{padding-top: 25%}
+.pt-n5p{padding-top: -5%}
+
+.pl-0{padding-left: 0}
+.pl-5{padding-left: 5px !important;}
+.pl-10{padding-left: 10px !important;}
+.pl-15{padding-left: 15px}
+.pl-20{padding-left: 20px !important;}
+.pl-40{padding-left: 40px !important;}
+.pl-55{padding-left: 55px !important;}
+.pl-60{padding-left: 60px !important;}
+.pl-64{padding-left: 64px !important;}
+.pl-n5{padding-left: -5px}
+
+.pl-2p{padding-left: 2.5%}
+.pl-5p{padding-left: 5%}
+.pl-10p{padding-left: 10%}
+.pl-15p{padding-left: 15%}
+.pl-20p{padding-left: 20%}
+.pl-25p{padding-left: 25%}
+.pl-n5p{padding-left: -5%}
+
+.pr-0{padding-right: 0 !important;}
+.pr-2p{padding-right: 2.5%}
+.pr-5{padding-right: 5px}
+.pr-10{padding-right: 10px !important;}
+.pr-15{padding-right: 15px}
+.pr-20{padding-right: 20px !important;}
+.pr-22{padding-right: 22px !important;}
+.pr-40{padding-right: 40px !important;}
+.pr-25{padding-right: 25px}
+.pr-n5{padding-right: -5px}
+
+.pr-5p{padding-right: 5%}
+.pr-10p{padding-right: 10%}
+.pr-15p{padding-right: 15%}
+.pr-20p{padding-right: 20%}
+.pr-25p{padding-right: 25%}
+.pr-n5p{padding-right: -5%}
+
+.pb-0{padding-bottom: 0}
+.pb-5{padding-bottom: 5px}
+.pb-10{padding-bottom: 10px}
+.pb-15{padding-bottom: 15px}
+.pb-20{padding-bottom: 20px}
+.pb-25{padding-bottom: 25px}
+.pb-30{padding-bottom: 30px}
+.pb-n5{padding-bottom: -5px}
+
+.pb-5p{padding-bottom: 5%}
+.pb-10p{padding-bottom: 10%}
+.pb-15p{padding-bottom: 15%}
+.pb-20p{padding-bottom: 20%}
+.pb-25p{padding-bottom: 25%}
+.pb-n5p{padding-bottom: -5%}
+
+/* top */
+.t-0{top: 0}
+.t-10{top: 10px}
+.t-20{top: 20px}
+.t-30{top: 30px}
+.t-40{top: 40px}
+.t-50{top: 50px}
+.t-n6{top: -6px !important;}
+.t-n10{top: -10px !important;}
+
+.t-10p{top: 10%}
+.t-20p{top: 20%}
+.t-30p{top: 30%}
+.t-40p{top: 40%}
+.t-50p{top: 50%}
+.t-n10p{top: -10%}
+
+/* left */
+.l-0{left: 0 !important;}
+.l-7{left: 7px !important;}
+.l-10{left: 10px !important;}
+.l-20{left: 20px}
+.l-30{left: 30px}
+.l-40{left: 40px}
+.l-50{left: 50px}
+.l-n10{left: -10px}
+
+.l-10p{left: 10%}
+.l-20p{left: 20%}
+.l-30p{left: 30%}
+.l-40p{left: 40%}
+.l-50p{left: 50%}
+.l-n10p{left: -10%}
+
+/* right */
+.r-0{right: 0}
+.r-10{right: 10px}
+.r-20{right: 20px !important;}
+.r-25{right: 25px !important;}
+.r-30{right: 30px !important;}
+.r-40{right: 40px !important;}
+.r-50{right: 50px}
+.r-n10{right: -10px}
+
+.r-10p{right: 10%}
+.r-20p{right: 20%}
+.r-30p{right: 30%}
+.r-40p{right: 40%}
+.r-50p{right: 50%}
+.r-n10p{right: -10%}
+
+/* bottom */
+.b-0{bottom: 0}
+.b-10{bottom: 10px}
+.b-20{bottom: 20px}
+.b-30{bottom: 30px}
+.b-40{bottom: 40px}
+.b-50{bottom: 50px}
+.b-60{bottom: 60px}
+.b-n10{bottom: -10px}
+
+.b-10p{bottom: 10%}
+.b-20p{bottom: 20%}
+.b-30p{bottom: 30%}
+.b-40p{bottom: 40%}
+.b-50p{bottom: 50%}
+.b-n10p{bottom: -10%}
+
+/* border-radius */
+.bra-3{border-radius: 3px}
+.bra-5{border-radius: 5px}
+.bra-10{border-radius: 10px}
+.bra-50p{border-radius: 50%}
+.bra-100p{border-radius: 100%}
+
+
+/*font-size*/
+.fs-12{font-size: 12px !important;}
+.fs-13{font-size: 13px !important;}
+.fs-14{font-size: 14px !important;}
+.fs-15{font-size: 15px !important;}
+.fs-16{font-size: 16px !important;}
+.fs-17{font-size: 17px !important;}
+.fs-20{font-size: 20px !important;}
+.fs-21{font-size: 21px !important;}
+.fs-23{font-size: 23px !important;}
+.fs-40{font-size: 40px !important;}
+.fs-60{font-size: 60px !important;}
+
+.ff-arial{ font-family: Arial; }
+
+/*font-weight*/
+.bold{font-weight:bold !important;}
+.bolder{font-weight:bolder}
+.lighter{font-weight:lighter}
+.fw-100{font-weight: 100}
+
+/*line-height*/
+.lh-10{line-height: 10px}
+.lh-18{line-height: 18px !important;}
+.lh-20{line-height: 20px !important;}
+.lh-30{line-height: 30px}
+.lh-32{line-height: 32px}
+.lh-35{line-height: 35px}
+.lh-40{line-height: 40px}
+.lh-50{line-height: 50px}
+
+.lh-100p{line-height: 100%}
+
+/*position*/
+.absolute{position: absolute}
+.relative{position: relative}
+.fixed{position: fixed}
+
+/*display*/
+.block{display: block}
+.hide{display: none}
+.flex{display: flex}
+.inline-block{display: inline-block}
+.inline{display: inline}
+.table{display: table}
+
+/*float*/
+.left{float: left}
+.right{float: right !important;}
+
+/*clear*/
+.clear{clear: both}
+
+/*opacity*/
+.opacity-0{opacity: 0}
+.opacity-50p{opacity: 0.5}
+.opacity-100p{opacity: 100}
+
+/*
+颜色的命名可以根据项目的主体色来定义
+*/
+/*background-color*/
+.bg-white{ background-color: #fff !important;}
+.bg-gray{ background-color: #f2f2f2 !important;}
+.bg-zilan{ background-color: #1b366d !important}
+.bg-blue{ background-color:#003cf2 !important;}
+.bg-orange{ background-color: #ffc900 !important;}
+.bg-green{ background-color: #15c473 !important;}
+.bg-hui{ background-color: #acb5c4;}
+.bg-huiDeep{ background-color: #8d9aaf;}
+
+/*color*/
+.c-white{color: #fff}
+.c-gray{color: #b5b5b5 !important;}
+.c-hui{ color: #dbdbdb !important;}
+.c-red{ color: #ff0000}
+.c-blue{color:#157efb!important;}
+.c-orange{color: #ffc900}
+.c-lightGreen{ color: #19e1b0;}
+.c-black{ color: #444 !important;}
+
+/* border */
+.border-gray{border: solid 1px #ddd}
+.border-light{border: solid 1px #f2f2f2 !important;}
+.border-blue{border: solid 1px #003cf2}
+
+.bt-0{border-top: 0 !important;}
+.bb-0{border-bottom: 0 !important;}
+.bl-0{border-left: 0 !important;}
+.br-0{border-right: 0 !important;}
+.border-0{border:0}
+
+/* text align */
+.txt-left{ text-align: left; }
+.txt-center{ text-align: center; }
+.txt-right{ text-align: right; }
+
+/*开启动画*/
+.animate {
+    -webkit-transition: all ease-in-out 250ms;
+    -moz-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
+}
+
+.opacity8{ opacity: .8;}
+.transparent { background: transparent;}
+.z-top{ z-index:  9999;}
