@@ -1,0 +1,38 @@
+Arguments: 
+  D:\Program Files\nodejs\node.exe D:\Program Files\Yarn\bin\yarn.js
+
+PATH: 
+  C:\Users\ytp\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\local\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\bin;C:\Users\ytp\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;D:\Program Files\Java\jdk1.8.0_91\bin;%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools;C:\Program Files\Microsoft SQL Server\110\Tools\Binn;%ANDROID_HOME%;%ANDROID_HOME%\platforms;D:\Program Files\Git\cmd;C:\Users\ytp\AppData\Local\Microsoft\WindowsApps;D:\Program Files\Microsoft VS Code\bin;D:\Program Files\TortoiseGit\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;D:\Program Files\Mozilla Firefox;D:\Program Files\mysql-5.7.21-winx64\mysql-5.7.21-winx64\bin;D:\Program Files\MySQL\bin;C:\Program Files\MySQL\MySQL Utilities 1.6;C:\WINDOWS\System32\OpenSSH;D:\Program Files\Yarn\bin;D:\Program Files\nodejs;C:\Users\ytp\AppData\Local\Microsoft\WindowsApps;D:\Program Files\Microsoft VS Code\bin;C:\Users\ytp\AppData\Local\atom\bin;C:\MongoDB\Server\3.4\bin;C:\Users\ytp\AppData\Local\Microsoft\WindowsApps;C:\Users\ytp\AppData\Local\Android\Sdk;C:\Users\ytp\AppData\Local\Android\Sdk\tools;C:\Users\ytp\AppData\Local\Android\Sdk\platform-tools;C:\Users\ytp\AppData\Local\Android\Sdk\build-tools;C:\Users\ytp\AppData\Local\Yarn\bin;C:\Users\ytp\AppData\Roaming\npm;D:\Program Files (x86)\Microsoft VS Code\bin;D:\Program Files\Git\usr\bin\vendor_perl;D:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.6.0
+
+Node version: 
+  10.2.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, mkdir 'E:\balac-vue\Nuxt.js\examples\scroll-behavior\node_modules\css-color-function\node_modules'
+
+npm manifest: 
+  {
+    "name": "example-scroll-behavior",
+    "dependencies": {
+      "axios": "^0.15.3",
+      "nuxt": "latest",
+      "vue-router": "https://github.com/homerjam/vue-router#dist"
+    },
+    "scripts": {
+      "dev": "nuxt",
+      "build": "nuxt build",
+      "start": "nuxt start"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

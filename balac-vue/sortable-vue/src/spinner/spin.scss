@@ -1,0 +1,211 @@
+/**
+ * 参考：css-loaders: http://projects.lukehaas.me/css-loaders
+ */
+
+$background: hsl(179, 88%, 41%);
+$foreground: #fff;
+
+@import './spin-animation.scss';
+@import './spin-fallback.scss';
+
+@mixin animation1 {
+    background: $foreground;
+    animation: spin-animation1 1s infinite ease-in-out;
+    width: 1em;
+    height: 4em;
+}
+
+.spin.animation1 {
+    @include animation1;
+    color: $foreground;
+    text-indent: -9999em;
+    margin: 88px auto;
+    position: relative;
+    font-size: 11px;
+    transform:  translateZ(0);
+    animation-delay: -0.16s;
+
+    &::before,
+    &::after {
+        @include animation1;
+        position: absolute;
+        top: 0;
+        content: '';
+    }
+    &::before {
+        left: -1.5em;
+        animation-delay: -0.32s;
+    }
+    &::after {
+        left: 1.5em;
+    }
+}
+
+.spin.animation2 {
+    color: $foreground;
+    font-size: 11px;
+    text-indent: -99999em;
+    margin: 55px auto;
+    position: relative;
+    width: 10em;
+    height: 10em;
+    box-shadow: inset 0 0 0 1em;
+    transform: translateZ(0);
+    border-radius:50%;
+
+    &:before, &:after {
+        position:absolute;
+        content: '';
+        width: 5.2em;
+        height: 10.2em;
+        background:  $background;
+    }
+    &:before {
+        border-radius: 10.2em 0 0 10.2em;
+        top: -0.1em;
+        left: -0.1em;
+        transform-origin: 5.1em 5.1em;
+        animation: spin-animation2 2s infinite ease 1.5s;
+    }
+    &:after {
+        border-radius: 0 10.2em 10.2em 0;
+        top: -0.1em;
+        left: 4.9em;
+        transform-origin: 0.1em 5.1em;
+        animation: spin-animation2 2s infinite ease;
+    }
+}
+
+.spin.animation3 {
+    font-size:10px;
+    margin:50px auto;
+    text-indent:-9999em;
+    width:11em;
+    height:11em;
+    border-radius:50%;
+    background: $foreground;
+    background: linear-gradient(to right, rgba($foreground, 1) 10%, rgba($foreground, 0) 42%);
+    position: relative;
+    animation: spin-animation3 1.4s infinite linear;
+    transform: translateZ(0);
+
+    &:before {
+        width:50%;
+        height:50%;
+        background: $foreground;
+        border-radius: 100% 0 0 0;
+        position:absolute;
+        top:0;
+        left:0;
+        content:'';
+    }
+    &:after {
+        background:$background;
+        width:75%;
+        height:75%;
+        border-radius:50%;
+        content:'';
+        margin:auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.spin.animation4 {
+    color: $foreground;
+    font-size: 20px;
+    margin: 100px auto;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    position: relative;
+    text-indent: -9999em;
+    animation: spin-animation4 1.3s infinite linear;
+    transform: translateZ(0);
+}
+
+.spin.animation5 {
+    margin: 100px auto;
+    font-size: 25px;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    position: relative;
+    text-indent: -9999em;
+    animation: spin-animation5 1.1s infinite ease;
+    transform: translateZ(0);
+}
+
+.spin.animation6 {
+    color: $foreground;
+    font-size: 90px;
+    text-indent: -9999em;
+    overflow:  hidden;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    margin: 72px auto;
+    position: relative;
+    transform: translateZ(0);
+    animation: spin-animation6 1.7s infinite ease;
+}
+
+@mixin animation7 {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    animation-fill-mode: both;
+    animation: spin-animation7 1.8s infinite ease-in-out;
+}
+.spin.animation7 {
+    color:$foreground;
+    font-size:10px;
+    margin:80px auto;
+    position:relative;
+    text-indent:-9999em;
+    transform: translateZ(0);
+    animation-delay:-0.16s;
+    @include animation7;
+
+    &:before, &:after {
+        content:'';
+        position:absolute;
+        top:0;
+        @include animation7;
+    }
+    &:before {
+        left:-3.5em;
+        animation-delay:-0.32s;
+    }
+    &:after {
+        left:3.5em;
+    }
+}
+
+@mixin animation8 {
+    border-radius:50%;
+    width:10em;
+    height:10em;
+}
+.spin.animation8 {
+	@include animation8;
+    margin: 60px auto;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 1.1em solid rgba($foreground, 0.2);
+    border-right: 1.1em solid rgba($foreground, 0.2);
+    border-bottom: 1.1em solid rgba($foreground, 0.2);
+    border-left: 1.1em solid rgba($foreground, 1);
+    transform: translateZ(0);
+    animation: spin-animation8 1.1s infinite linear;
+
+    
+
+    &::after {
+    	@include animation8;
+    }
+}

@@ -1,0 +1,895 @@
+<title>网格组件</title>
+<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/css/bootstrap.css">
+<script src="../node_modules/vue/dist/vue.js"></script>
+
+<!-- demo root element -->
+<div id="demo">
+	<form id="search">
+		Search
+		<input name="query" v-model="searchQuery">
+	</form>
+	<demo-grid :data="gridData" :columns="gridColumns" :filter-key="searchQuery"></demo-grid>
+</div>
+
+<!-- component template -->
+<script type="text/x-template" id="grid-template">
+	<div class="table-box">
+		<div class="table-thead">
+			<table class="table">
+				<thead>
+					<tr>
+						<th v-for="col in columns" :class="{ active: sortKey == col.key }">
+							{{ col.key | capitalize }}
+							<span class="glyphicon" :class=" sortClass(col) "></span>
+						</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div class="table-tbody">
+			<div class="tbody-fixed-start"></div>
+			<div class="tbody-main">
+				<table class="table table-hover">
+					<tbody>
+						<tr v-for="row in data">
+							<td v-for="col in columns">
+								{{ row[col.key] }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="tbody-fixed-end"></div>
+		</div>
+		<div class="table-pager"></div>
+	</div>
+</script>
+<script type="text/x-template" id="grid-tr">
+	<tr data-id="" data-parent-id="" data-depth=""></tr>
+</script>
+
+<script type="text/javascript">
+	
+// register the grid component
+Vue.component('demo-grid', {
+	template: '#grid-template',
+	props: {
+		data: Array,
+		columns: Array,
+		filterKey: String
+	},
+	data: function () {
+		var sortOrders = {},
+			sortKey = '';
+
+		this.columns.forEach(function (col) {
+			sortOrders[col.key] = col.sort || false;
+			sortKey = !!col.sort ? col.key : sortKey;
+		});
+
+		return {
+			sortKey: sortKey,
+			sortOrders: sortOrders
+		};
+	},
+	computed: {
+		sortClass: function () {
+			var vm = this;
+
+			return function (col) {
+				var sortOrders = vm.sortOrders,
+					sort = sortOrders[col.key];		
+
+				if (!sort) {
+					return '';
+				}
+
+				if (sort === 'dsc') {
+					return 'glyphicon-sort-by-attributes-alt';
+				}
+
+				if (sort === 'asc') {
+					return 'glyphicon-sort-by-attributes';
+				}
+
+				return 'glyphicon-sort';
+			};
+		},
+		filteredData: function () {
+			var sortKey = this.sortKey;
+			var filterKey = this.filterKey && this.filterKey.toLowerCase();
+			var order = this.sortOrders[sortKey] || 1;
+			var data = this.data;
+
+			if (filterKey) {
+				data = data.filter(function (row) {
+					return Object.keys(row).some(function (key) {
+						return String(row[key]).toLowerCase().indexOf(filterKey) > -1;
+					});
+				});
+			}
+
+			if (sortKey) {
+				data = data.slice().sort(function (a, b) {
+					a = a[sortKey];
+					b = b[sortKey];
+
+					return (a === b ? 0 : a > b ? 1 : -1) * order;
+				});
+			}
+
+			return data;
+		}
+	},
+	filters: {
+		capitalize: function (str) {
+			return str.charAt(0).toUpperCase() + str.slice(1);
+		}
+	},
+	methods: {
+		sortBy: function (key) {
+			// this.sortKey = key;
+			// this.sortOrders[key] = this.sortOrders[key] * -1;
+		}
+	}
+});
+
+
+var res = {
+    "viewData": {
+        "id": "513345ee2219415a94dab80991614fe6",
+        "createBy": "025CE39B20EA11E7A81AC85B767C89C1",
+        "createTime": "2018-05-23 11:46:51",
+        "updateBy": null,
+        "updateTime": "2018-06-25 10:05:58",
+        "delFlag": "0",
+        "code": null,
+        "name": "所有的",
+        "description": null,
+        "businessType": "require",
+        "affiliation": "system",
+        "conditionRef": "and",
+        "enabled": "0",
+        "viewDefault": "1",
+        "projectId": "",
+        "contextType": null,
+        "selectedFields": "3,2,31,6,36,32,33,35,34,25,38,27,28,29,26,37,4,5"
+    },
+    "data": {
+        "offset": 0,
+        "limit": 2147483647,
+        "total": 7,
+        "size": 10,
+        "pages": 1,
+        "current": 1,
+        "searchCount": true,
+        "openSort": true,
+        "orderByField": null,
+        "records": [
+            {
+                "id": "82997e62cfdf42f5939adcbfffa10312",
+                "createBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "createTime": "2018-06-29 10:10:17",
+                "updateBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "updateTime": "2018-06-29 10:10:17",
+                "delFlag": "0",
+                "code": "REQ20180629001",
+                "name": "sdasdasd",
+                "description": "暂无详细描述",
+                "flexAttrs": {},
+                "parent": null,
+                "parentId": "-1",
+                "parentIdPath": null,
+                "children": null,
+                "ownerId": "cdaaa47ff34e4f2a84ed451e066a38e5",
+                "ownerType": 2,
+                "type": "2",
+                "priority": 1,
+                "state": "REALIZED",
+                "workLoad": null,
+                "startDate": null,
+                "dueDate": null,
+                "toWhere": null,
+                "orderCode": null,
+                "department": "",
+                "submitTime": "2018-06-19",
+                "submitterId": "",
+                "reqSource": "PLANNING",
+                "productId": null,
+                "reqValue": null,
+                "checkLists": null,
+                "lableIds": null,
+                "responsibleIds": null,
+                "stateTemplateId": "ae4e89dafdf94012b7fda1c57b297030",
+                "requirementMemberList": null,
+                "member": null,
+                "labelLinkIds": null,
+                "busiValue": null,
+                "acceptanceStandard": null
+            },
+            {
+                "id": "0016948afff14c9cb74cef69355a33c4",
+                "createBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "createTime": "2018-06-28 17:51:52",
+                "updateBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "updateTime": "2018-06-28 17:51:52",
+                "delFlag": "0",
+                "code": "REQ20180628003",
+                "name": "测试123",
+                "description": "暂无详细描述",
+                "flexAttrs": {},
+                "parent": null,
+                "parentId": "2a8aee84d0394252885f00c16854ba16",
+                "parentIdPath": null,
+                "children": null,
+                "ownerId": "cdaaa47ff34e4f2a84ed451e066a38e5",
+                "ownerType": 2,
+                "type": "2",
+                "priority": 1,
+                "state": "PENDINGANALYSE",
+                "workLoad": null,
+                "startDate": null,
+                "dueDate": null,
+                "toWhere": null,
+                "orderCode": null,
+                "department": "",
+                "submitTime": "2018-06-28",
+                "submitterId": "",
+                "reqSource": "PLANNING",
+                "productId": null,
+                "reqValue": null,
+                "checkLists": null,
+                "lableIds": null,
+                "responsibleIds": null,
+                "stateTemplateId": "11",
+                "requirementMemberList": null,
+                "member": "025CE39B20EA11E7A81AC85B767C89C1,025CE39B20EA11E7A81AC85B767C89C1,025CE39B20EA11E7A81AC85B767C89C1,025CE39B20EA11E7A81AC85B767C89C1",
+                "labelLinkIds": null,
+                "busiValue": null,
+                "acceptanceStandard": null
+            },
+            {
+                "id": "65ca1bc6dc4c4fc6a62502ff8da35194",
+                "createBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "createTime": "2018-06-27 10:33:25",
+                "updateBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "updateTime": "2018-06-27 10:33:25",
+                "delFlag": "0",
+                "code": "REQ20180627005",
+                "name": "Next.js 6.1.0 发布了Next.js 6.1.0 发布了Next.js 6.1.0 发布了Next.js 6.1.0",
+                "description": '<p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">Next.js 6.1.0 发布了，Next.js 是一个用于在服务端渲染 React 应用程序的简单框架。<br></p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">此次更新主要包括：</p><ul class=\" list-paddingleft-2\" style=\"margin-bottom: 0px; padding-left: 40px; list-style-position: initial; list-style-image: initial; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\"><li><p style=\"margin-bottom: 16px;\">新增类属性设置：<a data-cke-saved-href=\"https://github.com/zeit/next.js/pull/4619\" href=\"https://github.com/zeit/next.js/pull/4619\" style=\"outline: 0px; color: rgb(61, 177, 88);\">#4619</a></p></li><li><p style=\"margin-bottom: 16px;\">重命名 dist -&gt; server 使更一致：<a data-cke-saved-href=\"https://github.com/zeit/next.js/pull/4506\" href=\"https://github.com/zeit/next.js/pull/4506\" style=\"outline: 0px; color: rgb(61, 177, 88);\">#4506</a></p></li><li><p style=\"margin-bottom: 16px;\">移除 react-hot-loader：<a data-cke-saved-href=\"https://github.com/zeit/next.js/pull/4500\" href=\"https://github.com/zeit/next.js/pull/4500\" style=\"outline: 0px; color: rgb(61, 177, 88);\">#4500</a></p></li><li><p style=\"margin-bottom: 16px;\">允许在下一个/链接的组件的子件上 onClick：<a data-cke-saved-href=\"https://github.com/zeit/next.js/pull/4474\" href=\"https://github.com/zeit/next.js/pull/4474\" style=\"outline: 0px; color: rgb(61, 177, 88);\">#4474</a></p></li><li><p style=\"margin-bottom: 16px;\">新增 hashChangeStart 和 hashChangeComplete 事件：<a data-cke-saved-href=\"https://github.com/zeit/next.js/pull/4234\" href=\"https://github.com/zeit/next.js/pull/4234\" style=\"outline: 0px; color: rgb(61, 177, 88);\">#4234</a></p></li></ul><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">此外还有众多 bug 修复和示例，详情见<a data-cke-saved-href=\"https://github.com/zeit/next.js/releases/tag/6.1.0\" href=\"https://github.com/zeit/next.js/releases/tag/6.1.0\" style=\"outline: 0px; color: rgb(61, 177, 88);\">发布公告</a>。</p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\"><img src=\"/img/downLoad/a8243403f7154b0c9aa7c44a7a4d94ee\" style=\"width: 100%;\"><br></p>',
+                "flexAttrs": {},
+                "parent": null,
+                "parentId": "e5e066a09d8f4557a526cb1870559005",
+                "parentIdPath": null,
+                "children": null,
+                "ownerId": "cdaaa47ff34e4f2a84ed451e066a38e5",
+                "ownerType": 2,
+                "type": "2",
+                "priority": 1,
+                "state": "DRAFT",
+                "workLoad": null,
+                "startDate": null,
+                "dueDate": null,
+                "toWhere": null,
+                "orderCode": null,
+                "department": "",
+                "submitTime": "2018-06-11",
+                "submitterId": "",
+                "reqSource": "PLANNING",
+                "productId": null,
+                "reqValue": null,
+                "checkLists": null,
+                "lableIds": null,
+                "responsibleIds": null,
+                "stateTemplateId": "ae4e89dafdf94012b7fda1c57b297030",
+                "requirementMemberList": null,
+                "member": null,
+                "labelLinkIds": null,
+                "busiValue": null,
+                "acceptanceStandard": null
+            },
+            {
+                "id": "e5e066a09d8f4557a526cb1870559005",
+                "createBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "createTime": "2018-06-27 10:09:41",
+                "updateBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "updateTime": "2018-06-27 10:09:41",
+                "delFlag": "0",
+                "code": "REQ20180627004",
+                "name": "asdasdsf",
+                "description": '<span style=\"font-weight: bolder; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">Krita</span><span style=\"color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">&nbsp;是一款自由开源的数字绘画软件，使用 GPL 许可证发布。它主要针对手绘用途设计，具备高度可定制的笔刷系统和完善的图层功能，可通过透明度和变形蒙版来实现非破坏性编辑。它能够绘制位图图像、矢量图形和制作动画，并具备完善的色彩管理功能，能够进行 HDR 图像的编辑和调试。它的操作直观，界面干扰较少，支持多线程并能够使用 OpenGL 加速画布显示。Krita 是 KDE 的一个子项目，使用 C++ 和 Qt 开发。Krita 是一款跨平台软件，支持 Windows、Linux 和 Mac OSX</span>',
+                "flexAttrs": {},
+                "parent": null,
+                "parentId": "5d94feb4d89c4e62a95722422bd58e52",
+                "parentIdPath": null,
+                "children": null,
+                "ownerId": "cdaaa47ff34e4f2a84ed451e066a38e5",
+                "ownerType": 2,
+                "type": "2",
+                "priority": 1,
+                "state": "DRAFT",
+                "workLoad": null,
+                "startDate": null,
+                "dueDate": null,
+                "toWhere": null,
+                "orderCode": null,
+                "department": "",
+                "submitTime": "2018-06-27",
+                "submitterId": "",
+                "reqSource": "PLANNING",
+                "productId": null,
+                "reqValue": null,
+                "checkLists": null,
+                "lableIds": null,
+                "responsibleIds": null,
+                "stateTemplateId": "ae4e89dafdf94012b7fda1c57b297030",
+                "requirementMemberList": null,
+                "member": null,
+                "labelLinkIds": null,
+                "busiValue": null,
+                "acceptanceStandard": null
+            },
+            {
+                "id": "5d94feb4d89c4e62a95722422bd58e52",
+                "createBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "createTime": "2018-06-27 10:09:30",
+                "updateBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "updateTime": "2018-06-27 10:09:30",
+                "delFlag": "0",
+                "code": "REQ20180627003",
+                "name": "1232133543tfdsd",
+                "description": '<p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">Apache Lucene 7.4.0&nbsp;发布了，Lucene 是 Apache 软件基金会一个开放源代码的全文检索引擎工具包，是一个全文检索引擎的架构，提供了完整的查询引擎和索引引擎，部分文本分析引擎。Lucene 的目的是为软件开发人员提供一个简单易用的工具包，以方便的在目标系统中实现全文检索的功能，或者是以此为基础建立起完整的全文检索引擎。&nbsp;<br></p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">此次更新包含许多 bug 修复、优化和改进，详情见<a data-cke-saved-href=\"https://lucene.apache.org/core/7_4_0/changes/Changes.html#v7.4.0.new_features\" href=\"https://lucene.apache.org/core/7_4_0/changes/Changes.html#v7.4.0.new_features\" style=\"outline: 0px; color: rgb(61, 177, 88);\">更新日志</a>。</p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">下载地址：<a data-cke-saved-href=\"http://lucene.apache.org/core/downloads.html\" href=\"http://lucene.apache.org/core/downloads.html\" style=\"outline: 0px; color: rgb(61, 177, 88);\">http://lucene.apache.org/core/downloads.html</a></p>',
+                "flexAttrs": {},
+                "parent": null,
+                "parentId": "-1",
+                "parentIdPath": null,
+                "children": null,
+                "ownerId": "cdaaa47ff34e4f2a84ed451e066a38e5",
+                "ownerType": 2,
+                "type": "2",
+                "priority": 1,
+                "state": "DRAFT",
+                "workLoad": null,
+                "startDate": null,
+                "dueDate": null,
+                "toWhere": null,
+                "orderCode": null,
+                "department": "",
+                "submitTime": "2018-06-27",
+                "submitterId": "",
+                "reqSource": "PLANNING",
+                "productId": null,
+                "reqValue": null,
+                "checkLists": null,
+                "lableIds": null,
+                "responsibleIds": null,
+                "stateTemplateId": "ae4e89dafdf94012b7fda1c57b297030",
+                "requirementMemberList": null,
+                "member": null,
+                "labelLinkIds": null,
+                "busiValue": null,
+                "acceptanceStandard": null
+            },
+            {
+                "id": "2a8aee84d0394252885f00c16854ba16",
+                "createBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "createTime": "2018-06-27 10:09:21",
+                "updateBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "updateTime": "2018-06-27 10:09:21",
+                "delFlag": "0",
+                "code": "REQ20180627002",
+                "name": "124324",
+                "description": '<p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">SpringBoot-Plus 1.1.4 发布了，改进内容包括：</p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">#IKPAY&nbsp;使用springboot最新版本2.0.3<br>#IKP57&nbsp;非admin用户查询的时候数据权限问题<br>#IKNRN&nbsp;改成多数据源错误修复<br>#IKM9B&nbsp;生成代码--功能点生成：生成的functionCode在数据库表里存的值，与生成代码里@Function里值不一致。<br>#IK8D2&nbsp;审计查询的配置是audit，功能点是trace，导致报出权限错误，无法访问<br>#IJRN3&nbsp;springboot的maven版本统一用配置来完成</p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">SpringBoot-Plus 是一个基于SpringBoot 2 的管理后台系统,包含了用户管理，组织机构管理，角色管理，功能点管理，菜单管理，权限分配，数据权限分配，代码生成，子系统生成，文档管理和预览等功能</p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">系统基于Spring Boot2技术，前端采用了Layui2。数据库以MySQL为实例，理论上是跨数据库平台.</p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">基本技术栈来源于我为电子工业出版社编写的的<a data-cke-saved-href=\"http://ibeetl.com/sb2/#more\" href=\"http://ibeetl.com/sb2/#more\" style=\"outline: 0px; color: rgb(61, 177, 88);\">&lt;&lt;Spring Boot 2 精髓 &gt;&gt;</a>&nbsp;(这本书每一章也有各种例子，但Springboot-plus 更偏向于应用而不是教学)</p>',
+                "flexAttrs": {},
+                "parent": null,
+                "parentId": "c010b96bf0084f6ebd42c6f192ce4760",
+                "parentIdPath": null,
+                "children": null,
+                "ownerId": "cdaaa47ff34e4f2a84ed451e066a38e5",
+                "ownerType": 2,
+                "type": "2",
+                "priority": 1,
+                "state": "DRAFT",
+                "workLoad": null,
+                "startDate": null,
+                "dueDate": null,
+                "toWhere": null,
+                "orderCode": null,
+                "department": "",
+                "submitTime": "2018-06-27",
+                "submitterId": "",
+                "reqSource": "PLANNING",
+                "productId": null,
+                "reqValue": null,
+                "checkLists": null,
+                "lableIds": null,
+                "responsibleIds": null,
+                "stateTemplateId": "ae4e89dafdf94012b7fda1c57b297030",
+                "requirementMemberList": null,
+                "member": null,
+                "labelLinkIds": null,
+                "busiValue": null,
+                "acceptanceStandard": null
+            },
+            {
+                "id": "c010b96bf0084f6ebd42c6f192ce4760",
+                "createBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "createTime": "2018-06-27 10:09:08",
+                "updateBy": "025CE39B20EA11E7A81AC85B767C89C1",
+                "updateTime": "2018-06-27 10:09:08",
+                "delFlag": "0",
+                "code": "REQ20180627001",
+                "name": "12321321",
+                "description": '<p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">BeetlSQL 2.10.29 发布，更新如下：<br></p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">#IKPBA mapper 接口 支持default method，采用了<a data-cke-saved-href=\"https://gitee.com/sanguolz\" href=\"https://gitee.com/sanguolz\" target=\"_blank\" style=\"outline: 0px; color: rgb(61, 177, 88);\">liuzou1991</a>&nbsp;对mapper的优化，liuzhou也是提供BeetlSQL的Mapper功能作者之一</p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">#IKPBB 代码生成优化，采用<a data-cke-saved-href=\"https://gitee.com/8snow\" href=\"https://gitee.com/8snow\" target=\"_blank\" style=\"outline: 0px; color: rgb(61, 177, 88);\">八天飞雪</a>&nbsp;，<a data-cke-saved-href=\"https://gitee.com/wddark\" href=\"https://gitee.com/wddark\" target=\"_blank\" style=\"outline: 0px; color: rgb(61, 177, 88);\">di wu</a>&nbsp;关于代码生成优化</p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">#IKPBC selectUnique 查询多个报错提示不准确</p><p style=\"margin-bottom: 16px; color: rgb(51, 51, 51); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, &quot;Noto Sans CJK SC&quot;, Sathu, EucrosiaUPC, sans-serif; font-size: 16px;\">#IKFGA sqlManager.refresh() 的bug</p>',
+                "flexAttrs": {},
+                "parent": null,
+                "parentId": "-1",
+                "parentIdPath": null,
+                "children": null,
+                "ownerId": "cdaaa47ff34e4f2a84ed451e066a38e5",
+                "ownerType": 2,
+                "type": "2",
+                "priority": 1,
+                "state": "DRAFT",
+                "workLoad": null,
+                "startDate": null,
+                "dueDate": null,
+                "toWhere": null,
+                "orderCode": null,
+                "department": "",
+                "submitTime": "2018-06-27",
+                "submitterId": "",
+                "reqSource": "PLANNING",
+                "productId": null,
+                "reqValue": null,
+                "checkLists": null,
+                "lableIds": null,
+                "responsibleIds": null,
+                "stateTemplateId": "ae4e89dafdf94012b7fda1c57b297030",
+                "requirementMemberList": null,
+                "member": null,
+                "labelLinkIds": null,
+                "busiValue": null,
+                "acceptanceStandard": null
+            }
+        ],
+        "condition": null,
+        "asc": true,
+        "offsetCurrent": 0
+    },
+    "viewBaseField": [
+        {
+            "id": "2",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "name",
+            "displayName": "名称",
+            "fieldType": "text-input",
+            "oper": "like,eq",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "1",
+            "defaultSort": 2,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "like",
+            "exportField": "1"
+        },
+        {
+            "id": "25",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "createTime",
+            "displayName": "创建时间",
+            "fieldType": "datetime",
+            "oper": "between,gt,lt",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "1",
+            "defaultSort": 9,
+            "filterType": "2",
+            "screenField": "0",
+            "screenOper": "between",
+            "exportField": "0"
+        },
+        {
+            "id": "26",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "description",
+            "displayName": "详细描述",
+            "fieldType": "text-area",
+            "oper": "like",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "0",
+            "defaultSort": null,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "like",
+            "exportField": "1"
+        },
+        {
+            "id": "27",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "dueDate",
+            "displayName": "结束时间",
+            "fieldType": "datetime",
+            "oper": "between,gt,lt",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "0",
+            "defaultSort": null,
+            "filterType": "2",
+            "screenField": "0",
+            "screenOper": "between",
+            "exportField": "0"
+        },
+        {
+            "id": "28",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "department",
+            "displayName": "提出部门",
+            "fieldType": "department",
+            "oper": "eq",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "0",
+            "defaultSort": null,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "eq",
+            "exportField": "0"
+        },
+        {
+            "id": "29",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "reqValue",
+            "displayName": "需求价值",
+            "fieldType": "text-input",
+            "oper": "eq",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "0",
+            "defaultSort": null,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "eq",
+            "exportField": "0"
+        },
+        {
+            "id": "3",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "code",
+            "displayName": "编码",
+            "fieldType": "text-input",
+            "oper": "like,eq",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "1",
+            "defaultSort": 1,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "like",
+            "exportField": "1"
+        },
+        {
+            "id": "30",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "busiValue",
+            "displayName": "业务价值",
+            "fieldType": "text-input",
+            "oper": "eq",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "0",
+            "defaultSort": null,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "eq",
+            "exportField": "0"
+        },
+        {
+            "id": "31",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "type",
+            "displayName": "类型",
+            "fieldType": "dict",
+            "oper": "eq,in",
+            "value": "require_type",
+            "businessType": "require",
+            "defaultField": "0",
+            "defaultSort": null,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "in",
+            "exportField": "0"
+        },
+        {
+            "id": "32",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "priority",
+            "displayName": "优先级",
+            "fieldType": "dict",
+            "oper": "eq,in",
+            "value": "require_priority",
+            "businessType": "require",
+            "defaultField": "1",
+            "defaultSort": 5,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "in",
+            "exportField": "1"
+        },
+        {
+            "id": "33",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "workLoad",
+            "displayName": "工作量",
+            "fieldType": "text-input",
+            "oper": "eq,between",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "1",
+            "defaultSort": 6,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "eq",
+            "exportField": "1"
+        },
+        {
+            "id": "34",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "submitTime",
+            "displayName": "提出时间",
+            "fieldType": "datetime",
+            "oper": "between,gt,lt",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "1",
+            "defaultSort": 8,
+            "filterType": "2",
+            "screenField": "0",
+            "screenOper": "between",
+            "exportField": "0"
+        },
+        {
+            "id": "35",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "submitterId",
+            "displayName": "提出人",
+            "fieldType": "user",
+            "oper": "eq,currentuser",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "1",
+            "defaultSort": 7,
+            "filterType": "1",
+            "screenField": "0",
+            "screenOper": "eq",
+            "exportField": "1"
+        },
+        {
+            "id": "36",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "reqSource",
+            "displayName": "来源",
+            "fieldType": "dict",
+            "oper": "eq,in",
+            "value": "require_source",
+            "businessType": "require",
+            "defaultField": "1",
+            "defaultSort": 4,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "in",
+            "exportField": "1"
+        },
+        {
+            "id": "37",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "labelLinkIds",
+            "displayName": "标签",
+            "fieldType": "dict",
+            "oper": "in,eq",
+            "value": "common_lable",
+            "businessType": "require",
+            "defaultField": "0",
+            "defaultSort": null,
+            "filterType": "0",
+            "screenField": "0",
+            "screenOper": "in",
+            "exportField": "0"
+        },
+        {
+            "id": "38",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "member",
+            "displayName": "责任人",
+            "fieldType": "user",
+            "oper": "eq,currentuser",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "1",
+            "defaultSort": 10,
+            "filterType": "1",
+            "screenField": "0",
+            "screenOper": "eq",
+            "exportField": "1"
+        },
+        {
+            "id": "4",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "createBy",
+            "displayName": "创建人",
+            "fieldType": "user",
+            "oper": "eq,currentuser",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "0",
+            "defaultSort": null,
+            "filterType": "1",
+            "screenField": "0",
+            "screenOper": "eq",
+            "exportField": "0"
+        },
+        {
+            "id": "5",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "startDate",
+            "displayName": "开始时间",
+            "fieldType": "datetime",
+            "oper": "between,gt,lt",
+            "value": null,
+            "businessType": "require",
+            "defaultField": "0",
+            "defaultSort": null,
+            "filterType": "2",
+            "screenField": "0",
+            "screenOper": "between",
+            "exportField": "0"
+        },
+        {
+            "id": "6",
+            "createBy": null,
+            "createTime": null,
+            "updateBy": null,
+            "updateTime": null,
+            "delFlag": "0",
+            "name": "state",
+            "displayName": "状态",
+            "fieldType": "dict",
+            "oper": "in,eq",
+            "value": "require_state",
+            "businessType": "require",
+            "defaultField": "1",
+            "defaultSort": 3,
+            "filterType": "1",
+            "screenField": "0",
+            "screenOper": "in",
+            "exportField": "1"
+        }
+    ],
+    "users": [
+        {
+            "id": "025CE39B20EA11E7A81AC85B767C89C1",
+            "orgId": "6a9f895006454ce782cc08e213c17c5c",
+            "orgName": "易立德信息技术股份有限公司",
+            "code": "1",
+            "name": "admin",
+            "displayName": "管理员",
+            "mobile": "",
+            "email": "934269029@qq.com",
+            "avatar": "./static/images/avatar/Avatar-2.png",
+            "type": "1",
+            "status": "1"
+        }
+    ]
+};
+console.log(res)
+// bootstrap the demo
+var demo = new Vue({
+	el: '#demo',
+	data: function () {
+		var columns = res.viewBaseField.filter(function (item) {
+			return res.viewData.selectedFields.indexOf(item.id) > -1;
+		});
+		columns.forEach(function (item) {
+			item.sort = true;
+			item.key = item.name;
+		});
+
+		var rows = res.data.records;
+
+		return {
+			searchQuery: '',
+			/**
+			 * 表格头对象数组
+			 * key {String}对应 gridData 的 name
+			 * sort {String | empty}排序，值：'dsc' -1 降序、'asc' 1 升序、true 有排序, false 不进行排序
+			 * merge {Function | empty} 进行合并的列
+			 * format {Function} 格式化单元格
+			 */
+			gridColumns: columns,
+			gridData: rows,
+			gridChecks: ''
+		};
+	}
+});
+
+</script>
+<style>
+	.table-thead .table {
+		margin-bottom: 0;
+	}
+</style>

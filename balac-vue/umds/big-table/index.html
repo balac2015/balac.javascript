@@ -1,0 +1,18 @@
+<script src="../libs/vue.js"></script>
+<link rel="stylesheet" href="./demo.css">
+<link rel="stylesheet" href="./style.css">
+
+<div id="el">
+	<h1>vue: rendering dynamic big table</h1>
+	<p>
+		<span>
+			{{ rows }} x {{ cols }}, {{ optimized ? 'with' : 'without' }} optimization. {{ msg }}
+		</span>
+	</p>
+	<p>
+		<button v-if="optimized" @click="loadBase">Disable optimization</button>
+        <button v-else @click="loadOptimized">Enable optimization (Object.freeze)</button>
+        <button @click="unmount">Unmount</button>
+        <button @click="rerender">Rerender with fresh data</button>
+	</p>
+</div>

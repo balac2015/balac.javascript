@@ -1,0 +1,14 @@
+{
+  "name": "layouts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start"
+  },
+  "devDependencies": {
+    "nuxt": "^1.4.2"
+  }
+}

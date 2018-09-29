@@ -1,0 +1,54 @@
+
+<script type="text/javascript" src="./libs/vue/vue.min.js"></script>
+
+<div id="app-a">
+    {{ truth.message }}
+</div>
+<hr />
+<div id="app-b">
+    <input type="text" v-model="truth.message">
+</div>
+<hr>
+<div id="app-c">
+
+</div>
+
+<script>
+
+var store = {
+    debug: true,
+    state: {
+        message: 'hello'
+    },
+    setMessageAction: function (newValue) {
+        if (this.debug) {
+            console.log('setMessageAction triggered with ', newValue);
+        }
+        this.state.message = newValue;
+    },
+    clearMessageAction: function () {
+        if (this.debug) {
+            console.log('clearMessageAction triggered');
+        }
+        this.state.message = '';
+    }
+};
+const vmA = new Vue({
+    el: '#app-a',
+    data: function () {
+        return {
+            truth: store.state,
+        };
+    }
+});
+const vmB = new Vue({
+    el: '#app-b',
+    data: function () {
+        return {
+            truth: store.state
+        };
+    }
+});
+document.querySelector('#app-c').innerHTML = vmB.truth.text;
+
+</script>

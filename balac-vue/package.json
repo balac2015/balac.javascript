@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@vue/cli": "^3.0.0-rc.10",
+    "@vue/cli-service": "^3.0.0-rc.10",
+    "@vue/cli-service-global": "^3.0.0-rc.10"
+  },
+  "dependencies": {
+    "nuxt": "^1.4.2"
+  }
+}

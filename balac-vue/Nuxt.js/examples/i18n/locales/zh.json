@@ -1,0 +1,16 @@
+{
+  "links": {
+    "home": "主页",
+    "about": "关于",
+    "english": "English version",
+    "french": "French version"
+  },
+  "home": {
+    "title": "欢迎1",
+    "introduction": "介绍"
+  },
+  "about": {
+    "title": "关于",
+    "introduction": "关于介绍"
+  }
+}

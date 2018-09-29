@@ -1,0 +1,172 @@
+
+<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+
+<div id="app">
+    <anchored-heading :level="4">
+        在不使用 slot 属性向组件中传递内容时，这些子节点被存储到组件实例的 $slots.default 中
+    </anchored-heading>
+
+    <anchored-heading-1 :level="4">
+        Anchored-Heading-1-测试
+    </anchored-heading-1>
+
+    <scope-slot>
+        <slot :text="msg">数据</slot>
+    </scope-slot>
+
+    <reset-model></reset-model>
+
+    <reset-direct>对 v-if, v-for 使用 render 的重写</reset-direct>
+    <repeat-tag>重复元素/组件写法</repeat-tag>
+</div>
+
+<script type="text/javascript">
+    Vue.component('anchored-heading', {
+        render: function (createElement) {
+
+            /**
+             * createElement 返回 VNode
+             * virtual node
+             * 包含「哪些节点应该由 Vue 渲染在页面上」的相关描述信息，也包括所有子节点的相关描述
+             */
+            return createElement(
+                'h' + this.level,   // 标签名称
+                this.$slots.default // 由子节点构成的数组
+            );
+        },
+        props: {
+            level: {
+                type: Number,
+                required: true
+            }
+        }
+    });
+
+
+    var getChildrenTextContent = function (children) {
+        return children.map(function (node) {
+            return node.children
+                ? getChildrenTextContent(node.children)
+                : node.text;
+        }).join('');
+    };
+    // 完整 anchored-heading
+    Vue.component('anchored-heading-1', {
+        render: function (createElement) {
+
+            // create kebabCase id
+            var headingId = getChildrenTextContent(this.$slots.default)
+                .toLowerCase()
+                .replace(/\W+/g, '-')
+                .replace(/(^\-|\-$)/g, '');
+
+            return createElement(
+                'h' + this.level,
+                [
+                    createElement(
+                        'a',
+                        {
+                            attrs: {
+                                name: headingId,
+                                href: '#' + headingId
+                            }
+                        },
+                        this.$slots.default
+                    )
+                ]
+            );
+        },
+        props: {
+            level: {
+                type: Number,
+                required: true
+            }
+        }
+    });
+
+    // 创建重复元素/组件
+    Vue.component('repeat-tag', {
+        render: function (createElement) {
+            return createElement(
+                'div',
+                Array.apply(null, { length: 20 }).map(function () {
+                    return createElement('p', 'hi');
+                })
+            );
+        }
+    });
+
+    // vue 模板中 v-if, v-for 使用 render() 的重写实现
+    Vue.component('reset-direct', {
+        render: function (createElement) {
+            if (this.items.length) {
+                return createElement(
+                    'ul',
+                    this.items.map(function (item) {
+                        return createElement('li', item);
+                    })
+                );
+            } else {
+                return createElement(
+                    'p',
+                    'No items fond.'
+                );
+            }
+        },
+        data: function () {
+            return {
+                items: [1, 2, 3, 4]
+            }
+        }
+    });
+
+    // v-model 功能的 render() 实现，可以更好地控制交互细节
+    Vue.component('reset-model', {
+        render: function (createElement) {
+            var self = this;
+
+            return createElement(
+                'input',
+                {
+                    domProps: {
+                        value: self.value
+                    },
+                    on: {
+                        input: function (event) {
+                            self.value = event.target.value;
+                            self.$emit('input', event.target.value);
+                        }
+                    }
+                }
+            );
+        }
+    });
+
+    Vue.component('scope-slot', {
+        render: function (createElement) {
+            return createElement(
+                'div',
+                [
+                    createElement(
+                        'child',
+                        {
+                            scopedSlots: {
+                                default: function (props) {
+                                    return createElement('span', 'props.text');
+                                }
+                            }
+                        }
+                    )
+                ]
+            )
+        },
+        props: ['text']
+    })
+
+    new Vue({
+        el: '#app',
+        data: {
+            msg: 'hello world'
+        }
+    });
+</script>

@@ -1,0 +1,16 @@
+{
+  "name": "cached-components",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lru-cache": "^4.1.3",
+    "nuxt-edge": "^2.0.0-25552561.fceb30b"
+  }
+}

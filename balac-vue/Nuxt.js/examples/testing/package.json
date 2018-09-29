@@ -1,0 +1,14 @@
+{
+  "name": "testing",
+  "scripts": {
+	"dev": "nuxt",
+	"build": "nuxt build",
+	"start": "nuxt start",
+	"test": "ava --serial --verbose"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "jsdom": "^11.12.0",
+    "nuxt": "^1.4.2"
+  }
+}
